@@ -8,8 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.upmc.dar.dao.DAOFactory;
 import fr.upmc.dar.dao.UserDao;
+import fr.upmc.dar.dao.interfaces.IUserDao;
 import fr.upmc.dar.entities.User;
+import fr.upmc.dar.enums.Uri;
+
 
 
 
@@ -17,10 +21,10 @@ import fr.upmc.dar.entities.User;
 public class SignUpServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 9084285697361335795L;
-	private static final String SINUP_JSP  = "/JSP/signup.jsp";
+	//private static final String SINUP_JSP  = "/JSP/signup.jsp";
 	
 	
-	UserDao dao ;
+	private IUserDao user ;
 	
 	
 	
@@ -28,14 +32,24 @@ public class SignUpServlet extends HttpServlet {
 	@Override
 	public void init() throws ServletException {
 		super.init();
-		dao = new UserDao();
+		user = DAOFactory.createUserDao();
 	}
+	
+	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//réponse a une request get nomdomaine.ext/signin
-		request.getRequestDispatcher(SINUP_JSP).forward(request, response);
+		User utilisateur = new User("lovz","zacky","marie","lool","","ttt","");
 		
+		try {
+			user.createUser(utilisateur);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(Uri.REGISTER.getRessourceUrl());
+		request.getRequestDispatcher(Uri.REGISTER.getRessourceUrl()).forward(request, response);
 		
 	}
 	@Override
@@ -50,8 +64,8 @@ public class SignUpServlet extends HttpServlet {
 
 		 try{
 			User utilisateur = new User(firstName,lastName,userName,eMail,password,etablissement,cursus);
-			if(dao.findUserByEmail(eMail)==null){
-				dao.registerUser(utilisateur);
+			if(user.findUserByEmail(eMail)==null){
+				user.createUser(utilisateur);
 				response.getWriter().write("welcome new user");
 			}
 			
