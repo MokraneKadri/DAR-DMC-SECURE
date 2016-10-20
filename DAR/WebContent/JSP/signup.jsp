@@ -29,7 +29,7 @@
   <jsp:include page="header.jsp">
   <jsp:param name="active" value="signin" />
   </jsp:include>
-</head>
+
 	<div class="container">
 		<div class="row main">
 			<div class="panel-heading">
