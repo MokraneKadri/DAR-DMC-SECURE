@@ -17,10 +17,9 @@ import fr.upmc.dar.enums.Uri;
 
 
 
-@WebServlet( name="SignUpServlet", urlPatterns = "/signup" )
+@WebServlet(urlPatterns = "/signup" )
 public class SignUpServlet extends HttpServlet {
-
-	private static final long serialVersionUID = 9084285697361335795L;
+	private static final long serialVersionUID = 1L;
 	//private static final String SINUP_JSP  = "/JSP/signup.jsp";
 	
 	
@@ -39,15 +38,7 @@ public class SignUpServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//réponse a une request get nomdomaine.ext/signin
-		User utilisateur = new User("lovz","zacky","marie","lool","","ttt","");
 		
-		try {
-			user.createUser(utilisateur);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		System.out.println(Uri.REGISTER.getRessourceUrl());
 		request.getRequestDispatcher(Uri.REGISTER.getRessourceUrl()).forward(request, response);
 		
@@ -55,13 +46,13 @@ public class SignUpServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 String firstName = request.getParameter("username");
-		 String lastName = request.getParameter("username");;
-		 String userName = request.getParameter("username");;
-		 String eMail = request.getParameter("username");;
-		 String password = request.getParameter("username");;
-		 String etablissement = request.getParameter("username");;
-		 String cursus = request.getParameter("username");;
-
+		 String lastName = request.getParameter("username");
+		 String userName = request.getParameter("username");
+		 String eMail = request.getParameter("username");
+		 String password = request.getParameter("username");
+		 String etablissement = request.getParameter("username");
+		 String cursus = request.getParameter("username");
+		 System.out.println("received "+firstName);
 		 try{
 			User utilisateur = new User(firstName,lastName,userName,eMail,password,etablissement,cursus);
 			if(user.findUserByEmail(eMail)==null){

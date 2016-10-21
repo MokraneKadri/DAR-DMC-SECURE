@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 
@@ -9,16 +9,15 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>template v0.1</title>
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<title>Sign up Now</title>
+	
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
-
-    <link rel="stylesheet" href="../assets/css/header.css">
-    <link rel="stylesheet" type="text/css" href="../assets/css/SignupStyle.css">
-	<link rel="stylesheet" href="../assets/css/footer.css">
+    <link rel="stylesheet" href="http://localhost:8080/DAR/assets/css/header.css">
+	<link rel="stylesheet" href="http://localhost:8080/DAR/assets/css/footer.css">
+	<link rel="stylesheet" href="http://localhost:8080/DAR/assets/css/singnup.css">
 
 	<link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
 
@@ -120,7 +119,7 @@
 						<button type="button" class="btn btn-primary btn-lg btn-block login-button">S'enregistrer</button>
 					</div>
 					<div class="login-register">
-						<a href="index.php">Connection</a>
+						Vous avez déja un compte<a href="/DAR/signin">Connectez-vous</a>
 					</div>
 				</form>
 			</div>

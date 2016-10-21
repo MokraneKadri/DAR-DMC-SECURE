@@ -7,9 +7,9 @@ public enum Uri {
 	
 	 HOME ("/home"),
 	 REGISTER ("/JSP/signup.jsp"),
-	 LOGIN ("/login"),
-	 RESETPASWD ("/rest"),
-	 CREATEEVENT ("/createEvent");
+	 LOGIN ("/JSP/signin.jsp"),
+	 RESETPASWD ("/JSP/passwordReset.jsp"),
+	 CREATEEVENT ("/JSP/createEvent.jsp");
 	 
 	  private String name = "";
 	   
