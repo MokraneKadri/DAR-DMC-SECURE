@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.upmc.dar.dao.DAOFactory;
 import fr.upmc.dar.dao.interfaces.IUserDao;
-import fr.upmc.dar.enums.Uri;
+import fr.upmc.dar.enums.UriMapping;
 
 @WebServlet(urlPatterns = "/passwordreset" )
 public class PasswordResetServlet extends HttpServlet {
@@ -32,7 +32,7 @@ public class PasswordResetServlet extends HttpServlet {
 			
 			
 			
-			request.getRequestDispatcher(Uri.RESETPASWD.getRessourceUrl()).forward(request, response);
+			request.getRequestDispatcher(UriMapping.RESETPASWD.getRessourceUrl()).forward(request, response);
 			
 		}
 		

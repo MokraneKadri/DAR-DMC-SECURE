@@ -35,7 +35,7 @@
 
 			</div>
 			<div class="main-login main-center">
-				<form class="form-horizontal"  method="post"  action="/signup">
+				<form class="form-horizontal"  method="post"  action="/DAR/signup">
 
 					<div class="form-group">
 						<label for="name" class="cols-sm-2 control-label">Votre Nom</label>
@@ -82,7 +82,7 @@
 						<div class="cols-sm-10">
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-								<input type="password" class="form-control" name="confirm" id="confirm"  placeholder="Re-Saisissez un mot de passe"/>
+								<input type="password" class="form-control" name="confirmpassword" id="confirmpassword"  placeholder="Re-Saisissez un mot de passe"/>
 							</div>
 						</div>
 					</div>
@@ -91,7 +91,7 @@
 						<div class="cols-sm-10">
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fa fa-university" aria-hidden="true"></i></span>
-								<select id="university" name="uni" class="form-control">
+								<select id="university" name="university" class="form-control">
 									<option value="1">xxxxx</option>
 									<option value="2">xxxx</option>
 									<option value="3">xxxxx</option>
@@ -116,10 +116,10 @@
 					</div>
 
 					<div class="form-group ">
-						<button type="button" class="btn btn-primary btn-lg btn-block login-button">S'enregistrer</button>
+						<input type="submit" class="btn btn-primary btn-lg btn-block login-button">S'enregistrer</button>
 					</div>
 					<div class="login-register">
-						Vous avez déja un compte<a href="/DAR/signin">Connectez-vous</a>
+						Vous avez déja un compte <a href="/DAR/signin"> Connectez-vous ici</a>
 					</div>
 				</form>
 			</div>

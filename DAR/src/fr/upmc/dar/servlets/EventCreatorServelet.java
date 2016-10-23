@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.upmc.dar.dao.DAOFactory;
 import fr.upmc.dar.dao.interfaces.IUserDao;
-import fr.upmc.dar.enums.Uri;
+import fr.upmc.dar.enums.UriMapping;
 
 
 @WebServlet(urlPatterns = "/createevent" )
@@ -35,7 +35,7 @@ public class EventCreatorServelet extends HttpServlet {
 		
 		
 		
-		request.getRequestDispatcher(Uri.CREATEEVENT.getRessourceUrl()).forward(request, response);
+		request.getRequestDispatcher(UriMapping.CREATEEVENT.getRessourceUrl()).forward(request, response);
 		
 	}
 	

@@ -1,10 +1,13 @@
 package fr.upmc.dar.entities;
 
 import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import fr.upmc.dar.tools.PasswordEncryptor;
 
 @Entity
 public class User {
@@ -12,27 +15,24 @@ public class User {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Basic
+	@Column
 	private String firstName;
 	
-	@Basic
-	private String lastName;
 	
-	
-	@Basic
+	@Column
 	private String userName;
 	
-	@Basic
+	@Column
 	private String eMail;
 	
 
-	@Basic
+	@Column
 	private String password;
 	
-	@Basic
+	@Column
 	private String etablissement;
 	
-	@Basic
+	@Column
 	private String cursus;
 
 	
@@ -44,15 +44,15 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 
-	public User( String firstName, String lastName,String userName, String eMail, String password, String etablissement,
+	public User( String name, String userName, String eMail, String password, String etablissement,
 			String cursus) {
 		super();
 		
-		this.firstName = firstName;
-		this.lastName = lastName;
+		this.firstName = name;
+	
 		this.userName=userName;
 		this.eMail = eMail;
-		this.password = password;
+		this.password = PasswordEncryptor.encryptPassword(password);
 		this.etablissement = etablissement;
 		this.cursus = cursus;
 	}
@@ -73,13 +73,7 @@ public class User {
 		this.firstName = firstName;
 	}
 
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+	
 
 	public String geteMail() {
 		return eMail;

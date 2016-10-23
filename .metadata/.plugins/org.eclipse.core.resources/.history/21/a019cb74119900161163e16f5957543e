@@ -1,0 +1,106 @@
+package fr.upmc.dar.tools;
+
+import java.util.Map;
+
+import fr.upmc.dar.dao.interfaces.IUserDao;
+import fr.upmc.dar.enums.LoginType;
+import fr.upmc.dar.enums.SignInFields;
+import fr.upmc.dar.enums.SignUpFields;
+import net.sf.json.JSONObject;
+
+public class SignUpValidator {
+
+	
+	private IUserDao user;
+	 private JSONObject committedErrors;;
+
+
+	
+	
+
+	
+	
+	public SignUpValidator(IUserDao user,  JSONObject committedErrors) {
+		super();
+		this.user = user;
+		this.committedErrors = committedErrors;
+	}
+
+
+	public boolean isAValidEmail(String email){
+
+		if(email.isEmpty()){
+			committedErrors.put(SignUpFields.EMAIL.getAttributeName(), "le champ email est obligatoire ,merci de le remplir");
+			return false;
+		}
+		
+			if(!email.matches(SignInFields.EMAILREGEXP.getAttributeName())){
+				committedErrors.put(SignInFields.LOGIN.getAttributeName(), "l'adresse email indiqué n'est pas valide !");
+				return false;
+			}
+			return true;
+		
+
+	}
+
+
+	public boolean isAValidPassword(String passwd){
+
+		if(passwd.isEmpty()){
+			committedErrors.put(SignInFields.PASSWORD.getAttributeName(), "le champ mot de passe est obligatoire ,merci de le remplir");
+			return false;
+		}
+		if(passwd.length() <6 ){
+			committedErrors.put(SignInFields.PASSWORD.getAttributeName(), "le mot de passe indiqué est trop court !");
+			return false;
+		}
+
+		return true;
+	}
+
+	public boolean isAValidConfirmationPassword(String passwd,String confimpasswd){
+
+		if(passwd!=confimpasswd){
+			committedErrors.put(SignUpFields.PASSWORDCONFIRM.getAttributeName(), "le champ mot de passe ne correspondent pas! ");
+			return false;
+		}
+
+		return true;
+	}
+	
+	public boolean isAValidUsername(String username) throws Exception{
+		if(username.isEmpty() ){
+			committedErrors.put(SignUpFields.USERNAME.getAttributeName(), "vueillez renseigner un nom d'utilisateur ");
+			return false;}
+		if(username.length()<5){
+			committedErrors.put(SignUpFields.USERNAME.getAttributeName(), "nom d'utilisateur doit conteneir au moins 5 caractères ");
+			return false;
+		}
+		if(user.findUserByUserName(username)!=null){
+			committedErrors.put(SignUpFields.USERNAME.getAttributeName(), "nom d'utilisateur déja pris merci de choisir un autre ");
+			return false;
+			
+		}
+		
+		return true;
+		
+	}
+
+
+
+	public IUserDao getUser() {
+		return user;
+	}
+	public void setUser(IUserDao user) {
+		this.user = user;
+	}
+	public JSONObject getCommittedErrors() {
+		return committedErrors;
+	}
+	public void setCommittedErrors(JSONObject committedErrors) {
+		this.committedErrors = committedErrors;
+	}
+
+
+
+}

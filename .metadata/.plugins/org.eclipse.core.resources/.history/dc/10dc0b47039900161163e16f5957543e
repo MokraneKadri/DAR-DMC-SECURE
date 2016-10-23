@@ -1,0 +1,31 @@
+package fr.upmc.dar.enums;
+
+public enum SignUpFields {
+
+	
+
+	//association champs du formulaire --> valeur du id du champ
+	
+	 NAME ("/home"),
+	 USERNAME ("username"),
+	 EMAIL ("email"),
+	 PASSWORD ("password"),
+	 PASSWORDCONFIRM ("confirmpassword"),
+	 UNIVERSITY ("university"),
+	 EMAILREGEXP("([^.@]+)(\\.[^.@]+)*@([^.@]+\\.)+([^.@]+)"),
+	 CURSUS ("cursus"),
+	 SEXE("sexe");
+	
+	
+	  private String name = "";
+	   
+	  //Constructeur
+	  SignUpFields(String name){
+	    this.name = name;
+	  }
+	   
+	  //renvoie la valeur du type enuméré
+	  public String getRessourceUrl(){
+	    return name.toString();
+	  }
+}

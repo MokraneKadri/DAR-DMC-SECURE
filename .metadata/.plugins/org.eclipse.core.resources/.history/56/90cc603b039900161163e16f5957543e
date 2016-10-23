@@ -1,0 +1,10 @@
+package fr.upmc.dar.tools;
+
+import fr.upmc.dar.dao.interfaces.IUserDao;
+
+public class SignInValidator {
+
+	
+	private IUserDao user;
+	private Map<String,String> committedErrors;
+}

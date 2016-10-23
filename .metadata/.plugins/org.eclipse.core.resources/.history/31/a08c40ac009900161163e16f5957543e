@@ -1,0 +1,5 @@
+package fr.upmc.dar.enums;
+
+public enum SignUpFields {
+
+}

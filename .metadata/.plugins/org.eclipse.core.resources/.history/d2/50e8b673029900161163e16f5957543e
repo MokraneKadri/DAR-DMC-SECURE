@@ -1,0 +1,5 @@
+package fr.upmc.dar.tools;
+
+public class SignInValidator {
+
+}
