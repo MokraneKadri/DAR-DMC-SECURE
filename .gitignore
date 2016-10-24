@@ -7,9 +7,11 @@
 *.class
 
 # eclipse specific git ignore
+RemoteSystemsTempFiles
 *.pydevproject
 .project
 .metadata/*
+/DAR/.metadata
 bin/**
 tmp/**
 tmp/**/*
