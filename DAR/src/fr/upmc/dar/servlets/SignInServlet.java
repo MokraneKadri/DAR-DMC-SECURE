@@ -43,9 +43,6 @@ public class SignInServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
-		System.out.println(UriMapping.LOGIN.getRessourceUrl());
-		
 		request.getRequestDispatcher(UriMapping.LOGIN.getRessourceUrl()).forward(request, response);
 		
 	}
@@ -55,7 +52,7 @@ public class SignInServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String login = request.getParameter("login");
 		String passwd = request.getParameter("password");
-		System.out.println("received "+login +"pass"+passwd);
+	
 		
 		try {
 			if(validator.validateCredantials(login, (passwd))==true)
