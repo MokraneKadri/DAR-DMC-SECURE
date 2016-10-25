@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,11 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.upmc.dar.dao.DAOFactory;
-import fr.upmc.dar.dao.UserDao;
 import fr.upmc.dar.dao.interfaces.IUserDao;
 import fr.upmc.dar.entities.User;
 import fr.upmc.dar.enums.UriMapping;
-import fr.upmc.dar.tools.SignInValidator;
 import fr.upmc.dar.tools.SignUpValidator;
 
 

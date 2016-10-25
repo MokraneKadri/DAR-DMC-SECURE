@@ -1,6 +1,6 @@
 package fr.upmc.dar.entities;
 
-import javax.persistence.Basic;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,34 +11,28 @@ import fr.upmc.dar.tools.PasswordEncryptor;
 
 @Entity
 public class User {
-
+	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@Column
 	private String firstName;
-	
-	
+
 	@Column
 	private String userName;
-	
-	@Column
+
+	@Column(unique = true)
 	private String eMail;
-	
 
 	@Column
 	private String password;
-	
+
 	@Column
 	private String etablissement;
-	
+
 	@Column
 	private String cursus;
 
-	
-	
-	
-	
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -47,9 +41,9 @@ public class User {
 	public User( String name, String userName, String eMail, String password, String etablissement,
 			String cursus) {
 		super();
-		
+
 		this.firstName = name;
-	
+
 		this.userName=userName;
 		this.eMail = eMail;
 		this.password = PasswordEncryptor.encryptPassword(password);
@@ -73,7 +67,7 @@ public class User {
 		this.firstName = firstName;
 	}
 
-	
+
 
 	public String geteMail() {
 		return eMail;
@@ -114,10 +108,10 @@ public class User {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
 }

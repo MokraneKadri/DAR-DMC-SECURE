@@ -6,10 +6,10 @@ public enum UriMapping {
 	//association url--> ressource JSP
 	
 	 HOME ("/home"),
-	 REGISTER ("/JSP/signup.jsp"),
-	 LOGIN ("/JSP/signin.jsp"),
-	 RESETPASWD ("/JSP/passwordReset.jsp"),
-	 CREATEEVENT ("/JSP/createEvent.jsp");
+	 REGISTER ("/jsp/signup.jsp"),
+	 LOGIN ("/jsp/signin.jsp"),
+	 RESETPASWD ("/jsp/passwordReset.jsp"),
+	 CREATEEVENT ("/jsp/createEvent.jsp");
 	 
 	  private String name = "";
 	   

@@ -11,13 +11,13 @@
 
 	<title>Sign up Now</title>
 	
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+ 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="http://localhost:8080/DAR/assets/css/header.css">
 	<link rel="stylesheet" href="http://localhost:8080/DAR/assets/css/footer.css">
-	<link rel="stylesheet" href="http://localhost:8080/DAR/assets/css/singnup.css">
+	<link rel="stylesheet" href="http://localhost:8080/DAR/assets/css/signup.css">
 
 	<link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
 
@@ -116,7 +116,7 @@
 					</div>
 
 					<div class="form-group ">
-						<input type="submit" class="btn btn-primary btn-lg btn-block login-button">S'enregistrer</button>
+						<input type="submit" class="btn btn-primary btn-lg btn-block login-button">
 					</div>
 					<div class="login-register">
 						Vous avez déja un compte <a href="/DAR/signin"> Connectez-vous ici</a>

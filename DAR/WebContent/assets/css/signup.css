@@ -5,6 +5,15 @@
 /*
  * General styles
  */
+ 
+.show {
+	display: block;
+	background-color: white;
+}
+
+.show:hover {
+	background-color: yellow;
+}
 
 body, html{
     height: 80%;

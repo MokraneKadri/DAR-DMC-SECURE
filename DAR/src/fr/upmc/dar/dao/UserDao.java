@@ -1,10 +1,8 @@
 package fr.upmc.dar.dao;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.NamedQuery;
 import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import fr.upmc.dar.dao.interfaces.IUserDao;
@@ -25,12 +23,14 @@ public class UserDao implements IUserDao{
 	private static final String SELECT_BY_USERNAME = "SELECT u FROM User u WHERE u.userName=:userName ";
 	private static final String PARAM_USERNAME           = "userName";
 	
+	@SuppressWarnings("unused")
 	private static final String SELECT_BY_USERNAME_AND_PASSWORD = "SELECT u FROM User u WHERE u.userName=:userName AND u.password=:password";
+	@SuppressWarnings("unused")
 	private static final String SELECT_BY_EMAIL_AND_PASSWORD = "SELECT u FROM User u WHERE u.eMail=:eMail AND u.password=:password";
+	@SuppressWarnings("unused")
 	private static final String PARAM_PASS           = "password";
-	
 
-	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("DAR");
+	private EntityManagerFactory emf;// = Persistence.createEntityManagerFactory("DAR");
 	
   
 	private  EntityManager  em ;
@@ -43,7 +43,7 @@ public class UserDao implements IUserDao{
 
 
 	public  UserDao() {
-		
+		emf = Persistence.createEntityManagerFactory("DAR");
 		if(em==null)
 		em= emf.createEntityManager()  ;
 	}

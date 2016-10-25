@@ -1,15 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
 
 <header class="header-login-signup">
 
 	<div class="header-limiter">
-
+	
 		<h1><a href="#"><img src="http://localhost:8080/DAR/assets/img/logo.jpg"></a></h1>
-
+		
+		
 		<nav>
 			<a href="/DAR/404.jsp">Accueil </a>
 			<a href="/DAR/404.jsp" >Evenements</a>
