@@ -32,9 +32,9 @@ public class ConnectedModeFilter implements Filter {
 		String userId = (String) httpSession.getAttribute("userId");
 		
 		if (userId == null)
-			httpRequest.getRequestDispatcher("/DAR/portal.jsp");
+			httpRequest.getRequestDispatcher("/DAR/index.jsp");
 		if (userId.equals(""))
-			httpRequest.getRequestDispatcher("/DAR/portal.jsp");
+			httpRequest.getRequestDispatcher("/DAR/index.jsp");
 		
 		chain.doFilter(request, response);
 	}

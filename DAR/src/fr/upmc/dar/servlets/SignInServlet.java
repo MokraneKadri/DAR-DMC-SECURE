@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import fr.upmc.dar.dao.DAOFactory;
 import fr.upmc.dar.dao.interfaces.IUserDao;
 import fr.upmc.dar.entities.User;
@@ -30,6 +33,7 @@ public class SignInServlet extends HttpServlet {
 	protected IUserDao user;
 	protected SignInValidator validator;
 	protected  Map<String,String> formErrors;
+	protected JSONObject errorsJson;
 	
 	@Override
 	public void init() throws ServletException {
@@ -37,6 +41,7 @@ public class SignInServlet extends HttpServlet {
 		formErrors = new HashMap<String,String>();
 		user = DAOFactory.createUserDao();
 		validator = new SignInValidator(user,formErrors );
+		errorsJson = new JSONObject();
 	}
 	
 	
@@ -55,16 +60,18 @@ public class SignInServlet extends HttpServlet {
 	
 		
 		try {
-			if(validator.validateCredantials(login, (passwd))==true)
+			validator.validateCredantials(login, passwd);
+			if(validator.getCommittedErrors().isEmpty())
 			
-			System.out.println("user "+login + "is now connected");
-			else System.out.println("user credantials are wrong");{
-			for(String s :formErrors.keySet()){
-				System.out.println(s+"-->"+formErrors.get(s));
-			}
-			}
+			System.out.println("user "+login + "is now connected" +"error size"+formErrors.size());
+			else {
+				System.out.println("user credantials are wrong");{
 			
-		} catch (Exception e) {
+				errorsJson.putAll(formErrors);
+				System.out.printf( "JSON: %s", errorsJson.toString() );
+				}}}
+			
+		 catch (Exception e) {
 			System.out.println("user credantials are wrong");
 			System.out.println(formErrors.keySet().size());
 			e.printStackTrace();

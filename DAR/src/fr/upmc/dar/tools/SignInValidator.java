@@ -40,16 +40,13 @@ public class SignInValidator {
 	}
 
 
-	public boolean isAValidEmail(String login){
+	public void isAValidEmail(String login){
 		
 		if(login.contains("@")){ //l'utilisateur se connecte avec son mail
-			if(!IsValidEmailFormat(login)){
+			if(!IsValidEmailFormat(login))
 				committedErrors.put(SignInFields.LOGIN.getAttributeName(), "l'adresse email indiqué n'est pas valide !");
-				return false;
-			}else return true ;
-
-		} else return false;//cela suppose que l'utilisateur se connect avec un userName
-
+				
+		}
 	}
 
 
@@ -63,48 +60,32 @@ public class SignInValidator {
 			committedErrors.put(SignInFields.PASSWORD.getAttributeName(), "le mot de passe indiqué est trop court !");
 			return false;
 		}
-
 		return true;
 	}
 
-	public boolean validateCredantials(String login,String passwd) throws Exception{
+	public void validateCredantials(String login,String passwd) throws Exception{
 
 		if(isAValidPassword(passwd))
 		{
 			try {
-				if(isAValidEmail(login) ==true){//connexion avec email
-					System.out.println("le mot de passe et mail est ok");
-					if(user.findUserByCredantials(login, passwd, LoginType.EMAIL)!=null){
-						System.out.println("validator found match");
-						//le mail existe et correspond au mdp					
-
-
-						return true;
-					}
-					else {System.out.println("validator didnt find a  match");
-					return false;}
-				}
-				else {
-					System.out.println("user logginin with username");
-					if(user.findUserByCredantials(login, passwd, LoginType.USERNAME)!=null){
+				
+					if(user.findUserByCredantials(login, passwd, LoginType.EMAIL)==null)
+						
+					committedErrors.put("email", "aucun compte ne correspond au information saisies");	
+				
+					
+					if(user.findUserByCredantials(login, passwd, LoginType.USERNAME)==null)
 						//user name et password corresponde a un user
-						return true;
+						committedErrors.put("email", "nous n'avons pas pu vous authentifier avec les informations saisies");
 					}
-				}
-				return false;
-
-
-
-
-
-			} catch (Exception e) {
+				 catch (Exception e) {
 
 				e.printStackTrace();
 			}
 		}
 
 
-		return false;
+		
 	}
 
 

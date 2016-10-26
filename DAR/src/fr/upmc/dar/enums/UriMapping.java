@@ -5,7 +5,7 @@ public enum UriMapping {
 	
 	//association url--> ressource JSP
 	
-	 HOME ("/home"),
+	 HOME ("/jsp/index.jsp"),
 	 REGISTER ("/jsp/signup.jsp"),
 	 LOGIN ("/jsp/signin.jsp"),
 	 RESETPASWD ("/jsp/passwordReset.jsp"),

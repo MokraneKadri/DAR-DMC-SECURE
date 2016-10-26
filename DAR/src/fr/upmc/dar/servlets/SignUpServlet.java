@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONObject;
+
 import fr.upmc.dar.dao.DAOFactory;
 import fr.upmc.dar.dao.interfaces.IUserDao;
 import fr.upmc.dar.entities.User;
@@ -28,6 +30,7 @@ public class SignUpServlet extends HttpServlet {
 	private IUserDao user ;
 	protected SignUpValidator validator;
 	protected  Map<String,String> formErrors;
+	protected JSONObject errors;
 	
 	
 	
@@ -37,6 +40,7 @@ public class SignUpServlet extends HttpServlet {
 		formErrors = new HashMap<String,String>();
 		user = DAOFactory.createUserDao();
 		validator = new SignUpValidator(user,formErrors );
+		errors = new JSONObject();
 	}
 	
 	
@@ -66,17 +70,21 @@ public class SignUpServlet extends HttpServlet {
 				 										+"etablissement:"+etablissement
 				 										+"cursus :"+cursus);
 		 try{
-			 if(validator.canRegisterUser(name, userName, eMail, password, confirmationPassword, etablissement, cursus)){
+			 validator.canRegisterUser(name, userName, eMail, password, confirmationPassword, etablissement, cursus);
+			 
+			 if(formErrors.isEmpty()){
 				 User utilisateur = new User(name,userName,eMail,password,etablissement,cursus);
 			
 				 user.createUser(utilisateur);
 				 response.getWriter().write("welcome new user :"+userName);
 				 
 			}
+		 
 			
 			else 
-				for(String res :formErrors.keySet()){
-					System.out.println("error :"+res +"-->"+formErrors.get(res));
+				{
+					errors.putAll(formErrors);
+					System.out.println(errors.toJSONString());
 				}
 				//response.getWriter().write("l'emeil deja pris");
 		 }catch(Exception e){

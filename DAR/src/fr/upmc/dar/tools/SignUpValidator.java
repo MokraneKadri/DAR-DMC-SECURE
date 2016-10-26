@@ -41,70 +41,72 @@ public class SignUpValidator {
 	}
 
 
-	public boolean isAValidEmail(String email) throws Exception{
+	public void isAValidEmail(String email) throws Exception{
 
 
 		if(!IsValidEmailFormat(email)){
 			committedErrors.put(SignInFields.LOGIN.getAttributeName(), "l'adresse email indiqué n'est pas valide !");
-			return false;
+			
 		}
 
 
 		if(user.findUserByEmail(email)!=null){
 			committedErrors.put(SignInFields.LOGIN.getAttributeName(), "l'adresse est déja prise merci d'indiquer une autre !");
-			return false;
-
+			
 		}
-		return true;
+		
 
 
 	}
 
 
-	public boolean isAValidPassword(String passwd){
+	public void isAValidPassword(String passwd){
 
 		if(passwd.isEmpty()){
 			committedErrors.put(SignInFields.PASSWORD.getAttributeName(), "le champ mot de passe est obligatoire ,merci de le remplir");
-			return false;
+			
 		}
 		if(passwd.length() <6 ){
 			committedErrors.put(SignInFields.PASSWORD.getAttributeName(), "le mot de passe indiqué est trop court !");
-			return false;
+			
 		}
 
-		return true;
+	
 	}
 
-	public boolean isAValidConfirmationPassword(String passwd,String confimpasswd){
+	public void isAValidConfirmationPassword(String passwd,String confimpasswd){
 
 		if(!passwd.equals(confimpasswd)){
 			committedErrors.put(SignUpFields.PASSWORDCONFIRM.getAttributeName(), "le champ mot de passe ne correspondent pas! ");
-			return false;
+			
 		}
 
-		return true;
+		
 	}
 
-	public boolean isAValidUsername(String username) throws Exception{
+	public void isAValidUsername(String username) throws Exception{
 
 		if(IsValidUserNameFormat(username)==false){
 			committedErrors.put(SignUpFields.USERNAME.getAttributeName(), "nom d'utilisateur doit conteneir au moins 5 caractères ");
-			return false;
+			
 		}
 		if(user.findUserByUserName(username)!=null){
 			committedErrors.put(SignUpFields.USERNAME.getAttributeName(), "nom d'utilisateur déja pris merci de choisir un autre ");
-			return false;
+			
 
 		}
 
-		return true;
+	
 
 	}
 
-	public boolean canRegisterUser(String name, String userName, String eMail,String password, String confpassword, String etablissement,
+	public void canRegisterUser(String name, String userName, String eMail,String password, String confpassword, String etablissement,
 			String cursus) throws Exception{
 		
-		return (isAValidConfirmationPassword(password, confpassword) && isAValidEmail(eMail) && isAValidPassword(password)&&isAValidUsername(userName))==true;
+		isAValidConfirmationPassword(password, confpassword) ;
+		 isAValidEmail(eMail) ;
+		  isAValidPassword(password);
+		  isAValidUsername(userName);
 
 	}
 
