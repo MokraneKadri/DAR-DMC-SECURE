@@ -6,6 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <!-- contenu de la page. -->
 
+
+
 		<footer class="footer-distributed">
 
 			<div class="footer-right">

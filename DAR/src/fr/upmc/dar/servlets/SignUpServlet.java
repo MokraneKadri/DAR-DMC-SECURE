@@ -39,7 +39,7 @@ public class SignUpServlet extends HttpServlet {
 		super.init();
 		formErrors = new HashMap<String,String>();
 		user = DAOFactory.createUserDao();
-		validator = new SignUpValidator(user,formErrors );
+		validator = new SignUpValidator(user );
 		errors = new JSONObject();
 	}
 	
@@ -48,7 +48,7 @@ public class SignUpServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-		System.out.println(UriMapping.REGISTER.getRessourceUrl());
+		
 		request.getRequestDispatcher(UriMapping.REGISTER.getRessourceUrl()).forward(request, response);
 		
 	}
@@ -61,17 +61,17 @@ public class SignUpServlet extends HttpServlet {
 		 String confirmationPassword = request.getParameter("confirmpassword");
 		 String etablissement = request.getParameter("university");
 		 String cursus = request.getParameter("cursus");
-		 System.out.println("received from form : \n name :"+name
-				 										+"username: "+userName
-				 										
-				 										+"email:"+eMail
-				 										+"pass :"+password
-				 										+"confpass:"+confirmationPassword
-				 										+"etablissement:"+etablissement
-				 										+"cursus :"+cursus);
+//		 System.out.println("received from form : \n name :"+name
+//				 										+"username: "+userName
+//				 										
+//				 										+"email:"+eMail
+//				 										+"pass :"+password
+//				 										+"confpass:"+confirmationPassword
+//				 										+"etablissement:"+etablissement
+//				 										+"cursus :"+cursus);
 		 try{
 			 validator.canRegisterUser(name, userName, eMail, password, confirmationPassword, etablissement, cursus);
-			 
+			 formErrors=validator.getCommittedErrors();
 			 if(formErrors.isEmpty()){
 				 User utilisateur = new User(name,userName,eMail,password,etablissement,cursus);
 			
@@ -84,6 +84,9 @@ public class SignUpServlet extends HttpServlet {
 			else 
 				{
 					errors.putAll(formErrors);
+					
+					request.setAttribute("formErrors", formErrors);
+					getServletContext().getRequestDispatcher(UriMapping.REGISTER.getRessourceUrl()).forward(request, response);
 					System.out.println(errors.toJSONString());
 				}
 				//response.getWriter().write("l'emeil deja pris");

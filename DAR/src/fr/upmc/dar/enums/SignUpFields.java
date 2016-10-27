@@ -6,7 +6,7 @@ public enum SignUpFields {
 
 	//association champs du formulaire --> valeur du id du champ
 	
-	 NAME ("/home"),
+	 NAME ("name"),
 	 USERNAME ("username"),
 	 EMAIL ("email"),
 	 PASSWORD ("password"),

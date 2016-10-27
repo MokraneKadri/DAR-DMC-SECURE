@@ -6,7 +6,7 @@
 
 	<div class="header-limiter">
 	
-		<h1><a href="#"><img src="http://localhost:8080/DAR/assets/img/logo.jpg"></a></h1>
+		<h1><a href="#"><img src="../assets/img/logo.jpg"></a></h1>
 		
 		
 		<nav>

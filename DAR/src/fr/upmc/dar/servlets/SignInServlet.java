@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -66,7 +67,8 @@ public class SignInServlet extends HttpServlet {
 			System.out.println("user "+login + "is now connected" +"error size"+formErrors.size());
 			else {
 				System.out.println("user credantials are wrong");{
-			
+					request.setAttribute("formErrors",formErrors);
+				getServletContext().getRequestDispatcher(UriMapping.LOGIN.getRessourceUrl()).forward(request, response);
 				errorsJson.putAll(formErrors);
 				System.out.printf( "JSON: %s", errorsJson.toString() );
 				}}}

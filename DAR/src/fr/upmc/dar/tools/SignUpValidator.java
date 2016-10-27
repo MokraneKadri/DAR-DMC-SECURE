@@ -1,5 +1,6 @@
 package fr.upmc.dar.tools;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -34,10 +35,10 @@ public class SignUpValidator {
 
 
 
-	public SignUpValidator(IUserDao user,  Map<String,String> committedErrors) {
+	public SignUpValidator(IUserDao user) {
 		super();
 		this.user = user;
-		this.committedErrors = committedErrors;
+		this.committedErrors = new HashMap<String,String>();
 	}
 
 
@@ -45,13 +46,13 @@ public class SignUpValidator {
 
 
 		if(!IsValidEmailFormat(email)){
-			committedErrors.put(SignInFields.LOGIN.getAttributeName(), "l'adresse email indiqué n'est pas valide !");
+			committedErrors.put(SignUpFields.EMAIL.getAttributeName(), "l'adresse email indiqué n'est pas valide !");
 			
 		}
 
 
 		if(user.findUserByEmail(email)!=null){
-			committedErrors.put(SignInFields.LOGIN.getAttributeName(), "l'adresse est déja prise merci d'indiquer une autre !");
+			committedErrors.put(SignUpFields.EMAIL.getAttributeName(), "l'adresse est déja prise merci d'indiquer une autre !");
 			
 		}
 		
@@ -63,11 +64,11 @@ public class SignUpValidator {
 	public void isAValidPassword(String passwd){
 
 		if(passwd.isEmpty()){
-			committedErrors.put(SignInFields.PASSWORD.getAttributeName(), "le champ mot de passe est obligatoire ,merci de le remplir");
+			committedErrors.put(SignUpFields.PASSWORD.getAttributeName(), "le champ mot de passe est obligatoire ,merci de le remplir");
 			
 		}
 		if(passwd.length() <6 ){
-			committedErrors.put(SignInFields.PASSWORD.getAttributeName(), "le mot de passe indiqué est trop court !");
+			committedErrors.put(SignUpFields.PASSWORD.getAttributeName(), "le mot de passe indiqué est trop court !");
 			
 		}
 
@@ -118,7 +119,7 @@ public class SignUpValidator {
 		this.user = user;
 	}
 	public Map<String,String> getCommittedErrors() {
-		return committedErrors;
+		return this.committedErrors;
 	}
 	public void setCommittedErrors(JSONObject committedErrors) {
 		this.committedErrors = committedErrors;
