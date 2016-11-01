@@ -14,7 +14,7 @@
 
 	
 	
-	<style> <%@include file="/assets/css/header.css" %> 
+	<style> 
 	<%@include file="/assets/css/footer.css" %> 
 	</style>
 	<title>Creation de compte| nouveau membre</title>
@@ -34,17 +34,17 @@
 <body>
 
 <jsp:include page="header.jsp">
-  <jsp:param name="active" value="signunheaderer" />
+  <jsp:param name="active" value="signunheader" />
   </jsp:include>
 
-	<div class="container">
+	<div class="container" style="margin-top: 80px">
 		<div class="row">
 			<div class="col-sm-8 col-sm-offset-2">
 	
 
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title">Créer un Compte </h3>
+						<h3 class="panel-title">Créer votre Compte </h3>
 					</div>
 					<div class="panel-body">
 						<form id="signupForm" method="post" class="form-horizontal" action="/DAR/signup">

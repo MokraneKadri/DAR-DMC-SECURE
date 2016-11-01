@@ -7,15 +7,16 @@
 <head>
 	<title>Connexion | Espace membre</title>
 	
-	<style> <%@include file="/assets/css/header.css" %> 
+	<style>  
 	<%@include file="/assets/css/footer.css" %>  
 	
 	</style>
     
- <link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"	crossorigin="anonymous">
-	<link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"	crossorigin="anonymous">
+
 	
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+ 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
     <link  type="text/javascript" href='http://fonts.googleapis.com/css?family=Cookie'	rel='stylesheet' type='text/css'>
 	<script  src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
@@ -30,7 +31,7 @@
 	</jsp:include>
 
 
-	<div class="container">
+	<div class="container " style="margin-top: 130px">
 		<div class="row">
 			<div class="col-sm-8 col-sm-offset-2">
 	
@@ -71,7 +72,7 @@
 							<div class="form-group">
 								<div class="col-sm-9 col-sm-offset-4">
 								
-						Mot de Passe oublié ? <a href="/DAR/signin"> Réinitialiser le ici !</a>
+						Mot de Passe oublié ? <a href="/DAR/passwordreset"> Réinitialiser le ici !</a>
 								</div>
 							</div>
 				</form>

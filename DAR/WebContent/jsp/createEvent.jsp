@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="http://localhost:8080/DAR/assets/css/header.css">
 	<link rel="stylesheet" href="http://localhost:8080/DAR/assets/css/footer.css">
 	
-	<link rel="stylesheet" href="http://localhost:8080/DAR/assets/css/singnup.css">
+	<link rel="stylesheet" href="http://localhost:8080/DAR/assets/css/signup.css">
 
 	<link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
 
@@ -28,7 +28,7 @@
   </jsp:include>
 
 
-<div class="container">
+<div class="container" style="margin-top: 70px">
     <div class="row main">
         <div class="panel-heading">
             <div class="panel-title text-center">

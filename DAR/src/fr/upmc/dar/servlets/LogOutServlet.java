@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import fr.upmc.dar.enums.UriMapping;
-
 
 @WebServlet(urlPatterns="/logout")
 public class LogOutServlet extends HttpServlet {

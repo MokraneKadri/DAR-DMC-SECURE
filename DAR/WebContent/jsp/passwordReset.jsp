@@ -9,10 +9,8 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="http://localhost:8080/DAR/assets/css/header.css">
 	<link rel="stylesheet" href="http://localhost:8080/DAR/assets/css/footer.css">
 	
-	<link rel="stylesheet" href="http://localhost:8080/DAR/assets/css/singnup.css">
 
 	<link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
 
@@ -23,7 +21,7 @@
   <jsp:param name="active" value="signin" />
   </jsp:include>
 
-<div class="container">
+<div class="container" style="margin-top: 70px">
     <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
         <div class="panel panel-info" >
             <div class="panel-heading">

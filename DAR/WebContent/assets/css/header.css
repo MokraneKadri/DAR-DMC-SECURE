@@ -1,81 +1,53 @@
-.header-login-signup{
-	background-color:#85bcfa;
-	box-shadow:0 1px 1px #ccc;
-	padding: 20px 40px;
-	height: 80px;
-	color: #000040;
-	box-sizing: border-box;
+  body{
+    background: #8999A8;
+}
+.navbar, .dropdown-menu{
+background:black;
+border: none;
+
 }
 
-.header-login-signup .header-limiter {
-	max-width: 1200px;
-	text-align: center;
-	margin: 0 auto;
+.nav>li>a, .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover, .dropdown-menu>li>a, .dropdown-menu>li{
+  border-bottom: 3px solid transparent;
+}
+.nav>li>a:focus, .nav>li>a:hover,.nav .open>a, .nav .open>a:focus, .nav .open>a:hover, .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover{
+  border-bottom: 3px solid transparent;
+  background: none;
+}
+.navbar a, .dropdown-menu>li>a, .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover, .navbar-toggle{
+ color: #fff;
+}
+.dropdown-menu{
+      -webkit-box-shadow: none;
+    box-shadow:none;
 }
 
-/* Logo */
-
-.header-login-signup .header-limiter h1{
-	float: left;
-	margin-top:0px;
-	
+.nav li:hover:nth-child(8n+1), .nav li.active:nth-child(8n+1){
+  border-bottom: #C4E17F 3px solid;
+}
+.nav li:hover:nth-child(8n+2), .nav li.active:nth-child(8n+2){
+  border-bottom: #F7FDCA 3px solid;
+}
+.nav li:hover:nth-child(8n+3), .nav li.active:nth-child(8n+3){
+  border-bottom: #FECF71 3px solid;
+}
+.nav li:hover:nth-child(8n+4), .nav li.active:nth-child(8n+4){
+  border-bottom: #F0776C 3px solid;
+}
+.nav li:hover:nth-child(8n+5), .nav li.active:nth-child(8n+5){
+  border-bottom: #DB9DBE 3px solid;
+}
+.nav li:hover:nth-child(8n+6), .nav li.active:nth-child(8n+6){
+  border-bottom: #C49CDE 3px solid;
+}
+.nav li:hover:nth-child(8n+7), .nav li.active:nth-child(8n+7){
+  border-bottom: #669AE1 3px solid;
+}
+.nav li:hover:nth-child(8n+8), .nav li.active:nth-child(8n+8){
+  border-bottom: #62C2E4 3px solid;
 }
 
-.header-login-signup .header-limiter h1 span {
-	color: #5383d3;
+.navbar-toggle .icon-bar{
+    color: #fff;
+    background: #fff;
 }
-
-/* The navigation links */
-
-.header-login-signup .header-limiter a {
-	color: #000040;
-	text-decoration: none;
-}
-
-.header-login-signup .header-limiter nav {
-	font : 14px Arial, Helvetica, sans-serif;
-	line-height: 40px;
-	float: left;
-	margin: 0 0 0 60px;
-	padding: 0;
-}
-
-.header-login-signup .header-limiter nav a{
-	font-size: 16px;/*taille police  lien du menu */
-	display: inline-block;
-	padding: 0 15px; /*espace entre lien du menu */
-	opacity: 0.7;
-	text-decoration:none;
-	line-height: 1;
-}
-
-/*effet de passage de la souris */
-.header-login-signup .header-limiter nav a:hover {
-	opacity: 1;
-}
-
-.header-login-signup .header-limiter nav a.selected {
-	color: #ffffff;
-}
-
-/* Login/Sign up buttons */
-
-.header-login-signup .header-limiter ul {
-	font: 14px Arial, Helvetica, sans-serif;
-	list-style: none;
-	line-height: 1;
-	float: right;
-}
-
-.header-login-signup .header-limiter ul li {
-	display: inline-block;
-	margin-left: 15px;
-	opacity:0.8;
-}
-
-.header-login-signup .header-limiter ul li:hover{
-	opacity: 1;
-}
-
-
-

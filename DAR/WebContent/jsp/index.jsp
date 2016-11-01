@@ -15,8 +15,7 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
-<link rel="stylesheet"
-	href="http://localhost:8080/DAR/assets/css/header.css">
+
 <link rel="stylesheet"
 	href="http://localhost:8080/DAR/assets/css/footer.css">
 
@@ -34,7 +33,7 @@
   </jsp:include>
 
 	
-    <div class="container">
+    <div class="container " style="margin-top: 80px">
 
       <!-- Jumbotron -->
       <div class="jumbotron">
