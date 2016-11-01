@@ -13,7 +13,7 @@ import fr.upmc.dar.dao.interfaces.IUserDao;
 import fr.upmc.dar.enums.UriMapping;
 
 
-@WebServlet(urlPatterns = "/createevent" )
+@WebServlet(urlPatterns = "/create_event" )
 public class EventCreatorServelet extends HttpServlet {
 
 	

@@ -40,7 +40,8 @@ public class SignUpServlet extends HttpServlet {
 		formErrors = new HashMap<String,String>();
 		user = DAOFactory.createUserDao();
 		validator = new SignUpValidator(user );
-		errors = new JSONObject();
+		errors= new JSONObject();
+		
 	}
 	
 	
@@ -52,42 +53,49 @@ public class SignUpServlet extends HttpServlet {
 		request.getRequestDispatcher(UriMapping.REGISTER.getRessourceUrl()).forward(request, response);
 		
 	}
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 String name = request.getParameter("name");
+		 String fname = request.getParameter("firstname");
+		 String lname = request.getParameter("lastname");
 		 String userName = request.getParameter("username");
 		 String eMail = request.getParameter("email");
 		 String password = request.getParameter("password");
-		 String confirmationPassword = request.getParameter("confirmpassword");
+		 String confirmationPassword = request.getParameter("confirm_password");
 		 String etablissement = request.getParameter("university");
 		 String cursus = request.getParameter("cursus");
-//		 System.out.println("received from form : \n name :"+name
-//				 										+"username: "+userName
-//				 										
-//				 										+"email:"+eMail
-//				 										+"pass :"+password
-//				 										+"confpass:"+confirmationPassword
-//				 										+"etablissement:"+etablissement
-//				 										+"cursus :"+cursus);
+		 System.out.println("received from form : \n name :"+fname
+				 										+"username: "+userName
+				 										
+				 										+"email:"+eMail
+				 										+"pass :"+password
+				 										+"confpass:"+confirmationPassword
+				 										+"etablissement:"+etablissement
+				 										+"cursus :"+cursus);
 		 try{
-			 validator.canRegisterUser(name, userName, eMail, password, confirmationPassword, etablissement, cursus);
+			 validator.canRegisterUser(fname,lname, userName, eMail, password, confirmationPassword, etablissement, cursus);
 			 formErrors=validator.getCommittedErrors();
 			 if(formErrors.isEmpty()){
-				 User utilisateur = new User(name,userName,eMail,password,etablissement,cursus);
+				 User utilisateur = new User(fname,lname,userName,eMail,password,etablissement,cursus);
 			
 				 user.createUser(utilisateur);
-				 response.getWriter().write("welcome new user :"+userName);
+				 response.setHeader("Refresh", "5;url="+UriMapping.LOGIN.getRessourceUrl());
+				 response.sendRedirect("/DAR/signin");
+				 //response.set.getRequestDispatcher(UriMapping.LOGIN.getRessourceUrl()).forward(request, response);
+					//System.out.println(errors.toJSONString());
+				// request.getRequestDispatcher(UriMapping.HOME.getRessourceUrl()).forward(request, response);
 				 
 			}
 		 
 			
 			else 
 				{
-					errors.putAll(formErrors);
 					
+					errors.putAll(formErrors);
 					request.setAttribute("formErrors", formErrors);
 					getServletContext().getRequestDispatcher(UriMapping.REGISTER.getRessourceUrl()).forward(request, response);
-					System.out.println(errors.toJSONString());
+				    System.out.println(errors.toJSONString());
+				    formErrors.clear();
 				}
 				//response.getWriter().write("l'emeil deja pris");
 		 }catch(Exception e){

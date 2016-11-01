@@ -10,12 +10,23 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.upmc.dar.dao.GroupDao;
 import fr.upmc.dar.entities.Group;
+import fr.upmc.dar.enums.UriMapping;
 
 @WebServlet(urlPatterns="/create_group")
 public class GroupCreatorServlet extends HttpServlet {
 
 	private static final long serialVersionUID = -2835816527011278470L;
 	private static GroupDao groupDao = new GroupDao();
+	
+	
+
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		request.getRequestDispatcher(UriMapping.CREATEGROUP.getRessourceUrl()).forward(request, response);
+	
+	}
+	
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -68,16 +68,18 @@ public class SignInValidator {
 		if(isAValidPassword(passwd))
 		{
 			try {
-				
+				if(IsValidEmailFormat(login)){
 					if(user.findUserByCredantials(login, passwd, LoginType.EMAIL)==null)
 						
-					committedErrors.put(SignInFields.LOGIN.getAttributeName(), "aucun compte ne correspond au information saisies");	
-				
+					committedErrors.put(SignInFields.LOGIN.getAttributeName(), "aucun compte ne correspond a cette adresse mail");
+					return ;
+				}
 					
 					if(user.findUserByCredantials(login, passwd, LoginType.USERNAME)==null)
 						//user name et password corresponde a un user
-						committedErrors.put(SignInFields.LOGIN.getAttributeName(), "nous n'avons pas pu vous authentifier avec les informations saisies");
-					}
+						committedErrors.put(SignInFields.LOGIN.getAttributeName(), "aucun compte ne correspond a ce nom d'utilisateur");
+						return ;
+			}
 				 catch (Exception e) {
 
 				e.printStackTrace();
