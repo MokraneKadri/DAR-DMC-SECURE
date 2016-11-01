@@ -14,7 +14,7 @@ import fr.upmc.dar.enums.UriMapping;
 
 
 @WebServlet(urlPatterns = "/createevent" )
-public class EventCreatorServelet extends HttpServlet {
+public class EventCreatorServlet extends HttpServlet {
 
 	
 
