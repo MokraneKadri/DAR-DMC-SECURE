@@ -18,7 +18,7 @@ public class Group {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@OneToOne 
+	@OneToOne
 	protected User owner;
 	
 	@OneToMany(cascade = CascadeType.ALL)

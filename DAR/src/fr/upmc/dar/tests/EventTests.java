@@ -8,7 +8,9 @@ import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import fr.upmc.dar.dao.DAOFactory;
 import fr.upmc.dar.dao.EventDao;
+import fr.upmc.dar.dao.UserDao;
 import fr.upmc.dar.entities.Event;
 import fr.upmc.dar.entities.User;
 
@@ -25,10 +27,10 @@ public class EventTests {
 		Persistence.createEntityManagerFactory("JUnit").createEntityManager();
 	}
 	
-	@After
-	public void cleanup() {
-		Persistence.createEntityManagerFactory("JUnit").createEntityManager();
-	}
+//	@After
+//	public void cleanup() {
+//		Persistence.createEntityManagerFactory("DAR").createEntityManager();
+//	}
 	
 	//@Test
 	public void nothing() {
@@ -43,7 +45,8 @@ public class EventTests {
 	//@Test
 	public void createMembers() {
 		members = new ArrayList<>();
-		members.add(new User("Daniel", "RADEAU","D.RADEAU", "d.radeau@gmail.com", "123456789", "UPMC", "M2 Info"));
+		if (owner != null)
+			members.add(owner);
 		members.add(new User("Jean", "PIERRE", "JPIERRE","j.pierre@gmail.com", "123456789", "UPMC", "M2 Info"));
 		members.add(new User("Raymond", "HUI", "RHUIT","r.hui@gmail.com", "123456789", "UPMC", "M2 Info"));
 		members.add(new User("Cédric", "RIBEIRO","CEDROB", "c.ribeiro@gmail.com", "123456789", "UPMC", "M2 Info"));
@@ -63,7 +66,7 @@ public class EventTests {
 		dao = new EventDao();
 	}
 	
-	//@Test 
+	@Test 
 	public void persistEvent() {
 		createEvent();
 		instanciateDao();
@@ -94,11 +97,11 @@ public class EventTests {
 //		dao.getEventsByOwner(event.getCreator());
 //	}
 	
-	@Test
-	public void getEventsByMember() {
-		persistEvent();
-		dao.getEventsByMember(members.get(0));
-	}
+//	@Test
+//	public void getEventsByMember() {
+//		persistEvent();
+//		dao.getEventsByMember(members.get(0));
+//	}
 	
 
 }

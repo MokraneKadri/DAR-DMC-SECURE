@@ -2,14 +2,15 @@ package fr.upmc.dar.entities;
 
 import java.util.List;
 
-import javax.persistence.Basic;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Event {
@@ -18,28 +19,28 @@ public class Event {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@OneToOne
+	@ManyToOne
 	protected User creator;
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	protected List<User> candidates;
 	
-	@Basic
+	@Column
 	private String eventName;
 
-	@Basic
+	@Column
 	private String eventDescription;
 	
-	@Basic
+	@Column
 	private String eventDate;
 	
-	@Basic
+	@Column
 	private String eventTheme;
 	
-	@Basic
+	@Column
 	private String eventPlace;
 	
-	@Basic
+	@Column
 	private String eventAdresse;
 	
 	
@@ -75,6 +76,7 @@ public class Event {
 			String eventPlace, 
 			String eventAdresse) 
 	{
+		this.creator = owner;
 		this.eventName = eventName;
 		this.eventDescription = eventDescription;
 		this.eventDate = eventDate;
