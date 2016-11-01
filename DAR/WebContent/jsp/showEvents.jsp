@@ -115,6 +115,8 @@
 
 </head>
 <body>
+	<%@ include file="/jsp/header.jsp" %>
 	<%= content.toString() %>
+	<%@ include file="/jsp/footer.jsp" %>
 </body>
 </html>

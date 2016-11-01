@@ -32,7 +32,7 @@ public class PasswordResetServlet extends HttpServlet {
 			
 			
 			
-			request.getRequestDispatcher(UriMapping.RESETPASWD.getRessourceUrl()).forward(request, response);
+			request.getRequestDispatcher(UriMapping.RESET_PASSWORD.getRessourceUrl()).forward(request, response);
 			
 		}
 		

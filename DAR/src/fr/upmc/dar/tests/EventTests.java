@@ -27,10 +27,10 @@ public class EventTests {
 		Persistence.createEntityManagerFactory("JUnit").createEntityManager();
 	}
 	
-//	@After
-//	public void cleanup() {
-//		Persistence.createEntityManagerFactory("DAR").createEntityManager();
-//	}
+	@After
+	public void cleanup() {
+		Persistence.createEntityManagerFactory("JUnit").createEntityManager();
+	}
 	
 	//@Test
 	public void nothing() {

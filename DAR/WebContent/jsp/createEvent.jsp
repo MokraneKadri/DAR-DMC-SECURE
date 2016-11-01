@@ -9,7 +9,6 @@
  
     <title>creer un nouvel evenement </title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
@@ -38,7 +37,7 @@
             </div>
         </div>
         <div class="main-login main-center">
-            <form class="form-horizontal" method="post" action="#">
+            <form class="form-horizontal" method="post" action="/DAR/create_event">
 
                 <div class="form-group">
                     <label for="eventName" class="cols-sm-2 control-label">intitulé</label>
@@ -140,7 +139,7 @@
 
 
                     <div class="form-group ">
-                    <button type="button" class="btn btn-primary btn-lg btn-block login-button"><i class="fa fa-bell" aria-hidden="true"></i> Créer cet Evenement</button>
+                    <button type="button" class="btn btn-primary btn-lg btn-block login-button" onclick="submit()"><i class="fa fa-bell" aria-hidden="true"></i> Créer cet Evenement</button>
                 </div>
 
             </form>

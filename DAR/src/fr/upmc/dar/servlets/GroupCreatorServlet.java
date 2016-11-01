@@ -23,7 +23,7 @@ public class GroupCreatorServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher(UriMapping.CREATEGROUP.getRessourceUrl()).forward(request, response);
+		request.getRequestDispatcher(UriMapping.CREATE_GROUP.getRessourceUrl()).forward(request, response);
 	
 	}
 	

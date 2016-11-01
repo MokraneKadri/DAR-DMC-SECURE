@@ -14,6 +14,7 @@
 		<nav>
 			<a href="/DAR/home">Accueil </a>
 			<a href="/DAR/create_event" >Evenements</a>
+			<a href="/DAR/jsp/showEvents.jsp" >A venir</a>
 			<a href="/DAR/create_group">Créer un groupe</a>
 			<a href="/DAR/404.jsp">Rechercher/Rejoindre</a>
 		</nav>
