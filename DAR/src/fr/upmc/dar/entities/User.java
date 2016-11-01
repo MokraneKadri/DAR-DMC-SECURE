@@ -17,6 +17,9 @@ public class User {
 
 	@Column
 	private String firstName;
+	
+	@Column
+	private String lastName;
 
 	@Column
 	private String userName;
@@ -38,17 +41,25 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 
-	public User( String name, String userName, String eMail, String password, String etablissement,
+	public User( String fname,String lname, String userName, String eMail, String password, String etablissement,
 			String cursus) {
 		super();
 
-		this.firstName = name;
-
+		this.firstName = fname;
+		this.lastName = lname;
 		this.userName=userName;
 		this.eMail = eMail;
 		this.password = PasswordEncryptor.encryptPassword(password);
 		this.etablissement = etablissement;
 		this.cursus = cursus;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public Integer getId() {

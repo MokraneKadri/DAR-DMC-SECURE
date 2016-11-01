@@ -10,7 +10,7 @@ public enum SignUpFields {
 	 USERNAME ("username"),
 	 EMAIL ("email"),
 	 PASSWORD ("password"),
-	 PASSWORDCONFIRM ("confirmpassword"),
+	 PASSWORDCONFIRM ("confirm_password"),
 	 UNIVERSITY ("university"),
 	 EMAILREGEXP("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$"),
 	 CURSUS ("cursus"),

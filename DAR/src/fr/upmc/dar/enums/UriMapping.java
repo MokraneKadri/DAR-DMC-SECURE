@@ -9,8 +9,8 @@ public enum UriMapping {
 	 REGISTER ("/jsp/signup.jsp"),
 	 LOGIN ("/jsp/signin.jsp"),
 	 RESETPASWD ("/jsp/passwordReset.jsp"),
-	 CREATEEVENT ("/jsp/createEvent.jsp");
-	 
+	 CREATEEVENT ("/jsp/createEvent.jsp"),
+	 CREATEGROUP ("/jsp/createGroup.jsp");
 	  private String name = "";
 	   
 	  //Constructeur

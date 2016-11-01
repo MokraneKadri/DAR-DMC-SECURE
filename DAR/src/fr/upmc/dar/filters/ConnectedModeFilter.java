@@ -9,7 +9,10 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import fr.upmc.dar.enums.RestrictedAccesUris;
 
 /**
  * 
@@ -21,22 +24,48 @@ import javax.servlet.http.HttpSession;
  *
  */
 
-@WebFilter(urlPatterns="/restricted/*")
+@WebFilter(urlPatterns="/*")
 public class ConnectedModeFilter implements Filter {
 
+	
+	
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
-		HttpSession httpSession = httpRequest.getSession();
-		String userId = (String) httpSession.getAttribute("userId");
-		
-		if (userId == null)
-			httpRequest.getRequestDispatcher("/DAR/index.jsp");
-		if (userId.equals(""))
-			httpRequest.getRequestDispatcher("/DAR/index.jsp");
-		
-		chain.doFilter(request, response);
-	}
 
+        HttpServletResponse httpresponse = (HttpServletResponse) response;
+		HttpSession httpSession = httpRequest.getSession();
+		
+		String requestedURI = httpRequest.getRequestURI();
+
+		String login = (String) httpSession.getAttribute("login");
+		
+		System.out.println("filtering ....");
+		
+		System.out.println("request for ...."+requestedURI);
+		System.out.println("session "+login);
+		
+		
+		//filtre des utilisateurs non connectés
+		if ((login == null || login=="")&&
+				(requestedURI.equals(RestrictedAccesUris.CREATEEVENT.getRessourceUrl())|| requestedURI.equals(RestrictedAccesUris.CREATEGROUP.getRessourceUrl()))){
+			
+				httpresponse.sendRedirect("/DAR/signin");
+				
+		}
+		
+		//filtre des utilisateurs connectés
+		
+		else if ((login != null )&&
+				(requestedURI.equals(RestrictedAccesUris.USERLOGIN.getRessourceUrl())|| requestedURI.equals(RestrictedAccesUris.USERSIGNUP.getRessourceUrl()))){
+				System.out.println("acces should be denied");
+				httpresponse.sendRedirect("/DAR/home");
+				
+		}
+		else  
+		chain.doFilter(request, response);
+	
+
+}
 }

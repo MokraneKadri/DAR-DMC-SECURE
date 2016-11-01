@@ -13,11 +13,9 @@ import fr.upmc.dar.dao.interfaces.IUserDao;
 import fr.upmc.dar.enums.UriMapping;
 
 
-@WebServlet(urlPatterns = "/createevent" )
+
+@WebServlet(urlPatterns = "/create_event" )
 public class EventCreatorServlet extends HttpServlet {
-
-	
-
 	 
 	private static final long serialVersionUID = 1L;
 	IUserDao user;

@@ -1,6 +1,7 @@
 package fr.upmc.dar.servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -54,6 +56,7 @@ public class SignInServlet extends HttpServlet {
 	}
 	
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String login = request.getParameter("login");
@@ -62,20 +65,25 @@ public class SignInServlet extends HttpServlet {
 		
 		try {
 			validator.validateCredantials(login, passwd);
-			if(validator.getCommittedErrors().isEmpty())
-			
-			System.out.println("user "+login + "is now connected" +"error size"+formErrors.size());
+			formErrors=validator.getCommittedErrors();
+
+			if(validator.getCommittedErrors().isEmpty()){
+				HttpSession session = request.getSession();
+				session.setAttribute("login", login);
+				//getServletContext().getRequestDispatcher(UriMapping.HOME.getRessourceUrl()).forward(request, response);
+				//request.getRequestDispatcher(UriMapping.HOME.getRessourceUrl()).forward(request, response);
+				 response.sendRedirect("/DAR/home");
+			}
 			else {
-				System.out.println("user credantials are wrong");{
-					request.setAttribute("formErrors",formErrors);
-				getServletContext().getRequestDispatcher(UriMapping.LOGIN.getRessourceUrl()).forward(request, response);
-				errorsJson.putAll(formErrors);
-				System.out.printf( "JSON: %s", errorsJson.toString() );
-				}}}
+				request.setAttribute("formErrors", formErrors);
+				request.getRequestDispatcher(UriMapping.LOGIN.getRessourceUrl()).forward(request, response);
+				formErrors.clear();
+				
+				}}
 			
 		 catch (Exception e) {
 			System.out.println("user credantials are wrong");
-			System.out.println(formErrors.keySet().size());
+			//System.out.println(formErrors.keySet().size());
 			e.printStackTrace();
 		}
 	}

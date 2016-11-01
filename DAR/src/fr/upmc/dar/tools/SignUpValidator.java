@@ -101,12 +101,12 @@ public class SignUpValidator {
 
 	}
 
-	public void canRegisterUser(String name, String userName, String eMail,String password, String confpassword, String etablissement,
+	public void canRegisterUser(String fname, String lname, String userName, String eMail,String password, String confpassword, String etablissement,
 			String cursus) throws Exception{
 		
-		isAValidConfirmationPassword(password, confpassword) ;
-		 isAValidEmail(eMail) ;
-		  isAValidPassword(password);
+		 // isAValidConfirmationPassword(password, confpassword) ;
+		  isAValidEmail(eMail) ;
+		 // isAValidPassword(password);
 		  isAValidUsername(userName);
 
 	}

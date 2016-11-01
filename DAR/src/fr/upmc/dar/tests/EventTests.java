@@ -37,17 +37,17 @@ public class EventTests {
 	
 	//@Test
 	public void createOwner() {
-		owner = new User("Daniel", "RADEAU", "d.radeau@gmail.com", "123456789", "UPMC", "M2 Info");
+		owner = new User("Daniel", "RADEAU","D.RADEAU", "d.radeau@gmail.com", "123456789", "UPMC", "M2 Info");
 	}
 	
 	//@Test
 	public void createMembers() {
 		members = new ArrayList<>();
-		members.add(new User("Daniel", "RADEAU", "d.radeau@gmail.com", "123456789", "UPMC", "M2 Info"));
-		members.add(new User("Jean", "PIERRE", "j.pierre@gmail.com", "123456789", "UPMC", "M2 Info"));
-		members.add(new User("Raymond", "HUI", "r.hui@gmail.com", "123456789", "UPMC", "M2 Info"));
-		members.add(new User("Cédric", "RIBEIRO", "c.ribeiro@gmail.com", "123456789", "UPMC", "M2 Info"));
-		members.add(new User("Raoul", "CHEGMA", "r.chegma@gmail.com", "123456789", "UPMC", "M2 Info"));
+		members.add(new User("Daniel", "RADEAU","D.RADEAU", "d.radeau@gmail.com", "123456789", "UPMC", "M2 Info"));
+		members.add(new User("Jean", "PIERRE", "JPIERRE","j.pierre@gmail.com", "123456789", "UPMC", "M2 Info"));
+		members.add(new User("Raymond", "HUI", "RHUIT","r.hui@gmail.com", "123456789", "UPMC", "M2 Info"));
+		members.add(new User("Cédric", "RIBEIRO","CEDROB", "c.ribeiro@gmail.com", "123456789", "UPMC", "M2 Info"));
+		members.add(new User("Raoul", "CHEGMA","RCHEGMA", "r.chegma@gmail.com", "123456789", "UPMC", "M2 Info"));
 	}
 
 	//@Test
