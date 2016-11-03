@@ -1,0 +1,30 @@
+------------- TODOLIST ------------------
+FRIENDS (Envoyer requete ami, accepter , refuser , supprimer amis) // Ced
+EVENT YELP (API Dynamique)
+	--> (Tous, amis uniquement, université, groupe)
+EVENT BASIQUE
+
+VOIR PROFIL
+RECHERCHER PROFIL 
+
+MODIFIER PROFIL
+ ---> Choisir Université (Api)
+
+LISTE DES EVENTS (Mes Events, LA où je participe, By université, mes groupes, mes amis, tous)
+    -> Participer / Ne plus participer
+    -> Liste des participants
+
+LISTE DES GROUPES (Mes Groupes / Tous les Groupes)
+    -> Rejoindre / Quitter
+
+BACKEND
+    --> Supprimer les Events vieux de plus de 1 semaines (each day)
+    --> Maj BDD ???
+
+
+----------- IN PROGRESS -----------------
+
+
+
+
+----------- DONE -----------------------

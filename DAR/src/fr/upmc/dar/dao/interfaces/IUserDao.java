@@ -1,5 +1,10 @@
 package fr.upmc.dar.dao.interfaces;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
+import org.json.JSONObject;
+
 import fr.upmc.dar.entities.User;
 import fr.upmc.dar.enums.LoginType;
 
@@ -13,6 +18,8 @@ public interface IUserDao {
 	public User findUserByUserName( String username ) throws Exception ;
 
 
-	User findUserByCredantials(String login, String passwd, LoginType mailOrUserName) throws Exception;
+	public User findUserByCredantials(String login, String passwd, LoginType mailOrUserName) throws Exception;
+	
+	public JSONObject getUsersJSONProfileFromIds(ArrayList<Integer> ids);
 
 }

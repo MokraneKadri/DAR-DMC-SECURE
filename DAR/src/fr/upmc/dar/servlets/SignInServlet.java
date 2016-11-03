@@ -69,6 +69,8 @@ public class SignInServlet extends HttpServlet {
 
 			if(validator.getCommittedErrors().isEmpty()){
 				HttpSession session = request.getSession();
+				User x=user.findUserByUserName(login);
+				session.setAttribute("idlogin", x.getId());
 				session.setAttribute("login", login);
 				//getServletContext().getRequestDispatcher(UriMapping.HOME.getRessourceUrl()).forward(request, response);
 				//request.getRequestDispatcher(UriMapping.HOME.getRessourceUrl()).forward(request, response);
