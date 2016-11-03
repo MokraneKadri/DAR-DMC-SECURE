@@ -28,7 +28,7 @@ import fr.upmc.dar.enums.UriMapping;
 import fr.upmc.dar.tools.SignInValidator;
 
 
-@WebServlet(urlPatterns="/eventList")
+//@WebServlet(urlPatterns="/eventList")
 public class EventListServlet  extends HttpServlet{
 
 
