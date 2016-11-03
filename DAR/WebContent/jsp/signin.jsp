@@ -24,7 +24,7 @@
  	<!-- fontAwsome  -->
  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
    <!-- style du footer  -->
-   <link rel="stylesheet" href="http://localhost:8080/DAR/assets/css/footer.css">
+   <link rel="stylesheet" href="http://localhost:8080/DAR/assets/css/pageFooter.css">
    <!-- style du header  -->
    <link rel="stylesheet" href="http://localhost:8080/DAR/assets/css/header.css">
    <!--  content style -->

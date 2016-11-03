@@ -22,7 +22,7 @@
    <!-- style du footer  -->
    <link rel="stylesheet" href="http://localhost:8080/DAR/assets/css/footer.css">
    <!-- style du header  -->
-   <link rel="stylesheet" href="http://localhost:8080/DAR/assets/css/header.css">
+   <link rel="stylesheet" href="http://localhost:8080/DAR/assets/css/pageFooter.css">
      <!-- style du content  -->
    <link rel="stylesheet" href="http://localhost:8080/DAR/assets/css/main.css">
    
