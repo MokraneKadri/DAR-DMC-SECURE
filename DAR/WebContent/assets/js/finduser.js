@@ -31,7 +31,7 @@ function findUserJS(searchv, valuev)
 {
 	$.ajax({
 		type : "POST",
-		url : "/KasuKasu/finduser",
+		url : "/DAR/finduser",
 		data : {search : searchv, value : valuev},
 		dataType : "JSON",
 		success : ProcessFindUser,

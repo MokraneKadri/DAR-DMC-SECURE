@@ -29,8 +29,9 @@ public class FindUserServlet extends HttpServlet {
 			if(value==null || search==null)
 				js.put("error", "Un des champs est vide.");
 			else{
+				System.out.println("request : "+search+ " : "+value);
 				JSONObject rep=UserDao.getUsersJSONProfileWhere(search,value);
-				js.put("users", rep);
+				js.put("result", rep);
 				js.put("response", 1);
 				//System.out.println(rep);
 			}
