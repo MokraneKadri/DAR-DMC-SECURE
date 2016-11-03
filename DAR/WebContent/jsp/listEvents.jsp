@@ -57,7 +57,7 @@
                     $.ajax({
 
                         type: 'POST',
-                        url: 'http://localhost:8080/DAR/eventList',
+                        url: '/DAR/eventList',
                         data: data,
 						dataType:'json',
                         beforeSend: function () {
