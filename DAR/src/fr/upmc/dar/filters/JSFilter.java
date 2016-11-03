@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponseWrapper;
  *
  */
 
-@WebFilter(urlPatterns="/*")
+//@WebFilter(urlPatterns="/*")
 public class JSFilter implements Filter
 {
 	@SuppressWarnings("unused")

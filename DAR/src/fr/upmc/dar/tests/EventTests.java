@@ -11,6 +11,7 @@ import org.junit.Test;
 import fr.upmc.dar.dao.DAOFactory;
 import fr.upmc.dar.dao.EventDao;
 import fr.upmc.dar.dao.UserDao;
+import fr.upmc.dar.entities.Comment;
 import fr.upmc.dar.entities.Event;
 import fr.upmc.dar.entities.User;
 
@@ -18,6 +19,7 @@ public class EventTests {
 	
 	User owner;
 	ArrayList<User> members;
+	ArrayList<Comment> comments;
 	Event event;
 	
 	EventDao dao;
@@ -51,13 +53,21 @@ public class EventTests {
 		members.add(new User("Raymond", "HUI", "RHUIT","r.hui@gmail.com", "123456789", "UPMC", "M2 Info"));
 		members.add(new User("Cédric", "RIBEIRO","CEDROB", "c.ribeiro@gmail.com", "123456789", "UPMC", "M2 Info"));
 		members.add(new User("Raoul", "CHEGMA","RCHEGMA", "r.chegma@gmail.com", "123456789", "UPMC", "M2 Info"));
+		
+		
 	}
-
+	public void createComments() {
+	
+	 comments = new ArrayList<Comment>();
+	comments.add(new Comment(members.get(0), "cette evenement est magnifique", "22/10/2016"));
+	comments.add(new Comment(members.get(2), "cette evenement est magnifique", "22/10/2016"));
+	}
+	
 	//@Test
 	public void createEvent() {
 		createOwner();
 		createMembers();
-		event = new Event(owner, "Boire un verre", "Ce soir tous au bar", "Vendredi", "Piccolage", "20", "Pas chez moi");
+		event = new Event(owner, "Boire un verre", "Ce soir tous au bar", "Vendredi", "Piccolage", "20", "Pas chez moi",comments);
 		event.setCandidates(members);
 	}
 	

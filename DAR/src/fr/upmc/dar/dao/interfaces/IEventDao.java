@@ -2,6 +2,7 @@ package fr.upmc.dar.dao.interfaces;
 
 import java.util.List;
 
+import fr.upmc.dar.entities.Comment;
 import fr.upmc.dar.entities.Event;
 import fr.upmc.dar.entities.User;
 
@@ -14,5 +15,6 @@ public interface IEventDao {
 	public List<Event> getEventsByTheme(String theme);
 	public List<Event> getEventsByOwner(User owner);
 	public List<Event> getEventsByMember(User member);
-	
+	public List<Comment> getCommentsList(int eventId);
+	int getNbComments(int eventid);
 }
