@@ -94,6 +94,13 @@ border: none;
                                 <li><a href="#">Rejoindre un évenement</a></li>
                             </ul>
                         </li>
+                         <li class=" dropdown"><a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Amis <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/DAR/jsp/myfriends.jsp">Mes Amis</a></li>
+                                <li><a href="/DAR/jsp/pendingrequests.jsp">Requetes d'amis </a></li>
+                                <li><a href="/DAR/jsp/finduser.jsp">Rechercher un Ami</a></li>
+                            </ul>
+                        </li>
                         
                     </ul>
                     <ul class="nav navbar-nav pull-right">
@@ -113,7 +120,7 @@ border: none;
       
                         <li class=" "><a href="/DAR/signin">Connexion  </span></a>
                             
-                        <li class=""><a href="/DAR/singup">Inscription</a></li>
+                        <li class=""><a href="/DAR/signup">Inscription</a></li>
         </c:otherwise>
 	</c:choose>
                     
