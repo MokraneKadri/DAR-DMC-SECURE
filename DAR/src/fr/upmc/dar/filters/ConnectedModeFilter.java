@@ -76,8 +76,6 @@ public class ConnectedModeFilter implements Filter {
 		}
 		else  
 			chain.doFilter(request, response);
-
-
 	}
 	
 }
