@@ -36,7 +36,7 @@
   <jsp:param name="active" value="signin" />
   </jsp:include>
 
-<div class="container">
+<div class="container " style="margin-top: 80px;margin-bottom: 80px">
     <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
         <div class="panel panel-info" >
             <div class="panel-heading">
@@ -83,18 +83,8 @@
     </div>
 
 
-
-
-
-                </form>
             </div>
-        </div>
-
-
-
-
-    </div>
-</div>
+ 
 
   <jsp:include page="footer.jsp">
   <jsp:param name="active" value="signin" />

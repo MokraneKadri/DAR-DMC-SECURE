@@ -33,7 +33,7 @@
 </head>
 <body onload="retrieveFriendsFunc()">
 	<jsp:include page="header.jsp" />
-	<div class="container">
+	<div class="maincontainer">
 	<div id='page'>
 		<div class='layer-center'>
 			<div id='notifier'></div>

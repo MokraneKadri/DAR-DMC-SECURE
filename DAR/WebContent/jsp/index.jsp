@@ -37,7 +37,7 @@
   </jsp:include>
 
 	
-    <div class="container ">
+    <div class="maincontainer ">
 
       <!-- Jumbotron -->
       <div class="jumbotron">

@@ -1,10 +1,12 @@
 body{
 	
-	background-color: blue;
+  background-color: #d3d3d3;
 }
 
-body> .container {
-	
+ .maincontainer {
+	width: 90%;
+	margin-left:5%;
+	margin-rigth:5%;
 	margin-top: 150px;
 	margin-bottom: 100px;
 }

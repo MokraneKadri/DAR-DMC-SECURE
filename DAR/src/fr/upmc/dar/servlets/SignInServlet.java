@@ -33,7 +33,7 @@ public class SignInServlet extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	protected IUserDao user;
+	
 	protected SignInValidator validator;
 	protected  Map<String,String> formErrors;
 	protected JSONObject errorsJson;
@@ -42,8 +42,8 @@ public class SignInServlet extends HttpServlet {
 	public void init() throws ServletException {
 		super.init();
 		formErrors = new HashMap<String,String>();
-		user = DAOFactory.createUserDao();
-		validator = new SignInValidator(user,formErrors );
+		
+		validator = new SignInValidator();
 		errorsJson = new JSONObject();
 	}
 	
@@ -69,7 +69,7 @@ public class SignInServlet extends HttpServlet {
 
 			if(validator.getCommittedErrors().isEmpty()){
 				HttpSession session = request.getSession();
-				User x=user.findUserByUserName(login);
+				User x=validator.getUser().findUserByUserName(login);
 				session.setAttribute("idlogin", x.getId());
 				session.setAttribute("login", login);
 				//getServletContext().getRequestDispatcher(UriMapping.HOME.getRessourceUrl()).forward(request, response);

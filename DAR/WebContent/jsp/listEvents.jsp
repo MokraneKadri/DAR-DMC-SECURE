@@ -20,7 +20,7 @@
  	<!-- fontAwsome  -->
  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
    <!-- style du footer  -->
-   <link rel="stylesheet" href="http://localhost:8080/DAR/assets/css/footer.css">
+   <link rel="stylesheet" href="http://localhost:8080/DAR/assets/css/header.css">
    <!-- style du header  -->
    <link rel="stylesheet" href="http://localhost:8080/DAR/assets/css/pageFooter.css">
      <!-- style du content  -->
@@ -38,14 +38,21 @@
 
 	
 	
-		<div class="container" style="margin-top: 60px"></div>
+		<div class="maincontainer">
+		
+		
+		
+		</div>
 		<script type="text/javascript">
 	
 
 		$( document ).ready( function () {
-		
-
-                    var data = $("#signinform").serialize();
+			
+				
+				 
+                
+               
+                    var data = $("").serialize();
 
                     $.ajax({
 
@@ -54,7 +61,14 @@
                         data: data,
 						dataType:'json',
                         beforeSend: function () {
-                                                    },
+                        	                    
+                        
+                        },
+                       error: function(){
+                                 alert('erreur');
+                                             },
+                                                      
+                        
                         success: function (data) {
                         	
                         	//var dataRR =JSON.stringify(data);
@@ -72,7 +86,7 @@
    								
                         			
                            
-                                    $(".container").append('<div class="well">'+
+   										 $("div.maincontainer").append('<div class="well">'+
                                     	      '<div class="media">'+
                                     	      '	<a class="pull-left" href="#">'+
                                     	    		'<img class="media-object" src="http://placekitten.com/150/150">'+
@@ -118,14 +132,12 @@
                         }
                         
                     });
-                   
-                
-                
+                  
 		} );
 		
 
 	</script>
-	
+
 	
  <jsp:include page="footer.jsp">
   <jsp:param name="active" value="signin" />

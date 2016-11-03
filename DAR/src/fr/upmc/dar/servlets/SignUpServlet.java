@@ -27,7 +27,7 @@ public class SignUpServlet extends HttpServlet {
 	//private static final String SINUP_JSP  = "/JSP/signup.jsp";
 	
 	
-	private IUserDao user ;
+
 	protected SignUpValidator validator;
 	protected  Map<String,String> formErrors;
 	protected JSONObject errors;
@@ -38,8 +38,8 @@ public class SignUpServlet extends HttpServlet {
 	public void init() throws ServletException {
 		super.init();
 		formErrors = new HashMap<String,String>();
-		user = DAOFactory.createUserDao();
-		validator = new SignUpValidator(user );
+	
+		validator = new SignUpValidator();
 		errors= new JSONObject();
 		
 	}
@@ -78,7 +78,7 @@ public class SignUpServlet extends HttpServlet {
 			 if(formErrors.isEmpty()){
 				 User utilisateur = new User(fname,lname,userName,eMail,password,etablissement,cursus);
 			
-				 user.createUser(utilisateur);
+				 validator.getUser().createUser(utilisateur);
 				 response.setHeader("Refresh", "5;url="+UriMapping.LOGIN.getRessourceUrl());
 				 response.sendRedirect("/DAR/signin");
 				 //response.set.getRequestDispatcher(UriMapping.LOGIN.getRessourceUrl()).forward(request, response);

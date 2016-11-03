@@ -35,7 +35,7 @@
 <body>
 	<jsp:include page="header.jsp" />
 	
-	   <div class="container ">
+	   <div class="maincontainer ">
 	<div id='page'>
 		<div class='layer-center'>
 			<p class='capital'>Rechercher un utilisateur</p>

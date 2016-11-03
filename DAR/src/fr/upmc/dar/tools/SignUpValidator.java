@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import fr.upmc.dar.dao.DAOFactory;
 import fr.upmc.dar.dao.interfaces.IUserDao;
 
 import fr.upmc.dar.enums.SignInFields;
@@ -35,9 +36,9 @@ public class SignUpValidator {
 
 
 
-	public SignUpValidator(IUserDao user) {
+	public SignUpValidator() {
 		super();
-		this.user = user;
+		this.user =  DAOFactory.createUserDao();;
 		this.committedErrors = new HashMap<String,String>();
 	}
 

@@ -1,9 +1,11 @@
 package fr.upmc.dar.tools;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import fr.upmc.dar.dao.DAOFactory;
 import fr.upmc.dar.dao.interfaces.IUserDao;
 import fr.upmc.dar.enums.LoginType;
 import fr.upmc.dar.enums.SignInFields;
@@ -33,10 +35,10 @@ public class SignInValidator {
 		Matcher matcher = VALID_USERNAME_REGEX .matcher(username);
 		return matcher.find();
 	}
-	public SignInValidator(IUserDao user, Map<String,String> committedErrors) {
+	public SignInValidator() {
 		super();
-		this.user = user;
-		this.committedErrors = committedErrors;
+		this.user  = DAOFactory.createUserDao();;
+		this.committedErrors = new HashMap<String,String> ();
 	}
 
 

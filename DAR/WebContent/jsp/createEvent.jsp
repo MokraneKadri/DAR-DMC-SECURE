@@ -27,9 +27,9 @@
    <!-- style du footer  -->
    <link rel="stylesheet" href="http://localhost:8080/DAR/assets/css/pageFooter.css"">
    <!-- style du header  -->
-   <link rel="stylesheet" href="http://localhost:8080/DAR/assets/css/header.css"">
-    <link rel="stylesheet" href="http://localhost:8080/DAR/assets/css/main.css"">
-   
+   <link rel="stylesheet" href="http://localhost:8080/DAR/assets/css/header.css">
+    <link rel="stylesheet" href="http://localhost:8080/DAR/assets/css/main.css">
+     <link rel="stylesheet" href="http://localhost:8080/DAR/assets/css/signup.css">
    	<!-- Fin Styles  -->	
 <body>
 
@@ -38,13 +38,10 @@
   </jsp:include>
 
 
-<div class="container" style="margin-top: 70px">
+<div class="maincontainer" style="margin-top: 70px">
     <div class="row main">
         <div class="panel-heading">
-            <div class="panel-title text-center">
-                <h1 class="title">Créer un évenement</h1>
-                <hr />
-            </div>
+          
         </div>
         <div class="main-login main-center">
             <form class="form-horizontal" method="post" action="/DAR/create_event">
