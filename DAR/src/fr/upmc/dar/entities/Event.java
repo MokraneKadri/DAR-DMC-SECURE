@@ -25,6 +25,10 @@ public class Event {
 	@OneToMany(cascade = CascadeType.ALL)
 	protected List<User> candidates;
 	
+	@OneToMany(cascade = CascadeType.ALL)
+	protected List<Comment> comments;
+
+	
 	@Column
 	private String eventName;
 
@@ -33,6 +37,10 @@ public class Event {
 	
 	@Column
 	private String eventDate;
+	
+	@Column
+	private int  eventCommentsCounts;
+	
 	
 	@Column
 	private String eventTheme;
@@ -48,24 +56,7 @@ public class Event {
 		super();
 	}
 	
-	public Event(	
-			Integer id,
-			String eventName, 
-			String eventDescription,
-			String eventDate, 
-			String eventTheme, 
-			String eventPlace, 
-			String eventAdresse) 
-	{
-		super();
-		this.id = id;
-		this.eventName = eventName;
-		this.eventDescription = eventDescription;
-		this.eventDate = eventDate;
-		this.eventTheme = eventTheme;
-		this.eventPlace = eventPlace;
-		this.eventAdresse = eventAdresse;
-	}
+
 	
 	public Event(	
 			User owner,
@@ -73,8 +64,9 @@ public class Event {
 			String eventDescription,
 			String eventDate, 
 			String eventTheme, 
-			String eventPlace, 
-			String eventAdresse) 
+			String eventPlace,
+			String eventAdresse,
+			List<Comment> comments) 
 	{
 		this.creator = owner;
 		this.eventName = eventName;
@@ -83,6 +75,7 @@ public class Event {
 		this.eventTheme = eventTheme;
 		this.eventPlace = eventPlace;
 		this.eventAdresse = eventAdresse;
+		this.comments=comments;
 	}
 	
 	

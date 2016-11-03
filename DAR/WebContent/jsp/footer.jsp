@@ -1,39 +1,43 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<!-- contenu de la page. -->
 
-
-
-		<footer class="footer-distributed">
-
-			<div class="footer-right">
-
-				<a href="#"><i class="fa fa-facebook"></i></a>
-				<a href="#"><i class="fa fa-twitter"></i></a>
-				<a href="#"><i class="fa fa-linkedin"></i></a>
-				<a href="#"><i class="fa fa-github"></i></a>
-
-			</div>
-
-			<div class="footer-left">
-
-				<p class="footer-links">
-					<a href="#">Accueil</a>
-					·
-					<a href="#">Events</a>
-					·
-					<a href="#">Créer</a>
-					·
-					<a href="#">rejoindre</a>
-					·
-
-				</p>
-
-				<p>DAR &copy; UPMC 2016</p>
-			</div>
-
-		</footer>
+    
+    <section class="footer" >
+    <div class="container">
+    	<div class="row">
+        	<div class="col-lg-4  col-md-4 col-sm-4">
+            	<div class="footer_dv">
+                	<h4>Les MeetUps</h4>
+                	<ul>
+                    	<li class="line_rv"><a href="">A propos des évenements</a></li>
+               			<li><a href="">Consulter la liste</a></li>
+                        <li><a href="">Créer un évenement </a></li>
+                        <li><a href="">Rejoindre un évenement</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4  col-md-4 col-sm-4">
+            	<div class="footer_dv">
+                	<h4>Les Groupes</h4>
+                	<ul>
+                    	<li><a href="">A propose des Groupes</a></li>
+                    	<li><a href="">Consulter la liste</a></li>
+                        <li><a href="">Rejoindre un groupe</a></li>
+                        <li><a href="">Créer un groupe</a></li>
+                       
+                        
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4  col-md-4 col-sm-4">
+            	<div class="footer_dv">
+                	<h4>Uni-Connect</h4>
+                	<p>Projet DAR 2016</p>
+      			<p>UPMC M2 STL PROMO 2016/2016<br>
+				
+                </p></div>
+            </div>
+        </div>
+    </div>
+</section>

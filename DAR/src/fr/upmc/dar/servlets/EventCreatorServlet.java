@@ -1,6 +1,7 @@
 package fr.upmc.dar.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -52,7 +53,7 @@ public class EventCreatorServlet extends HttpServlet {
 			String theme = request.getParameter("eventTheme");
 			String description = "SOMETHING NO INPUT IN CREATE EVENT FORM";
 			
-			Event event = new Event(user, name, description, date, theme, place, adress);
+			Event event = new Event(user, name, description, date, theme, place, adress,new ArrayList<>());
 			DAOFactory.createEventDao().createEvent(event);
 			
 		} catch (Exception e) {

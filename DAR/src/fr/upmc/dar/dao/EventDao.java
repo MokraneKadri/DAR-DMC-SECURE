@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import fr.upmc.dar.dao.interfaces.IEventDao;
+import fr.upmc.dar.entities.Comment;
 import fr.upmc.dar.entities.Event;
 import fr.upmc.dar.entities.User;
 
@@ -21,6 +23,9 @@ public class EventDao implements IEventDao {
 	protected final static String EVENTS_THEMED_BY = "SELECT events FROM Event events WHERE events.eventTheme=:theme";
 	protected final static String EVENTS_OWNED_BY = "SELECT events FROM Event events WHERE events.creator=:owner";
 	protected final static String EVENTS_MEMBERED_BY = "SELECT events FROM Event events WHERE events.candidates=:member";
+	protected final static String EVENTS_COMMENTS_BY_EVENTID = "SELECT events.comments FROM Event events WHERE events.id=:id";
+	//protected final static String EVENTS_COMMENTS_COUNT = "SELECT events.comments FROM Event events WHERE events.id=:id";
+	
 	
 	public EventDao() {
 		entityManager = Persistence.createEntityManagerFactory("DAR").createEntityManager();
@@ -75,5 +80,18 @@ public class EventDao implements IEventDao {
 		
 		return events;
 	}
+
+	@Override
+	public int getNbComments(int eventid) {
+		return getCommentsList(eventid).size();
+	}
+
+	@Override
+	public List<Comment> getCommentsList(int eventId) {
+		ArrayList<Comment> comments = (ArrayList<Comment>) entityManager.createQuery(EVENTS_COMMENTS_BY_EVENTID).setParameter("id", eventId);
+		return comments;
+	}
+
+
 
 }
