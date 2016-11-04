@@ -54,7 +54,7 @@ public class PasswordResetServlet extends HttpServlet {
 			try {
 				if(validator.doesUserExist(request.getParameter("login"))==true){
 					
-					MailHelper mailer = new MailHelper("kadri.mokrane@gmail.com", "mokrane.kadri@hotmail.fr", "Password reset", "blablabla");	
+					MailHelper mailer = new MailHelper("noreplay.univ.connect@gmail.com", "mokrane.kadri@hotmail.fr", "Password reset", "blablabla");	
 					mailer.sendEmail();
 				}
 				

@@ -89,11 +89,12 @@
    										 $("div.maincontainer").append('<div class="well">'+
                                     	      '<div class="media">'+
                                     	      '	<a class="pull-left" href="#">'+
-                                    	    		'<img class="media-object" src="http://placekitten.com/150/150">'+
-                                    	  		'</a>'+
+                                    	    		
                                     	  		'<div class="media-body">'+
                                     	    		'<h4 class="media-heading">'+ eventdetails.eventName+'</h4>'+
                                     	         ' <p class="text-right">créer par :'+ eventdetails.creator.userName+'</p>'+
+                                    	         '<p></p><p class="text-right"><a class="btn btn-primary">Je participe</a>'+
+                                    	         '<p></p><p class="text-right"><a class="btn btn-info"> Details >></a>'+
                                     	          '<p></b>Description :</p>'+
                                     	          '<p>'+eventdetails.eventDescription+'</p>'+
                                     	          '<p></b>Thème :</p>'+

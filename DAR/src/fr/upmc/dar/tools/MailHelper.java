@@ -6,6 +6,7 @@ import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
+import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
@@ -33,11 +34,22 @@ public class MailHelper {
 	}
 	
 	public void sendEmail(){
+		final String username = "noreplay.univ.connect@gmail.com";
+		final String password = "kokakola";
+		
+		Properties props = new Properties();
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", "587");
 	  
-	      Properties properties = System.getProperties();
 
-	      properties.setProperty("mail.smtp.host", this.host);
-	      Session session = Session.getDefaultInstance(properties);
+	      Session session = Session.getDefaultInstance(props,
+	    		  new javax.mail.Authenticator() {
+				protected PasswordAuthentication getPasswordAuthentication() {
+					return new PasswordAuthentication(username, password);
+				}
+			  });
 
 	      try {
 	        
