@@ -1,10 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+  pageEncoding="UTF-8"%>
+<%@ page isELIgnored="false"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
 <html>
 <head>
-
-<title>Password Reset</title>
+	<title>Recupération du mot de passe </title>
 	
 	
 	
@@ -23,72 +24,134 @@
  	<!-- fontAwsome  -->
  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
    <!-- style du footer  -->
-   <link rel="stylesheet" href="/DAR/assets/css/pageFooter.css">
+   <link rel="stylesheet" href="http://localhost:8080/DAR/assets/css/pageFooter.css">
    <!-- style du header  -->
-   <link rel="stylesheet" href="/DAR/assets/css/header.css">
-    <link rel="stylesheet" href="/DAR/assets/css/main.css">
-   
+   <link rel="stylesheet" href="http://localhost:8080/DAR/assets/css/header.css">
+   <!--  content style -->
+   <link rel="stylesheet" href="http://localhost:8080/DAR/assets/css/main.css">
    	<!-- Fin Styles  -->	
+	
+	
+	</head>
 	
 <body>
 
-  <jsp:include page="header.jsp">
-  <jsp:param name="active" value="signin" />
-  </jsp:include>
 
-<div class="container " style="margin-top: 80px;margin-bottom: 80px">
-    <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-        <div class="panel panel-info" >
-            <div class="panel-heading">
-                <div class="panel-title">Réinitialiser mot de Passe :</div>
-                </div>
-
-            <div style="padding-top:30px" class="panel-body" >
-
-                <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
-
-                <form id="loginform" class="form-horizontal" role="form" method="post" action="/reset">
-
-                    <div style="margin-bottom: 25px" class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="votre nom d'utilisateur">
-                    </div>
-
-                    <div style="margin-bottom: 25px" class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                        <input id="login-password" type="email" class="form-control" name="password" placeholder="votre Email">
-                    </div>
+	<jsp:include page="header.jsp">
+		<jsp:param name="active" value="signin" />
+	</jsp:include>
 
 
+	<div class="maincontainer ">
+		<div class="row">
+			<div class="col-sm-8 col-sm-offset-2">
+	
 
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Réinitialiser mon mot de passe :  </h3>
+					</div>
+					<div class="panel-body">
+						<form id="signinform" method="post" class="form-horizontal" action="/DAR/passwordreset">
+				
+				<div id="error">		<c:if test="${not empty formErrors['login']}">
+             					<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span><c:out value="${formErrors['login']}"/></div>
+             					        								 </c:if>
+      					  </div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label" for="login"> Login ou Email :</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id="login" name="login" placeholder="nom d'utilisateur ou Email" />
+								</div>
+							</div>
 
+							
 
-                    <div style="margin-top:10px" class="form-group">
-                        <!-- Button -->
+							<div class="form-group">
+								<div class="col-sm-9 col-sm-offset-4">
+                                    <button type="submit" class="btn btn-success" name="btn-save" id="btn-submit">
+                                        <span class="glyphicon glyphicon-log-in"></span> &nbsp; Récuper mon mot de passe
+                                    </button>
+                                </div>
+							</div>
+							
+				</form>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+	
 
-                        <div class="col-sm-12 controls">
-                            <a id="btn-login" href="/DAR/passwordReset.jsp" class="btn btn-danger">Réinitiliser   </a>
+		$( document ).ready( function () {
+			$( "#signinform" ).validate( {
+				rules: {
+					login:{
+						required: true,
+						minlength: 5
+					} ,
+					password: {
+					    required: true,
+						minlength: 5
+					}
+					
+				},
+				messages: {
+					login:{
+						required: "Veuillez indiquer votre login",
+						 minlength:"Veuillez indiquer un login  valide"
+						},
+					password: {
+						required: "Veuillez indiquer votre mot de passe",
+						 minlength:"Veuillez indiquer un mot de passe valide"
+						},
+				},
 
-                        </div>
-                    </div>
+                errorElement: "em",
 
+         				errorPlacement: function ( error, element ) {
+					// ajout d'une classe `help-block` à lelement en erreur
+					error.addClass( "help-block" );
 
+					// ajout de la classe  `has-feedback`  au parent div.form-group
+					// afin d'jouter les icons au inputs
+					element.parents( ".col-sm-5" ).addClass( "has-feedback" );
 
-                </form>
+					
+					error.insertAfter( element );
+					
 
+					
+					//ajout de l'element span si il existe pas et application de la classe créer pour lui
+					if ( !element.next( "span" )[ 0 ] ) {
+						$( "<span class='glyphicon glyphicon-remove form-control-feedback'></span>" ).insertAfter( element );
+					}
+				},
+				success: function ( label, element ) {
+					//ajout de l'element span si il existe pas et application de la classe créer pour lui.
+					if ( !$( element ).next( "span" )[ 0 ] ) {
+						$( "<span class='glyphicon glyphicon-ok form-control-feedback'></span>" ).insertAfter( $( element ) );
+					}
+				},
+				highlight: function ( element, errorClass, validClass ) {
+					$( element ).parents( ".col-sm-5" ).addClass( "has-error" ).removeClass( "has-success" );
+					$( element ).next( "span" ).addClass( "glyphicon-remove" ).removeClass( "glyphicon-ok" );
+				},
+				unhighlight: function ( element, errorClass, validClass ) {
+					$( element ).parents( ".col-sm-5" ).addClass( "has-success" ).removeClass( "has-error" );
+					$( element ).next( "span" ).addClass( "glyphicon-ok" ).removeClass( "glyphicon-remove" );
+				}
+			} );
+		} );
+		
 
-
-            </div>
-        </div>
-    </div>
-
-
-            </div>
- 
-
-  <jsp:include page="footer.jsp">
-  <jsp:param name="active" value="signin" />
-  </jsp:include>
-
-</body>
+	</script>
+	
+	<jsp:include page="footer.jsp">
+		<jsp:param name="active" value="signin" />
+	</jsp:include>
+	</body>
 </html>

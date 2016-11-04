@@ -93,7 +93,16 @@ public class SignInValidator {
 	}
 
 
-
+	public boolean doesUserExist(String login) throws Exception{
+		
+		
+		if(user.findUserByEmail(login) ==null && user.findUserByUserName(login)==null){
+			return false;
+		}
+		return true;
+		
+	}
+	
 
 
 
