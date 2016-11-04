@@ -59,19 +59,30 @@ public class SignInServlet extends HttpServlet {
 	@SuppressWarnings("unchecked")
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String login = request.getParameter("login");
+		String userlogin = request.getParameter("login");
 		String passwd = request.getParameter("password");
-	
+		String login;
 		
 		try {
-			validator.validateCredantials(login, passwd);
+			validator.validateCredantials(userlogin, passwd);
 			formErrors=validator.getCommittedErrors();
 
 			if(validator.getCommittedErrors().isEmpty()){
 				HttpSession session = request.getSession();
-				User x=validator.getUser().findUserByUserName(login);
-				session.setAttribute("idlogin", x.getId());
-				session.setAttribute("login", login);
+			
+				if(validator.IsValidEmailFormat(userlogin)==true){ // connecté avec @mail
+					User user = validator.getUser().findUserByEmail(userlogin);
+					login = user.getUserName();
+					session.setAttribute("login", login);
+					session.setAttribute("idlogin", user.getId());
+				}
+				else {// connection avec username
+					User user = validator.getUser().findUserByUserName(userlogin);
+					login = user.getUserName();
+					session.setAttribute("login", login);
+					session.setAttribute("idlogin", user.getId());
+				
+				}
 				//getServletContext().getRequestDispatcher(UriMapping.HOME.getRessourceUrl()).forward(request, response);
 				//request.getRequestDispatcher(UriMapping.HOME.getRessourceUrl()).forward(request, response);
 				 response.sendRedirect("/DAR/home");
