@@ -36,9 +36,20 @@
 	<jsp:include page="header.jsp" />
 	
 	   <div class="maincontainer ">
-	<div id='page'>
-		<div class='layer-center'>
-			<p class='capital'>Rechercher un utilisateur</p>
+	  	 <div class="row">
+			<div class="col-sm-8 col-sm-offset-2">
+	
+
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3><p class='capital'>Rechercher un utilisateur</p> </h3>
+					</div>
+					<div class="panel-body">
+						
+					<div id='page'>
+					
+					<div class='layer-center'>
+									
 
 
 			<form action="javascript:(function(){return;})()" method="get"
@@ -46,8 +57,8 @@
 
 				<div class="form-group row">
 					<label for="email" class="col-xs-4 col-form-label">Rechercher
-						par </label>
-					<div class="col-xs-4">
+						Par : </label>
+					<div class="col-sm-5">
 						<SELECT name="search" size="1" class="form-control">
 							<OPTION value="nom">Nom</OPTION>
 							<OPTION value="prenom">Prénom</OPTION>
@@ -56,20 +67,39 @@
 						</SELECT>
 					</div>
 				</div>
-
+			 
 				<div class="form-group row">
-
-					<div class="col-xs-10">
-						<input class="form-control" name="value" value="" id="value">
+					<label for="email" class="col-xs-4 col-form-label"></label>
+					
+					<div class="col-sm-5">
+						<input class="form-control" name="value" value="" id="value" placeholder="vous cherchez ?">
 					</div>
+					
 				</div>
-
-				<input type="submit" class="btn btn-primary btn-block"
-					value="Chercher"> <br>
+				</div>
+ 
+	
+				
+				<div class="form-group row">
+					<label for="email" class="col-xs-4 col-form-label"></label>
+					
+								<div class="col-sm-5 col-sm-offset-5">
+                                    <button type="submit" class="btn btn-success btn-lg" name="btn-save" id="btn-submit">
+                                        <span class="glyphicon glyphicon-search"></span> &nbsp; Chercher
+                                    </button>
+                                </div>
+				</div>
+							
+		
 			</form>
 
 			<div id='notifier'></div>
 		</div>
+	</div>
+	</div>
+	
+	</div>
+	</div>
 	</div>
 	</div>
 	<jsp:include page="footer.jsp" />

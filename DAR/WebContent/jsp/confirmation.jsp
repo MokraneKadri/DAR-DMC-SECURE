@@ -50,9 +50,25 @@
   
     <div class="maincontainer ">
     
-    <p> un mail vous a été envoyé !</p>
-    <p>merci de suivre les instructions pour recuperer votre compte </p>
     
+    <div class="row">
+			<div class="col-sm-8 col-sm-offset-2">
+	
+
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title"><c:if test="${not empty pageInfos['infos']}"><c:out value="${pageInfos['infos']}"></c:out> </c:if> </h3>
+					</div>
+					<div class="panel-body">
+						
+							  
+    				<p>Merci<b> <c:if test="${not empty pageInfos['user']}"><c:out value="${pageInfos['user']}"></c:out></b> </c:if>
+    				<p> un mail vous a été envoyé !</p>
+    				<p>merci de suivre les instructions pour recuperer votre compte </p>
+    				</div>
+    			</div>
+    		</div>
+    		</div>
     
     </div>
   

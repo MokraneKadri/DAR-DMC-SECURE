@@ -1,6 +1,9 @@
 package fr.upmc.dar.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -50,14 +53,18 @@ public class PasswordResetServlet extends HttpServlet {
 		
 		@Override
 		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		  String login = request.getParameter("login");
 			try {
-				if(validator.doesUserExist(request.getParameter("login"))==true){
+				if(validator.doesUserExist(login)==true){
+					
 					
 					MailHelper mailer = new MailHelper("noreplay.univ.connect@gmail.com", "mokrane.kadri@hotmail.fr", "Password reset", "blablabla");	
 					mailer.sendEmail();
 				}
-				
+				Map<String ,String > infos = new HashMap<String ,String>();
+				infos.put("user", login);
+				infos.put("infos", "Reinitialisation du mot passe : etape 2");
+				request.setAttribute("pageInfos", infos);
 				request.getRequestDispatcher(UriMapping.POSTPASSWDRESET.getRessourceUrl()).forward(request, response);
 					
 			} catch (Exception e) {
