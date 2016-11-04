@@ -30,7 +30,7 @@ public class SignUpServlet extends HttpServlet {
 
 	protected SignUpValidator validator;
 	protected  Map<String,String> formErrors;
-	protected JSONObject errors;
+	protected JSONObject pageInfos;
 	
 	
 	
@@ -38,9 +38,7 @@ public class SignUpServlet extends HttpServlet {
 	public void init() throws ServletException {
 		super.init();
 		formErrors = new HashMap<String,String>();
-	
-		validator = new SignUpValidator();
-		errors= new JSONObject();
+		pageInfos= new JSONObject();
 		
 	}
 	
@@ -64,14 +62,17 @@ public class SignUpServlet extends HttpServlet {
 		 String confirmationPassword = request.getParameter("confirm_password");
 		 String etablissement = request.getParameter("university");
 		 String cursus = request.getParameter("cursus");
-		 System.out.println("received from form : \n name :"+fname
-				 										+"username: "+userName
-				 										
-				 										+"email:"+eMail
-				 										+"pass :"+password
-				 										+"confpass:"+confirmationPassword
-				 										+"etablissement:"+etablissement
-				 										+"cursus :"+cursus);
+//		 System.out.println("received from form : \n name :"+fname
+//				 										+"username: "+userName
+//				 										
+//				 										+"email:"+eMail
+//				 										+"pass :"+password
+//				 										+"confpass:"+confirmationPassword
+//				 										+"etablissement:"+etablissement
+//				 										+"cursus :"+cursus);
+		 
+		 
+		 validator = new SignUpValidator();
 		 try{
 			 validator.canRegisterUser(fname,lname, userName, eMail, password, confirmationPassword, etablissement, cursus);
 			 formErrors=validator.getCommittedErrors();
@@ -79,22 +80,23 @@ public class SignUpServlet extends HttpServlet {
 				 User utilisateur = new User(fname,lname,userName,eMail,password,etablissement,cursus);
 			
 				 validator.getUser().createUser(utilisateur);
-				 response.setHeader("Refresh", "5;url="+UriMapping.LOGIN.getRessourceUrl());
-				 response.sendRedirect("/DAR/signin");
-				 //response.set.getRequestDispatcher(UriMapping.LOGIN.getRessourceUrl()).forward(request, response);
-					//System.out.println(errors.toJSONString());
-				// request.getRequestDispatcher(UriMapping.HOME.getRessourceUrl()).forward(request, response);
-				 
+				 pageInfos.put("user", userName);
+				 pageInfos.put("infos", "votre compte a été créer avec succes ");
+				 pageInfos.put("content", "vous allez maintenant rediriger automatiquement vers la page de connection");
+				 request.setAttribute("pageInfos", pageInfos);
+				 response.setHeader("Refresh", "3;url="+"/DAR/signin");// redirection a la page de login apres 3 seconde
+				 request.getRequestDispatcher(UriMapping.POSTSIGNUPRESET.getRessourceUrl()).forward(request, response);
+				
 			}
 		 
 			
 			else 
 				{
 					
-					errors.putAll(formErrors);
+					pageInfos.putAll(formErrors);
 					request.setAttribute("formErrors", formErrors);
 					getServletContext().getRequestDispatcher(UriMapping.REGISTER.getRessourceUrl()).forward(request, response);
-				    System.out.println(errors.toJSONString());
+				    System.out.println(pageInfos.toJSONString());
 				    formErrors.clear();
 				}
 				//response.getWriter().write("l'emeil deja pris");

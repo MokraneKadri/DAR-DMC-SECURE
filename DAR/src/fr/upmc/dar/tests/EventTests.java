@@ -14,6 +14,7 @@ import fr.upmc.dar.dao.UserDao;
 import fr.upmc.dar.entities.Comment;
 import fr.upmc.dar.entities.Event;
 import fr.upmc.dar.entities.User;
+import fr.upmc.dar.enums.EventVisibility;
 
 public class EventTests {
 	
@@ -67,7 +68,7 @@ public class EventTests {
 	public void createEvent() {
 		createOwner();
 		createMembers();
-		event = new Event(owner, "Boire un verre", "Ce soir tous au bar", "Vendredi", "Piccolage", "20", "Pas chez moi",comments);
+		event = new Event(owner, "Boire un verre", EventVisibility.GROUP,"Ce soir tous au bar", "Vendredi", "Piccolage", "20", "Pas chez moi",comments);
 		event.setCandidates(members);
 	}
 	

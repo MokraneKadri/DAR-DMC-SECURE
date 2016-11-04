@@ -43,7 +43,6 @@ public class SignInServlet extends HttpServlet {
 		super.init();
 		formErrors = new HashMap<String,String>();
 		
-		validator = new SignInValidator();
 		errorsJson = new JSONObject();
 	}
 	
@@ -62,7 +61,8 @@ public class SignInServlet extends HttpServlet {
 		String userlogin = request.getParameter("login");
 		String passwd = request.getParameter("password");
 		String login;
-		
+
+		validator = new SignInValidator();
 		try {
 			validator.validateCredantials(userlogin, passwd);
 			formErrors=validator.getCommittedErrors();

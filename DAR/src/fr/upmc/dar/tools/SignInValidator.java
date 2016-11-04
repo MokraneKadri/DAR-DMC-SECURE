@@ -26,7 +26,7 @@ public class SignInValidator {
 
 
 
-	public static boolean IsValidEmailFormat(String emailStr) {
+	public boolean IsValidEmailFormat(String emailStr) {
 		Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(emailStr);
 		return matcher.find();
 	}

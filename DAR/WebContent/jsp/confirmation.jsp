@@ -62,9 +62,8 @@
 					<div class="panel-body">
 						
 							  
-    				<p>Merci<b> <c:if test="${not empty pageInfos['user']}"><c:out value="${pageInfos['user']}"></c:out></b> </c:if>
-    				<p> un mail vous a été envoyé !</p>
-    				<p>merci de suivre les instructions pour recuperer votre compte </p>
+    				<p>Merci<b> <c:if test="${not empty pageInfos['user']}"><c:out value="${pageInfos['user']}"></c:out></b> </c:if></p>
+    				<p><c:if test="${not empty pageInfos['content']}"><c:out value="${pageInfos['content']}"></c:out> </c:if></p>
     				</div>
     			</div>
     		</div>

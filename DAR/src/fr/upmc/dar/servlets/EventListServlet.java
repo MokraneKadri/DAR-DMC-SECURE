@@ -24,6 +24,7 @@ import fr.upmc.dar.dao.interfaces.IEventDao;
 import fr.upmc.dar.entities.Comment;
 import fr.upmc.dar.entities.Event;
 import fr.upmc.dar.entities.User;
+import fr.upmc.dar.enums.EventVisibility;
 import fr.upmc.dar.enums.UriMapping;
 import fr.upmc.dar.tools.SignInValidator;
 
@@ -34,7 +35,6 @@ public class EventListServlet  extends HttpServlet{
 
 	protected  Map<String, String> eventsMap;
 	protected Event event ;
-	protected Gson gsonbuilder ;
 	protected Gson gson;
 	String res ;
 
@@ -61,7 +61,7 @@ public class EventListServlet  extends HttpServlet{
 			User owner = members.get(i);
 			comments.add(new Comment(owner, "cette evenement est magnifique", "22/10/2016"));
 			
-			event = new Event(owner, "Boire un verre", "Ce soir tous au bar", "Vendredi", "Piccolage", "20", "Pas chez moi",comments);
+			event = new Event(owner, "Boire un verre",EventVisibility.PRIVATE, "Ce soir tous au bar", "Vendredi", "Piccolage", "20", "Pas chez moi",comments);
 			events.add(event);		
 			
 		}

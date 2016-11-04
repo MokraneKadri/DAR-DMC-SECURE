@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import fr.upmc.dar.enums.EventVisibility;
+
 @Entity
 public class Event {
 
@@ -32,6 +34,11 @@ public class Event {
 	@Column
 	private String eventName;
 
+	@Column
+	private EventVisibility eventprivacy;
+
+	
+	
 	@Column
 	private String eventDescription;
 	
@@ -61,6 +68,7 @@ public class Event {
 	public Event(	
 			User owner,
 			String eventName, 
+			EventVisibility eventprivacy,
 			String eventDescription,
 			String eventDate, 
 			String eventTheme, 
@@ -70,6 +78,7 @@ public class Event {
 	{
 		this.creator = owner;
 		this.eventName = eventName;
+		this.eventprivacy = eventprivacy;
 		this.eventDescription = eventDescription;
 		this.eventDate = eventDate;
 		this.eventTheme = eventTheme;
@@ -79,6 +88,42 @@ public class Event {
 	}
 	
 	
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
+
+
+	public EventVisibility getEventprivacy() {
+		return eventprivacy;
+	}
+
+
+
+	public void setEventprivacy(EventVisibility eventprivacy) {
+		this.eventprivacy = eventprivacy;
+	}
+
+
+
+	public int getEventCommentsCounts() {
+		return eventCommentsCounts;
+	}
+
+
+
+	public void setEventCommentsCounts(int eventCommentsCounts) {
+		this.eventCommentsCounts = eventCommentsCounts;
+	}
+
+
+
 	public Integer getId() {
 		return id;
 	}

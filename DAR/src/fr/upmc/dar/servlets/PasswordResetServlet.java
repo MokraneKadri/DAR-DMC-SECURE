@@ -64,7 +64,9 @@ public class PasswordResetServlet extends HttpServlet {
 				Map<String ,String > infos = new HashMap<String ,String>();
 				infos.put("user", login);
 				infos.put("infos", "Reinitialisation du mot passe : etape 2");
+				infos.put("content", "Nous avons pris en charge votre demande !.<p> afin de reinitialiser votre mot de passe .Merci de suivre les instruction que nous vous avons envoyé par Email");
 				request.setAttribute("pageInfos", infos);
+				
 				request.getRequestDispatcher(UriMapping.POSTPASSWDRESET.getRessourceUrl()).forward(request, response);
 					
 			} catch (Exception e) {
