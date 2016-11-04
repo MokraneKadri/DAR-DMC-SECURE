@@ -127,11 +127,15 @@ public class FriendsDao implements IFriendsDao {
 
 	}
 	@Override
-	public boolean areFriends(String user1,String user2)
+	public boolean areFriends(String user1,String user2) throws NumberFormatException, Exception
 	{
+		UserDao dao=new UserDao();
+		User userOne = dao.findUserByUserName((user1));
+		User userTwo = dao.findUserByUserName((user2));
+
 		String sql = "SELECT f FROM Friends f WHERE (f.user1=:user1 AND f.user2=:user2) OR (f.user1=:user2 AND f.user2=:user1)";
 		@SuppressWarnings("unchecked")
-		List<Friends> fr =(ArrayList<Friends>) entityManager.createQuery(sql).setParameter("user1", user1).setParameter("user2",user2).getResultList();
+		List<Friends> fr =(ArrayList<Friends>) entityManager.createQuery(sql).setParameter("user1", userOne).setParameter("user2",userTwo).getResultList();
 		return (fr.size()>=1);
 	}
 

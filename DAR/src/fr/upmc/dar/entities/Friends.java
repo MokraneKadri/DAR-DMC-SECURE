@@ -10,7 +10,7 @@ import javax.persistence.OneToOne;
 public class Friends {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	protected Integer id;
 
 	@OneToOne
 	protected User user1;

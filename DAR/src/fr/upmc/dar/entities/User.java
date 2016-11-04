@@ -13,7 +13,7 @@ import fr.upmc.dar.tools.PasswordEncryptor;
 public class User {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	protected Integer id;
 
 	@Column
 	private String firstName;

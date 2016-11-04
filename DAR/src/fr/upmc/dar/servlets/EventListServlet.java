@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -20,7 +21,11 @@ import com.google.gson.GsonBuilder;
 
 import fr.upmc.dar.dao.DAOFactory;
 import fr.upmc.dar.dao.EventDao;
+import fr.upmc.dar.dao.FriendsDao;
+import fr.upmc.dar.dao.UserDao;
 import fr.upmc.dar.dao.interfaces.IEventDao;
+import fr.upmc.dar.dao.interfaces.IFriendsDao;
+import fr.upmc.dar.dao.interfaces.IUserDao;
 import fr.upmc.dar.entities.Comment;
 import fr.upmc.dar.entities.Event;
 import fr.upmc.dar.entities.User;
@@ -33,17 +38,22 @@ import fr.upmc.dar.tools.SignInValidator;
 public class EventListServlet  extends HttpServlet{
 
 
-	protected  Map<String, String> eventsMap;
-	protected Event event ;
+	
+	
+	protected IFriendsDao friendship;
+	protected IUserDao  user;
+	protected IEventDao eventlist;
+	
 	protected Gson gson;
 	String res ;
-
+	
 	JSONObject jObject = new JSONObject();
 	JSONArray jArray = new JSONArray();
 	
 	
 	ArrayList<User> members;
 	ArrayList<Event> events;
+	ArrayList<Event> visibleEvents;
 	ArrayList<Comment> comments;
 	@Override
 	public void init() throws ServletException {
@@ -52,39 +62,13 @@ public class EventListServlet  extends HttpServlet{
 		members = new ArrayList<User>();
 		events = new ArrayList<Event>();
 		
-		members.add(new User("Jean", "PIERRE", "JPIERRE","j.pierre@gmail.com", "123456789", "UPMC", "M2 Info"));
-		members.add(new User("Raymond", "HUI", "RHUIT","r.hui@gmail.com", "123456789", "UPMC", "M2 Info"));
-		members.add(new User("Cédric", "RIBEIRO","CEDROB", "c.ribeiro@gmail.com", "123456789", "UPMC", "M2 Info"));
-		members.add(new User("Raoul", "CHEGMA","RCHEGMA", "r.chegma@gmail.com", "123456789", "UPMC", "M2 Info"));
+		eventlist = DAOFactory.createEventDao();
+		user = DAOFactory.createUserDao();
+		friendship = DAOFactory.createFriendDao();
 		
-		for (int i =0;i<4;i++){
-			User owner = members.get(i);
-			comments.add(new Comment(owner, "cette evenement est magnifique", "22/10/2016"));
-			
-			event = new Event(owner, "Boire un verre",EventVisibility.PRIVATE, "Ce soir tous au bar", "Vendredi", "Piccolage", "20", "Pas chez moi",comments);
-			events.add(event);		
-			
-		}
+		//on recupère tout les évents de la table
 		
-		
-		gson = new Gson();
-		//Event e = new Event(new User("eee","hhhhh","hhhhh","hhhhh","ggggg","rfdssss","gggggg"), "gggggg", "ggggggg", "ggggggg", "gggggg", "gggggg", "jhjjj");
-		//sonbuilder = new GsonBuilder().create();
-		for(int j=0;j<4;j++){
-		res = gson.toJson(events.get(j),Event.class);
-		 JSONObject eventJson = new JSONObject();
-		 eventJson.put("event", res);
-		 
-		 jArray.add(eventJson);
-		
-		}
-		
-		jObject.put("listEvents", jArray);
-		res = jObject.toJSONString();
-		System.out.println(res);
-	
-
-	}
+			}
 
 
 
@@ -98,8 +82,69 @@ public class EventListServlet  extends HttpServlet{
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
+		String loggedinuser = (String) session.getAttribute("login");
+		
+		
+		ArrayList<Event> tmpEvents =new ArrayList<Event>() ;
+		tmpEvents= (ArrayList<Event>) eventlist.getAllEvents();
+		System.out.println("total devent:"+tmpEvents.size());
+		for(Event e : tmpEvents){
+			if(e.getEventprivacy()==EventVisibility.PUBLIC){ // si l'evenement est public nporte qui peut le voir
+				events.add(e);
+			}
+			if(e.getCreator().getUserName().equals(loggedinuser)&& !events.contains(e)){// on a acces a notre propore evenement qu'on a crée
+				
+				events.add(e);
+				System.out.println("my own event");
+			}
+			
+			// evenement privé --> lien d'amitié
+			 if(e.getEventprivacy()==EventVisibility.PRIVATE){
+				 String creator = e.getCreator().getUserName(); 
+				
+				System.out.println("creator is :"+creator +"loggedinuser is "+loggedinuser);
+				try {
+					if(friendship.areFriends(loggedinuser,creator)){
+						events.add(e);
+					} 
+					else System.out.println("evenement privée on a pas acces");
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		}
+		
+		// evenement group --> lien dans le meme groupe?
+		
+		gson = new Gson();
+		
+		for(int j=0;j<events.size();j++){
+			String tmp = gson.toJson(events.get(j),Event.class);
+			JSONObject eventJson = new JSONObject();
+			eventJson.put("event", tmp);
+			
+			jArray.add(eventJson);
+			
+		
+		}
+		
+		System.out.println("nombre total d'evenement est:"+events.size());
+		jObject.put("listEvents", jArray);
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+	
+		res = jObject.toJSONString();
+		String tt  = gson.toJson(jObject);
+		System.out.println(res);
+		System.out.println(tt);
+
+
+		
 		
 		
 		response.setContentType("application/json");
@@ -107,5 +152,10 @@ public class EventListServlet  extends HttpServlet{
 		
 		pw.print(res);
 		pw.flush();
+		res=null;
+		jArray.clear();
+		jObject.clear();
+		events.clear();
+		pw.close();
 	}
 }
