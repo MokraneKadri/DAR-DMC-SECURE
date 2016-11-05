@@ -25,7 +25,7 @@
    <link rel="stylesheet" href="/DAR/assets/css/pageFooter.css">
      <!-- style du content  -->
    <link rel="stylesheet" href="/DAR/assets/css/main.css">
-   
+
    	<!-- Fin Styles  -->	
 	
 	
@@ -39,18 +39,15 @@
 	
 	
 		<div class="maincontainer">
-		
-		
-		
-		</div>
-		<script type="text/javascript">
 	
-
+</div>
+		<script type="text/javascript">
+		
+			 
 		$( document ).ready( function () {
+		
 			
 				
-				 
-                
                
                     var data = $("").serialize();
 
@@ -61,7 +58,7 @@
                         data: data,
 						dataType:'json',
                         beforeSend: function () {
-                        	                    
+                        	       
                         
                         },
                        error: function(){

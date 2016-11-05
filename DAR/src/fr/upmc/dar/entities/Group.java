@@ -28,29 +28,41 @@ public class Group {
 	private String groupName;
 	
 	@Column
+	private int groupeMaxCapacity;
+	
+	@Column
 	private String groupDescription;
 	
 	public Group() {
 		super();
 	}
 
-	public Group(Integer id, User owner, String groupName, String groupDescription) {
+//	public Group(Integer id, User owner, String groupName, String groupDescription) {
+//		super();
+//		this.id = id;
+//		this.owner = owner;
+//		this.members = new ArrayList<>();
+//		this.members.add(owner);
+//		this.groupName = groupName;
+//		this.groupDescription = groupDescription;
+//	}
+	
+	public Group(User owner, String groupName,int groupeMaxCapacity, String groupDescription) {
 		super();
-		this.id = id;
 		this.owner = owner;
 		this.members = new ArrayList<>();
+		this.groupeMaxCapacity= groupeMaxCapacity;
 		this.members.add(owner);
 		this.groupName = groupName;
 		this.groupDescription = groupDescription;
 	}
-	
-	public Group(User owner, String groupName, String groupDescription) {
-		super();
-		this.owner = owner;
-		this.members = new ArrayList<>();
-		this.members.add(owner);
-		this.groupName = groupName;
-		this.groupDescription = groupDescription;
+
+	public int getGroupeMaxCapacity() {
+		return groupeMaxCapacity;
+	}
+
+	public void setGroupeMaxCapacity(int groupeMaxCapacity) {
+		this.groupeMaxCapacity = groupeMaxCapacity;
 	}
 
 	public Integer getId() {

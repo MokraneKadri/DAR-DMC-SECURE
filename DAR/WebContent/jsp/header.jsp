@@ -26,7 +26,7 @@
                             <ul class="dropdown-menu">
                                 <li><a href="#">Voir les Groupes</a></li>
                                 <li><a href="#">Rejoindre un groupe</a></li>
-								 <li><a href="#">créer un groupe</a></li>
+								 <li><a href="/DAR/create_group">créer un groupe</a></li>
                             </ul>
                         </li>
                         <li class=" dropdown"><a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Evenements <span class="caret"></span></a>

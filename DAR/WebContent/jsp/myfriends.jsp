@@ -33,13 +33,26 @@
 </head>
 <body onload="retrieveFriendsFunc()">
 	<jsp:include page="header.jsp" />
+	
+	
 	<div class="maincontainer">
-	<div id='page'>
-		<div class='layer-center'>
-			<div id='notifier'></div>
+	
+		<div class="panel panel-default" style="width=50%">
+			<div class="panel-heading">
+				<h3><p class='capital'>Liste d'amis</p> </h3>
+			</div>
+			<div class="panel-body">
+				<div id='page'>
+					<div class='layer-center'>
+						<div id='notifier'>
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
 		</div>
-	</div>
-	</div>
+	
+	
 	<jsp:include page="footer.jsp" />
 </body>
 </html>

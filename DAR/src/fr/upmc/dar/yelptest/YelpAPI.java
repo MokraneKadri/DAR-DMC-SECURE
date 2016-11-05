@@ -23,16 +23,21 @@ import com.beust.jcommander.Parameter;
  * <p>
  * See <a href="http://www.yelp.com/developers/documentation">Yelp Documentation</a> for more info.
  */
+
+/*
+ * 
+ * AIzaSyDiGng9u8QvAd6bC95of-TrDAVW2mdjLQA
+ */
 public class YelpAPI {
 
 	
   private static final String API_HOST = "api.yelp.com";
-  private static final String DEFAULT_TERM = "restaurants";
+  private static final String DEFAULT_TERM = "bars";
   private static final String DEFAULT_LOCATION = "Paris,France";
   private static final String  longitude = "2";
   private static final String  latitude = "48";
   private static final String  radius = "1200";
-  private static final int SEARCH_LIMIT = 10;
+  private static final int SEARCH_LIMIT = 100;
   private static final String SEARCH_PATH = "/v2/search";
   private static final String BUSINESS_PATH = "/v2/business";
 

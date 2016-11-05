@@ -2,6 +2,7 @@ package fr.upmc.dar.servlets;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,8 +14,10 @@ import javax.servlet.http.HttpSession;
 import com.google.gson.Gson;
 
 import fr.upmc.dar.dao.DAOFactory;
+import fr.upmc.dar.dao.interfaces.IEventDao;
 import fr.upmc.dar.dao.interfaces.IUserDao;
 import fr.upmc.dar.entities.Event;
+import fr.upmc.dar.entities.Group;
 import fr.upmc.dar.entities.User;
 import fr.upmc.dar.enums.EventVisibility;
 import fr.upmc.dar.enums.UriMapping;
@@ -27,12 +30,13 @@ public class EventCreatorServlet extends HttpServlet {
 	 
 	private static final long serialVersionUID = 1L;
 	IUserDao user;
-
+	private IEventDao evtDao;
 
 	@Override
 	public void init() throws ServletException {
 		super.init();
 		user = DAOFactory.createUserDao();
+		evtDao = DAOFactory.createEventDao();
 	}
 	
 	
@@ -47,9 +51,13 @@ public class EventCreatorServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		String creator = (String) session.getAttribute("login");
+		User user = null;
+		
 		try {
-			User user = DAOFactory.createUserDao().findUserByUserName(creator);
-			
+			 user = DAOFactory.createUserDao().findUserByUserName(creator);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 			int placeOtp = Integer.parseInt(request.getParameter("eventplace"));
 			int themeOpt = Integer.parseInt(request.getParameter("eventtheme"));
 			int privacyOpt = Integer.parseInt(request.getParameter("eventpolicy"));
@@ -61,17 +69,29 @@ public class EventCreatorServlet extends HttpServlet {
 			EventVisibility privacy = FormSelectors.EVENTPRIVACY[privacyOpt];
 			String description = request.getParameter("eventdescription");
 			
+			if(this.canCreateEvent(name)==false){
+				request.setAttribute("eventNameError", true);
+				request.getRequestDispatcher(UriMapping.CREATE_EVENT.getRessourceUrl()).forward(request, response);
+			}
+			else {
 			Event event = new Event(user, name,privacy, description, date, theme, place, adress,new ArrayList<>());
-			DAOFactory.createEventDao().createEvent(event);
+			evtDao.createEvent(event);
+			request.getRequestDispatcher(UriMapping.EVENTSLIST.getRessourceUrl()).forward(request, response);
+//			Gson ee = new Gson();
+//			String res ;
+//			res = ee.toJson(event,Event.class);
+//			System.out.println(res);
 			
-			Gson ee = new Gson();
-			String res ;
-			res = ee.toJson(event,Event.class);
-			System.out.println(res);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
+			}
 		
 	}
+	
+public boolean  canCreateEvent(String eventName) {
+		
+		List<Event> res =evtDao.getEventsByName(eventName);
+		if(!res.isEmpty()) return false;
+	
+		return true ;
+	}
+
 }

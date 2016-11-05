@@ -36,14 +36,12 @@ public class SignInServlet extends HttpServlet {
 	
 	protected SignInValidator validator;
 	protected  Map<String,String> formErrors;
-	protected JSONObject errorsJson;
-	
+
 	@Override
 	public void init() throws ServletException {
 		super.init();
 		formErrors = new HashMap<String,String>();
-		
-		errorsJson = new JSONObject();
+
 	}
 	
 	

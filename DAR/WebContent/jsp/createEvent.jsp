@@ -54,7 +54,7 @@
 						<h3 class="panel-title">Créer votre Meet up </h3>
 					</div>
 					<div class="panel-body">
-						<form id="signupForm" method="post" class="form-horizontal" action="/DAR/create_event">
+						<form id="eventForm" method="post" class="form-horizontal" action="/DAR/create_event">
 						
 						<div id="error">	
 						
@@ -140,10 +140,10 @@
 								<label class="col-sm-4 control-label" for="eventinvites">invitations*  :</label>
 								
 								<div class="col-sm-5">
-									<input type="radio" name="friends" value="friends"> Mes Amis<br>
- 									 <input type="radio" name="group" value="grpmember"> Les Membres de mon groupe<br>
- 									 <input type="radio" name="both" value="friendsgroup"> Amis et groupe</br>
- 									 <input type="radio" name="none" value="nobody"> je n'invite Personne!</br>
+									<input type="radio" name="eventinvites" value="0"> Mes Amis<br>
+ 									 <input type="radio" name="eventinvites" value="1"> Les Membres de mon groupe<br>
+ 									 <input type="radio" name="eventinvites" value="2"> Amis et groupe</br>
+ 									 <input type="radio" name="eventinvites" value="3" checked="true"> je n'invite Personne!</br>
                            		 </select>
                            		 
 								</div>
@@ -154,12 +154,7 @@
 									<button type="submit" class="btn btn-primary" name="signup" value="Sign up">Céer ce Meet up</button>
 								</div>
 								</div>
-								<div class="form-group">
-								<div class="col-sm-5 col-sm-offset-8">
-                           		 <small> * :par défaut aucune invitation n'est envoyée</small></div>
-							
-							</div>
-							</div>
+								
 				</form>
 						
 					</div>
@@ -170,7 +165,7 @@
 	<script type="text/javascript">
 	
 		$( document ).ready( function () {
-			$( "#signupForm" ).validate( {
+			$( "#eventForm" ).validate( {
 				rules: {
 					eventname:{
 						required: true,

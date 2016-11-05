@@ -115,9 +115,11 @@ public class FriendsDao implements IFriendsDao {
 	{
 		//String sqlQuery = "DELETE FROM FRIENDS WHERE ((id1='"+user1+"' AND id2='"+user2+"') OR (id1='"+user2+"' AND id2='"+user1+"'));";
 		UserDao dao=new UserDao();
-		User userOne = dao.findUserById(Integer.parseInt(user1));
-		User userTwo = dao.findUserById(Integer.parseInt(user2));
+//		User userOne = dao.findUserById(Integer.parseInt(user1));
+//		User userTwo = dao.findUserById(Integer.parseInt(user2));
 
+		User userOne = dao.findUserByUserName((user1));
+		User userTwo = dao.findUserByUserName((user2));
 		List<Friends> friends=this.getFriendsOf(userOne, userTwo);
 		entityManager.getTransaction().begin();
 		for(Friends fr : friends)
