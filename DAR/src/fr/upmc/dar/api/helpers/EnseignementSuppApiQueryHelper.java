@@ -1,4 +1,4 @@
-package fr.upmc.dar.tools;
+package fr.upmc.dar.api.helpers;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -27,13 +27,24 @@ import com.google.gson.JsonParser;
 import com.google.gson.JsonPrimitive;
 
 
-public class EnseignementSuppApiQuery {
+public class EnseignementSuppApiQueryHelper {
 
 	
 	static final HttpTransport HTTP_TRANSPORT = new NetHttpTransport();
 
+   public String uRLToQuery ;
 
 
+   
+   
+	public EnseignementSuppApiQueryHelper(String uRLToQuery) {
+	super();
+	this.uRLToQuery = uRLToQuery;
+}
+
+
+	
+	
 
 	public static JsonObject requestAndGetJsonResponse(String requestedurl) throws IOException, JSONException{
 
