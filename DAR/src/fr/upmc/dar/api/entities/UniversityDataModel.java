@@ -7,12 +7,12 @@ import java.util.List;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
-import fr.upmc.dar.api.helpers.EnseignementSuppApiQueryHelper;
-import fr.upmc.dar.api.interfaces.IEstablishmentParsingModel;
+import fr.upmc.dar.api.helpers.EnsSuppApiQueryHelper;
+import fr.upmc.dar.api.interfaces.IYelpParsingModel;
 
-public class UniversityDataModel implements IEstablishmentParsingModel {
+public class UniversityDataModel implements IYelpParsingModel {
 
-	private EnseignementSuppApiQueryHelper EnsSupApi;
+
 	private String name;
 	private String street;
 	private String zipCode;
@@ -21,10 +21,9 @@ public class UniversityDataModel implements IEstablishmentParsingModel {
 	private String latitude;
 	private String establishmentWebsite;
 
-	public UniversityDataModel(EnseignementSuppApiQueryHelper ensSupApi, String name, String street, String zipCode,
+	public UniversityDataModel( String name, String street, String zipCode,
 			String city, String longitude, String latitude, String establishmentWebsite) {
 		super();
-		EnsSupApi = ensSupApi;
 		this.name = name;
 		this.street = street;
 		this.zipCode = zipCode;
@@ -75,12 +74,7 @@ public class UniversityDataModel implements IEstablishmentParsingModel {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	public EnseignementSuppApiQueryHelper getEnsSupApi() {
-		return EnsSupApi;
-	}
-	public void setEnsSupApi(EnseignementSuppApiQueryHelper ensSupApi) {
-		EnsSupApi = ensSupApi;
-	}
+	
 	public String getName() {
 		return name;
 	}

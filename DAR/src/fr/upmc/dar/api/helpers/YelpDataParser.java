@@ -7,11 +7,11 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import fr.upmc.dar.api.interfaces.IEstablishmentParsingModel;;
+import fr.upmc.dar.api.interfaces.IYelpParsingModel;;
 
 
 
-public class YelpDataParser implements IEstablishmentParsingModel {
+public class YelpDataParser implements IYelpParsingModel {
 	
 	
 	private  List<JSONObject> queryresult;
