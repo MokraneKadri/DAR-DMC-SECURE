@@ -1,21 +1,26 @@
 package fr.upmc.dar.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import fr.upmc.dar.entities.interfaces.IEntity;
 import fr.upmc.dar.enums.EventVisibility;
 
 @Entity
-public class Event {
+public class Event implements IEntity {
 
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,45 +29,78 @@ public class Event {
 	@ManyToOne
 	protected User creator;
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL)
 	protected List<User> candidates;
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	protected List<Comment> comments;
+	
+	@Column
+	private String name;
 
+	@Column
+	private EventVisibility privacy;
 	
 	@Column
-	private String eventName;
-
-	@Column
-	private EventVisibility eventprivacy;
-
-	
+	private String description;
 	
 	@Column
-	private String eventDescription;
+	private String date;
 	
 	@Column
-	private String eventDate;
-	
-	@Column
-	private int  eventCommentsCounts;
+	private int  commentsCounts;
 	
 	
 	@Column
-	private String eventTheme;
+	private String theme;
 	
 	@Column
-	private String eventPlace;
+	private String places;
 	
 	@Column
-	private String eventAdresse;
+	private String address;
 	
 	
 	public Event() {
 		super();
 	}
 	
+	public Event(	
+			User owner,
+			String name, 
+			String privacy,
+			String description,
+			String date, 
+			String theme, 
+			String places,
+			String address) throws Exception 
+	{
+		this.creator = owner;
+		this.name = name;
+		switch (privacy) {
+		case "public":
+			this.privacy = EventVisibility.PUBLIC;
+			break;
+		case "private":
+			this.privacy = EventVisibility.PRIVATE;
+			break;
+		case "group":
+			this.privacy = EventVisibility.GROUP;
+			break;
+		case "university":
+			this.privacy = EventVisibility.INTRA_UNI;
+			break;
+		default:
+			throw new Exception("wrong privacy : " + privacy);
+		}
+		this.description = description;
+		this.date = date;
+		this.theme = theme;
+		this.places = places;
+		this.address = address;
+		this.candidates = new ArrayList<>();
+		this.comments = new ArrayList<>();
+	}
 
 	
 	public Event(	
@@ -77,13 +115,13 @@ public class Event {
 			List<Comment> comments) 
 	{
 		this.creator = owner;
-		this.eventName = eventName;
-		this.eventprivacy = eventprivacy;
-		this.eventDescription = eventDescription;
-		this.eventDate = eventDate;
-		this.eventTheme = eventTheme;
-		this.eventPlace = eventPlace;
-		this.eventAdresse = eventAdresse;
+		this.name = eventName;
+		this.privacy = eventprivacy;
+		this.description = eventDescription;
+		this.date = eventDate;
+		this.theme = eventTheme;
+		this.places = eventPlace;
+		this.address = eventAdresse;
 		this.comments=comments;
 	}
 	
@@ -101,25 +139,25 @@ public class Event {
 
 
 	public EventVisibility getEventprivacy() {
-		return eventprivacy;
+		return privacy;
 	}
 
 
 
 	public void setEventprivacy(EventVisibility eventprivacy) {
-		this.eventprivacy = eventprivacy;
+		this.privacy = eventprivacy;
 	}
 
 
 
 	public int getEventCommentsCounts() {
-		return eventCommentsCounts;
+		return commentsCounts;
 	}
 
 
 
 	public void setEventCommentsCounts(int eventCommentsCounts) {
-		this.eventCommentsCounts = eventCommentsCounts;
+		this.commentsCounts = eventCommentsCounts;
 	}
 
 
@@ -131,50 +169,50 @@ public class Event {
 		this.id = id;
 	}
 	public String getEventName() {
-		return eventName;
+		return name;
 	}
 	public void setEventName(String eventName) {
-		this.eventName = eventName;
+		this.name = eventName;
 	}
 
 	public String getEventDescription() {
-		return eventDescription;
+		return description;
 	}
 	
 	public void setEventDescription(String eventDescription) {
-		this.eventDescription = eventDescription;
+		this.description = eventDescription;
 	}
 	
 	public String getEventDate() {
-		return eventDate;
+		return date;
 	}
 	
 	public void setEventDate(String eventDate) {
-		this.eventDate = eventDate;
+		this.date = eventDate;
 	}
 	
 	public String getEventTheme() {
-		return eventTheme;
+		return theme;
 	}
 	
 	public void setEventTheme(String eventTheme) {
-		this.eventTheme = eventTheme;
+		this.theme = eventTheme;
 	}
 	
 	public String getEventPlace() {
-		return eventPlace;
+		return places;
 	}
 	
 	public void setEventPlace(String eventPlace) {
-		this.eventPlace = eventPlace;
+		this.places = eventPlace;
 	}
 	
 	public String getEventAdresse() {
-		return eventAdresse;
+		return address;
 	}
 	
 	public void setEventAdresse(String eventAdresse) {
-		this.eventAdresse = eventAdresse;
+		this.address = eventAdresse;
 	}
 
 	public User getCreator() {
@@ -191,6 +229,21 @@ public class Event {
 
 	public void setCandidates(List<User> candidates) {
 		this.candidates = candidates;
+	}
+
+	@Override
+	public JSONObject toJSONObject() throws JSONException {
+		JSONObject json = new JSONObject();
+		
+		json.put("name", name);
+		json.put("privacy", EventVisibility.eventVisibilityToString(privacy));
+		json.put("description", description);
+		json.put("date", date);
+		json.put("places", places);
+		json.put("theme", theme);
+		json.put("address", address);
+		
+		return json;
 	}
 	
 }

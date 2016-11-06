@@ -92,6 +92,23 @@ public class EventDao implements IEventDao {
 		return comments;
 	}
 
+	@Override
+	public void removeEvent(Event event) {
+		entityManager.getTransaction().begin();
+		entityManager.remove(event);
+		entityManager.getTransaction().commit();
+	}
 
+	@Override
+	public void updateEvent(Event event) {
+		entityManager.getTransaction().begin();
+		entityManager.merge(event);
+		entityManager.getTransaction().commit();
+	}
+
+	@Override
+	public Event getEventById(Integer id) {
+		return entityManager.find(Event.class, id);
+	}
 
 }

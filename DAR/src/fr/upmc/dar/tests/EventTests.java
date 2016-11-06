@@ -30,12 +30,12 @@ public class EventTests {
 		Persistence.createEntityManagerFactory("JUnit").createEntityManager();
 	}
 	
-	@After
+	//@After
 	public void cleanup() {
 		Persistence.createEntityManagerFactory("JUnit").createEntityManager();
 	}
 	
-	//@Test
+	@Test
 	public void nothing() {
 		
 	}
@@ -77,7 +77,7 @@ public class EventTests {
 		dao = new EventDao();
 	}
 	
-	@Test 
+	//@Test 
 	public void persistEvent() {
 		createEvent();
 		instanciateDao();

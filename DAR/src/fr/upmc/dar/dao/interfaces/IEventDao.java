@@ -6,7 +6,7 @@ import fr.upmc.dar.entities.Comment;
 import fr.upmc.dar.entities.Event;
 import fr.upmc.dar.entities.User;
 
-public interface IEventDao {
+public interface IEventDao extends IDao<Event> {
 	
 	public void createEvent(Event event);
 	public List<Event> getAllEvents();
@@ -17,4 +17,8 @@ public interface IEventDao {
 	public List<Event> getEventsByMember(User member);
 	public List<Comment> getCommentsList(int eventId);
 	int getNbComments(int eventid);
+	
+	void removeEvent(Event event);
+	void updateEvent(Event event);
+	Event getEventById(Integer id);
 }
