@@ -7,7 +7,7 @@ import org.json.simple.parser.ParseException;
 
 import com.google.gson.JsonObject;
 
-public interface IEstablishmentParsingModel {
+public interface IYelpParsingModel {
 
 	
 	

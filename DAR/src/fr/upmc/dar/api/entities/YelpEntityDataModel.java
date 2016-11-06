@@ -9,7 +9,7 @@ import org.json.simple.parser.ParseException;
 
 import com.google.gson.JsonObject;
 
-import fr.upmc.dar.api.interfaces.IEstablishmentParsingModel;
+import fr.upmc.dar.api.interfaces.IYelpParsingModel;
 
 //classe qui represente un etablissement(bar,restaurant etc...
 public class YelpEntityDataModel  {
