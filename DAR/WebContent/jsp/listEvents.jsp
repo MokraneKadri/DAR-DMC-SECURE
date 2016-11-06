@@ -3,48 +3,103 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title> Liste des Evenements </title>
+<title>Liste des Evenements</title>
 
-	<!--  Scripts  -->
-	<!-- JQuery  -->
-    <script  src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-    <!-- Bootstrap  -->
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-   <!-- JQuery Validate  -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js"></script>
-    <!-- Fin  Scripts  -->
-    
-    <!-- Styles  -->
-    <!-- bootstrap  -->
-    <link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"	crossorigin="anonymous">
- 	<!-- fontAwsome  -->
- 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-   <!-- style du footer  -->
-   <link rel="stylesheet" href="/DAR/assets/css/header.css">
-   <!-- style du header  -->
-   <link rel="stylesheet" href="/DAR/assets/css/pageFooter.css">
-     <!-- style du content  -->
-   <link rel="stylesheet" href="/DAR/assets/css/main.css">
+<!--  Scripts  -->
+<!-- JQuery  -->
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"
+	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+	crossorigin="anonymous"></script>
+<!-- Bootstrap  -->
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<!-- JQuery Validate  -->
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js"></script>
+<!-- Fin  Scripts  -->
 
-   	<!-- Fin Styles  -->	
-	
-	
-	</head>
+<!-- Styles  -->
+<!-- bootstrap  -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+<!-- fontAwsome  -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+<!-- style du footer  -->
+<link rel="stylesheet" href="/DAR/assets/css/header.css">
+<!-- style du header  -->
+<link rel="stylesheet" href="/DAR/assets/css/pageFooter.css">
+<!-- style du content  -->
+<link rel="stylesheet" href="/DAR/assets/css/main.css">
+
+<!-- Fin Styles  -->
+
+
+</head>
 <body>
 
- <jsp:include page="header.jsp">
-  <jsp:param name="active" value="signin" />
-  </jsp:include>
+	<jsp:include page="header.jsp">
+		<jsp:param name="active" value="signin" />
+	</jsp:include>
 
-	
-	
-		<div class="maincontainer">
-	
-</div>
-		<script type="text/javascript">
+
+
+	<div class="maincontainer"></div>
+	<script type="text/javascript">
 		
+		$(document)
+		.ready( function() {
+			$
+			.get("/DAR/events?mode=list")
+			.done( function (data) {
+				var json = $.parseJSON(data);
+				console.log(data);
+				$.each(json, function (i, event) {
+					console.log(event);
+					$("div.maincontainer").append('<div class="well">'+
+               			'<div class="media">'+
+                  	    '<a class="pull-left" href="#">'+	
+                  	  		'<div class="media-body">'+
+                  	    		'<h4 class="media-heading">'+ event.name+'</h4>'+
+                  	         	'<p class="text-right">créer par : '+ event.creator +'</p>'+
+                  	         	'<p class="text-right"><a class="btn btn-primary">Je participe</a>'+ '</p>'+
+                  	         	'<p class="text-right"><a class="btn btn-info"> Details >> </a>'+ '</p>'+
+                  	         	'<p> Visibilité : ' + event.privacy + '</p>'+
+                  	          	'<p> Description : ' + event.description + '</p>'+
+                  	          	'<p> Thème : ' + event.theme + '</p>'+
+                  	         	'<ul class="list-inline list-unstyled">'+
+                  	  				'<li><span><i class="glyphicon glyphicon-calendar"> </i> ' + event.date + '</span></li>'+
+                  	            	'<li>|</li>'+
+                  	            	'<span><i class="glyphicon glyphicon-comment"></i> ' + event.comments + ' <a href="#">comments<a/></span>'+
+                  	            	'<li>|</li>'+
+                  	            	'<li>'+
+                  	             		'<span class="glyphicon glyphicon-star"></span>'+
+                  	              		'<span class="glyphicon glyphicon-star"></span>'+
+                  	               		'<span class="glyphicon glyphicon-star"></span>'+
+                  	                	'<span class="glyphicon glyphicon-star"></span>'+
+                  	                	'<span class="glyphicon glyphicon-star-empty"></span>'+
+                  	            	'</li>'+
+                  	            	'<li>|</li>'+
+                  	            	'<li>'+
+                  	            		'<!-- Use Font Awesome http://fortawesome.github.io/Font-Awesome/ -->'+
+                  	             		'<span><i class="fa fa-facebook-square"></i></span> '+
+                  	              		'<span><i class="fa fa-twitter-square"></i></span> '+
+                  	              		'<span><i class="fa fa-google-plus-square"></i></span>'+
+                  	            	'</li>'+
+                  				'</ul>'+
+                  	 		'</div>'+
+             			'</div>'+  
+                  '</div>');
+				});
+			})
+			.fail( function () {
+				alert("Une erreur est survenue au moment de la récupération de la liste des événements");
+			});
+		});
 			 
-		$( document ).ready( function () {
+		/* $( document ).ready( function () {
 		
 			
 				
@@ -131,15 +186,15 @@
                         
                     });
                   
-		} );
+		} ); */
 		
 
 	</script>
 
-	
- <jsp:include page="footer.jsp">
-  <jsp:param name="active" value="signin" />
-  </jsp:include>
-	
+
+	<jsp:include page="footer.jsp">
+		<jsp:param name="active" value="signin" />
+	</jsp:include>
+
 </body>
 </html>

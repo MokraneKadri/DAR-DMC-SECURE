@@ -17,10 +17,12 @@ import org.json.JSONException;
 
 import fr.upmc.dar.dao.DAOFactory;
 import fr.upmc.dar.dao.interfaces.IEventDao;
+import fr.upmc.dar.entities.Comment;
 import fr.upmc.dar.entities.Event;
 import fr.upmc.dar.entities.User;
 import fr.upmc.dar.enums.EventVisibility;
 import fr.upmc.dar.json.Warning;
+import fr.upmc.dar.json.Error;
 
 /**
  * Servlet REST pour la gestion des events
@@ -60,10 +62,63 @@ public class EventsServlet extends HttpServlet {
 			response.getWriter().print(new Warning("Vous êtes déconnecté, impossible de poursuivre"));
 			return;
 		}
+		
+		JSONArray array = null;
 
 		switch (mode) {
-		case "list":
+		
+		case "create":
+			Event event = null;
+			try {
+				event = new Event(
+						user, 
+						request.getParameter("name"), 
+						request.getParameter("privacy"), 
+						request.getParameter("description"), 
+						request.getParameter("date"), 
+						request.getParameter("theme"), 
+						request.getParameter("places"), 
+						request.getParameter("address"));
+			} catch (Exception e) {
+				e.printStackTrace();
+				response.getWriter().print(new Error("Echec de création de l'event"));
+				return;
+			}
+			
+			Comment com = new Comment(user, "J'aime commenter tout !", "Maintenant");
+			ArrayList<Comment> coms = new ArrayList<>();
+			coms.add(com);
+			event.setComments(coms);
+			dao.createEvent(event);
+
 			break;
+		
+		case "list":
+			
+			if (request.getParameterMap().keySet().size() == 1) {
+				array = new JSONArray();
+				for (Event evt : dao.getAllEvents())
+					try {
+						array.put(evt.toJSONObject());
+					} catch (JSONException e) {
+						e.printStackTrace();
+						response.getWriter().print(new Error("Erreur dans la construction de la réponse JSON"));
+						return;
+					}
+				response.getWriter().print(array);
+			} else {
+				String id = request.getParameter("id");
+				if (id != null) {
+					try {
+						response.getWriter().print(dao.getEventById(Integer.valueOf(id)).toJSONObject());
+					} catch (Exception e) {
+						e.printStackTrace();
+						response.getWriter().print(new Error("Erreur lors du listing par id"));
+					}
+				}
+			}
+			break;
+		
 		/**
 		 * Génération d'un JSONArray possèdant les Event répondants aux critères de recherche
 		 */
@@ -108,7 +163,7 @@ public class EventsServlet extends HttpServlet {
 				}
 			}
 						
-			JSONArray array = new JSONArray();
+			array = new JSONArray();
 			for (Event evt : list)
 				try {
 					array.put(evt.toJSONObject());

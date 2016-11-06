@@ -242,6 +242,9 @@ public class Event implements IEntity {
 		json.put("places", places);
 		json.put("theme", theme);
 		json.put("address", address);
+		json.put("creator", creator.getUserName());
+		json.put("comments", commentsCounts);
+		json.put("id", id);
 		
 		return json;
 	}
