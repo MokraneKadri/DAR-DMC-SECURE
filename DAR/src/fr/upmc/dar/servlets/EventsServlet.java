@@ -85,9 +85,15 @@ public class EventsServlet extends HttpServlet {
 				return;
 			}
 			
-			Comment com = new Comment(user, "J'aime commenter tout !", "Maintenant");
+			Comment com = new Comment(user, "J'aime commenter tout !");
+			Comment com2 = new Comment(user, "J'aime commenter tout !");
+			Comment com3 = new Comment(user, "J'aime commenter tout !");
+			Comment com4 = new Comment(user, "J'aime commenter tout !");
 			ArrayList<Comment> coms = new ArrayList<>();
 			coms.add(com);
+			coms.add(com2);
+			coms.add(com3);
+			coms.add(com4);
 			event.setComments(coms);
 			dao.createEvent(event);
 
@@ -198,6 +204,9 @@ public class EventsServlet extends HttpServlet {
 		Event event = null;
 		List<Event> events = null;
 		Integer id = null;
+		
+		for (String key : request.getParameterMap().keySet())
+			System.out.println(key);
 
 		switch (mode) {
 		case "create":
@@ -242,6 +251,22 @@ public class EventsServlet extends HttpServlet {
 				event.setEventPlace((request.getParameter("places") != null) ? request.getParameter("places") : event.getEventPlace());
 				event.setEventAdresse((request.getParameter("address") != null) ? request.getParameter("address") : event.getEventAdresse());
 				dao.updateEvent(event);
+			} catch (Exception e) {
+				e.printStackTrace();
+				response.getWriter().print(new Error("De la mise à jour de l'event"));
+			}
+			break;
+		case "comment":
+
+			id = Integer.valueOf(request.getParameter("id"));
+
+			try {
+				event = dao.getEventById(id);
+				List<Comment> comments = event.getComments();
+				Comment comment = new Comment(user, request.getParameter("content"));
+				comments.add(comment);
+				dao.updateEvent(event);
+				request.getRequestDispatcher("/jsp/event.jsp?id=" + event.getId()).forward(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 				response.getWriter().print(new Error("De la mise à jour de l'event"));

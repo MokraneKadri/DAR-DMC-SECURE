@@ -60,8 +60,8 @@ public class EventTests {
 	public void createComments() {
 	
 	 comments = new ArrayList<Comment>();
-	comments.add(new Comment(members.get(0), "cette evenement est magnifique", "22/10/2016"));
-	comments.add(new Comment(members.get(2), "cette evenement est magnifique", "22/10/2016"));
+	comments.add(new Comment(members.get(0), "cette evenement est magnifique"));
+	comments.add(new Comment(members.get(2), "cette evenement est magnifique"));
 	}
 	
 	//@Test

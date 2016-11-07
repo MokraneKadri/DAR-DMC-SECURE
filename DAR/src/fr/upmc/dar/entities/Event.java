@@ -133,6 +133,7 @@ public class Event implements IEntity {
 
 
 	public void setComments(List<Comment> comments) {
+		this.commentsCounts = comments.size();
 		this.comments = comments;
 	}
 

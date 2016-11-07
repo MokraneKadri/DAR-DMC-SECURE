@@ -32,6 +32,12 @@ public class EventDao implements IEventDao {
 	}
 	
 	@Override
+	protected void finalize() throws Throwable {
+		super.finalize();
+		entityManager.close();
+	}
+	
+	@Override
 	public void createEvent(Event event) {
 		entityManager.getTransaction().begin();
 		entityManager.persist(event);
@@ -108,7 +114,10 @@ public class EventDao implements IEventDao {
 
 	@Override
 	public Event getEventById(Integer id) {
-		return entityManager.find(Event.class, id);
+		entityManager.getTransaction().begin();
+		Event event = entityManager.find(Event.class, id);
+		entityManager.getTransaction().commit();
+		return event;
 	}
 
 }

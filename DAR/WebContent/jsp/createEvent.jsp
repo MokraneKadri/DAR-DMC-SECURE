@@ -1,162 +1,202 @@
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="UTF-8" %>
-  <%@ page isELIgnored="false" %>
-  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ page isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 
 <head>
 
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<!--  Scripts  -->
-	<!-- JQuery  -->
-    <script  src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-    <!-- Bootstrap  -->
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-   <!-- JQuery Validate  -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js"></script>
-    <!-- Fin  Scripts  -->
-    
-    <!-- Styles  -->
-    <!-- bootstrap  -->
-    <link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"	crossorigin="anonymous">
- 	<!-- fontAwsome  -->
- 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-   <!-- style du footer  -->
-   <link rel="stylesheet" href="/DAR/assets/css/pageFooter.css">
-   <!-- style du header  -->
-   <link rel="stylesheet" href="/DAR/assets/css/header.css">
-    <!--  content style -->
-   <link rel="stylesheet" href="/DAR/assets/css/main.css">
-   	<!-- Fin Styles  -->	
-   
-  
-	
-	
-	</head>
+<!--  Scripts  -->
+<!-- JQuery  -->
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"
+	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+	crossorigin="anonymous"></script>
+<!-- Bootstrap  -->
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<!-- JQuery Validate  -->
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js"></script>
+<!-- Fin  Scripts  -->
+
+<!-- Styles  -->
+<!-- bootstrap  -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+<!-- fontAwsome  -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+<!-- style du footer  -->
+<link rel="stylesheet" href="/DAR/assets/css/pageFooter.css">
+<!-- style du header  -->
+<link rel="stylesheet" href="/DAR/assets/css/header.css">
+<!--  content style -->
+<link rel="stylesheet" href="/DAR/assets/css/main.css">
+<!-- Fin Styles  -->
+
+
+
+
+</head>
 <body>
 
-<jsp:include page="header.jsp">
-  <jsp:param name="active" value="signunheader" />
-  </jsp:include>
+	<jsp:include page="header.jsp">
+		<jsp:param name="active" value="signunheader" />
+	</jsp:include>
 
 	<div class="maincontainer">
 		<div class="row">
 			<div class="col-sm-8 col-sm-offset-2">
-	
+
 
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title">Créer votre Meet up </h3>
+						<h3 class="panel-title">Créer votre Meet up</h3>
 					</div>
 					<div class="panel-body">
-						<form id="eventForm" method="post" class="form-horizontal" action="/DAR/create_event">
-						
-						<div id="error">	
-						
-							<c:if test="${not empty formErrors['username']}">
-             					<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span><c:out value="${formErrors['username']}"/></div>
-             				
-             					<c:if test="${not empty formErrors['email']}">
-             					<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span><c:out value="${formErrors['email']}"/></div>
-             					        								 </c:if>	        								 </c:if>
-      					  </div>
+						<form id="eventForm" method="post" class="form-horizontal"
+							action="/DAR/create_event">
+
+							<div id="error">
+
+								<c:if test="${not empty formErrors['username']}">
+									<div class="alert alert-danger">
+										<span class="glyphicon glyphicon-info-sign"></span>
+										<c:out value="${formErrors['username']}" />
+									</div>
+
+									<c:if test="${not empty formErrors['email']}">
+										<div class="alert alert-danger">
+											<span class="glyphicon glyphicon-info-sign"></span>
+											<c:out value="${formErrors['email']}" />
+										</div>
+									</c:if>
+								</c:if>
+							</div>
 							<div class="form-group">
-								<label class="col-sm-4 control-label" for="eventname"> intitulé :</label>
+								<label class="col-sm-4 control-label" for="eventname">
+									intitulé :</label>
 								<div class="col-sm-5">
-									<input type="text" class="form-control" id="eventname" name="eventname" placeholder="intitulé de l'évenement" />
+									<input type="text" class="form-control" id="eventname"
+										name="eventname" placeholder="intitulé de l'évenement" />
 								</div>
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-4 control-label" for="eventdate"> Date :</label>
+								<label class="col-sm-4 control-label" for="eventdate">
+									Date :</label>
 								<div class="col-sm-5">
-									 <input type="date" class="form-control" name="eventdate" id="eventdate"  />
+									<input type="date" class="form-control" name="eventdate"
+										id="eventdate" />
 								</div>
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-4 control-label" for="eventplace">Lieu :</label>
+								<label class="col-sm-4 control-label" for="eventplace">Type
+									de lieu :</label>
 								<div class="col-sm-5">
-						
-                             <select id="eventplace" name="eventplace" class="form-control" autocomplete="on">
-                                        <option value="" disabled selected> choisir le lieu</option>
-                                        <option value="0">Bar/Restaurant</option>
-                                        <option value="1">Lieu/place publics</option>
-                                        <option value="2">université</option>
-                                        <option value="3">Autres...</option>
-                             </select>
 
-                        		 </div>
-									
-								
+									<select id="eventplace" name="eventplace" class="form-control"
+										autocomplete="on">
+										<option value="" disabled selected>choisir le lieu</option>
+										<option value="0">Bar</option>
+										<option value="1">Restaurant</option>
+										<option value="2">Université</option>
+										<option value="3">Autres...</option>
+									</select>
+
+								</div>
+
+
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-4 control-label" for="eventaddress">Adresse Complète:</label>
+								<label class="col-sm-4 control-label" for="eventplacename">
+									Nom du Lieu :</label>
 								<div class="col-sm-5">
-									<input type="text" class="form-control" id="eventaddress" name="eventaddress" placeholder="l'adresse complète du lieu" />
+									<input type="text" class="form-control" id="eventplacename"
+										name="eventplacename" placeholder="Ex: Pizza FIVE" />
+								</div>
+							</div>
+
+
+							<div class="form-group">
+								<label class="col-sm-4 control-label" for="eventaddress">Adresse
+									Complète:</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id="eventaddress"
+										name="eventaddress" placeholder="l'adresse complète du lieu" />
 								</div>
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-4 control-label" for="eventtheme">Thème :</label>
+								<label class="col-sm-4 control-label" for="eventtheme">Thème
+									:</label>
 								<div class="col-sm-5">
 									<select id="eventtheme" name="eventtheme" class="form-control">
-                                <option value="" disabled selected>choisir un thème</option>
-                                <option value="0">Moulin à Parole</option>
-                                <option value="1">échange linguistique/culturelle</option>
-                                <option value="2">relatifs au études</option>
-                                <option value="3">Autres...</option>
-                            </select>
+										<option value="" disabled selected>choisir un thème</option>
+										<option value="0">Moulin à Parole</option>
+										<option value="1">échange linguistique/culturelle</option>
+										<option value="2">relatifs au études</option>
+										<option value="3">Autres...</option>
+									</select>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-4 control-label" for="eventdescription">Description :</label>
+								<label class="col-sm-4 control-label" for="eventdescription">Description
+									:</label>
 								<div class="col-sm-5">
-								<textarea rows="5" cols="50" id="eventdescription" name ="eventdescription" >
-																</textarea> 
+									<textarea rows="5" cols="50" id="eventdescription"
+										name="eventdescription" value="" style="resize: none; width: 100%;"></textarea>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-4 control-label" for="eventpolicy">Confidentialité  :</label>
+								<label class="col-sm-4 control-label" for="eventpolicy">Confidentialité
+									:</label>
 								<div class="col-sm-5">
-									<select id="eventpolicy" name="eventpolicy" class="form-control" >
-                                <option value="" disabled selected> choisir </option>
-                                <option value="0">Public (Tout le monde a accés)</option>
-                                <option value="1">privé (Amis uniquement) </option>
-                                <option value="2">Amis et groupes uniquement </option>
-                                <option value="3">intra-university (étudiant du meme compus)</option>
+									<select id="eventpolicy" name="eventpolicy"
+										class="form-control">
+										<option value="" disabled selected>choisir</option>
+										<option value="0">Public</option>
+										<option value="1">Amis</option>
+										<option value="2">Université</option>
 
-                           		 </select>
+									</select>
 								</div>
 							</div>
-							
+
 							<div class="form-group">
-								<label class="col-sm-4 control-label" for="eventinvites">invitations*  :</label>
-								
+								<label class="col-sm-4 control-label" for="eventinvites">invitations*
+									:</label>
+
 								<div class="col-sm-5">
-									<input type="radio" name="eventinvites" value="0"> Mes Amis<br>
- 									 <input type="radio" name="eventinvites" value="1"> Les Membres de mon groupe<br>
- 									 <input type="radio" name="eventinvites" value="2"> Amis et groupe</br>
- 									 <input type="radio" name="eventinvites" value="3" checked="true"> je n'invite Personne!</br>
-                           		 </select>
-                           		 
+									<input type="radio" name="eventinvites" value="0"> Mes
+									Amis<br> <input type="radio" name="eventinvites" value="1">
+									Les Membres de mon groupe<br> <input type="radio"
+										name="eventinvites" value="2"> Amis et groupe</br> <input
+										type="radio" name="eventinvites" value="3" checked="true">
+									je n'invite Personne!</br> </select>
+
 								</div>
 							</div>
-							
+
 							<div class="form-group">
 								<div class="col-sm-9 col-sm-offset-4">
-									<button type="submit" class="btn btn-primary" name="signup" value="Sign up">Céer ce Meet up</button>
+									<button type="submit" class="btn btn-primary" name="signup"
+										value="Sign up">Céer ce Meet up</button>
 								</div>
-								</div>
-								
-				</form>
-						
+							</div>
+
+						</form>
+
 					</div>
 				</div>
 			</div>
@@ -274,13 +314,12 @@
 	</script>
 
 
-  <jsp:include page="footer.jsp">
-  <jsp:param name="active" value="signunfooter" />
-  </jsp:include>
+	<jsp:include page="footer.jsp">
+		<jsp:param name="active" value="signunfooter" />
+	</jsp:include>
 
 
-	
-	</body>
+
+</body>
 
 </html>
-    

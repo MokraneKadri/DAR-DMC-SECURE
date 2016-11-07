@@ -1,10 +1,15 @@
 package fr.upmc.dar.entities;
 
+import java.util.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Comment {
@@ -18,11 +23,11 @@ public class Comment {
 	
 	private String commentContent;
 	
-	public Comment(User creator, String commentContent, String commentDate) {
+	public Comment(User creator, String commentContent) {
 		super();
 		this.creator = creator;
 		this.commentContent = commentContent;
-		this.commentDate = commentDate;
+		this.commentDate = new Date();
 	}
 
 	public Integer getId() {
@@ -54,15 +59,17 @@ public class Comment {
 		this.commentContent = commentContent;
 	}
 
-	public String getCommentDate() {
+	public Date getCommentDate() {
 		return commentDate;
 	}
 
-	public void setCommentDate(String commentDate) {
+	public void setCommentDate(Date commentDate) {
 		this.commentDate = commentDate;
 	}
-
-	private String commentDate;
+	
+	@Column(columnDefinition="DATETIME")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date commentDate;
 	
 	
 }
