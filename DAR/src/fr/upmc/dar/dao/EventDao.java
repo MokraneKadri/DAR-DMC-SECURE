@@ -18,9 +18,10 @@ public class EventDao implements IEventDao {
 	protected EntityManager entityManager;
 	
 	protected final static String ALL_EVENTS = "SELECT events FROM Event events";
-	protected final static String EVENTS_NAMED_BY = "SELECT events FROM Event events WHERE events.eventName=:name";
-	protected final static String EVENTS_DATED_BY = "SELECT events FROM Event events WHERE events.eventDate=:date";
-	protected final static String EVENTS_THEMED_BY = "SELECT events FROM Event events WHERE events.eventTheme=:theme";
+	protected final static String EVENTS_NAMED_BY = "SELECT events FROM Event events WHERE events.name=:name";
+	protected final static String EVENTS_NAMED1_BY = "SELECT event FROM Event event WHERE event.name=:name";
+	protected final static String EVENTS_DATED_BY = "SELECT events FROM Event events WHERE events.date=:date";
+	protected final static String EVENTS_THEMED_BY = "SELECT events FROM Event events WHERE events.theme=:theme";
 	protected final static String EVENTS_OWNED_BY = "SELECT events FROM Event events WHERE events.creator=:owner";
 	protected final static String EVENTS_MEMBERED_BY = "SELECT events FROM Event events WHERE events.candidates=:member";
 	protected final static String EVENTS_COMMENTS_BY_EVENTID = "SELECT events.comments FROM Event events WHERE events.id=:id";
@@ -54,6 +55,10 @@ public class EventDao implements IEventDao {
 		return getGroupsFromQuery(entityManager.createQuery(EVENTS_NAMED_BY).setParameter("name", name));
 	}
 
+	@Override
+	public Event getEventsByName1(String name) {
+		return (Event) entityManager.createQuery(EVENTS_NAMED1_BY).setParameter("name", name).getSingleResult();
+	}
 	@Override
 	public List<Event> getEventsByDate(String date) {
 		return getGroupsFromQuery(entityManager.createQuery(EVENTS_DATED_BY).setParameter("date", date));

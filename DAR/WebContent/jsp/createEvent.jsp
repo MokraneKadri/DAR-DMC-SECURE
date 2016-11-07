@@ -62,6 +62,7 @@
 						<h3 class="panel-title">Créer votre Meet up</h3>
 					</div>
 					<div class="panel-body">
+<%-- <<<<<<< HEAD
 						<form id="eventForm" method="post" class="form-horizontal"
 							action="/DAR/create_event">
 
@@ -81,6 +82,18 @@
 									</c:if>
 								</c:if>
 							</div>
+======= --%>
+						<form id="eventForm" method="post" class="form-horizontal" action="/DAR/create_event">
+						
+						<div id="error">	
+						
+							<c:if test="${not empty eventNameError}">
+             					<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span>
+             					ce nom d'évenement est déja pris merci de choisir un autre</div>
+             				
+             					        								 </c:if>
+      					  </div>
+
 							<div class="form-group">
 								<label class="col-sm-4 control-label" for="eventname">
 									intitulé :</label>
