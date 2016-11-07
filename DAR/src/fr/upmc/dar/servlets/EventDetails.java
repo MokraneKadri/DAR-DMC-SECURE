@@ -13,9 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.upmc.dar.dao.DAOFactory;
 import fr.upmc.dar.dao.interfaces.IEventDao;
-import fr.upmc.dar.entities.Comment;
 import fr.upmc.dar.entities.Event;
-import fr.upmc.dar.entities.User;
 import fr.upmc.dar.enums.UriMapping;
 
 @WebServlet(urlPatterns="/eventDetails")
@@ -58,7 +56,7 @@ public class EventDetails extends HttpServlet {
 		eventdetails.put("theme", ee.getTheme());
 		eventdetails.put("participants", Integer.toString(ee.getCandidates().size()));
 		eventdetails.put("creator", ee.getCreator().getUserName());
-		eventdetails.put("commentCount", Integer.toString(ee.getEventCommentsCounts()));
+		eventdetails.put("commentCount", Integer.toString(ee.getCommentsCounts()));
 		request.setAttribute("details", eventdetails);
 		request.getRequestDispatcher(UriMapping.EVENTDETAILS.getRessourceUrl()).forward(request, response);
 

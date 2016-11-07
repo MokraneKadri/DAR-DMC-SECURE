@@ -87,7 +87,7 @@ public class EventDao implements IEventDao {
 	protected List<Event> getGroupsFromQuery(Query query) {
 		@SuppressWarnings("unchecked")
 		ArrayList<Event> events = (ArrayList<Event>) query.getResultList();
-		
+
 		return events;
 	}
 

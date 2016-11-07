@@ -20,7 +20,7 @@
 	<div id="navbar" class="navbar-collapse collapse">
 		<ul class="nav navbar-nav">
 			<li class="active"><a href="/DAR/home" class="">Accueil</a></li>
-			<li class=" "><a href="#">Actus </span></a> <!--          <li class=" dropdown"><a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Groupes <span class="caret"></span></a>
+			<li class=" "><a href="/DAR/events?mode=actus&limit=15">Actus</span></a> <!--          <li class=" dropdown"><a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Groupes <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#">Voir les Groupes</a></li>
                                 <li><a href="#">Rejoindre un groupe</a></li>
@@ -29,10 +29,10 @@
                         </li> -->
 			<li class=" dropdown"><a href="#" class="dropdown-toggle active"
 				data-toggle="dropdown" role="button" aria-haspopup="true"
-				aria-expanded="false">Evenements <span class="caret"></span></a>
+				aria-expanded="false">Evénements <span class="caret"></span></a>
 				<ul class="dropdown-menu">
 					<li><a href="/DAR/eventList">Consulter la liste</a></li>
-					<li><a href="/DAR/create_event">Créer un évenement </a></li>
+					<li><a href="/DAR/create_event">Créer un événement </a></li>
 				</ul></li>
 		</ul>
 
@@ -44,7 +44,7 @@
 						role="button" aria-haspopup="true" aria-expanded="false"><c:out
 								value="${login}" /> <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">Mon profile</a></li>
+							<li><a href="#">Mon profil</a></li>
 							<!-- <li><a href="#">Mes Paramètres</a></li> -->
 							<li><a href="/DAR/logout">Déconnexion</a></li>
 						</ul></li>
@@ -70,9 +70,9 @@
 				aria-expanded="false">Amis <span class="caret"></span></a>
 				<ul class="dropdown-menu">
 					<li><a href="/DAR/jsp/myfriends.jsp">Mes Amis</a></li>
-					<li><a href="/DAR/jsp/pendingrequests.jsp">Requetes d'amis
+					<li><a href="/DAR/jsp/pendingrequests.jsp">Requêtes d'amis
 					</a></li>
-					<li><a href="/DAR/jsp/finduser.jsp">Rechercher un Ami</a></li>
+					<li><a href="/DAR/jsp/finduser.jsp">Rechercher un ami</a></li>
 				</ul></li>
 		</ul>
 

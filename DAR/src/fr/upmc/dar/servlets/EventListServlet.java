@@ -94,7 +94,7 @@ public class EventListServlet  extends HttpServlet{
 		tmpEvents= (ArrayList<Event>) eventlist.getAllEvents();
 		System.out.println("total devent:"+tmpEvents.size());
 		for(Event e : tmpEvents){
-			if(e.getEventprivacy()==EventVisibility.PUBLIC){ // si l'evenement est public nporte qui peut le voir
+			if(e.getPrivacy()==EventVisibility.PUBLIC){ // si l'evenement est public nporte qui peut le voir
 				events.add(e);
 			}
 			if(e.getCreator().getUserName().equals(loggedinuser)&& !events.contains(e)){// on a acces a notre propore evenement qu'on a crée
@@ -104,7 +104,7 @@ public class EventListServlet  extends HttpServlet{
 			}
 			
 			// evenement privé --> lien d'amitié
-			 if(e.getEventprivacy()==EventVisibility.PRIVATE){
+			 if(e.getPrivacy()==EventVisibility.PRIVATE){
 				 String creator = e.getCreator().getUserName(); 
 				
 				System.out.println("creator is :"+creator +"loggedinuser is "+loggedinuser);

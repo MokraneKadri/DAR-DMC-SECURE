@@ -60,7 +60,7 @@
 					console.log(event);
 					$("div.maincontainer").append('<div class="well">'+
                			'<div class="media">'+
-                  	    '<a class="pull-left" href="#">'+	
+                  	    '<a class="pull-left" href="/DAR/events?mode=event&id='+ event.id + '">'+	
                   	  		'<div class="media-body">'+
                   	    		'<h4 class="media-heading">'+ event.name+'</h4>'+
                   	         	'<p class="text-right">créer par : '+ event.creator +'</p>'+
@@ -72,7 +72,7 @@
                   	         	'<ul class="list-inline list-unstyled">'+
                   	  				'<li><span><i class="glyphicon glyphicon-calendar"> </i> ' + event.date + '</span></li>'+
                   	            	'<li>|</li>'+
-                  	            	'<span><i class="glyphicon glyphicon-comment"></i> ' + event.comments + ' <a href="#">comments<a/></span>'+
+                  	            	'<span><i class="glyphicon glyphicon-comment"></i> ' + event.comments + ' <a href="/DAR/events?mode=event&id='+ event.id + '">comments<a/></span>'+
                   	            	'<li>|</li>'+
                   	            	'<li>'+
                   	             		'<span class="glyphicon glyphicon-star"></span>'+

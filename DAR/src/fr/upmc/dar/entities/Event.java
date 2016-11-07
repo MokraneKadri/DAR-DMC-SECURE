@@ -36,30 +36,32 @@ public class Event implements IEntity {
 	protected List<Comment> comments;
 	
 	@Column
-	private String name;
+	protected String name;
 
 	@Column
-	private EventVisibility privacy;
+	protected EventVisibility privacy;
 	
 	@Column
-	private String description;
+	protected String description;
 	
 	@Column
-	private String date;
+	protected String date;	
 	
 	@Column
-	private int  commentsCounts;
-	
-	
-	@Column
-	private String theme;
+	protected String theme;
 	
 	@Column
-	private String places;
+	protected String places;
 	
 	@Column
-	private String address;
+	protected String address;
 	
+	/**
+	 * Attention ne pas se planter -> Place = Lieu ici
+	 */
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	protected Place place;
 	
 	public Event() {
 		super();
@@ -73,7 +75,8 @@ public class Event implements IEntity {
 			String date, 
 			String theme, 
 			String places,
-			String address) throws Exception 
+			String address,
+			Place place) throws Exception 
 	{
 		this.creator = owner;
 		this.name = name;
@@ -100,6 +103,7 @@ public class Event implements IEntity {
 		this.address = address;
 		this.candidates = new ArrayList<>();
 		this.comments = new ArrayList<>();
+		this.place = place;
 	}
 
 	
@@ -124,45 +128,14 @@ public class Event implements IEntity {
 		this.address = eventAdresse;
 		this.comments=comments;
 	}
-	
-	
+		
 	public List<Comment> getComments() {
 		return comments;
 	}
 
-
-
 	public void setComments(List<Comment> comments) {
-		this.commentsCounts = comments.size();
 		this.comments = comments;
 	}
-
-
-
-	public EventVisibility getEventprivacy() {
-		return privacy;
-	}
-
-
-
-	public void setEventprivacy(EventVisibility eventprivacy) {
-		this.privacy = eventprivacy;
-	}
-
-
-
-	public int getEventCommentsCounts() {
-		return commentsCounts;
-	}
-
-
-
-	public void setEventCommentsCounts(int eventCommentsCounts) {
-		this.commentsCounts = eventCommentsCounts;
-	}
-
-
-
 
 	public Integer getId() {
 		return id;
@@ -221,11 +194,7 @@ public class Event implements IEntity {
 	}
 
 	public int getCommentsCounts() {
-		return commentsCounts;
-	}
-
-	public void setCommentsCounts(int commentsCounts) {
-		this.commentsCounts = commentsCounts;
+		return comments.size();
 	}
 
 	public String getTheme() {
@@ -251,6 +220,14 @@ public class Event implements IEntity {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	
+	public Place getPlace() {
+		return place;
+	}
+
+	public void setPlace(Place place) {
+		this.place = place;
+	}
 
 	@Override
 	public JSONObject toJSONObject() throws JSONException {
@@ -264,7 +241,7 @@ public class Event implements IEntity {
 		json.put("theme", theme);
 		json.put("address", address);
 		json.put("creator", creator.getUserName());
-		json.put("comments", commentsCounts);
+		json.put("comments", comments.size());
 		json.put("id", id);
 		
 		return json;

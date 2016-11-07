@@ -1,7 +1,5 @@
 package fr.upmc.dar.dao;
 
-import javax.swing.Icon;
-
 import fr.upmc.dar.dao.interfaces.IComment;
 import fr.upmc.dar.dao.interfaces.IEventDao;
 import fr.upmc.dar.dao.interfaces.IFriendsDao;
@@ -10,18 +8,21 @@ import fr.upmc.dar.dao.interfaces.IUserDao;
 
 public class DAOFactory {
 
-	static UserDao udao;
+	static UserDao userDao;
+	static EventDao eventDao;
+	static FriendsDao friendsDao;
 
 
 	public static IUserDao createUserDao(){
-		if(udao==null)
-		return new UserDao();
-		else return udao;
+		if ( userDao == null )
+			return new UserDao();
+		return userDao;
 	}
 
 	public static IEventDao createEventDao(){
-
-		return new EventDao();
+		if ( eventDao == null )
+			return new EventDao();
+		return eventDao;
 	}
 
 	public static IGroupDao createGroupDao(){
@@ -35,7 +36,8 @@ public class DAOFactory {
 	}
 	
 	public static IFriendsDao createFriendDao(){
-
-		return new FriendsDao();
+		if ( friendsDao == null )
+			return new FriendsDao();
+		return friendsDao;
 	}
 }

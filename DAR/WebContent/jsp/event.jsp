@@ -72,7 +72,7 @@
 			content.append("<p class='text-right'><a class='btn btn-primary'>Je participe</a></p>");
 			content.append("<p class='text-right'><a class='btn btn-info'> Détails >> </a></p>");
 			content.append("<p> Visibilité : ");
-			content.append(EventVisibility.eventVisibilityToString(event.getEventprivacy()));
+			content.append(EventVisibility.eventVisibilityToString(event.getPrivacy()));
 			content.append("</p><p> Description : ");
 			content.append(event.getDescription());
 			content.append("</p><p> Thème : ");
