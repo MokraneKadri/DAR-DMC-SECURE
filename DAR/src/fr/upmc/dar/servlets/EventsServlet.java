@@ -106,6 +106,7 @@ public class EventsServlet extends HttpServlet {
 						return;
 					}
 				response.getWriter().print(array);
+				System.out.println("sending:" +array.toString());
 			} else {
 				String id = request.getParameter("id");
 				if (id != null) {
@@ -233,14 +234,14 @@ public class EventsServlet extends HttpServlet {
 			id = Integer.valueOf(request.getParameter("id"));
 			try {
 				event = dao.getEventById(id);
-				event.setEventName((request.getParameter("name") != null) ? request.getParameter("name") : event.getEventName());
+				event.setName((request.getParameter("name") != null) ? request.getParameter("name") : event.getName());
 				if (request.getParameter("privacy") != null)
 					event.setEventprivacy(EventVisibility.stringToEventVisibility(request.getParameter("privacy")));
-				event.setEventDescription((request.getParameter("description") != null) ? request.getParameter("description") : event.getEventDescription());
-				event.setEventDate((request.getParameter("date") != null) ? request.getParameter("date") : event.getEventDate());
-				event.setEventTheme((request.getParameter("theme") != null) ? request.getParameter("theme") : event.getEventTheme());
-				event.setEventPlace((request.getParameter("places") != null) ? request.getParameter("places") : event.getEventPlace());
-				event.setEventAdresse((request.getParameter("address") != null) ? request.getParameter("address") : event.getEventAdresse());
+				event.setDescription((request.getParameter("description") != null) ? request.getParameter("description") : event.getDescription());
+				event.setDate((request.getParameter("date") != null) ? request.getParameter("date") : event.getDate());
+				event.setTheme((request.getParameter("theme") != null) ? request.getParameter("theme") : event.getTheme());
+				event.setPlaces((request.getParameter("places") != null) ? request.getParameter("places") : event.getPlaces());
+				event.setAddress((request.getParameter("address") != null) ? request.getParameter("address") : event.getAddress());
 				dao.updateEvent(event);
 			} catch (Exception e) {
 				e.printStackTrace();

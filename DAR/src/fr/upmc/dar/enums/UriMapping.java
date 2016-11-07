@@ -13,7 +13,8 @@ public enum UriMapping {
 	 CREATE_GROUP ("/jsp/createGroup.jsp"),
 	EVENTSLIST("/jsp/listEvents.jsp"),
 	POSTPASSWDRESET("/jsp/confirmation.jsp"),
-	POSTSIGNUPRESET("/jsp/confirmation.jsp");
+	POSTSIGNUPRESET("/jsp/confirmation.jsp"),
+	EVENTDETAILS("/jsp/eventDetails.jsp");
 	  private String name = "";
 	   
 	  //Constructeur

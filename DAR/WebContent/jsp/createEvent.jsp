@@ -58,12 +58,11 @@
 						
 						<div id="error">	
 						
-							<c:if test="${not empty formErrors['username']}">
-             					<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span><c:out value="${formErrors['username']}"/></div>
+							<c:if test="${not empty eventNameError}">
+             					<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span>
+             					ce nom d'évenement est déja pris merci de choisir un autre</div>
              				
-             					<c:if test="${not empty formErrors['email']}">
-             					<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span><c:out value="${formErrors['email']}"/></div>
-             					        								 </c:if>	        								 </c:if>
+             					        								 </c:if>
       					  </div>
 							<div class="form-group">
 								<label class="col-sm-4 control-label" for="eventname"> intitulé :</label>

@@ -162,57 +162,13 @@ public class Event implements IEntity {
 
 
 
+
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
-	}
-	public String getEventName() {
-		return name;
-	}
-	public void setEventName(String eventName) {
-		this.name = eventName;
-	}
-
-	public String getEventDescription() {
-		return description;
-	}
-	
-	public void setEventDescription(String eventDescription) {
-		this.description = eventDescription;
-	}
-	
-	public String getEventDate() {
-		return date;
-	}
-	
-	public void setEventDate(String eventDate) {
-		this.date = eventDate;
-	}
-	
-	public String getEventTheme() {
-		return theme;
-	}
-	
-	public void setEventTheme(String eventTheme) {
-		this.theme = eventTheme;
-	}
-	
-	public String getEventPlace() {
-		return places;
-	}
-	
-	public void setEventPlace(String eventPlace) {
-		this.places = eventPlace;
-	}
-	
-	public String getEventAdresse() {
-		return address;
-	}
-	
-	public void setEventAdresse(String eventAdresse) {
-		this.address = eventAdresse;
 	}
 
 	public User getCreator() {
@@ -229,6 +185,70 @@ public class Event implements IEntity {
 
 	public void setCandidates(List<User> candidates) {
 		this.candidates = candidates;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public EventVisibility getPrivacy() {
+		return privacy;
+	}
+
+	public void setPrivacy(EventVisibility privacy) {
+		this.privacy = privacy;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public int getCommentsCounts() {
+		return commentsCounts;
+	}
+
+	public void setCommentsCounts(int commentsCounts) {
+		this.commentsCounts = commentsCounts;
+	}
+
+	public String getTheme() {
+		return theme;
+	}
+
+	public void setTheme(String theme) {
+		this.theme = theme;
+	}
+
+	public String getPlaces() {
+		return places;
+	}
+
+	public void setPlaces(String places) {
+		this.places = places;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	@Override

@@ -17,7 +17,7 @@ public interface IEventDao extends IDao<Event> {
 	public List<Event> getEventsByMember(User member);
 	public List<Comment> getCommentsList(int eventId);
 	int getNbComments(int eventid);
-	
+	public Event getEventsByName1(String name);
 	void removeEvent(Event event);
 	void updateEvent(Event event);
 	Event getEventById(Integer id);

@@ -64,11 +64,11 @@
                   	  		'<div class="media-body">'+
                   	    		'<h4 class="media-heading">'+ event.name+'</h4>'+
                   	         	'<p class="text-right">créer par : '+ event.creator +'</p>'+
-                  	         	'<p class="text-right"><a class="btn btn-primary">Je participe</a>'+ '</p>'+
-                  	         	'<p class="text-right"><a class="btn btn-info"> Details >> </a>'+ '</p>'+
-                  	         	'<p> Visibilité : ' + event.privacy + '</p>'+
-                  	          	'<p> Description : ' + event.description + '</p>'+
-                  	          	'<p> Thème : ' + event.theme + '</p>'+
+                  	         	'<p class="text-right"><a href="" class="btn btn-primary">Je participe</a>'+ '</p>'+
+                  	         	'<p class="text-right"><a href="/DAR/eventDetails?evt='+event.name+'" class="btn btn-info"> Details >> </a>'+ '</p>'+
+                  	         	'<p> <b>Visibilité </b>: ' + event.privacy + '</p>'+
+                  	          	'<p> <b>Description </b>: ' + event.description + '</p>'+
+                  	          	'<p><b> Thème</b> : ' + event.theme + '</p>'+
                   	         	'<ul class="list-inline list-unstyled">'+
                   	  				'<li><span><i class="glyphicon glyphicon-calendar"> </i> ' + event.date + '</span></li>'+
                   	            	'<li>|</li>'+
