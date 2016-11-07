@@ -10,11 +10,13 @@ import fr.upmc.dar.dao.interfaces.IUserDao;
 
 public class DAOFactory {
 
+	static UserDao udao;
 
 
 	public static IUserDao createUserDao(){
-
+		if(udao==null)
 		return new UserDao();
+		else return udao;
 	}
 
 	public static IEventDao createEventDao(){

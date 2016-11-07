@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
@@ -34,8 +33,8 @@ public class EventDao implements IEventDao {
 	
 	@Override
 	protected void finalize() throws Throwable {
-		super.finalize();
 		entityManager.close();
+		super.finalize();
 	}
 	
 	@Override

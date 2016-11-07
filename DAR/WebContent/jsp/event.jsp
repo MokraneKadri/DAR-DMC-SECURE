@@ -62,7 +62,7 @@
 			content.append("<div class='pull-left' href='#'>");
 			content.append("<h4 class='media-heading'>");
 			content.append("<a href='#'>");
-			content.append(event.getEventName());
+			content.append(event.getName());
 			content.append("</a>");
 			content.append("</h4>");
 			content.append("<p class='text-right'>créé par : ");
@@ -74,12 +74,12 @@
 			content.append("<p> Visibilité : ");
 			content.append(EventVisibility.eventVisibilityToString(event.getEventprivacy()));
 			content.append("</p><p> Description : ");
-			content.append(event.getEventDescription());
+			content.append(event.getDescription());
 			content.append("</p><p> Thème : ");
-			content.append(event.getEventTheme());
+			content.append(event.getTheme());
             content.append("</p><ul class='list-inline list-unstyled'>");
             content.append("<li><span><i class='glyphicon glyphicon-calendar'> </i> ");
-            content.append(event.getEventDate());
+            content.append(event.getDate());
             content.append("</span></li><li>|</li><span><i class='glyphicon glyphicon-comment'></i> ");
             content.append(event.getComments().size());
             content.append(" <a href='#'>comments</a></span><li>|</li><li><span class='glyphicon glyphicon-star'></span><span class='glyphicon glyphicon-star'></span><span class='glyphicon glyphicon-star'></span><span class='glyphicon glyphicon-star'></span><span class='glyphicon glyphicon-star-empty'></span></li></ul></div></div>");

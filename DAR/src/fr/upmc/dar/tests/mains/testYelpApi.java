@@ -24,6 +24,7 @@ public class testYelpApi {
 		
 		
 	for(int i =0;i<parser.getQueryresult().size();i++){
+		System.out.println(parser.getQueryresult().get(1));
 		 String name = parser.getFullNameList().get(i);
 		 String street = parser.getStreetNameList().get(i);
 		 String zipCode = parser.getZipCodeList().get(i);
