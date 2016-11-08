@@ -15,8 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import fr.upmc.dar.api.helpers.YelpBusinessSearch;
 import fr.upmc.dar.dao.DAOFactory;
 import fr.upmc.dar.dao.interfaces.IEventDao;
+import fr.upmc.dar.entities.Business;
 import fr.upmc.dar.entities.Comment;
 import fr.upmc.dar.entities.Event;
 import fr.upmc.dar.entities.Place;
@@ -238,18 +240,36 @@ public class EventsServlet extends HttpServlet {
 	private void create(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			User user = DAOFactory.createUserDao().findUserByUserName((String)request.getSession().getAttribute("login"));
-			Place place = new Place(request.getParameter("place_type"), request.getParameter("place_name"));
-			Event event = new Event(
-					user, 
-					request.getParameter("name"), 
-					request.getParameter("privacy"), 
-					request.getParameter("description"), 
-					request.getParameter("date"), 
-					request.getParameter("theme"), 
-					request.getParameter("places"), 
-					request.getParameter("address"),
-					place);
-			DAOFactory.createEventDao().createEvent(event);
+			Place place = new Place(request.getParameter("place_type"), request.getParameter("place_name"));			
+			String businessId = request.getParameter("business_id"); 
+
+			if (businessId == null) {
+				Event event = new Event(
+						user, 
+						request.getParameter("name"), 
+						request.getParameter("privacy"), 
+						request.getParameter("description"), 
+						request.getParameter("date"), 
+						request.getParameter("theme"), 
+						request.getParameter("places"), 
+						request.getParameter("address"),
+						place);
+				DAOFactory.createEventDao().createEvent(event);
+			} else {
+				Business business = YelpBusinessSearch.idToBusiness(businessId);
+				Event event = new Event(
+						user, 
+						request.getParameter("name"), 
+						request.getParameter("privacy"), 
+						request.getParameter("description"), 
+						request.getParameter("date"), 
+						request.getParameter("theme"), 
+						request.getParameter("places"), 
+						request.getParameter("address"),
+						place,
+						business);
+				DAOFactory.createEventDao().createEvent(event);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			response.getWriter().print(new Error("Echec de création de l'event"));

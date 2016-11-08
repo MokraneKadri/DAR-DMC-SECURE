@@ -1,6 +1,7 @@
 package fr.upmc.dar.entities;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -66,6 +67,9 @@ public class Event implements IEntity {
 	@ManyToOne
 	protected Business business;
 	
+	@Column
+	protected Date timestamp;
+	
 	public Event() {
 		super();
 	}
@@ -80,26 +84,11 @@ public class Event implements IEntity {
 			String places,
 			String address,
 			Place place,
-			Business business) throws Exception 
+			Business business)
 	{
 		this.creator = owner;
 		this.name = name;
-		switch (privacy) {
-		case "public":
-			this.privacy = EventVisibility.PUBLIC;
-			break;
-		case "private":
-			this.privacy = EventVisibility.PRIVATE;
-			break;
-		case "group":
-			this.privacy = EventVisibility.GROUP;
-			break;
-		case "university":
-			this.privacy = EventVisibility.INTRA_UNI;
-			break;
-		default:
-			throw new Exception("wrong privacy : " + privacy);
-		}
+		this.privacy = EventVisibility.stringToEventVisibility(privacy);
 		this.description = description;
 		this.date = date;
 		this.theme = theme;
@@ -108,6 +97,8 @@ public class Event implements IEntity {
 		this.candidates = new ArrayList<>();
 		this.comments = new ArrayList<>();
 		this.place = place;
+		this.business = business;
+		this.timestamp = new Date();
 	}
 	
 	public Event(	
@@ -119,26 +110,11 @@ public class Event implements IEntity {
 			String theme, 
 			String places,
 			String address,
-			Place place) throws Exception 
+			Place place) 
 	{
 		this.creator = owner;
 		this.name = name;
-		switch (privacy) {
-		case "public":
-			this.privacy = EventVisibility.PUBLIC;
-			break;
-		case "private":
-			this.privacy = EventVisibility.PRIVATE;
-			break;
-		case "group":
-			this.privacy = EventVisibility.GROUP;
-			break;
-		case "university":
-			this.privacy = EventVisibility.INTRA_UNI;
-			break;
-		default:
-			throw new Exception("wrong privacy : " + privacy);
-		}
+		this.privacy = EventVisibility.stringToEventVisibility(privacy);
 		this.description = description;
 		this.date = date;
 		this.theme = theme;
@@ -148,29 +124,7 @@ public class Event implements IEntity {
 		this.comments = new ArrayList<>();
 		this.place = place;
 		this.business = null;
-	}
-
-	
-	public Event(	
-			User owner,
-			String eventName, 
-			EventVisibility eventprivacy,
-			String eventDescription,
-			String eventDate, 
-			String eventTheme, 
-			String eventPlace,
-			String eventAdresse,
-			List<Comment> comments) 
-	{
-		this.creator = owner;
-		this.name = eventName;
-		this.privacy = eventprivacy;
-		this.description = eventDescription;
-		this.date = eventDate;
-		this.theme = eventTheme;
-		this.places = eventPlace;
-		this.address = eventAdresse;
-		this.comments=comments;
+		this.timestamp = new Date();
 	}
 		
 	public List<Comment> getComments() {
@@ -283,6 +237,10 @@ public class Event implements IEntity {
 	
 	public boolean isYelpEvent() {
 		return business != null;
+	}
+	
+	public Date getTimestamp() {
+		return timestamp;
 	}
 
 	@Override
