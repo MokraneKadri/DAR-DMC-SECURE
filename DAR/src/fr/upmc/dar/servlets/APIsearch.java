@@ -65,13 +65,13 @@ public class APIsearch extends HttpServlet {
 					array.put(json);
 
 					
-					String h="<ul><li> |Lu : "+b.normalizeHour(b.getOp0())+"-"+b.normalizeHour(b.getCl0())+"</li>";
-					h+="<li>| Ma : "+b.normalizeHour(b.getOp1())+"-"+b.normalizeHour(b.getCl1())+"</li>";
-					h+="<li>| Me : "+b.normalizeHour(b.getOp2())+"-"+b.normalizeHour(b.getCl2())+"</li>";
-					h+="<li>| Je : "+b.normalizeHour(b.getOp3())+"-"+b.normalizeHour(b.getCl3())+"</li>";
-					h+="<li>| Ve : "+b.normalizeHour(b.getOp4())+"-"+b.normalizeHour(b.getCl4())+"</li>";
-					h+="<li>| Sa : "+b.normalizeHour(b.getOp5())+"-"+b.normalizeHour(b.getCl5())+"</li>";
-					h+="<li>| Di : "+b.normalizeHour(b.getOp6())+"-"+b.normalizeHour(b.getCl6())+"</li></ul>";
+					String h="<ul><li>Lundi :<br /> "+b.normalizeHour(b.getOp0())+"-"+b.normalizeHour(b.getCl0())+"</li>";
+					h+="<li>Mardi :<br /> "+b.normalizeHour(b.getOp1())+"-"+b.normalizeHour(b.getCl1())+"</li>";
+					h+="<li>Mercredi :<br /> "+b.normalizeHour(b.getOp2())+"-"+b.normalizeHour(b.getCl2())+"</li>";
+					h+="<li>Jeudi :<br /> "+b.normalizeHour(b.getOp3())+"-"+b.normalizeHour(b.getCl3())+"</li>";
+					h+="<li>Vendredi :<br /> "+b.normalizeHour(b.getOp4())+"-"+b.normalizeHour(b.getCl4())+"</li>";
+					h+="<li>Samedi :<br /> "+b.normalizeHour(b.getOp5())+"-"+b.normalizeHour(b.getCl5())+"</li>";
+					h+="<li>Dimanche :<br /> "+b.normalizeHour(b.getOp6())+"-"+b.normalizeHour(b.getCl6())+"</li></ul>";
 					
 					HashMap<String,String> horaires = new HashMap<String,String>();
 					horaires.put("Lu", b.normalizeHour(b.getOp0())+"-"+b.normalizeHour(b.getCl0()));
@@ -90,7 +90,7 @@ public class APIsearch extends HttpServlet {
 					
 					if(days.size()==7){
 						h="";
-						h="Toute La semaine"+b.normalizeHour(b.getOp0())+"-"+b.normalizeHour(b.getCl0());
+						h="7j/7<br/>"+b.normalizeHour(b.getOp0())+"-"+b.normalizeHour(b.getCl0());
 					}
 					directRes+="<tr><td>"+b.getName()+"</td><td>"+h +"</td><td>"+b.getStreet()+"</td><td>"+b.getCity()+"</td><td>"+b.getZipCode()+"</td><td><a href=\"\" class=\"btn btn-primary\">Choisir</a> </td></tr>";
 //					directRes+="<div class=\"media-body\">"+
