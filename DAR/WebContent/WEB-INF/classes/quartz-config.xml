@@ -17,12 +17,52 @@
 
 		<trigger>
 			<cron>
-				<name>dummyTriggerName</name>
+				<name>Test</name>
 				<job-name>AJob</job-name>
 				<job-group>AGroup</job-group>
 				<!-- It will run every 10 seconds -->
 				<cron-expression>0/10 * * * * ?</cron-expression>
 			</cron>
-		</trigger>
+		</trigger>	
 	</schedule>
+	
+	<schedule>
+		<job>
+			<name>BJob</name>
+			<group>BGroup</group>
+			<description>Print a welcome message</description>
+			<job-class>fr.upmc.dar.backend.UpdateBusinessHourJob</job-class>
+		</job>
+
+			<trigger>
+			<cron>
+				<name>updateBusinessHour</name>
+				<job-name>BJob</job-name>
+				<job-group>BGroup</job-group>
+				<!-- It will run every 10 seconds -->
+				<cron-expression>0 30 2 ? * *</cron-expression>
+			</cron>
+		</trigger>	
+	</schedule>
+		
+	<schedule>
+		<job>
+			<name>CJob</name>
+			<group>CGroup</group>
+			<description>Print a welcome message</description>
+			<job-class>fr.upmc.dar.backend.RemoveOldsEntitiesJob</job-class>
+		</job>
+
+		<trigger>
+			<cron>
+				<name>dummyTriggerName</name>
+				<job-name>CJob</job-name>
+				<job-group>CGroup</job-group>
+				<!-- It will run every 10 seconds -->
+				<cron-expression>0 0 3 ? * *</cron-expression>
+			</cron>
+		</trigger>	
+	</schedule>
+	
+	
 </job-scheduling-data>
