@@ -68,7 +68,7 @@ public class EventTests {
 	public void createEvent() {
 		createOwner();
 		createMembers();
-		event = new Event(owner, "Boire un verre", EventVisibility.GROUP,"Ce soir tous au bar", "Vendredi", "Piccolage", "20", "Pas chez moi",comments);
+		//event = new Event(owner, "Boire un verre", EventVisibility.GROUP,"Ce soir tous au bar", "Vendredi", "Piccolage", "20", "Pas chez moi",comments);
 		event.setCandidates(members);
 	}
 	

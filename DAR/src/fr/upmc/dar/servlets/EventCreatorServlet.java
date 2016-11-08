@@ -74,7 +74,7 @@ public class EventCreatorServlet extends HttpServlet {
 				request.getRequestDispatcher(UriMapping.CREATE_EVENT.getRessourceUrl()).forward(request, response);
 			}
 			else {
-			Event event = new Event(user, name,privacy, description, date, theme, place, adress,new ArrayList<>());
+			Event event = null ;//= new Event(user, name,privacy, description, date, theme, place, adress,new ArrayList<>());
 			evtDao.createEvent(event);
 			request.getRequestDispatcher(UriMapping.EVENTSLIST.getRessourceUrl()).forward(request, response);
 //			Gson ee = new Gson();

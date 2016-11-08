@@ -48,6 +48,15 @@
 	
 		<div class="row">
 			<div class="col-sm-8 col-sm-offset-2">
+	<div class="bs-example">
+    <ul class="breadcrumb">
+    	<li>Uni-connect</li>
+        <li><a href="#">Acceuil</a></li>
+        <li class="active"><a href="#">Inscripion</a></li>
+        
+    </ul>
+		</div>
+
 	
 
 				<div class="panel panel-default">
@@ -105,6 +114,24 @@
 								<label class="col-sm-4 control-label" for="confirm_password">Confirmez  :</label>
 								<div class="col-sm-5">
 									<input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirmez votre mot de passe" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label" for="address">Adresse :</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id=""address"" name=""address"" placeholder="ex: 10 rue montmartre  " />
+								</div>
+								</div>
+								<div class="form-group">
+								<label class="col-sm-4 control-label" for="zipcode">Code Postal :</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id="zipcode" name="zipcode" placeholder="code postal " />
+								</div>
+								</div>
+								<div class="form-group">
+								<label class="col-sm-4 control-label" for="city">Ville :</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id="city" name="city" placeholder="ville : ex Paris " />
 								</div>
 							</div>
 							<div class="form-group">

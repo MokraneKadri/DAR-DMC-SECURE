@@ -44,7 +44,7 @@
 						role="button" aria-haspopup="true" aria-expanded="false"><c:out
 								value="${login}" /> <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">Mon profil</a></li>
+							<li><a href="/DAR/jsp/profil.jsp">Tableau de bord</a></li>
 							<!-- <li><a href="#">Mes Paramètres</a></li> -->
 							<li><a href="/DAR/logout">Déconnexion</a></li>
 						</ul></li>

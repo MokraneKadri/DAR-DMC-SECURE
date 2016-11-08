@@ -43,10 +43,17 @@
 
 
 	<div class="maincontainer ">
+
 		<div class="row">
 			<div class="col-sm-8 col-sm-offset-2">
-	
-
+		<div class="bs-example">
+    <ul class="breadcrumb">
+    	<li>Uni-connect</li>
+        <li><a href="#">Acceuil</a></li>
+        <li class="active"><a href="#">Connexion </a></li>
+        
+    </ul>
+		</div>
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h3 class="panel-title">Connexion  </h3>
