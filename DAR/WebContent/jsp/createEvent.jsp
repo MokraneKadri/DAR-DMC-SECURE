@@ -24,6 +24,7 @@
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js"></script>
 <script type="text/javascript" src="/DAR/assets/js/searchevent.js"></script>
+<script type="text/javascript" src="/DAR/assets/js/searchuniversity.js"></script>
 <!-- Fin  Scripts  -->
 
 <!-- Styles  -->
@@ -109,7 +110,7 @@
 										name="eventname" placeholder="intitulé de l'évenement" />
 								</div>
 							</div>
-							
+
 							<div class="form-group">
 								<label class="col-sm-4 control-label" for="eventdate">
 									Date :</label>
@@ -127,7 +128,7 @@
 										id="eventhour" />
 								</div>
 							</div>
-							
+
 							<div class="form-group">
 								<label class="col-sm-4 control-label" for="eventtheme">Thème
 									:</label>
@@ -141,8 +142,8 @@
 									</select>
 								</div>
 							</div>
-							
-								<div class="form-group">
+
+							<div class="form-group">
 								<label class="col-sm-4 control-label" for="eventdescription">Description
 									:</label>
 								<div class="col-sm-5">
@@ -151,6 +152,20 @@
 										style="resize: none; width: 100%;"></textarea>
 								</div>
 							</div>
+
+							<div class="form-group">
+								<label class="col-sm-4 control-label"> Université :</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" name="university"
+										id="university" readonly />
+									<button type="button" class="btn btn-info btn-block"
+										data-toggle="modal" data-target="#myModalUn">
+										<span class="glyphicon glyphicon-search"></span>
+									</button>
+
+								</div>
+							</div>
+
 							<div class="form-group">
 								<label class="col-sm-4 control-label" for="eventpolicy">Confidentialité
 									:</label>
@@ -161,7 +176,6 @@
 										<option value="0">Public</option>
 										<option value="1">Amis</option>
 										<option value="2">Université</option>
-
 									</select>
 								</div>
 							</div>
@@ -180,7 +194,7 @@
 
 								</div>
 							</div>
-							
+
 
 							<!-- Modal -->
 
@@ -190,11 +204,10 @@
 									un endroit !</button>
 							</div>
 							<div class="col-sm-5 "
-								style="width: 100%; height: 15px; border-bottom: 1px solid black; text-align: center; margin-bottom:25px;margin-top:10px">
+								style="width: 100%; height: 15px; border-bottom: 1px solid black; text-align: center; margin-bottom: 25px; margin-top: 10px">
 								<span
 									style="font-size: 20px; background-color: #F3F5F6; padding: 0px 10px;">
-									OU 
-								</span>
+									OU </span>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-4 control-label" for="eventplace">Type
@@ -459,6 +472,51 @@
 		</div>
 
 	</div>
+	
+		<!-- Modal University-->
+	<div id="myModalUn" class="modal fade" role="dialog"
+		data-backdrop="false">
+		<div class="modal-dialog modal-lg" role="document">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Rechercher une Université !</h4>
+				</div>
+				<div class="modal-body">
+					<div class="well-searchbox">
+						<div class="row">
+							<form class="form-horizontal" role="form"
+								action="javascript:(function(){return;})()" method="get"
+								OnSubmit="javascript:searchuniversity(this)">
+
+								<div class="form-group">
+									<label class="col-sm-4 control-label"> Recherche :</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" name="termuni" id="termuni"
+											placeholder="Nom ... Adresse..." />
+									</div>
+								</div>
+								<div class="col-sm-offset-4 col-sm-5">
+									<button type="submit" class="btn btn-primary" name="find-university"
+										value="find-university">Chercher !</button>
+								</div>
+
+
+							</form>
+						</div>
+					</div>
+				</div>
+				<div id='notifier-modal-university'></div>
+				<div class="modal-footer">
+					<div class="form-group"></div>
+				</div>
+
+
+			</div>
+		</div>
+
 	</div>
 </body>
 

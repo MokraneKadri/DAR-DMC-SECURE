@@ -1,4 +1,4 @@
-package fr.upmc.dar.api.helpers;
+package fr.upmc.dar.api;
 
 
 import java.util.ArrayList;
@@ -16,7 +16,8 @@ import org.scribe.model.Response;
 import org.scribe.model.Verb;
 import org.scribe.oauth.OAuthService;
 
-import fr.upmc.dar.dao.BusinessDAO;
+import fr.upmc.dar.api.helpers.OAth2Helper;
+import fr.upmc.dar.dao.ApiDAO;
 import fr.upmc.dar.entities.Business;
 
 public final class YelpBusinessSearch {
@@ -30,7 +31,7 @@ public final class YelpBusinessSearch {
 	public static String SEARCH = "https://api.yelp.com/v3/businesses/search";
 	public static String BUSINESS = "https://api.yelp.com/v3/businesses/";
 
-	private final static BusinessDAO businessDAO =new BusinessDAO(); 
+	private final static ApiDAO businessDAO =new ApiDAO(); 
 
 
 	public static OAuthService service=

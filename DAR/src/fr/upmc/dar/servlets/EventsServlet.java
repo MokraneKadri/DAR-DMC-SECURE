@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import fr.upmc.dar.api.helpers.YelpBusinessSearch;
+import fr.upmc.dar.api.YelpBusinessSearch;
 import fr.upmc.dar.dao.DAOFactory;
 import fr.upmc.dar.dao.interfaces.IEventDao;
 import fr.upmc.dar.entities.Business;

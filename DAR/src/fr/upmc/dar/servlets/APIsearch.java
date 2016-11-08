@@ -18,7 +18,7 @@ import org.json.JSONObject;
 import com.google.api.client.json.JsonObjectParser;
 import com.google.gson.Gson;
 
-import fr.upmc.dar.api.helpers.YelpBusinessSearch;
+import fr.upmc.dar.api.YelpBusinessSearch;
 import fr.upmc.dar.entities.Business;
 
 /**
