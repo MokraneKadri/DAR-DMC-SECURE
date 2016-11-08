@@ -19,7 +19,7 @@
 	</div>
 	<div id="navbar" class="navbar-collapse collapse">
 		<ul class="nav navbar-nav">
-			<li class="dropdown"><a href="/DAR/home" class="">Accueil</a></li>
+		
 			<li class="dropdown "><a href="/DAR/events?mode=actus&limit=15">Actus</span></a> <!--          <li class=" dropdown"><a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Groupes <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#">Voir les Groupes</a></li>

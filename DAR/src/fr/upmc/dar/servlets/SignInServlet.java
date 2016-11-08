@@ -83,7 +83,7 @@ public class SignInServlet extends HttpServlet {
 				}
 				//getServletContext().getRequestDispatcher(UriMapping.HOME.getRessourceUrl()).forward(request, response);
 				//request.getRequestDispatcher(UriMapping.HOME.getRessourceUrl()).forward(request, response);
-				 response.sendRedirect("/DAR/home");
+				 response.sendRedirect("/DAR/events?mode=actus&limit=15");
 			}
 			else {
 				request.setAttribute("formErrors", formErrors);
