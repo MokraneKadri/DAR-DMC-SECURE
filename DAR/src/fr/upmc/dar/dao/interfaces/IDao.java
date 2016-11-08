@@ -4,7 +4,9 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
+
+import org.hibernate.query.Query;
+
 
 /**
  * 
@@ -29,11 +31,13 @@ public interface IDao<T> {
 	 */
 	
 	default List<T> selectTuplesWhereFieldIsPrefixedLike(Class<T> entity, String field, String prefix) {
-		String hql = "SELECT entities FROM " + entity.getCanonicalName() + " entities WHERE entities." + field + " LIKE '" + prefix + "%'";
+		String hql = "SELECT entities FROM " + entity.getCanonicalName() + " entities WHERE entities." + field + " LIKE :prefix";
 		System.out.println(hql);
 		EntityManager entityManager = Persistence.createEntityManagerFactory(persistenceUnitName).createEntityManager();
-		Query query = entityManager.createQuery(hql);
 		@SuppressWarnings("unchecked")
+		Query<T> query = (Query<T>) entityManager.createQuery(hql);
+		query.setParameter("prefix", prefix + '%');
+
 		List<T> list = (List<T>) query.getResultList();
 		
 		return list;
@@ -50,11 +54,13 @@ public interface IDao<T> {
 	 */
 	
 	default List<T> selectTuplesWhereFieldIsSuffixedLike(Class<T> entity, String field, String suffix) {
-		String hql = "SELECT entities FROM " + entity.getCanonicalName() + " entities WHERE entities." + field + " LIKE '%" + suffix + "'";
+		String hql = "SELECT entities FROM " + entity.getCanonicalName() + " entities WHERE entities." + field + " LIKE :suffix";
 		System.out.println(hql);
 		EntityManager entityManager = Persistence.createEntityManagerFactory(persistenceUnitName).createEntityManager();
-		Query query = entityManager.createQuery(hql);
 		@SuppressWarnings("unchecked")
+		Query<T> query = (Query<T>) entityManager.createQuery(hql);
+		query.setParameter("suffix", '%' + suffix);
+	
 		List<T> list = (List<T>) query.getResultList();
 		
 		return list;
@@ -71,11 +77,13 @@ public interface IDao<T> {
 	 */
 	
 	default List<T> selectTuplesWhereFieldContainsLike(Class<T> entity, String field, String sequence) {
-		String hql = "SELECT entities FROM " + entity.getCanonicalName() + " entities WHERE entities." + field + " LIKE '%" + sequence + "%'";
+		String hql = "SELECT entities FROM " + entity.getCanonicalName() + " entities WHERE entities." + field + " LIKE :sequence";
 		System.out.println(hql);
 		EntityManager entityManager = Persistence.createEntityManagerFactory(persistenceUnitName).createEntityManager();
-		Query query = entityManager.createQuery(hql);
 		@SuppressWarnings("unchecked")
+		Query<T> query = (Query<T>) entityManager.createQuery(hql);
+		query.setParameter("sequence", '%' + sequence + '%');
+		
 		List<T> list = (List<T>) query.getResultList();
 		
 		return list;
