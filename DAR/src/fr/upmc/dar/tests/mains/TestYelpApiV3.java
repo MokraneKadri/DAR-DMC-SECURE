@@ -7,7 +7,7 @@ import java.util.List;
 import org.json.JSONException;
 
 import fr.upmc.dar.api.UniversitySearch;
-import fr.upmc.dar.api.helpers.YelpBusinessSearch;
+import fr.upmc.dar.api.YelpBusinessSearch;
 import fr.upmc.dar.entities.University;
 
 public class TestYelpApiV3 {

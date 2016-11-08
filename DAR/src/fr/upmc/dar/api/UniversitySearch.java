@@ -16,7 +16,7 @@ public class UniversitySearch {
 
 	static String SEARCH = "https://data.enseignementsup-recherche.gouv.fr/api/records/1.0/search/"+
 			"?dataset=fr-esr-principaux-etablissements-enseignement-superieur"+
-			"&facet=uai&facet=type_d_etablissement&facet=secteur_d_etablissement&facet=localisation&facet=com_nom&facet=dep_nom&facet=aca_nom&facet=reg_nom&facet=pays_etranger_acheminement&facet=siret&facet=identifiant_grid&facet=statut_juridique_court&facet=qualification_long&facet=statut_operateur_lolf&facet=identifiant_programme_lolf_chef_de_file";
+			"&facet=uai&facet=type_d_etablissement&facet=secteur_d_etablissement&facet=localisation&facet=com_nom&facet=dep_nom&facet=aca_nom&facet=reg_nom&facet=pays_etranger_acheminement&facet=siret&facet=identifiant_grid&facet=statut_juridique_court&facet=qualification_long&facet=statut_operateur_lolf&facet=identifiant_programme_lolf_chef_de_file&refine.localisation=%C3%8Ele-de-France";
 	
 	
 	public static String searchUniversity(String term,int limit){
