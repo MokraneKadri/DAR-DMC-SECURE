@@ -170,7 +170,6 @@ public class EventsServlet extends HttpServlet {
 					response.getWriter().print(new Error("Erreur dans la construction de la réponse JSON"));
 					return;
 				}
-				System.out.println("NAME : " + evt.getDescription());
 			}
 			response.getWriter().print(array);
 		} else {
@@ -192,10 +191,13 @@ public class EventsServlet extends HttpServlet {
 		List<Event> list = new ArrayList<>();
 		JSONArray array;
 
+		for (String key : request.getParameterMap().keySet())
+			System.out.println(key + ':' + request.getParameter(key));
+		
 		if (request.getParameter("name") != null)
 			recherche.put("name", (dao.selectTuplesWhereFieldContainsLike(Event.class, "name", request.getParameter("name"))));
 		if (request.getParameter("privacy") != null)
-			recherche.put("privacy", (dao.selectTuplesWhereFieldContainsLike(Event.class, "privacy", request.getParameter("privacy"))));
+			recherche.put("privacy", (dao.selectTuplesWhereFieldContainsLike(Event.class, "privacy", String.valueOf(EventVisibility.stringToEventVisibility(request.getParameter("privacy")).ordinal()))));
 		if (request.getParameter("description") != null)
 			recherche.put("description", (dao.selectTuplesWhereFieldContainsLike(Event.class, "description", request.getParameter("description"))));
 		if (request.getParameter("date") != null)
@@ -229,14 +231,15 @@ public class EventsServlet extends HttpServlet {
 		}
 
 		array = new JSONArray();
-		for (Event evt : list)
+		for (Event evt : list) {
 			try {
 				array.put(evt.toJSONObject());
-				response.getWriter().print(array);
 			} catch (JSONException e) {
 				e.printStackTrace();
 				response.getWriter().print(new Error("Erreur dans la construction de la réponse JSON"));
 			}
+		}
+		response.getWriter().print(array);
 	}
 	
 	private void create(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

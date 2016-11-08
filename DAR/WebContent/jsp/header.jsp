@@ -31,7 +31,7 @@
 				data-toggle="dropdown" role="button" aria-haspopup="true"
 				aria-expanded="false">Evénements <span class="caret"></span></a>
 				<ul class="dropdown-menu">
-					<li><a href="/DAR/eventList">Consulter la liste</a></li>
+					<li><a href="/DAR/jsp/eventSearch.jsp">Rechercher un événement</a></li>
 					<li><a href="/DAR/create_event">Créer un événement </a></li>
 				</ul></li>
 		</ul>
