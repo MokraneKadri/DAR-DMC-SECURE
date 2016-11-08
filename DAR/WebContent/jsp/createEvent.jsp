@@ -23,6 +23,7 @@
 <!-- JQuery Validate  -->
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/DAR/assets/js/searchevent.js"></script>
 <!-- Fin  Scripts  -->
 
 <!-- Styles  -->
@@ -40,6 +41,9 @@
 <link rel="stylesheet" href="/DAR/assets/css/header.css">
 <!--  content style -->
 <link rel="stylesheet" href="/DAR/assets/css/main.css">
+
+<link rel="stylesheet" href="/DAR/assets/css/modal.css">
+
 <!-- Fin Styles  -->
 
 
@@ -62,7 +66,7 @@
 						<h3 class="panel-title">Créer votre Meet up</h3>
 					</div>
 					<div class="panel-body">
-<%-- <<<<<<< HEAD
+						<%-- <<<<<<< HEAD
 						<form id="eventForm" method="post" class="form-horizontal"
 							action="/DAR/create_event">
 
@@ -83,16 +87,19 @@
 								</c:if>
 							</div>
 ======= --%>
-						<form id="eventForm" method="post" class="form-horizontal" action="/DAR/create_event">
-						
-						<div id="error">	
-						
-							<c:if test="${not empty eventNameError}">
-             					<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span>
-             					ce nom d'évenement est déja pris merci de choisir un autre</div>
-             				
-             					        								 </c:if>
-      					  </div>
+						<form id="eventForm" method="post" class="form-horizontal"
+							action="/DAR/create_event">
+
+							<div id="error">
+
+								<c:if test="${not empty eventNameError}">
+									<div class="alert alert-danger">
+										<span class="glyphicon glyphicon-info-sign"></span> ce nom
+										d'évenement est déja pris merci de choisir un autre
+									</div>
+
+								</c:if>
+							</div>
 
 							<div class="form-group">
 								<label class="col-sm-4 control-label" for="eventname">
@@ -110,6 +117,13 @@
 									<input type="date" class="form-control" name="eventdate"
 										id="eventdate" />
 								</div>
+							</div>
+							<!-- Modal -->
+
+							<div class="col-sm-5 col-sm-offset-4">
+								<button type="button" class="btn btn-info btn-lg btn-block"
+									data-toggle="modal" data-target="#myModal">Rechercher
+									un endroit !</button>
 							</div>
 
 							<div class="form-group">
@@ -168,7 +182,8 @@
 									:</label>
 								<div class="col-sm-5">
 									<textarea rows="5" cols="50" id="eventdescription"
-										name="eventdescription" value="" style="resize: none; width: 100%;"></textarea>
+										name="eventdescription" value=""
+										style="resize: none; width: 100%;"></textarea>
 								</div>
 							</div>
 							<div class="form-group">
@@ -215,115 +230,156 @@
 			</div>
 		</div>
 	</div>
+
+
+
+
 	<script type="text/javascript">
-	
-		$( document ).ready( function () {
-			$( "#eventForm" ).validate( {
-				rules: {
-					eventname:{
-						required: true,
-						minlength: 3
-					} ,
-					eventdate: {
-					    required: true,
-					    date:true
-						
-					},
-					eventplace: {
-						required: true
-						
-					},
-					eventtheme: {
-						required: true
-						
-					},
-					eventaddress: {
-						required: true,
-						minlength: 10
-						
-					},
-					eventpolicy: {
-						required: true
-						
-					},
-					eventdescription: {
-						required: true,
-						minlength:20
-						
-					},
-					
-				},
-				messages: {
-					eventname:{
-						required: "Veuillez indiquer l'intitulé de votre meet up"
-						
-						},
-					eventplace: {
-						required: "Veuillez indiquer le cadre ou se tiendra l'évenement"
-						
-						},
-					eventdate: {
-						required: "Veuillez indiquer la date de l'évenement",
-						date :"Veuillez indiquer une date valide"
-					},
-					eventpolicy: {
-						required: "veuillez précisez la confidentialité de l'évent"
-						
-					},
-					
-					eventtheme: {
-						required: "veuillez précisez le thème de l'évenement"
-						
-					},
-					eventaddress: {
-						required: "Veuillez saisir l'adresse exacte ou se tiendra lévenement",
-						minlength: "merci d'indiquer une adresse valide"
-						
-					},
-					
-					eventdescription: {
-						required: "Veuillez décrire l'évenement que vous allez créer",
-						minlength: "merci de fournir une description valide"
-						
-					}
-					
-					
-				},
-				errorElement: "em",
-				errorPlacement: function ( error, element ) {
-					// ajout d'une classe `help-block` à lelement en erreur
-					error.addClass( "help-block" );
+		$(document)
+				.ready(
+						function() {
+							$("#eventForm")
+									.validate(
+											{
+												rules : {
+													eventname : {
+														required : true,
+														minlength : 3
+													},
+													eventdate : {
+														required : true,
+														date : true
 
-					// ajout de la classe  `has-feedback`  au parent div.form-group
-					// afin d'jouter les icons au inputs
-					element.parents( ".col-sm-5" ).addClass( "has-feedback" );
+													},
+													eventplace : {
+														required : true
 
-					
-					error.insertAfter( element );
-					
+													},
+													eventtheme : {
+														required : true
 
-					
-					//ajout de l'element span si il existe pas et application de la classe créer pour lui
-					if ( !element.next( "span" )[ 0 ] ) {
-						$( "<span class='glyphicon glyphicon-remove form-control-feedback'></span>" ).insertAfter( element );
-					}
-				},
-				success: function ( label, element ) {
-					//ajout de l'element span si il existe pas et application de la classe créer pour lui.
-					if ( !$( element ).next( "span" )[ 0 ] ) {
-						$( "<span class='glyphicon glyphicon-ok form-control-feedback'></span>" ).insertAfter( $( element ) );
-					}
-				},
-				highlight: function ( element, errorClass, validClass ) {
-					$( element ).parents( ".col-sm-5" ).addClass( "has-error" ).removeClass( "has-success" );
-					$( element ).next( "span" ).addClass( "glyphicon-remove" ).removeClass( "glyphicon-ok" );
-				},
-				unhighlight: function ( element, errorClass, validClass ) {
-					$( element ).parents( ".col-sm-5" ).addClass( "has-success" ).removeClass( "has-error" );
-					$( element ).next( "span" ).addClass( "glyphicon-ok" ).removeClass( "glyphicon-remove" );
-				}
-			} );
-		} );
+													},
+													eventaddress : {
+														required : true,
+														minlength : 10
+
+													},
+													eventpolicy : {
+														required : true
+
+													},
+													eventdescription : {
+														required : true,
+														minlength : 20
+
+													},
+
+												},
+												messages : {
+													eventname : {
+														required : "Veuillez indiquer l'intitulé de votre meet up"
+
+													},
+													eventplace : {
+														required : "Veuillez indiquer le cadre ou se tiendra l'évenement"
+
+													},
+													eventdate : {
+														required : "Veuillez indiquer la date de l'évenement",
+														date : "Veuillez indiquer une date valide"
+													},
+													eventpolicy : {
+														required : "veuillez précisez la confidentialité de l'évent"
+
+													},
+
+													eventtheme : {
+														required : "veuillez précisez le thème de l'évenement"
+
+													},
+													eventaddress : {
+														required : "Veuillez saisir l'adresse exacte ou se tiendra lévenement",
+														minlength : "merci d'indiquer une adresse valide"
+
+													},
+
+													eventdescription : {
+														required : "Veuillez décrire l'évenement que vous allez créer",
+														minlength : "merci de fournir une description valide"
+
+													}
+
+												},
+												errorElement : "em",
+												errorPlacement : function(
+														error, element) {
+													// ajout d'une classe `help-block` à lelement en erreur
+													error
+															.addClass("help-block");
+
+													// ajout de la classe  `has-feedback`  au parent div.form-group
+													// afin d'jouter les icons au inputs
+													element
+															.parents(
+																	".col-sm-5")
+															.addClass(
+																	"has-feedback");
+
+													error.insertAfter(element);
+
+													//ajout de l'element span si il existe pas et application de la classe créer pour lui
+													if (!element.next("span")[0]) {
+														$(
+																"<span class='glyphicon glyphicon-remove form-control-feedback'></span>")
+																.insertAfter(
+																		element);
+													}
+												},
+												success : function(label,
+														element) {
+													//ajout de l'element span si il existe pas et application de la classe créer pour lui.
+													if (!$(element)
+															.next("span")[0]) {
+														$(
+																"<span class='glyphicon glyphicon-ok form-control-feedback'></span>")
+																.insertAfter(
+																		$(element));
+													}
+												},
+												highlight : function(element,
+														errorClass, validClass) {
+													$(element)
+															.parents(
+																	".col-sm-5")
+															.addClass(
+																	"has-error")
+															.removeClass(
+																	"has-success");
+													$(element)
+															.next("span")
+															.addClass(
+																	"glyphicon-remove")
+															.removeClass(
+																	"glyphicon-ok");
+												},
+												unhighlight : function(element,
+														errorClass, validClass) {
+													$(element)
+															.parents(
+																	".col-sm-5")
+															.addClass(
+																	"has-success")
+															.removeClass(
+																	"has-error");
+													$(element)
+															.next("span")
+															.addClass(
+																	"glyphicon-ok")
+															.removeClass(
+																	"glyphicon-remove");
+												}
+											});
+						});
 	</script>
 
 
@@ -332,7 +388,46 @@
 	</jsp:include>
 
 
+	<!-- Modal -->
+	<div id="myModal" class="modal fade" role="dialog"
+		data-backdrop="false">
+		<div class="modal-dialog modal-lg" role="document">
 
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Rechercher un endroit !</h4>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<form action="javascript:(function(){return;})()" method="get"
+							OnSubmit="javascript:searchevent(this)">
+							<div class="col-sm-8 col-sm-offset-2">
+								<div class="form-group">
+									<label class="col-sm-4 control-label">
+										Type de Lieu :</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" name="lieu"
+											id="lieu" placeholder="Bar... Restaurant..." />
+									</div>
+								</div>
+							</div>
+
+							<button type="submit" class="btn btn-primary" name="find"
+								value="find">Chercher !</button>
+						</form>
+					</div>
+				</div>
+				<div id='notifier-modal'></div>
+				<div class="modal-footer">
+					<div class="form-group"></div>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
 </body>
 
 </html>

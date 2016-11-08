@@ -56,7 +56,7 @@
 		content.append("</td>");
 		
 		content.append("<td>");
-		content.append(event.getEventName());
+		content.append(event.getName());
 		content.append("</td>");
 		
 		content.append("<td>");
@@ -64,23 +64,23 @@
 		content.append("</td>");
 		
 		content.append("<td>");
-		content.append(event.getEventDescription());
+		content.append(event.getDescription());
 		content.append("</td>");	
 		
 		content.append("<td>");
-		content.append(event.getEventDate());
+		content.append(event.getDate());
 		content.append("</td>");
 		
 		content.append("<td>");
-		content.append(event.getEventTheme());
+		content.append(event.getTheme());
 		content.append("</td>");
 		
 		content.append("<td>");
-		content.append(event.getEventPlace());
+		content.append(event.getPlace());
 		content.append("</td>");
 		
 		content.append("<td>");
-		content.append(event.getEventAdresse());
+		content.append(event.getAddress());
 		content.append("</td>");
 		
 		content.append("</tr>");
