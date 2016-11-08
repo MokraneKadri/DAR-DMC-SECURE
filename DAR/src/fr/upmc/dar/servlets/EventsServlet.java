@@ -2,6 +2,7 @@ package fr.upmc.dar.servlets;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -150,6 +151,7 @@ public class EventsServlet extends HttpServlet {
 		List<Event> list = DAOFactory.createEventDao().getAllEvents();
 		while (list.size() > Integer.parseInt(request.getParameter("limit")))
 			list.remove(0);
+		Collections.reverse(list);
 		request.setAttribute("actus", list);
 		request.getRequestDispatcher("/jsp/actus.jsp").forward(request, response);
 	}

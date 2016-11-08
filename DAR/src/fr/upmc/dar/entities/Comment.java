@@ -23,6 +23,10 @@ public class Comment {
 	
 	private String commentContent;
 	
+	@Column(columnDefinition="DATETIME")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date commentDate;
+	
 	public Comment(User creator, String commentContent) {
 		super();
 		this.creator = creator;
@@ -67,9 +71,7 @@ public class Comment {
 		this.commentDate = commentDate;
 	}
 	
-	@Column(columnDefinition="DATETIME")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date commentDate;
+
 	
 	
 }
