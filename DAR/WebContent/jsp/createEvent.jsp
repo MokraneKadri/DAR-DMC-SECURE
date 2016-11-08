@@ -400,28 +400,42 @@
 					<h4 class="modal-title">Rechercher un endroit !</h4>
 				</div>
 				<div class="modal-body">
+					<div class="well-searchbox">
 					<div class="row">
-						<form action="javascript:(function(){return;})()" method="get"
+						<form class="form-horizontal" role="form"
+							action="javascript:(function(){return;})()" method="get"
 							OnSubmit="javascript:searchevent(this)">
-							<div class="col-sm-8 col-sm-offset-2">
-								<div class="form-group">
-									<label class="col-sm-4 control-label">
-										Type de Lieu :</label>
-									<div class="col-sm-5">
-										<input type="text" class="form-control" name="lieu"
-											id="lieu" placeholder="Bar... Restaurant..." />
-									</div>
+
+							<div class="form-group">
+								<label class="col-sm-4 control-label"> Type de Lieu :</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" name="lieu" id="lieu"
+										placeholder="Bar... Restaurant..." />
 								</div>
 							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label">Ville:</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" name="ville" id="ville"
+										placeholder="Paris ... Créteil..." />
+								</div>
+							</div>
+							<div class="col-sm-offset-4 col-sm-5">
+								<button type="submit" class="btn btn-primary" name="find"
+									value="find">Chercher !</button>
+							</div>
 
-							<button type="submit" class="btn btn-primary" name="find"
-								value="find">Chercher !</button>
+
 						</form>
 					</div>
-				</div>
-				<div id='notifier-modal'></div>
-				<div class="modal-footer">
-					<div class="form-group"></div>
+					</div>
+					</div>
+					<div id='notifier-modal'></div>
+					<div class="modal-footer">
+						<div class="form-group"></div>
+
+					</div>
+
 
 				</div>
 			</div>

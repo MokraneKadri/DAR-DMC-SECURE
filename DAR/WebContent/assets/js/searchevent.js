@@ -1,15 +1,16 @@
 function searchevent(form) 
 {
 	var lieu = form.lieu.value;
+	var ville = form.ville.value;
 
-	search(lieu);
+	search(lieu,ville);
 }
-function search(value) 
+function search(value1,value2) 
 {
 	$.ajax({
 		type : "POST",
 		url : "/DAR/APIsearch",
-		data : {lieu : value},
+		data : {lieu : value1, ville:value2},
 		dataType : "JSON",
 		success : Process,
 		error : function(xhr,status,errorthrown){

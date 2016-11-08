@@ -18,7 +18,7 @@ import fr.upmc.dar.entities.Business;
 public final class YelpBusinessSearch {
 
 
-	public static String access_token="";
+	public static String access_token="x7ITo5nUoHqc2tgcj9m-3xYrlHVIfW1nfRkuwl5v4PscvlDOh7izAy_dMNfiz0jYK-_r5QGQLRn0GNXFpM5qX7cU6zZ8zGeat8IWRptjDP0x2I02asL6L7n6sXMOWHYx";
 	public static String token_type= "Bearer";
 	public static int expires_in=15551998;
 	public static String generated="07/11/2016";

@@ -1,6 +1,8 @@
 package fr.upmc.dar.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -41,39 +43,68 @@ public class APIsearch extends HttpServlet {
 
 		String lieu = request.getParameter("lieu");
 		System.out.println("Recherche de : "+lieu);
+		String ville = request.getParameter("ville");
+		System.out.println("Recherche dans la ville de  : "+ville);
 		JSONObject res=new JSONObject();
 		try {
-			List<String> businessIds=YelpBusinessSearch.searchBuisnessIds(lieu, "Paris", 5);
+			List<String> businessIds=YelpBusinessSearch.searchBuisnessIds(lieu,ville, 5);
 			List<Business> bs=YelpBusinessSearch.idsToBusiness(businessIds);
 
 			Gson gson = new Gson();
 			JSONArray array=new JSONArray();
 			String directRes="";
+			
+			String htmltab = "<table class=\"table table-hover\">"+
+           "<thead><tr><th>Etablissement </th><th>Horaire D'ouverture</th><th>Adresse</th><th>ville</th><th>Code Postal</th><th>Action</th>"+
+            "</tr></thead><tbody>";
+       
+			directRes+=htmltab;
 			for(Business b : bs){
 				if(b!=null){
 					JSONObject json=new JSONObject(gson.toJson(b));
 					array.put(json);
 
-
-					String h="Lu : "+b.normalizeHour(b.getOp0())+"-"+b.normalizeHour(b.getCl0());
-					h+="| Ma : "+b.normalizeHour(b.getOp1())+"-"+b.normalizeHour(b.getCl1());
-					h+="| Me : "+b.normalizeHour(b.getOp2())+"-"+b.normalizeHour(b.getCl2());
-					h+="| Je : "+b.normalizeHour(b.getOp3())+"-"+b.normalizeHour(b.getCl3());
-					h+="| Ve : "+b.normalizeHour(b.getOp4())+"-"+b.normalizeHour(b.getCl4());
-					h+="| Sa : "+b.normalizeHour(b.getOp5())+"-"+b.normalizeHour(b.getCl5());
-					h+="| Di : "+b.normalizeHour(b.getOp6())+"-"+b.normalizeHour(b.getCl6());
-
-					directRes+="<div class=\"media-body\">"+
-							"<h4 class=\"media-heading\"> "+b.getName()+"</h4>"+
-							"<p class=\"text-right\"><b>Adresse </b>:" + b.getStreet() +"</p>"+
-							"<p> <b>Code Postale</b>: " + b.getZipCode() +" </p>"+
-							"<p> <b>Horaires </b>:"  +h + "</p>"+
-							"<a href=\""+b.getEstablishmentWebsite()+" target=\"_blank\"> Voir </a>"+
-							"<p class=\"text-right\"><a href=\"\" class=\"btn btn-primary\">Choisir</a> </p>"+
-							"</div>";
+					
+					String h="<ul><li> |Lu : "+b.normalizeHour(b.getOp0())+"-"+b.normalizeHour(b.getCl0())+"</li>";
+					h+="<li>| Ma : "+b.normalizeHour(b.getOp1())+"-"+b.normalizeHour(b.getCl1())+"</li>";
+					h+="<li>| Me : "+b.normalizeHour(b.getOp2())+"-"+b.normalizeHour(b.getCl2())+"</li>";
+					h+="<li>| Je : "+b.normalizeHour(b.getOp3())+"-"+b.normalizeHour(b.getCl3())+"</li>";
+					h+="<li>| Ve : "+b.normalizeHour(b.getOp4())+"-"+b.normalizeHour(b.getCl4())+"</li>";
+					h+="<li>| Sa : "+b.normalizeHour(b.getOp5())+"-"+b.normalizeHour(b.getCl5())+"</li>";
+					h+="<li>| Di : "+b.normalizeHour(b.getOp6())+"-"+b.normalizeHour(b.getCl6())+"</li></ul>";
+					
+					HashMap<String,String> horaires = new HashMap<String,String>();
+					horaires.put("Lu", b.normalizeHour(b.getOp0())+"-"+b.normalizeHour(b.getCl0()));
+					horaires.put("Ma",b.normalizeHour(b.getOp1())+"-"+b.normalizeHour(b.getCl1()));
+					horaires.put("Me",b.normalizeHour(b.getOp2())+"-"+b.normalizeHour(b.getCl2()));
+					horaires.put("Je",b.normalizeHour(b.getOp3())+"-"+b.normalizeHour(b.getCl3()));
+					horaires.put("Ve",b.normalizeHour(b.getOp4())+"-"+b.normalizeHour(b.getCl4()));
+					horaires.put("Sa",b.normalizeHour(b.getOp5())+"-"+b.normalizeHour(b.getCl5()));
+					horaires.put("Di",b.normalizeHour(b.getOp6())+"-"+b.normalizeHour(b.getCl6()));
+					List<String> days= new ArrayList<String>();
+					for(String hh:horaires.keySet()){
+						if(horaires.get(hh).equals(b.normalizeHour(b.getOp0())+"-"+b.normalizeHour(b.getCl0()))){
+							days.add(hh);
+						}
+					}
+					
+					if(days.size()==7){
+						h="";
+						h="Toute La semaine"+b.normalizeHour(b.getOp0())+"-"+b.normalizeHour(b.getCl0());
+					}
+					directRes+="<tr><td>"+b.getName()+"</td><td>"+h +"</td><td>"+b.getStreet()+"</td><td>"+b.getCity()+"</td><td>"+b.getZipCode()+"</td><td><a href=\"\" class=\"btn btn-primary\">Choisir</a> </td></tr>";
+//					directRes+="<div class=\"media-body\">"+
+//							"<h4 class=\"media-heading\"> "+b.getName()+"</h4>"+
+//							"<p class=\"text-right\"><b>Adresse </b>:" + b.getStreet() +"</p>"+
+//							"<p> <b>Code Postale</b>: " + b.getZipCode() +" </p>"+
+//							"<p> <b>Horaires </b>:"  +h + "</p>"+
+//							"<a href=\""+b.getEstablishmentWebsite()+" target=\"_blank\"> Voir </a>"+
+//							"<p class=\"text-right\"><a href=\"\" class=\"btn btn-primary\">Choisir</a> </p>"+
+//							"</div>";
 				}
 			}
 			
+			directRes+="</tbody> </table> ";
 			System.out.println("Envoie : "+array.length() +" | "+directRes.length());
 
 			res.put("result", array);
