@@ -64,9 +64,16 @@
 			.done( function (data) {
 				console.log(data);
 				var result = $.parseJSON(data);
-				console.log(data);
+				console.log(result);
 				
 				$("#resultset").html("");
+				
+				if (result.length == 0) {
+					$("#resultset").append("Pas d'événements trouvés avec ces critères de recherche");
+					setTimeout(() => {
+						$("#resultset").html("");
+					}, 3000);
+				}
 				
 				$.each(result, function (i, event) {
 					console.log(event);
