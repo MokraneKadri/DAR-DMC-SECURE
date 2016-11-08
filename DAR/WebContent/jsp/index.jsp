@@ -33,7 +33,7 @@
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 <!-- style du footer  -->
 
-<link rel="stylesheet" href="http://localhost:8080/DAR/assets/css/landingpage.css">
+<link rel="stylesheet" href="/DAR/assets/css/landingpage.css">
  <link rel="stylesheet" href="/DAR/assets/css/pageFooter.css">
 
 <!-- Fin Styles  -->
