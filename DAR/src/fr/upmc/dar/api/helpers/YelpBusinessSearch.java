@@ -4,6 +4,9 @@ package fr.upmc.dar.api.helpers;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -13,6 +16,7 @@ import org.scribe.model.Response;
 import org.scribe.model.Verb;
 import org.scribe.oauth.OAuthService;
 
+import fr.upmc.dar.dao.BusinessDAO;
 import fr.upmc.dar.entities.Business;
 
 public final class YelpBusinessSearch {
@@ -25,6 +29,8 @@ public final class YelpBusinessSearch {
 
 	public static String SEARCH = "https://api.yelp.com/v3/businesses/search";
 	public static String BUSINESS = "https://api.yelp.com/v3/businesses/";
+
+	private final static BusinessDAO businessDAO =new BusinessDAO(); 
 
 
 	public static OAuthService service=
@@ -61,7 +67,7 @@ public final class YelpBusinessSearch {
 		JSONArray businesses = (JSONArray) json.get("businesses");
 		return businesses;
 	}
-	
+
 	public static List<String> searchBuisnessIds(String term,String location,int limit) throws JSONException{
 		ArrayList<String> Ids=new ArrayList<String>();
 		JSONArray businesses = searchBusinessToJSON(term,location,limit);
@@ -79,74 +85,150 @@ public final class YelpBusinessSearch {
 		Response response = request.send();
 		return response.getBody();
 	}
+
 	public static List<Business> idsToBusiness(List<String> ids) throws JSONException{
 		List<Business> b=new ArrayList<Business>();
-		
+
 		for(String id : ids){
 			Business bus=idToBusiness(id);
 			if(bus!=null)
-			b.add(bus);
+				b.add(bus);
 		}
 
 		return b;
 	}
+
 	public static Business idToBusiness(String id) throws JSONException{
 		Business business=null;
+
+		if((business=businessDAO.getBusiness(id))!=null){
+			return business;
+		}else{
+			try{
+				OAuthRequest request=new OAuthRequest(Verb.GET, BUSINESS+id);
+				request.addHeader("Authorization", token_type+" "+access_token);
+				Response response = request.send();
+				JSONObject json = new JSONObject(response.getBody());
+
+				JSONArray hours=json.getJSONArray("hours");
+				JSONObject coordinates=json.getJSONObject("coordinates");
+				JSONObject locationJSON=json.getJSONObject("location");
+				String name=json.getString("name");
+				String street=locationJSON.getString("address1");
+				String zipCode=locationJSON.getString("zip_code");
+				String city=locationJSON.getString("city");
+				String phone=json.getString("phone");
+				String longitude=coordinates.getString("longitude");
+				String latitude=coordinates.getString("latitude");
+				String establishmentWebsite=json.getString("url");
+
+				business=new Business(id,name,street,zipCode,city,phone, longitude, latitude,
+						establishmentWebsite);
+
+				JSONObject res= hours.getJSONObject(0);
+
+				if(res.getString("hours_type").toString().compareTo("REGULAR")==0){
+					JSONArray open=res.getJSONArray("open");
+
+					try{
+						business.setOp0((open.getJSONObject(0)).getString("start"));
+						business.setCl0((open.getJSONObject(0)).getString("end"));
+
+						business.setOp1((open.getJSONObject(1)).getString("start"));
+						business.setCl1((open.getJSONObject(1)).getString("end"));
+
+						business.setOp2((open.getJSONObject(2)).getString("start"));
+						business.setCl2((open.getJSONObject(2)).getString("end"));
+
+						business.setOp3((open.getJSONObject(3)).getString("start"));
+						business.setCl3((open.getJSONObject(3)).getString("end"));
+
+						business.setOp4((open.getJSONObject(4)).getString("start"));
+						business.setCl4((open.getJSONObject(4)).getString("end"));
+
+						business.setOp5((open.getJSONObject(5)).getString("start"));
+						business.setCl5((open.getJSONObject(5)).getString("end"));
+
+						business.setOp6((open.getJSONObject(6)).getString("start"));
+						business.setCl6((open.getJSONObject(6)).getString("end"));
+					}catch(Exception e){
+						businessDAO.addBusiness(business);
+					}
+				}
+				businessDAO.addBusiness(business);
+			}catch(Exception e){
+				return null;
+			}
+			return business;
+		}
+	}
+
+	public static Business getBusinessObject(String id) throws JSONException{
+		Business business=null;
+
 		try{
-		OAuthRequest request=new OAuthRequest(Verb.GET, BUSINESS+id);
-		request.addHeader("Authorization", token_type+" "+access_token);
-		Response response = request.send();
-		JSONObject json = new JSONObject(response.getBody());
-		
-		JSONArray hours=json.getJSONArray("hours");
-		JSONObject coordinates=json.getJSONObject("coordinates");
-		JSONObject locationJSON=json.getJSONObject("location");
-		String name=json.getString("name");
-		String street=locationJSON.getString("address1");
-		String zipCode=locationJSON.getString("zip_code");
-		String city=locationJSON.getString("city");
-		String phone=json.getString("phone");
-		String longitude=coordinates.getString("longitude");
-		String latitude=coordinates.getString("latitude");
-		String establishmentWebsite=json.getString("url");
-		
-		business=new Business(id,name,street,zipCode,city,phone, longitude, latitude,
-				 establishmentWebsite);
-		
+			OAuthRequest request=new OAuthRequest(Verb.GET, BUSINESS+id);
+			request.addHeader("Authorization", token_type+" "+access_token);
+			Response response = request.send();
+			JSONObject json = new JSONObject(response.getBody());
+
+			JSONArray hours=json.getJSONArray("hours");
+			JSONObject coordinates=json.getJSONObject("coordinates");
+			JSONObject locationJSON=json.getJSONObject("location");
+			String name=json.getString("name");
+			String street=locationJSON.getString("address1");
+			String zipCode=locationJSON.getString("zip_code");
+			String city=locationJSON.getString("city");
+			String phone=json.getString("phone");
+			String longitude=coordinates.getString("longitude");
+			String latitude=coordinates.getString("latitude");
+			String establishmentWebsite=json.getString("url");
+
+			business=new Business(id,name,street,zipCode,city,phone, longitude, latitude,
+					establishmentWebsite);
+
 			JSONObject res= hours.getJSONObject(0);
 
 			if(res.getString("hours_type").toString().compareTo("REGULAR")==0){
 				JSONArray open=res.getJSONArray("open");
-				
+
 				try{
-				business.setOp0((open.getJSONObject(0)).getString("start"));
-				business.setCl0((open.getJSONObject(0)).getString("end"));
-				
-				business.setOp1((open.getJSONObject(1)).getString("start"));
-				business.setCl1((open.getJSONObject(1)).getString("end"));
-				
-				business.setOp2((open.getJSONObject(2)).getString("start"));
-				business.setCl2((open.getJSONObject(2)).getString("end"));
-				
-				business.setOp3((open.getJSONObject(3)).getString("start"));
-				business.setCl3((open.getJSONObject(3)).getString("end"));
-				
-				business.setOp4((open.getJSONObject(4)).getString("start"));
-				business.setCl4((open.getJSONObject(4)).getString("end"));
-				
-				business.setOp5((open.getJSONObject(5)).getString("start"));
-				business.setCl5((open.getJSONObject(5)).getString("end"));
-				
-				business.setOp6((open.getJSONObject(6)).getString("start"));
-				business.setCl6((open.getJSONObject(6)).getString("end"));
+					business.setOp0((open.getJSONObject(0)).getString("start"));
+					business.setCl0((open.getJSONObject(0)).getString("end"));
+
+					business.setOp1((open.getJSONObject(1)).getString("start"));
+					business.setCl1((open.getJSONObject(1)).getString("end"));
+
+					business.setOp2((open.getJSONObject(2)).getString("start"));
+					business.setCl2((open.getJSONObject(2)).getString("end"));
+
+					business.setOp3((open.getJSONObject(3)).getString("start"));
+					business.setCl3((open.getJSONObject(3)).getString("end"));
+
+					business.setOp4((open.getJSONObject(4)).getString("start"));
+					business.setCl4((open.getJSONObject(4)).getString("end"));
+
+					business.setOp5((open.getJSONObject(5)).getString("start"));
+					business.setCl5((open.getJSONObject(5)).getString("end"));
+
+					business.setOp6((open.getJSONObject(6)).getString("start"));
+					business.setCl6((open.getJSONObject(6)).getString("end"));
 				}catch(Exception e){
-					
 				}
 			}
 		}catch(Exception e){
-				return null;
-			}
+			return null;
+		}
 		return business;
 	}
+	
+	public static void updateBusiness(String id) throws JSONException{
+		try{
+		Business b = getBusinessObject(id);
+		businessDAO.updateBusiness(b);
+		}catch(Exception e){};
+	}
+
 }
+
 
