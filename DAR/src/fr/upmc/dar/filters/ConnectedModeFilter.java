@@ -89,7 +89,7 @@ public class ConnectedModeFilter implements Filter {
 
 		
 		if(login !=null && isAccesGranted4ConnectedUsers( requestedURI, ConnectedUserRestrictedURLs)!=true){
-			redirectURI = "http://localhost:8080/DAR/events?mode=actus&limit=15";
+			redirectURI = "/DAR/events?mode=actus&limit=15";
 			//request.getRequestDispatcher(redirectURI).forward(request, response);
 			httpresponse.sendRedirect(redirectURI);// redirection 
 		
