@@ -1,8 +1,12 @@
 package fr.upmc.dar.entities;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Business {
@@ -54,7 +58,40 @@ public class Business {
 	private String op6;
 	@Column
 	private String cl6;
+	
+	@Column(columnDefinition="DATETIME")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date date;
 
+	
+	public Business() {
+		super();
+	}
+
+	public Business(String id,String name, String street, String zipCode, String city,String phone, String longitude, String latitude,
+			String establishmentWebsite) {
+		this.id=id;
+		this.name = name;
+		this.phone=phone;
+		this.street = street;
+		this.zipCode = zipCode;
+		this.city = city;
+		this.longitude = longitude;
+		this.latitude = latitude;
+		this.establishmentWebsite = establishmentWebsite;
+		this.date=new Date();
+
+	}
+
+	
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
 
 	public String getOp0() {
 		return op0;
@@ -166,24 +203,6 @@ public class Business {
 
 	public void setCl6(String cl6) {
 		this.cl6 = cl6;
-	}
-
-	public Business() {
-		super();
-	}
-
-	public Business(String id,String name, String street, String zipCode, String city,String phone, String longitude, String latitude,
-			String establishmentWebsite) {
-		this.id=id;
-		this.name = name;
-		this.phone=phone;
-		this.street = street;
-		this.zipCode = zipCode;
-		this.city = city;
-		this.longitude = longitude;
-		this.latitude = latitude;
-		this.establishmentWebsite = establishmentWebsite;
-
 	}
 
 	public String getId() {

@@ -1,8 +1,12 @@
 package fr.upmc.dar.entities;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class University {
@@ -22,6 +26,10 @@ public class University {
 	@Column
 	private String latitude;
 	
+	@Column(columnDefinition="DATETIME")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date date;
+	
 	public University() {
 		super();
 	}
@@ -36,12 +44,14 @@ public class University {
 		this.city = city;
 		this.longitude = longitude;
 		this.latitude = latitude;
+		this.date=new Date();
 	}
 
 	public University(String id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.date=new Date();
 	}
 
 	public String getId() {
@@ -99,5 +109,12 @@ public class University {
 	public void setLatitude(String latitude) {
 		this.latitude = latitude;
 	}
+	
+	@Override
+	public String toString() {
+		return "University [id=" + id + ", name=" + name + ", street=" + street + ", zipCode=" + zipCode + ", city="
+				+ city + ", longitude=" + longitude + ", latitude=" + latitude + "]";
+	}
+
 	
 }
