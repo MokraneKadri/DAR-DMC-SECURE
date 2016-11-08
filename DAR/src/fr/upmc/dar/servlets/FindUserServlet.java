@@ -32,6 +32,7 @@ public class FindUserServlet extends HttpServlet {
 				System.out.println("request : "+search+ " : "+value);
 				JSONObject rep=UserDao.getUsersJSONProfileWhere(search,value);
 				js.put("result", rep);
+				js.put("idv", request.getSession().getAttribute("idlogin"));
 				js.put("response", 1);
 				//System.out.println(rep);
 			}

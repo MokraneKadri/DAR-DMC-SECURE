@@ -11,13 +11,13 @@ import fr.upmc.dar.tools.PasswordEncryptor;
 
 @Entity
 public class User {
-	
+
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected Integer id;
 
 	@Column
 	private String firstName;
-	
+
 	@Column
 	private String lastName;
 
@@ -121,7 +121,9 @@ public class User {
 	}
 
 
-
+	public boolean equals (User other){
+		return this.getId()==other.getId();
+	}
 
 
 

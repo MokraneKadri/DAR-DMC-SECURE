@@ -23,6 +23,7 @@ public class FriendsManagementServlet extends HttpServlet{
 		doPost(request, response);
 	}
 
+	@SuppressWarnings("unchecked")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		try{
@@ -47,8 +48,10 @@ public class FriendsManagementServlet extends HttpServlet{
 							FriendsDao.removeRequest(otherId, userId);
 							FriendsDao.removeRequest(userId, otherId);
 							jsResponse.put("success", "Friend added");
+							response.sendRedirect("/DAR/jsp/pendingrequests.jsp");
 						}else{
 							jsResponse.put("success", "You don't have any request from this user");
+							response.sendRedirect("/DAR/jsp/pendingrequests.jsp");
 						}
 					}else{
 						jsResponse.put("success", "Already Friend");
@@ -57,19 +60,24 @@ public class FriendsManagementServlet extends HttpServlet{
 				case 2 : // removeFriend
 					FriendsDao.removeFriend(userId,otherId);
 					jsResponse.put("success", "Friend removed");
+					response.sendRedirect("/DAR/jsp/myfriends.jsp");
 					break;
 				case 3 : // addRequest
 					// From -> To
 					if(!FriendsDao.areFriends(userId, otherId)){
-						FriendsDao.removeRequest(userId,otherId);
+						FriendsDao.addRequest(userId,otherId);
 						jsResponse.put("success", "Friend request sent");
+						response.sendRedirect("/DAR/jsp/finduser.jsp");
 					}else{
 						jsResponse.put("success", "Already Friend");
+						response.sendRedirect("/DAR/jsp/myfriends.jsp");
 					}
 					break;
 				case 4 : // removeRequest
 					//From -> To
 					FriendsDao.removeRequest(otherId, userId);
+					jsResponse.put("success","Request removed");
+					response.sendRedirect("/DAR/jsp/pendingrequests.jsp");
 					break ;
 				default:
 					jsResponse.put("error", "type of request unknown");

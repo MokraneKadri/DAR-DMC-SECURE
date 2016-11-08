@@ -25,5 +25,6 @@ public interface IFriendsDao {
 
 	void createFriendsRequests(User from, User to);
 	boolean areFriends(String user1, String user2) throws NumberFormatException, Exception;
+	List<Friends> getFriendsOfID(String user1, String user2);
 	
 }

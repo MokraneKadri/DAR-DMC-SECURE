@@ -58,16 +58,22 @@ function ProcessFindUser(rep)
 	}else{
 		for (var i = 0; i < jsonData.users.length; i++) {
 			var user = jsonData.users[i];
-
-			bodymessage = bodymessage+
-			"<tr>" +
-			"<td>"+user.name+"</td>" +
-			"<td>"+user.firstname+"</td>"+
-			"<td><a href=\"/DAR/memberprofile.jsp?id="+user.id+"\"> Voir Profil </a></td>"+
-			"<td><a href=\"/DAR/friendsmanagement?typeOfRequest=2&id="+user.id+"\"> Ajouter  Amis </a></td>"
-			"</tr>";
+			if(user.id==rep.idv && jsonData.users.length==1){
+				message="Aucun Résultat";
+				bodymessage="";
+				endmessage="";
+			}else{
+				bodymessage = bodymessage+
+				"<tr>" +
+				"<td>"+user.name+"</td>" +
+				"<td>"+user.firstname+"</td>"+
+				"<td><a href=\"/DAR/memberprofile.jsp?id="+user.id+"\"> Voir Profil </a></td>"+
+				"<td><a href=\"/DAR/friendsmanagement?typeOfRequest=3&id="+user.id+"\"> Envoyer Demande </a></td>"
+				"</tr>";
+			}
 		}
 	}
+
 	var div=(message+bodymessage+endmessage);
 	func_message(div);
 }
