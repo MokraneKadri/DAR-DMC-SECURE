@@ -63,8 +63,51 @@ public class Event implements IEntity {
 	@ManyToOne(cascade = CascadeType.ALL)
 	protected Place place;
 	
+	@ManyToOne
+	protected Business business;
+	
 	public Event() {
 		super();
+	}
+	
+	public Event(	
+			User owner,
+			String name, 
+			String privacy,
+			String description,
+			String date, 
+			String theme, 
+			String places,
+			String address,
+			Place place,
+			Business business) throws Exception 
+	{
+		this.creator = owner;
+		this.name = name;
+		switch (privacy) {
+		case "public":
+			this.privacy = EventVisibility.PUBLIC;
+			break;
+		case "private":
+			this.privacy = EventVisibility.PRIVATE;
+			break;
+		case "group":
+			this.privacy = EventVisibility.GROUP;
+			break;
+		case "university":
+			this.privacy = EventVisibility.INTRA_UNI;
+			break;
+		default:
+			throw new Exception("wrong privacy : " + privacy);
+		}
+		this.description = description;
+		this.date = date;
+		this.theme = theme;
+		this.places = places;
+		this.address = address;
+		this.candidates = new ArrayList<>();
+		this.comments = new ArrayList<>();
+		this.place = place;
 	}
 	
 	public Event(	
@@ -104,6 +147,7 @@ public class Event implements IEntity {
 		this.candidates = new ArrayList<>();
 		this.comments = new ArrayList<>();
 		this.place = place;
+		this.business = null;
 	}
 
 	
@@ -227,6 +271,18 @@ public class Event implements IEntity {
 
 	public void setPlace(Place place) {
 		this.place = place;
+	}
+
+	public Business getBusiness() {
+		return business;
+	}
+
+	public void setBusiness(Business business) {
+		this.business = business;
+	}
+	
+	public boolean isYelpEvent() {
+		return business != null;
 	}
 
 	@Override
