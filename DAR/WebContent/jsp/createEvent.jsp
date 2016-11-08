@@ -109,7 +109,7 @@
 										name="eventname" placeholder="intitulé de l'évenement" />
 								</div>
 							</div>
-
+							
 							<div class="form-group">
 								<label class="col-sm-4 control-label" for="eventdate">
 									Date :</label>
@@ -118,52 +118,16 @@
 										id="eventdate" />
 								</div>
 							</div>
-							<!-- Modal -->
-
-							<div class="col-sm-5 col-sm-offset-4">
-								<button type="button" class="btn btn-info btn-lg btn-block"
-									data-toggle="modal" data-target="#myModal">Rechercher
-									un endroit !</button>
-							</div>
 
 							<div class="form-group">
-								<label class="col-sm-4 control-label" for="eventplace">Type
-									de lieu :</label>
+								<label class="col-sm-4 control-label" for="eventhour">
+									Heure :</label>
 								<div class="col-sm-5">
-
-									<select id="eventplace" name="eventplace" class="form-control"
-										autocomplete="on">
-										<option value="" disabled selected>choisir le lieu</option>
-										<option value="0">Bar</option>
-										<option value="1">Restaurant</option>
-										<option value="2">Université</option>
-										<option value="3">Autres...</option>
-									</select>
-
-								</div>
-
-
-							</div>
-
-							<div class="form-group">
-								<label class="col-sm-4 control-label" for="eventplacename">
-									Nom du Lieu :</label>
-								<div class="col-sm-5">
-									<input type="text" class="form-control" id="eventplacename"
-										name="eventplacename" placeholder="Ex: Pizza FIVE" />
+									<input type="date" class="form-control" name="eventhour"
+										id="eventhour" />
 								</div>
 							</div>
-
-
-							<div class="form-group">
-								<label class="col-sm-4 control-label" for="eventaddress">Adresse
-									Complète:</label>
-								<div class="col-sm-5">
-									<input type="text" class="form-control" id="eventaddress"
-										name="eventaddress" placeholder="l'adresse complète du lieu" />
-								</div>
-							</div>
-
+							
 							<div class="form-group">
 								<label class="col-sm-4 control-label" for="eventtheme">Thème
 									:</label>
@@ -177,7 +141,8 @@
 									</select>
 								</div>
 							</div>
-							<div class="form-group">
+							
+								<div class="form-group">
 								<label class="col-sm-4 control-label" for="eventdescription">Description
 									:</label>
 								<div class="col-sm-5">
@@ -213,6 +178,59 @@
 										type="radio" name="eventinvites" value="3" checked="true">
 									je n'invite Personne!</br> </select>
 
+								</div>
+							</div>
+							
+
+							<!-- Modal -->
+
+							<div class="col-sm-5 col-sm-offset-4">
+								<button type="button" class="btn btn-info btn-lg btn-block"
+									data-toggle="modal" data-target="#myModal">Rechercher
+									un endroit !</button>
+							</div>
+							<div class="col-sm-5 "
+								style="width: 100%; height: 15px; border-bottom: 1px solid black; text-align: center; margin-bottom:25px;margin-top:10px">
+								<span
+									style="font-size: 20px; background-color: #F3F5F6; padding: 0px 10px;">
+									OU 
+								</span>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label" for="eventplace">Type
+									de lieu :</label>
+								<div class="col-sm-5">
+
+									<select id="eventplace" name="eventplace" class="form-control"
+										autocomplete="on">
+										<option value="" disabled selected>choisir le lieu</option>
+										<option value="0">Bar</option>
+										<option value="1">Restaurant</option>
+										<option value="2">Université</option>
+										<option value="3">Autres...</option>
+									</select>
+
+								</div>
+
+
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-4 control-label" for="eventplacename">
+									Nom du Lieu :</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id="eventplacename"
+										name="eventplacename" placeholder="Ex: Pizza FIVE" />
+								</div>
+							</div>
+
+
+							<div class="form-group">
+								<label class="col-sm-4 control-label" for="eventaddress">Adresse
+									Complète:</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id="eventaddress"
+										name="eventaddress" placeholder="l'adresse complète du lieu" />
 								</div>
 							</div>
 
@@ -401,46 +419,46 @@
 				</div>
 				<div class="modal-body">
 					<div class="well-searchbox">
-					<div class="row">
-						<form class="form-horizontal" role="form"
-							action="javascript:(function(){return;})()" method="get"
-							OnSubmit="javascript:searchevent(this)">
+						<div class="row">
+							<form class="form-horizontal" role="form"
+								action="javascript:(function(){return;})()" method="get"
+								OnSubmit="javascript:searchevent(this)">
 
-							<div class="form-group">
-								<label class="col-sm-4 control-label"> Type de Lieu :</label>
-								<div class="col-sm-5">
-									<input type="text" class="form-control" name="lieu" id="lieu"
-										placeholder="Bar... Restaurant..." />
+								<div class="form-group">
+									<label class="col-sm-4 control-label"> Type de Lieu :</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" name="lieu" id="lieu"
+											placeholder="Bar... Restaurant..." />
+									</div>
 								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-4 control-label">Ville:</label>
-								<div class="col-sm-5">
-									<input type="text" class="form-control" name="ville" id="ville"
-										placeholder="Paris ... Créteil..." />
+								<div class="form-group">
+									<label class="col-sm-4 control-label">Ville:</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" name="ville"
+											id="ville" placeholder="Paris ... Créteil..." />
+									</div>
 								</div>
-							</div>
-							<div class="col-sm-offset-4 col-sm-5">
-								<button type="submit" class="btn btn-primary" name="find"
-									value="find">Chercher !</button>
-							</div>
+								<div class="col-sm-offset-4 col-sm-5">
+									<button type="submit" class="btn btn-primary" name="find"
+										value="find">Chercher !</button>
+								</div>
 
 
-						</form>
+							</form>
+						</div>
 					</div>
-					</div>
-					</div>
-					<div id='notifier-modal'></div>
-					<div class="modal-footer">
-						<div class="form-group"></div>
-
-					</div>
-
+				</div>
+				<div id='notifier-modal'></div>
+				<div class="modal-footer">
+					<div class="form-group"></div>
 
 				</div>
-			</div>
 
+
+			</div>
 		</div>
+
+	</div>
 	</div>
 </body>
 
