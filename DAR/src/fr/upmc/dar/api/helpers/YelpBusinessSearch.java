@@ -45,11 +45,10 @@ public final class YelpBusinessSearch {
 		access_token=token;
 	}
 
-	public static String searchBusiness(String term, String location,int limit){
+	public static String searchBusiness(String term,int limit){
 		OAuthRequest request=new OAuthRequest(Verb.GET, SEARCH);
 		request.addHeader("Authorization", token_type+" "+access_token);
 		request.addQuerystringParameter("term", term);
-		request.addQuerystringParameter("location", location);
 		request.addQuerystringParameter("limit", String.valueOf(limit));
 		Response response = request.send();
 		return response.getBody();
