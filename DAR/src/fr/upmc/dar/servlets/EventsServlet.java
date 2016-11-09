@@ -141,10 +141,34 @@ public class EventsServlet extends HttpServlet {
 		DAOFactory.createEventDao().createEvent(event);
 	}
 	
+	/**
+	 * Appel à la page event.jsp d'un event particulier. <br/>
+	 * 
+	 * Soit <em> x </em> un entier naturel > 0 <br/> 
+	 * Requête : /DAR/events?mode=event&id=<em>x</em> <br/>
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	
 	private void event(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if (request.getParameter("id") != null)
 			request.getRequestDispatcher("jsp/event.jsp?id=" + request.getParameter("id")).forward(request, response);
 	}
+	
+	/**
+	 * Appel à la page actus.jsp proposant une liste d'événements récents. <br/>
+	 * 
+	 * Soit <em> x </em> un entier naturel > 0 <br/> 
+	 * Requête : /DAR/events?mode=actus&limit=<em>x</em> <br/>
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	
 	private void actus(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Event> list = DAOFactory.createEventDao().getAllEvents();
@@ -154,6 +178,18 @@ public class EventsServlet extends HttpServlet {
 		request.setAttribute("actus", list);
 		request.getRequestDispatcher("/jsp/actus.jsp").forward(request, response);
 	}
+	
+	/**
+	 * Retourne au client une liste JSON contenant soit tous les events soit qu'un.
+	 * 
+	 * Soit <em> x </em> un entier naturel > 0 <br/> 
+	 * Requête : /DAR/events?mode=list[&id=<em>x</em>]<br/>
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	
 	private void list(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		JSONArray array;
@@ -183,6 +219,20 @@ public class EventsServlet extends HttpServlet {
 			}
 		}
 	}
+	
+	/**
+	 * Retourne au client une liste JSON contenant des events selon des critères de recherche par mots clef
+	 *
+	 * Soit <em> # </em> du texte quelconque <br/> 
+	 * Requête : /DAR/events?mode=search[&name=#][&privacy=#][&description=#][&date=#][&theme=#][&places=#][&address=#]
+	 * 
+	 * Pour l'instant private doit être "private" | "public" | "university"
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	
 	private void search(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HashMap<String, List<Event>> recherche = new HashMap<>();
@@ -241,6 +291,15 @@ public class EventsServlet extends HttpServlet {
 		response.getWriter().print(array);
 	}
 	
+	/**
+	 * Request : /DAR/events?mode=create&name=#&privacy=#&description=#&date=#&theme=#&places=#&address=#&place_type=#&place_name=#[&business_id=#]
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	
 	private void create(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			User user = DAOFactory.createUserDao().findUserByUserName((String)request.getSession().getAttribute("login"));			
@@ -284,6 +343,15 @@ public class EventsServlet extends HttpServlet {
 
 	}
 	
+	/**
+	 *  Request : /DAR/events?mode=remove&id=#
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	
 	private void remove(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			User user = DAOFactory.createUserDao().findUserByUserName((String)request.getSession().getAttribute("login"));
@@ -299,6 +367,14 @@ public class EventsServlet extends HttpServlet {
 			response.getWriter().print(new Error("Echec de la suppression de l'event"));
 		}
 	}
+	
+	/**
+	 *  Request : /DAR/events?mode=update&id=#[&name=#&privacy=#&description=#&date=#&theme=#&places=#&address=#]
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	
 	private void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Integer id = Integer.valueOf(request.getParameter("id"));
@@ -318,6 +394,15 @@ public class EventsServlet extends HttpServlet {
 			response.getWriter().print(new Error("De la mise à jour de l'event"));
 		}
 	}
+	
+	/**
+	 * Request : /DAR/events?mode=comment&id=#&content=#
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	
 	private void comment(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		try {

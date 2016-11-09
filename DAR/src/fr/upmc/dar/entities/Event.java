@@ -1,5 +1,7 @@
 package fr.upmc.dar.entities;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -46,7 +48,7 @@ public class Event implements IEntity {
 	protected String description;
 	
 	@Column
-	protected String date;	
+	protected Date date;	
 	
 	@Column
 	protected String theme;
@@ -84,13 +86,13 @@ public class Event implements IEntity {
 			String address,
 			String placeType,
 			String place,
-			Business business)
+			Business business) throws ParseException
 	{
 		this.creator = owner;
 		this.name = name;
 		this.privacy = EventVisibility.stringToEventVisibility(privacy);
 		this.description = description;
-		this.date = date;
+		this.date = new SimpleDateFormat("dd/MM/yyyy").parse(date);
 		this.theme = theme;
 		this.places = places;
 		this.address = address;
@@ -112,13 +114,13 @@ public class Event implements IEntity {
 			String places,
 			String address,
 			String placeType,
-			String place) 
+			String place) throws ParseException 
 	{
 		this.creator = owner;
 		this.name = name;
 		this.privacy = EventVisibility.stringToEventVisibility(privacy);
 		this.description = description;
-		this.date = date;
+		this.date = new SimpleDateFormat("dd/MM/yyyy").parse(date);
 		this.theme = theme;
 		this.places = places;
 		this.address = address;
@@ -186,11 +188,11 @@ public class Event implements IEntity {
 		this.description = description;
 	}
 
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
