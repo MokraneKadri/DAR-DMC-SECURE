@@ -57,12 +57,11 @@ public class Event implements IEntity {
 	@Column
 	protected String address;
 	
-	/**
-	 * Attention ne pas se planter -> Place = Lieu ici
-	 */
+	@Column
+	String place;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	protected Place place;
+	@Column
+	String placeType;
 	
 	@ManyToOne
 	protected Business business;
@@ -83,7 +82,8 @@ public class Event implements IEntity {
 			String theme, 
 			String places,
 			String address,
-			Place place,
+			String placeType,
+			String place,
 			Business business)
 	{
 		this.creator = owner;
@@ -96,6 +96,7 @@ public class Event implements IEntity {
 		this.address = address;
 		this.candidates = new ArrayList<>();
 		this.comments = new ArrayList<>();
+		this.placeType = placeType;
 		this.place = place;
 		this.business = business;
 		this.timestamp = new Date();
@@ -110,7 +111,8 @@ public class Event implements IEntity {
 			String theme, 
 			String places,
 			String address,
-			Place place) 
+			String placeType,
+			String place) 
 	{
 		this.creator = owner;
 		this.name = name;
@@ -122,6 +124,7 @@ public class Event implements IEntity {
 		this.address = address;
 		this.candidates = new ArrayList<>();
 		this.comments = new ArrayList<>();
+		this.placeType = placeType;
 		this.place = place;
 		this.business = null;
 		this.timestamp = new Date();
@@ -202,6 +205,14 @@ public class Event implements IEntity {
 	public void setTheme(String theme) {
 		this.theme = theme;
 	}
+	
+	public String getPlaceType() {
+		return placeType;
+	}
+
+	public void setPlaceType(String placeType) {
+		this.placeType = placeType;
+	}
 
 	public String getPlaces() {
 		return places;
@@ -219,11 +230,11 @@ public class Event implements IEntity {
 		this.address = address;
 	}
 	
-	public Place getPlace() {
+	public String getPlace() {
 		return place;
 	}
 
-	public void setPlace(Place place) {
+	public void setPlace(String place) {
 		this.place = place;
 	}
 

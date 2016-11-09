@@ -112,7 +112,6 @@ public class EventsServlet extends HttpServlet {
 		}
 		
 		try {
-			Place place = new Place(request.getParameter("place_type"), request.getParameter("place_name"));
 			event = new Event(
 					user, 
 					request.getParameter("name"), 
@@ -122,7 +121,8 @@ public class EventsServlet extends HttpServlet {
 					request.getParameter("theme"), 
 					request.getParameter("places"), 
 					request.getParameter("address"),
-					place);
+					request.getParameter("place_type"),
+					request.getParameter("place_name"));
 		} catch (Exception e) {
 			e.printStackTrace();
 			response.getWriter().print(new Error("Echec de création de l'event"));
@@ -258,7 +258,8 @@ public class EventsServlet extends HttpServlet {
 						request.getParameter("theme"), 
 						request.getParameter("places"), 
 						request.getParameter("address"),
-						place);
+						request.getParameter("place_type"),
+						request.getParameter("place_name"));
 				DAOFactory.createEventDao().createEvent(event);
 			} else {
 				Business business = YelpBusinessSearch.idToBusiness(businessId);
@@ -271,7 +272,8 @@ public class EventsServlet extends HttpServlet {
 						request.getParameter("theme"), 
 						request.getParameter("places"), 
 						request.getParameter("address"),
-						place,
+						request.getParameter("place_type"),
+						request.getParameter("place_name"),
 						business);
 				DAOFactory.createEventDao().createEvent(event);
 			}
