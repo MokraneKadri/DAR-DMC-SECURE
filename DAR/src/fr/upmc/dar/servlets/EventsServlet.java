@@ -22,7 +22,6 @@ import fr.upmc.dar.dao.interfaces.IEventDao;
 import fr.upmc.dar.entities.Business;
 import fr.upmc.dar.entities.Comment;
 import fr.upmc.dar.entities.Event;
-import fr.upmc.dar.entities.Place;
 import fr.upmc.dar.entities.User;
 import fr.upmc.dar.enums.EventVisibility;
 import fr.upmc.dar.json.Warning;
@@ -244,8 +243,7 @@ public class EventsServlet extends HttpServlet {
 	
 	private void create(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			User user = DAOFactory.createUserDao().findUserByUserName((String)request.getSession().getAttribute("login"));
-			Place place = new Place(request.getParameter("place_type"), request.getParameter("place_name"));			
+			User user = DAOFactory.createUserDao().findUserByUserName((String)request.getSession().getAttribute("login"));			
 			String businessId = request.getParameter("business_id"); 
 
 			if (businessId == null) {
