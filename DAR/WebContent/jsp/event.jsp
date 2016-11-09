@@ -109,14 +109,14 @@
 		                    <i class="fa fa-calendar" aria-hidden="true"></i>
 		                    <b> Date : </b>
 		                </span>
-		                <%= event.getDate()%>
+		                <%= event.getDatetoString()%>
 		            </li>
 		            <li class="list-group-item">
 		                <span>
 		                    <i class="fa fa-university" aria-hidden="true"></i>
 		                    <b> Lieu :</b>
 		                </span>
-		                <%= event.getPlace().getName()%>
+		                <%= event.getPlace()%>
 		            </li>
 		            <li class="list-group-item">
 		                <span>

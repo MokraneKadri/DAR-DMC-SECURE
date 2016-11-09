@@ -89,4 +89,17 @@ public interface IDao<T> {
 		return list;
 	}
 	
+	default List<T> selectTuplesWhereFieldIs(Class<T> entity, String field, String sequence) {
+		String hql = "SELECT entities FROM " + entity.getCanonicalName() + " entities WHERE entities." + field + "=:sequence";
+		System.out.println(hql);
+		EntityManager entityManager = Persistence.createEntityManagerFactory(persistenceUnitName).createEntityManager();
+		@SuppressWarnings("unchecked")
+		Query<T> query = (Query<T>) entityManager.createQuery(hql);
+		query.setParameter("sequence", 1);
+		
+		List<T> list = (List<T>) query.getResultList();
+		
+		return list;
+	}
+	
 }

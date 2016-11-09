@@ -83,7 +83,7 @@
 				
 				<ul class='list-inline list-unstyled'>
 					<li><span><i class='glyphicon glyphicon-calendar'>
-						</i> <%=event.getDate()%> </span></li>
+						</i> <%=event.getDatetoString()%> </span></li>
 					<li>|</li>
 					<li><span><i class='glyphicon glyphicon-comment'></i> <%=event.getComments().size()%>
 							<a href='/DAR/events?mode=event&id=<%=event.getId()%>'>comments</a></span></li>
