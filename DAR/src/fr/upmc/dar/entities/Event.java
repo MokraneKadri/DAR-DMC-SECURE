@@ -1,5 +1,6 @@
 package fr.upmc.dar.entities;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -47,7 +48,7 @@ public class Event implements IEntity {
 	protected String description;
 	
 	@Column
-	protected String date;	
+	protected Date date;	
 	
 	@Column
 	protected String theme;
@@ -68,7 +69,7 @@ public class Event implements IEntity {
 	protected Business business;
 	
 	@Column
-	protected String timestamp;
+	protected Date timestamp;
 	
 	public Event() {
 		super();
@@ -85,13 +86,13 @@ public class Event implements IEntity {
 			String address,
 			String placeType,
 			String place,
-			Business business)
+			Business business) throws ParseException
 	{
 		this.creator = owner;
 		this.name = name;
 		this.privacy = EventVisibility.stringToEventVisibility(privacy);
 		this.description = description;
-		this.date = date;
+		this.date = new SimpleDateFormat("dd/MM/yyyy").parse(date);
 		this.theme = theme;
 		this.places = places;
 		this.address = address;
@@ -100,7 +101,7 @@ public class Event implements IEntity {
 		this.placeType = placeType;
 		this.place = place;
 		this.business = business;
-		this.timestamp = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
+		this.timestamp = new Date();
 	}
 	
 	public Event(	
@@ -113,13 +114,13 @@ public class Event implements IEntity {
 			String places,
 			String address,
 			String placeType,
-			String place) 
+			String place) throws ParseException 
 	{
 		this.creator = owner;
 		this.name = name;
 		this.privacy = EventVisibility.stringToEventVisibility(privacy);
 		this.description = description;
-		this.date = date;
+		this.date = new SimpleDateFormat("dd/MM/yyyy").parse(date);
 		this.theme = theme;
 		this.places = places;
 		this.address = address;
@@ -128,7 +129,7 @@ public class Event implements IEntity {
 		this.placeType = placeType;
 		this.place = place;
 		this.business = null;
-		this.timestamp = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
+		this.timestamp = new Date();
 	}
 		
 	public List<Comment> getComments() {
@@ -187,11 +188,11 @@ public class Event implements IEntity {
 		this.description = description;
 	}
 
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
@@ -251,7 +252,7 @@ public class Event implements IEntity {
 		return business != null;
 	}
 	
-	public String getTimestamp() {
+	public Date getTimestamp() {
 		return timestamp;
 	}
 
