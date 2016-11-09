@@ -191,9 +191,17 @@ public class Event implements IEntity {
 	public Date getDate() {
 		return date;
 	}
+	
+	public String getDatetoString() {
+		return new SimpleDateFormat("dd/MM/yyyy").format(date);
+	}
 
 	public void setDate(Date date) {
 		this.date = date;
+	}
+	
+	public void setDate(String date) throws ParseException {
+		this.date = new SimpleDateFormat("dd/MM/yyyy").parse(date);
 	}
 
 	public int getCommentsCounts() {

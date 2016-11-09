@@ -384,7 +384,7 @@ public class EventsServlet extends HttpServlet {
 			if (request.getParameter("privacy") != null)
 				event.setPrivacy(EventVisibility.stringToEventVisibility(request.getParameter("privacy")));
 			event.setDescription((request.getParameter("description") != null) ? request.getParameter("description") : event.getDescription());
-			event.setDate((request.getParameter("date") != null) ? request.getParameter("date") : event.getDate());
+			event.setDate((request.getParameter("date") != null) ? request.getParameter("date") : event.getDatetoString());
 			event.setTheme((request.getParameter("theme") != null) ? request.getParameter("theme") : event.getTheme());
 			event.setPlaces((request.getParameter("places") != null) ? request.getParameter("places") : event.getPlaces());
 			event.setAddress((request.getParameter("address") != null) ? request.getParameter("address") : event.getAddress());
