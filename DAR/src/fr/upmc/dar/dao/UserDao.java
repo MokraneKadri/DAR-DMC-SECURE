@@ -20,10 +20,6 @@ import fr.upmc.dar.tools.PasswordEncryptor;
 
 public class UserDao implements IUserDao{
 
-
-	//static EntityManagerFactory emf = Persistence.createEntityManagerFactory("DAR");
-	//static EntityManager em = emf.createEntityManager();
-
 	private static final String SELECT_BY_EMAIL = "SELECT u FROM User u WHERE u.eMail=:eMail";
 	private static final String PARAM_EMAIL           = "eMail";
 
@@ -46,8 +42,6 @@ public class UserDao implements IUserDao{
 	@SuppressWarnings("unused")
 	private static final String PARAM_PASS           = "password";
 
-	private EntityManagerFactory emf;// = Persistence.createEntityManagerFactory("DAR");
-
 
 	private  EntityManager  em ;
 
@@ -55,20 +49,9 @@ public class UserDao implements IUserDao{
 
 	// Injection du manager, qui s'occupe de la connexion avec la BDD
 
-
-
-
 	public  UserDao() {
-		emf = Persistence.createEntityManagerFactory("DAR");
-		if(em==null)
-			em= emf.createEntityManager()  ;
+		em = EMF.getEntityManagerFactory().createEntityManager();
 	}
-
-
-
-
-
-
 
 	// Enregistrement d'un nouvel utilisateur
 	public void createUser( User utilisateur ) throws Exception {
