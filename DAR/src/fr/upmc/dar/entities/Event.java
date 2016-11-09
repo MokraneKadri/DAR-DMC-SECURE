@@ -1,5 +1,6 @@
 package fr.upmc.dar.entities;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -67,7 +68,7 @@ public class Event implements IEntity {
 	protected Business business;
 	
 	@Column
-	protected Date timestamp;
+	protected String timestamp;
 	
 	public Event() {
 		super();
@@ -99,7 +100,7 @@ public class Event implements IEntity {
 		this.placeType = placeType;
 		this.place = place;
 		this.business = business;
-		this.timestamp = new Date();
+		this.timestamp = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
 	}
 	
 	public Event(	
@@ -127,7 +128,7 @@ public class Event implements IEntity {
 		this.placeType = placeType;
 		this.place = place;
 		this.business = null;
-		this.timestamp = new Date();
+		this.timestamp = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
 	}
 		
 	public List<Comment> getComments() {
@@ -250,7 +251,7 @@ public class Event implements IEntity {
 		return business != null;
 	}
 	
-	public Date getTimestamp() {
+	public String getTimestamp() {
 		return timestamp;
 	}
 
