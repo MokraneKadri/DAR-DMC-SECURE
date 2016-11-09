@@ -17,7 +17,7 @@ public class RemoveOldsEntitiesJob implements Job {
 	public void execute(JobExecutionContext context)
 		throws JobExecutionException {
 		/*Init Entity Manager*/
-		EntityManager em = EMF.getEntityManagerFactory().createEntityManager();
+		EntityManager em = EMF.getInstance().getEntityManagerFactory().createEntityManager();
 		
 		
 		/*Removing Events which are 1 month old and ended*/

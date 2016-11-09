@@ -27,7 +27,7 @@ public class GroupDao implements IGroupDao {
 	protected final static String GROUPS_NAMED_BY = "SELECT grps FROM groups grps WHERE grps.groupName=:name";
 	
 	public GroupDao() {
-		entityManager = EMF.getEntityManagerFactory().createEntityManager();
+		entityManager = EMF.getInstance().getEntityManagerFactory().createEntityManager();
 	}
 	
 	@Override

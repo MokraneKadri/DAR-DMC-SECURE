@@ -50,7 +50,7 @@ public class UserDao implements IUserDao{
 	// Injection du manager, qui s'occupe de la connexion avec la BDD
 
 	public  UserDao() {
-		em = EMF.getEntityManagerFactory().createEntityManager();
+		em = EMF.getInstance().getEntityManagerFactory().createEntityManager();
 	}
 
 	// Enregistrement d'un nouvel utilisateur

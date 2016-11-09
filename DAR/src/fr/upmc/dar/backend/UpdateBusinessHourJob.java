@@ -22,7 +22,7 @@ public class UpdateBusinessHourJob implements Job {
 
 			throws JobExecutionException {
 		/*Init Entity Manager*/
-		EntityManager em=EMF.getEntityManagerFactory().createEntityManager();
+		EntityManager em= EMF.getInstance().getEntityManagerFactory().createEntityManager();
 
 
 		/*Updating Business hours in database*/

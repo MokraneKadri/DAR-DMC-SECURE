@@ -29,7 +29,7 @@ public class EventDao implements IEventDao {
 
 
 	public EventDao() {
-		entityManager = EMF.getEntityManagerFactory().createEntityManager();
+		entityManager = EMF.getInstance().getEntityManagerFactory().createEntityManager();
 	}
 
 	@Override
