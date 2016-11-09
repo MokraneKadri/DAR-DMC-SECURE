@@ -49,7 +49,7 @@ public class EventDetails extends HttpServlet {
 		System.out.println(e.size());
 		eventdetails.put("name", ee.getName());
 		eventdetails.put("adresse", ee.getAddress());
-		eventdetails.put("date", ee.getDate());
+		eventdetails.put("date", ee.getDatetoString());
 		eventdetails.put("privacy", ee.getPrivacy().toString());
 		eventdetails.put("description", ee.getDescription());
 		eventdetails.put("place", ee.getPlaces());
