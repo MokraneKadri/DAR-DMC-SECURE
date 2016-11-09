@@ -163,6 +163,10 @@ public class Event implements IEntity {
 	public void setCandidates(List<User> candidates) {
 		this.candidates = candidates;
 	}
+	
+	public void addCandidate(User candidate) {
+		this.candidates.add(candidate);
+	}
 
 	public String getName() {
 		return name;
@@ -247,7 +251,7 @@ public class Event implements IEntity {
 	public void setPlace(String place) {
 		this.place = place;
 	}
-
+	
 	public Business getBusiness() {
 		return business;
 	}
@@ -271,13 +275,17 @@ public class Event implements IEntity {
 		json.put("name", name);
 		json.put("privacy", EventVisibility.eventVisibilityToString(privacy));
 		json.put("description", description);
-		json.put("date", date);
+		json.put("date", getDatetoString());
 		json.put("places", places);
 		json.put("theme", theme);
 		json.put("address", address);
 		json.put("creator", creator.getUserName());
 		json.put("comments", comments.size());
 		json.put("id", id);
+		json.put("place_type", placeType);
+		json.put("place_name", place);
+		json.put("timestamp", new SimpleDateFormat("dd/MM/yyyy").format(timestamp));
+		json.put("is_yelp", isYelpEvent());
 		
 		return json;
 	}
