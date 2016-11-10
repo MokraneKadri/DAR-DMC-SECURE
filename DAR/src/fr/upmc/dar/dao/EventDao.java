@@ -2,16 +2,20 @@ package fr.upmc.dar.dao;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import fr.upmc.dar.api.YelpBusinessSearch;
 import fr.upmc.dar.dao.interfaces.IEventDao;
+import fr.upmc.dar.entities.Business;
 import fr.upmc.dar.entities.Comment;
 import fr.upmc.dar.entities.Event;
 import fr.upmc.dar.entities.User;
+import fr.upmc.dar.tools.Localisation;
 
 public class EventDao implements IEventDao {
 
@@ -25,6 +29,7 @@ public class EventDao implements IEventDao {
 	protected final static String EVENTS_OWNED_BY = "SELECT events FROM Event events WHERE events.creator=:owner";
 	protected final static String EVENTS_MEMBERED_BY = "SELECT events FROM Event events WHERE events.candidates=:member";
 	protected final static String EVENTS_COMMENTS_BY_EVENTID = "SELECT events.comments FROM Event events WHERE events.id=:id";
+	protected final static String ALL_EVENTS_NOT_ENDED = "SELECT events FROM Event events WHERE events.date>:date";
 	//protected final static String EVENTS_COMMENTS_COUNT = "SELECT events.comments FROM Event events WHERE events.id=:id";
 
 
@@ -123,6 +128,31 @@ public class EventDao implements IEventDao {
 		Event event = entityManager.find(Event.class, id);
 		entityManager.getTransaction().commit();
 		return event;
+	}
+
+	public List<Event> getEventsNear(double lat, double lon) {
+		int offset = 0;
+		List<Event> es;
+		List<Event> res=new ArrayList<Event>();
+		while ((es = getEventsNearIteration(offset, 100)).size() > 0)
+		{
+			try{
+				for (Event e : es){
+					if(e.getBusiness()!=null)
+					if(Localisation.distance(lat,lon,Double.parseDouble(e.getBusiness().getLatitude()),Double.parseDouble(e.getBusiness().getLongitude()),"K")<5)
+						res.add(e);
+				}
+			}catch(Exception e){};
+			offset += es.size();
+		}
+		/*End of Request*/
+		return res;
+	}
+
+	@SuppressWarnings("unchecked")
+	private List<Event> getEventsNearIteration(int offset, int max)
+	{
+		return entityManager.createQuery(ALL_EVENTS_NOT_ENDED).setParameter("date", new Date()).setFirstResult(offset).setMaxResults(max).getResultList();
 	}
 
 }

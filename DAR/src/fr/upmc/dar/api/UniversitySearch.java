@@ -43,8 +43,8 @@ public class UniversitySearch {
 			JSONObject university=unijson.getJSONObject(i);
 			JSONObject fields=university.getJSONObject("fields");
 			JSONArray coord=fields.getJSONArray("coordonnees");
-			String longi=String.valueOf(coord.getDouble(0));
-			String lati=String.valueOf(coord.getDouble(1));
+			String longi=String.valueOf(coord.getDouble(1));
+			String lati=String.valueOf(coord.getDouble(0));
 			University u =new University(university.getString("recordid"), fields.getString("uo_lib"), fields.getString("adresse_uai"), fields.getString("code_postal_uai")
 					, fields.getString("aca_nom"), longi,lati );
 			

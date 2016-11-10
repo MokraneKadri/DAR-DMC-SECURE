@@ -20,6 +20,7 @@ import org.jsoup.safety.Whitelist;
 
 import fr.upmc.dar.dao.ApiDAO;
 import fr.upmc.dar.dao.DAOFactory;
+import fr.upmc.dar.dao.EventDao;
 import fr.upmc.dar.dao.interfaces.IEventDao;
 import fr.upmc.dar.entities.Business;
 import fr.upmc.dar.entities.Comment;
@@ -72,6 +73,8 @@ public class EventsServlet extends HttpServlet {
 		case "search":
 			search(request, response);
 			break;
+		case "GPS":
+			GPS(request,response);
 		default:
 			break;
 		}
@@ -101,6 +104,16 @@ public class EventsServlet extends HttpServlet {
 		default:
 			break;
 		}
+	}
+	
+	private void GPS(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		EventDao edao=new EventDao();
+		double lat=Double.parseDouble(request.getParameter("lat"));
+		double lon=Double.parseDouble(request.getParameter("lon"));
+		List<Event> eventsNear=edao.getEventsNear(lat, lon);
+		request.setAttribute("actus", eventsNear);
+		request.getRequestDispatcher("/jsp/actus.jsp").forward(request, response);
+		
 	}
 
 	private void createAndSomeComments(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
