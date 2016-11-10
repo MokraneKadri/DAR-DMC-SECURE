@@ -8,16 +8,18 @@ function nearEvents(){
 
 function successCallback(position){
 	{
-		$.ajax({
-			type : "POST",
-			url : "/DAR/events",
-			data : {mode : "GPS", lat : position.coords.latitude, lon : position.coords.longitude},
-			dataType : "JSON",
-			success : ProcessEventsNear,
-			error : function(xhr,status,errorthrown){
-				console.log(JSON.stringify(xhr + " " + status + " " + errorthrown));
-			}
-		});
+//		$.ajax({
+//			type : "POST",
+//			url : "/DAR/events",
+//			data : {mode : "GPS", lat : position.coords.latitude, lon : position.coords.longitude},
+//			dataType : "JSON",
+//			success : ProcessEventsNear,
+//			error : function(xhr,status,errorthrown){
+//				console.log(JSON.stringify(xhr + " " + status + " " + errorthrown));
+//			}
+//		});
+		
+		window.location = "/DAR/events?mode=GPS&lat="+position.coords.latitude+"&lon="+position.coords.longitude;
 	}
 };  
 
