@@ -32,7 +32,7 @@ public class Event implements IEntity {
 	@ManyToOne
 	protected User creator;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany//(cascade = CascadeType.ALL)
 	protected List<User> candidates;
 	
 	@OneToMany(cascade = CascadeType.ALL)
@@ -57,7 +57,7 @@ public class Event implements IEntity {
 	protected String theme;
 	
 	@Column
-	protected String places;
+	protected Integer places;
 	
 	@Column
 	protected String address;
@@ -100,10 +100,10 @@ public class Event implements IEntity {
 		this.name = name;
 		this.privacy = EventVisibility.stringToEventVisibility(privacy);
 		this.description = description;
-		this.date = new SimpleDateFormat("dd/MM/yyyy").parse(date);
+		this.date = new SimpleDateFormat("dd-MM-yyyy").parse(date);
 		this.hour = hour;
 		this.theme = theme;
-		this.places = places;
+		this.places = Integer.valueOf(places);
 		this.address = address;
 		this.candidates = new ArrayList<>();
 		this.comments = new ArrayList<>();
@@ -132,10 +132,10 @@ public class Event implements IEntity {
 		this.name = name;
 		this.privacy = EventVisibility.stringToEventVisibility(privacy);
 		this.description = description;
-		this.date = new SimpleDateFormat("dd/MM/yyyy").parse(date);
+		this.date = new SimpleDateFormat("dd-MM-yyyy").parse(date);
 		this.hour = hour;
 		this.theme = theme;
-		this.places = places;
+		this.places = Integer.valueOf(places);
 		this.address = address;
 		this.candidates = new ArrayList<>();
 		this.comments = new ArrayList<>();
@@ -211,7 +211,7 @@ public class Event implements IEntity {
 	}
 	
 	public String getDatetoString() {
-		return new SimpleDateFormat("dd/MM/yyyy").format(date);
+		return new SimpleDateFormat("dd-MM-yyyy").format(date);
 	}
 
 	public void setDate(Date date) {
@@ -219,7 +219,7 @@ public class Event implements IEntity {
 	}
 	
 	public void setDate(String date) throws ParseException {
-		this.date = new SimpleDateFormat("dd/MM/yyyy").parse(date);
+		this.date = new SimpleDateFormat("dd-MM-yyyy").parse(date);
 	}
 	
 	public String getHour() {
@@ -250,11 +250,15 @@ public class Event implements IEntity {
 		this.placeType = placeType;
 	}
 
-	public String getPlaces() {
+	public Integer getPlaces() {
 		return places;
 	}
 
 	public void setPlaces(String places) {
+		this.places = Integer.valueOf(places);
+	}
+	
+	public void setPlaces(Integer places) {
 		this.places = places;
 	}
 
@@ -314,7 +318,7 @@ public class Event implements IEntity {
 		json.put("id", id);
 		json.put("place_type", placeType);
 		json.put("place_name", place);
-		json.put("timestamp", new SimpleDateFormat("dd/MM/yyyy").format(timestamp));
+		json.put("timestamp", new SimpleDateFormat("dd-MM-yyyy").format(timestamp));
 		json.put("is_yelp", isYelpEvent());
 		json.put("hour", hour);
 		

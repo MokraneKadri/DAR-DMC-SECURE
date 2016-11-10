@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.id.BulkInsertionCapableIdentifierGenerator;
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -350,10 +349,11 @@ public class EventsServlet extends HttpServlet {
 						request.getParameter("name"), 
 						request.getParameter("privacy"), 
 						request.getParameter("description"), 
-						request.getParameter("date"),
+						new StringBuilder(request.getParameter("date")).reverse().toString(),
 						request.getParameter("hour"), 
 						request.getParameter("theme"), 
-						request.getParameter("places"), 
+						//request.getParameter("places"), 
+						"10", 
 						request.getParameter("address"),
 						request.getParameter("place_type"),
 						request.getParameter("place_name"),
@@ -367,10 +367,11 @@ public class EventsServlet extends HttpServlet {
 						request.getParameter("name"), 
 						request.getParameter("privacy"), 
 						request.getParameter("description"), 
-						request.getParameter("date"),
+						new StringBuilder(request.getParameter("date")).reverse().toString(),
 						request.getParameter("hour"),
 						request.getParameter("theme"), 
-						request.getParameter("places"), 
+						//request.getParameter("places"),
+						"10",
 						request.getParameter("address"),
 						request.getParameter("place_type"),
 						request.getParameter("place_name"),
@@ -431,7 +432,7 @@ public class EventsServlet extends HttpServlet {
 			event.setDescription((request.getParameter("description") != null) ? request.getParameter("description") : event.getDescription());
 			event.setDate((request.getParameter("date") != null) ? request.getParameter("date") : event.getDatetoString());
 			event.setTheme((request.getParameter("theme") != null) ? request.getParameter("theme") : event.getTheme());
-			event.setPlaces((request.getParameter("places") != null) ? request.getParameter("places") : event.getPlaces());
+			event.setPlaces((request.getParameter("places") != null) ? request.getParameter("places") : String.valueOf(event.getPlaces()));
 			event.setAddress((request.getParameter("address") != null) ? request.getParameter("address") : event.getAddress());
 			DAOFactory.createEventDao().updateEvent(event);
 		} catch (Exception e) {

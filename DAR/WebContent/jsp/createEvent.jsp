@@ -78,7 +78,7 @@
 									intitulé :</label>
 								<div class="col-sm-5">
 									<input type="text" class="form-control" id="eventname"
-										name="eventname" placeholder="intitulé de l'évenement" />
+										name="name" placeholder="intitulé de l'évenement" />
 								</div>
 							</div>
 
@@ -86,7 +86,7 @@
 								<label class="col-sm-4 control-label" for="eventdate">
 									Date :</label>
 								<div class="col-sm-5">
-									<input type="date" class="form-control" name="eventdate"
+									<input type="date" class="form-control" name="date"
 										id="eventdate" />
 								</div>
 							</div>
@@ -96,7 +96,7 @@
 									Heure :</label>
 								<div class="col-sm-5">
 
-									<input type="time"   class="form-control" name="eventhour"
+									<input type="time"   class="form-control" name="hour"
 
 										id="eventhour" />
 								</div>
@@ -106,7 +106,7 @@
 								<label class="col-sm-4 control-label" for="eventtheme">Thème
 									:</label>
 								<div class="col-sm-5">
-									<select id="eventtheme" name="eventtheme" class="form-control">
+									<select id="eventtheme" name="theme" class="form-control">
 										<option value="" disabled selected>choisir un thème</option>
 										<option value="0">Moulin à Parole</option>
 										<option value="1">échange linguistique/culturelle</option>
@@ -121,7 +121,7 @@
 									:</label>
 								<div class="col-sm-5">
 									<textarea rows="5" cols="50" id="eventdescription"
-										name="eventdescription" value=""
+										name="description" value=""
 										style="resize: none; width: 100%;"></textarea>
 								</div>
 							</div>
@@ -155,10 +155,10 @@
                				 </div>
 							
 							<div class="form-group">
-								<label class="col-sm-4 control-label" for="eventpolicy">Confidentialité
+								<label class="col-sm-4 control-label" for="privacy">Confidentialité
 									:</label>
 								<div class="col-sm-5">
-									<select id="eventpolicy" name="eventpolicy"
+									<select id="eventpolicy" name="privacy"
 										class="form-control">
 										<option value="" disabled selected>choisir</option>
 										<option value="public">Public</option>
@@ -198,7 +198,7 @@
 									de lieu :</label>
 								<div class="col-sm-5">
 
-									<input  type="text" id="eventplace" name="eventplace" class="form-control" placeholder="ex :Restaurant ...Bar..." value =""/>
+									<input  type="text" id="eventplace" name="place_type" class="form-control" placeholder="ex :Restaurant ...Bar..." value =""/>
 								</div>
 
 
@@ -209,7 +209,7 @@
 									Nom du Lieu :</label>
 								<div class="col-sm-5">
 									<input type="text" class="form-control" id="eventplacename"
-										name="eventplacename" placeholder="Ex: Pizza FIVE" />
+										name="place_name" placeholder="Ex: Pizza FIVE" />
 								</div>
 							</div>
 
@@ -219,7 +219,7 @@
 									Complète:</label>
 								<div class="col-sm-5">
 									<input type="text" class="form-control" id="eventaddress"
-										name="eventaddress" placeholder="l'adresse complète du lieu" />
+										name="address" placeholder="l'adresse complète du lieu" />
 								</div>
 							</div>
 							<div class="col-sm-5 "
@@ -242,7 +242,7 @@
 							</div>
 							<div class="form-group">
 							<input type="hidden" name="business_id" id="business_id" value="">
-							<input type="hidden"   name="university_id" id="university_id" value="">
+							<input type="hidden" name="university_id" id="university_id" value="">
 								<div class="col-sm-9 col-sm-offset-4">
 									<button type="submit" class="btn btn-primary" name="creteEvent"
 										value="creteEvent">Créer ce Meet up</button>
