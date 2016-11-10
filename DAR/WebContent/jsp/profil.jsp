@@ -81,16 +81,12 @@
 								Events</a></li>
 						<li><a href="javascript: void(0);" id="meetups">Mes
 								Participations</a></li>
-
 					</ul>
 				</div>
 			</div>
 			<div class="col-md-10 col-sm-8 main-content" id="main-content">
-
 			</div>
 		</div>
-
-
 	</div>
 
 
@@ -103,49 +99,67 @@
 	</jsp:include>
 
 	<script type="text/javascript">
-	 $(document).ready(function(){
-	
-		 $("#friends").click(function(){
-		
-        $("#main-content").load('/DAR/jsp/myfriends.jsp');
-      });
-		 
-		 $("#Addfriends").click(function(){
-				// alert("rrrrr");
-	        $("#main-content").load('/DAR/jsp/finduser.jsp .maincontainer');
-	      });
-		 
-		 $("#request").click(function(){
-				// alert("rrrrr");
-	        $("#main-content").load('/DAR/jsp/pendingrequests.jsp .maincontainer');
-	      });
-		 
-		 $("#myprofil").click(function(){
-				// alert("rrrrr");
-			 
-					  $("#main-content").load('/DAR/profil?mode=view');
-		 
-		 });
-	    
-		 $("#mymeetsup").click(function(){
-				// alert("rrrrr");
-	        $("#main-content").load('/DAR/jsp/finduser.jsp .maincontainer');
-	      });
-		 $("#meetups").click(function(){
-				// alert("rrrrr");
-	        $("#main-content").load('/DAR/events?mode=list .maincontainer');
-	      });
+		$(document)
+				.ready(
+						function() {
 
-		 
-	 });
-	 </script>
+							$("#friends").click(
+									function() {
+
+										$("#main-content").load(
+												'/DAR/jsp/myfriends.jsp');
+									});
+
+							$("#Addfriends")
+									.click(
+											function() {
+												// alert("rrrrr");
+												$("#main-content")
+														.load(
+																'/DAR/jsp/finduser.jsp .maincontainer');
+											});
+
+							$("#request")
+									.click(
+											function() {
+												// alert("rrrrr");
+												$("#main-content")
+														.load(
+																'/DAR/jsp/pendingrequests.jsp');
+											});
+
+							$("#myprofil").click(
+									function() {
+										// alert("rrrrr");
+										$("#main-content").load(
+												'/DAR/profil?mode=view');
+									});
+
+							$("#mymeetsup")
+									.click(
+											function() {
+												// alert("rrrrr");
+												$("#main-content")
+														.load(
+																'/DAR/jsp/finduser.jsp .maincontainer');
+											});
+							$("#meetups")
+									.click(
+											function() {
+												// alert("rrrrr");
+												$("#main-content")
+														.load(
+																'/DAR/events?mode=list .maincontainer');
+											});
+
+						});
+	</script>
 
 	<script>
-    window.onload = function() {
-    	$("#main-content").load('/DAR/profil?mode=view');
-    }
-
-</script>
+		window.onload = function() {
+			$("#main-content").load('/DAR/profil?mode=view');
+		}
+	</script>
 
 
 </body>
