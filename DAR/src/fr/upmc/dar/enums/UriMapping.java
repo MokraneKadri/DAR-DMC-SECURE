@@ -11,7 +11,7 @@ public enum UriMapping {
 	 RESET_PASSWORD ("/jsp/passwordReset.jsp"),
 	 CREATE_EVENT ("/jsp/createEvent.jsp"),
 	 CREATE_GROUP ("/jsp/createGroup.jsp"),
-	EVENTSLIST("/jsp/listEvents.jsp"),
+	EVENTSLIST("/events?mode=list&type=jsp"),//("/jsp/listEvents.jsp"),
 	POSTPASSWDRESET("/jsp/confirmation.jsp"),
 	POSTSIGNUPRESET("/jsp/confirmation.jsp"),
 	EVENTDETAILS("/jsp/eventDetails.jsp");

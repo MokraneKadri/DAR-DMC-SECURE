@@ -62,7 +62,7 @@ public class EventsServlet extends HttpServlet {
 		switch (mode) {
 		case "new":request.getRequestDispatcher(UriMapping.CREATE_EVENT.getRessourceUrl()).forward(request, response);
 		break;
-		case "showall":request.getRequestDispatcher(UriMapping.EVENTSLIST.getRessourceUrl()).forward(request, response);
+		case "showall":response.sendRedirect("/DAR/events?mode=list&type=jsp");//request.getRequestDispatcher(UriMapping.EVENTSLIST.getRessourceUrl()).forward(request, response);
 		break;
 		case "event":
 			event(request, response);
@@ -224,7 +224,7 @@ public class EventsServlet extends HttpServlet {
 		JSONArray array;
 		IEventDao dao = DAOFactory.createEventDao();
 		String type = request.getParameter("type");
-		if (request.getParameterMap().keySet().size() == 1) {
+		if (request.getParameterMap().keySet().size() == 2) {
 			array = new JSONArray();
 			List<Event> ev=dao.getAllEvents();
 			if(type!=null && type.compareTo("jsp")==0){
