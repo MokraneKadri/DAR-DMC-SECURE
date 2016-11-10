@@ -10,6 +10,7 @@ import org.scribe.model.OAuthRequest;
 import org.scribe.model.Response;
 import org.scribe.model.Verb;
 
+import fr.upmc.dar.dao.ApiDAO;
 import fr.upmc.dar.entities.University;
 
 public class UniversitySearch {
@@ -17,7 +18,7 @@ public class UniversitySearch {
 	static String SEARCH = "https://data.enseignementsup-recherche.gouv.fr/api/records/1.0/search/"+
 			"?dataset=fr-esr-principaux-etablissements-enseignement-superieur"+
 			"&facet=uai&facet=type_d_etablissement&facet=secteur_d_etablissement&facet=localisation&facet=com_nom&facet=dep_nom&facet=aca_nom&facet=reg_nom&facet=pays_etranger_acheminement&facet=siret&facet=identifiant_grid&facet=statut_juridique_court&facet=qualification_long&facet=statut_operateur_lolf&facet=identifiant_programme_lolf_chef_de_file&refine.localisation=%C3%8Ele-de-France";
-	
+	private final static ApiDAO apiDAO =new ApiDAO();
 	
 	public static String searchUniversity(String term,int limit){
 		OAuthRequest request=new OAuthRequest(Verb.GET, SEARCH);
@@ -48,6 +49,7 @@ public class UniversitySearch {
 					, fields.getString("aca_nom"), longi,lati );
 			
 			uni.add(u);
+			apiDAO.updateUniversity(u);
 		}
 		
 		return uni;
