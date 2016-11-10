@@ -100,7 +100,7 @@ public class Event implements IEntity {
 		this.name = name;
 		this.privacy = EventVisibility.stringToEventVisibility(privacy);
 		this.description = description;
-		this.date = new SimpleDateFormat("dd-MM-yyyy").parse(date);
+		this.date = new SimpleDateFormat("yyyy-MM-dd").parse(date);
 		this.hour = hour;
 		this.theme = theme;
 		this.places = Integer.valueOf(places);
@@ -132,7 +132,7 @@ public class Event implements IEntity {
 		this.name = name;
 		this.privacy = EventVisibility.stringToEventVisibility(privacy);
 		this.description = description;
-		this.date = new SimpleDateFormat("dd-MM-yyyy").parse(date);
+		this.date = new SimpleDateFormat("yyyy-MM-dd").parse(date);
 		this.hour = hour;
 		this.theme = theme;
 		this.places = Integer.valueOf(places);
@@ -210,7 +210,7 @@ public class Event implements IEntity {
 		return date;
 	}
 	
-	public String getDatetoString() {
+	public String getDateToString() {
 		return new SimpleDateFormat("dd-MM-yyyy").format(date);
 	}
 
@@ -309,7 +309,7 @@ public class Event implements IEntity {
 		json.put("name", name);
 		json.put("privacy", EventVisibility.eventVisibilityToString(privacy));
 		json.put("description", description);
-		json.put("date", getDatetoString());
+		json.put("date", getDateToString());
 		json.put("places", places);
 		json.put("theme", theme);
 		json.put("address", address);

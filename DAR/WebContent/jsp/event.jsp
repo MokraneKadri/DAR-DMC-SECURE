@@ -109,7 +109,7 @@
 		                    <i class="fa fa-calendar" aria-hidden="true"></i>
 		                    <b> Date : </b>
 		                </span>
-		                <%= event.getDatetoString()%>
+		                <%= event.getDateToString()%>
 		            </li>
 		            <li class="list-group-item">
 		                <span>
