@@ -28,8 +28,9 @@ import fr.upmc.dar.entities.Event;
 import fr.upmc.dar.entities.University;
 import fr.upmc.dar.entities.User;
 import fr.upmc.dar.enums.EventVisibility;
-import fr.upmc.dar.json.Warning;
 import fr.upmc.dar.json.Error;
+import fr.upmc.dar.json.Success;
+import fr.upmc.dar.json.Warning;
 
 /**
  * Servlet REST pour la gestion des events
@@ -75,6 +76,8 @@ public class EventsServlet extends HttpServlet {
 			break;
 		case "GPS":
 			GPS(request,response);
+		case "participate":
+			participate(request, response);
 		default:
 			break;
 		}
@@ -477,6 +480,30 @@ public class EventsServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			response.getWriter().print(new Error("De la mise à jour de l'event"));
+		}
+	}
+	
+	private void participate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
+			User user = DAOFactory.createUserDao().findUserByUserName((String)request.getSession().getAttribute("login"));
+			Integer id = Integer.valueOf(request.getParameter("id"));
+			Event event = DAOFactory.createEventDao().getEventById(id);
+			
+			boolean isCandidate = false;
+			for (User candidate : event.getCandidates()) {
+				if (candidate.getId() == user.getId()) {
+					isCandidate = true;
+					response.getWriter().print(new Warning("Vous êtes déjà un participant de cet événement"));
+				}
+			}
+			
+			if (!isCandidate)
+				event.addCandidate(user);
+			
+			response.getWriter().print(new Success("Votre participation a été engeristrée avec succès"));
+			
+		} catch (Exception e) {
+			
 		}
 	}
 }
