@@ -5,7 +5,6 @@ public enum EventVisibility {
 	
 	PUBLIC ,
 	PRIVATE ,
-	GROUP ,
 	INTRA_UNI ;
 	
 	/**
@@ -21,8 +20,6 @@ public enum EventVisibility {
 			return EventVisibility.PUBLIC;
 		case "private":
 			return EventVisibility.PRIVATE;
-		case "group":
-			return EventVisibility.GROUP;
 		case "university":
 			return EventVisibility.INTRA_UNI;
 		}
@@ -35,8 +32,6 @@ public enum EventVisibility {
 			return "public";
 		case PRIVATE:
 			return "private";
-		case GROUP:
-			return "group";
 		case INTRA_UNI:
 			return "university";
 		}

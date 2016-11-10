@@ -165,9 +165,9 @@
 									<select id="eventpolicy" name="eventpolicy"
 										class="form-control">
 										<option value="" disabled selected>choisir</option>
-										<option value="0">Public</option>
-										<option value="1">Amis</option>
-										<option value="2">Université</option>
+										<option value="public">Public</option>
+										<option value="private">Amis</option>
+										<option value="university">Université</option>
 									</select>
 								</div>
 							</div>
@@ -268,7 +268,8 @@
 						function() {
 							
 							
-							
+							var tt =$("#eventForm").serialize();
+							console.log(tt);
 							var today = new Date();
 							var day = today.getDate();
 							var mois = today.getMonth()+1; 
