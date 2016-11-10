@@ -74,39 +74,39 @@
 							
 
 							<div class="form-group">
-								<label class="col-sm-4 control-label" for="eventname">
+								<label class="col-sm-4 control-label" for="name">
 									intitulé :</label>
 								<div class="col-sm-5">
-									<input type="text" class="form-control" id="eventname"
-										name="eventname" placeholder="intitulé de l'évenement" />
+									<input type="text" class="form-control" id="name"
+										name="name" placeholder="intitulé de l'évenement" />
 								</div>
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-4 control-label" for="eventdate">
+								<label class="col-sm-4 control-label" for="date">
 									Date :</label>
 								<div class="col-sm-5">
-									<input type="date" class="form-control" name="eventdate"
-										id="eventdate" />
+									<input type="date" class="form-control" name="date"
+										id="date" />
 								</div>
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-4 control-label" for="eventhour">
+								<label class="col-sm-4 control-label" for="hour">
 									Heure :</label>
 								<div class="col-sm-5">
 
-									<input type="time"   class="form-control" name="eventhour"
+									<input type="time"   class="form-control" name="hour"
 
-										id="eventhour" />
+										id="hour" />
 								</div>
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-4 control-label" for="eventtheme">Thème
+								<label class="col-sm-4 control-label" for="theme">Thème
 									:</label>
 								<div class="col-sm-5">
-									<select id="eventtheme" name="eventtheme" class="form-control">
+									<select id="theme" name="theme" class="form-control">
 										<option value="" disabled selected>choisir un thème</option>
 										<option value="0">Moulin à Parole</option>
 										<option value="1">échange linguistique/culturelle</option>
@@ -194,32 +194,32 @@
 								  Précisez le Lieu: </span>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-4 control-label" for="eventplace">Type
+								<label class="col-sm-4 control-label" for="place_type">Type
 									de lieu :</label>
 								<div class="col-sm-5">
 
-									<input  type="text" id="eventplace" name="eventplace" class="form-control" placeholder="ex :Restaurant ...Bar..." value =""/>
+									<input  type="text" id="place_type" name="place_type" class="form-control" placeholder="ex :Restaurant ...Bar..." value =""/>
 								</div>
 
 
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-4 control-label" for="eventplacename">
+								<label class="col-sm-4 control-label" for="place_name">
 									Nom du Lieu :</label>
 								<div class="col-sm-5">
-									<input type="text" class="form-control" id="eventplacename"
-										name="eventplacename" placeholder="Ex: Pizza FIVE" />
+									<input type="text" class="form-control" id="place_name"
+										name="place_name" placeholder="Ex: Pizza FIVE" />
 								</div>
 							</div>
 
 
 							<div class="form-group">
-								<label class="col-sm-4 control-label" for="eventaddress">Adresse
+								<label class="col-sm-4 control-label" for="address">Adresse
 									Complète:</label>
 								<div class="col-sm-5">
-									<input type="text" class="form-control" id="eventaddress"
-										name="eventaddress" placeholder="l'adresse complète du lieu" />
+									<input type="text" class="form-control" id="address"
+										name="address" placeholder="l'adresse complète du lieu" />
 								</div>
 							</div>
 							<div class="col-sm-5 "
@@ -279,39 +279,39 @@
 							    } 
 
 							today = annee+'-'+mois+'-'+day;
-							document.getElementById("eventdate").setAttribute("min", today);
+							document.getElementById("date").setAttribute("min", today);
 							$("#eventForm")
 									.validate(
 											{
 												rules : {
 													
 													
-													eventhour:{
+													hour:{
 														required:true
 														
 													},
-													eventname : {
+													name : {
 														required : true,
 														minlength : 3
 													},
-													eventdate : {
+													date : {
 														required : true,
 														date : true
 
 													},
-													eventplace : {
+													place_type : {
 														required : true
 
 													},
-													eventplacename : {
+													place_name : {
 														required : true,
 														minlength:5
 													},
-													eventtheme : {
+													theme : {
 														required : true
 
 													},
-													eventaddress : {
+													address : {
 														required : true,
 														minlength : 10
 
@@ -328,20 +328,20 @@
 
 												},
 												messages : {
-													eventname : {
+													name : {
 														required : "Veuillez indiquer l'intitulé de votre meet up"
 
 													},
-													eventplacename :{
+													place_name :{
 														required :"merci d'indiquer le nom du lieu",
 														minlenth :"merci d'indiquer un nom de lieu valide"
 													},
 													
-													eventplace : {
+													place_type : {
 														required : "Veuillez indiquer le cadre ou se tiendra l'évenement"
 
 													},
-													eventdate : {
+													date : {
 														required : "Veuillez indiquer la date de l'évenement",
 														date : "Veuillez indiquer une date valide"
 													},
@@ -350,11 +350,11 @@
 
 													},
 
-													eventtheme : {
+													theme : {
 														required : "veuillez précisez le thème de l'évenement"
 
 													},
-													eventaddress : {
+													address : {
 														required : "Veuillez saisir l'adresse exacte ou se tiendra lévenement",
 														minlength : "merci d'indiquer une adresse valide"
 
@@ -365,7 +365,7 @@
 														minlength : "merci de fournir une description valide"
 
 													},
-													eventhour:{
+													hour:{
 														required:"merci d'indiquer l'heure à laquelle se tiendra l'évenement",
 														
 													},

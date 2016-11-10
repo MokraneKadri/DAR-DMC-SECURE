@@ -365,7 +365,7 @@ public class EventsServlet extends HttpServlet {
 				Event event = new Event(
 						user, 
 						request.getParameter("name"), 
-						request.getParameter("privacy"), 
+						request.getParameter("eventpolicy"), 
 						request.getParameter("description"), 
 						request.getParameter("date"),
 						request.getParameter("hour"),
