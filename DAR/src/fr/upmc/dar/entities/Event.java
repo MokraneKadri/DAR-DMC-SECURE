@@ -48,7 +48,10 @@ public class Event implements IEntity {
 	protected String description;
 	
 	@Column
-	protected Date date;	
+	protected Date date;
+	
+	@Column 
+	protected String hour;
 	
 	@Column
 	protected String theme;
@@ -71,6 +74,9 @@ public class Event implements IEntity {
 	@Column
 	protected Date timestamp;
 	
+	@Column
+	protected University university;
+	
 	public Event() {
 		super();
 	}
@@ -80,19 +86,22 @@ public class Event implements IEntity {
 			String name, 
 			String privacy,
 			String description,
-			String date, 
+			String date,
+			String hour,
 			String theme, 
 			String places,
 			String address,
 			String placeType,
 			String place,
-			Business business) throws ParseException
+			Business business,
+			University university) throws ParseException
 	{
 		this.creator = owner;
 		this.name = name;
 		this.privacy = EventVisibility.stringToEventVisibility(privacy);
 		this.description = description;
 		this.date = new SimpleDateFormat("dd/MM/yyyy").parse(date);
+		this.hour = hour;
 		this.theme = theme;
 		this.places = places;
 		this.address = address;
@@ -102,6 +111,7 @@ public class Event implements IEntity {
 		this.place = place;
 		this.business = business;
 		this.timestamp = new Date();
+		this.university = university;
 	}
 	
 	public Event(	
@@ -109,18 +119,21 @@ public class Event implements IEntity {
 			String name, 
 			String privacy,
 			String description,
-			String date, 
+			String date,
+			String hour,
 			String theme, 
 			String places,
 			String address,
 			String placeType,
-			String place) throws ParseException 
+			String place,
+			University university) throws ParseException 
 	{
 		this.creator = owner;
 		this.name = name;
 		this.privacy = EventVisibility.stringToEventVisibility(privacy);
 		this.description = description;
 		this.date = new SimpleDateFormat("dd/MM/yyyy").parse(date);
+		this.hour = hour;
 		this.theme = theme;
 		this.places = places;
 		this.address = address;
@@ -130,6 +143,7 @@ public class Event implements IEntity {
 		this.place = place;
 		this.business = null;
 		this.timestamp = new Date();
+		this.university = university;
 	}
 		
 	public List<Comment> getComments() {
@@ -207,6 +221,14 @@ public class Event implements IEntity {
 	public void setDate(String date) throws ParseException {
 		this.date = new SimpleDateFormat("dd/MM/yyyy").parse(date);
 	}
+	
+	public String getHour() {
+		return hour;
+	}
+
+	public void setHour(String hour) {
+		this.hour = hour;
+	}
 
 	public int getCommentsCounts() {
 		return comments.size();
@@ -267,6 +289,14 @@ public class Event implements IEntity {
 	public Date getTimestamp() {
 		return timestamp;
 	}
+	
+	public University getUniversity() {
+		return university;
+	}
+
+	public void setUniversity(University university) {
+		this.university = university;
+	}
 
 	@Override
 	public JSONObject toJSONObject() throws JSONException {
@@ -286,6 +316,7 @@ public class Event implements IEntity {
 		json.put("place_name", place);
 		json.put("timestamp", new SimpleDateFormat("dd/MM/yyyy").format(timestamp));
 		json.put("is_yelp", isYelpEvent());
+		json.put("hour", hour);
 		
 		return json;
 	}
