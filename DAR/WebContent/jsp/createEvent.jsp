@@ -158,7 +158,7 @@
 								<label class="col-sm-4 control-label" for="eventpolicy">Confidentialité
 									:</label>
 								<div class="col-sm-5">
-									<select id="eventpolicy" name="eventpolicy"
+									<select id="eventpolicy" name="privacy"
 										class="form-control">
 										<option value="" disabled selected>choisir</option>
 										<option value="public">Public</option>
