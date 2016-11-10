@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import fr.upmc.dar.api.YelpBusinessSearch;
 import fr.upmc.dar.dao.ApiDAO;
 import fr.upmc.dar.dao.DAOFactory;
 import fr.upmc.dar.dao.interfaces.IEventDao;
@@ -360,7 +359,7 @@ public class EventsServlet extends HttpServlet {
 				event.addCandidate(user);
 				DAOFactory.createEventDao().createEvent(event);
 			} else {
-				Business business = YelpBusinessSearch.idToBusiness(businessId);
+				Business business = new ApiDAO().getBusiness(businessId); //YelpBusinessSearch.idToBusiness(businessId);
 				Event event = new Event(
 						user, 
 						request.getParameter("name"), 
