@@ -27,7 +27,7 @@ public class FriendsDao implements IFriendsDao {
 	protected final static String FRIENDS_REQUESTS = "SELECT fr FROM FriendsRequests fr WHERE fr.from=:from AND fr.to=:to";
 
 	public FriendsDao() {
-		entityManager = Persistence.createEntityManagerFactory("DAR").createEntityManager();
+		entityManager = EMF.getInstance().getEntityManagerFactory().createEntityManager();
 	}
 
 	@Override

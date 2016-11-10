@@ -12,7 +12,7 @@ public class ApiDAO {
 	protected EntityManager entityManager;
 
 	public ApiDAO() {
-		entityManager = Persistence.createEntityManagerFactory("DAR").createEntityManager();
+		entityManager = EMF.getInstance().getEntityManagerFactory().createEntityManager();
 	}
 
 	public Business getBusiness(String id) {

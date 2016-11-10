@@ -104,7 +104,9 @@
 								<label class="col-sm-4 control-label" for="eventhour">
 									Heure :</label>
 								<div class="col-sm-5">
+<<<<<<< HEAD
 									<input type="time" class="form-control" name="eventhour"
+
 										id="eventhour" />
 								</div>
 							</div>

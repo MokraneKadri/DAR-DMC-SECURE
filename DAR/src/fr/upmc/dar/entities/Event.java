@@ -1,5 +1,7 @@
 package fr.upmc.dar.entities;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -46,7 +48,7 @@ public class Event implements IEntity {
 	protected String description;
 	
 	@Column
-	protected String date;	
+	protected Date date;	
 	
 	@Column
 	protected String theme;
@@ -84,13 +86,13 @@ public class Event implements IEntity {
 			String address,
 			String placeType,
 			String place,
-			Business business)
+			Business business) throws ParseException
 	{
 		this.creator = owner;
 		this.name = name;
 		this.privacy = EventVisibility.stringToEventVisibility(privacy);
 		this.description = description;
-		this.date = date;
+		this.date = new SimpleDateFormat("dd/MM/yyyy").parse(date);
 		this.theme = theme;
 		this.places = places;
 		this.address = address;
@@ -112,13 +114,13 @@ public class Event implements IEntity {
 			String places,
 			String address,
 			String placeType,
-			String place) 
+			String place) throws ParseException 
 	{
 		this.creator = owner;
 		this.name = name;
 		this.privacy = EventVisibility.stringToEventVisibility(privacy);
 		this.description = description;
-		this.date = date;
+		this.date = new SimpleDateFormat("dd/MM/yyyy").parse(date);
 		this.theme = theme;
 		this.places = places;
 		this.address = address;
@@ -161,6 +163,10 @@ public class Event implements IEntity {
 	public void setCandidates(List<User> candidates) {
 		this.candidates = candidates;
 	}
+	
+	public void addCandidate(User candidate) {
+		this.candidates.add(candidate);
+	}
 
 	public String getName() {
 		return name;
@@ -186,12 +192,20 @@ public class Event implements IEntity {
 		this.description = description;
 	}
 
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
+	
+	public String getDatetoString() {
+		return new SimpleDateFormat("dd/MM/yyyy").format(date);
+	}
 
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
+	}
+	
+	public void setDate(String date) throws ParseException {
+		this.date = new SimpleDateFormat("dd/MM/yyyy").parse(date);
 	}
 
 	public int getCommentsCounts() {
@@ -237,7 +251,7 @@ public class Event implements IEntity {
 	public void setPlace(String place) {
 		this.place = place;
 	}
-
+	
 	public Business getBusiness() {
 		return business;
 	}
@@ -261,13 +275,17 @@ public class Event implements IEntity {
 		json.put("name", name);
 		json.put("privacy", EventVisibility.eventVisibilityToString(privacy));
 		json.put("description", description);
-		json.put("date", date);
+		json.put("date", getDatetoString());
 		json.put("places", places);
 		json.put("theme", theme);
 		json.put("address", address);
 		json.put("creator", creator.getUserName());
 		json.put("comments", comments.size());
 		json.put("id", id);
+		json.put("place_type", placeType);
+		json.put("place_name", place);
+		json.put("timestamp", new SimpleDateFormat("dd/MM/yyyy").format(timestamp));
+		json.put("is_yelp", isYelpEvent());
 		
 		return json;
 	}
