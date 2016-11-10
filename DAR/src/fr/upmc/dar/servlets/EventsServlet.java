@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaBuilder.In;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -263,7 +264,7 @@ public class EventsServlet extends HttpServlet {
 			String creatorId = request.getParameter("creator_id");
 
 			array = new JSONArray();
-			List<Event> ev =dao.selectTuplesWhereFieldIs(Event.class, "creator.id", creatorId);
+			List<Event> ev =dao.selectTuplesWhereFieldIs(Event.class, "creator.id", Integer.valueOf(creatorId));
 			if(type!=null && type.compareTo("jsp")==0){
 				coming(ev);
 				request.setAttribute("actus", ev);

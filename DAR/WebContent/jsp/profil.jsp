@@ -1,3 +1,4 @@
+<%@page import="fr.upmc.dar.dao.DAOFactory"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false"%>
@@ -141,7 +142,8 @@
 												// alert("rrrrr");
 												$("#main-content")
 														.load(
-																'/DAR/jsp/finduser.jsp .maincontainer');
+																//'/DAR/jsp/finduser.jsp .maincontainer');
+																'/DAR/events?mode=list&type=jsp&creator_id=' + <%= DAOFactory.createUserDao().findUserByUserName((String)request.getSession().getAttribute("login")).getId() %> );
 											});
 							$("#meetups")
 									.click(
@@ -149,7 +151,8 @@
 												// alert("rrrrr");
 												$("#main-content")
 														.load(
-																'/DAR/events?mode=list .maincontainer');
+																//'/DAR/events?mode=list .maincontainer');
+																'/DAR/events?mode=list&type=jsp&member_id=' + <%= DAOFactory.createUserDao().findUserByUserName((String)request.getSession().getAttribute("login")).getId() %> );
 											});
 
 						});
