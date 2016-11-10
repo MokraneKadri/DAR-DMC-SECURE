@@ -89,7 +89,7 @@
 	 $(document).ready(function(){
 	
 		 $("#friends").click(function(){
-			// alert("rrrrr");
+		
         $("#main-content").load('/DAR/jsp/myfriends.jsp');
       });
 		 
@@ -99,8 +99,11 @@
 	      });
 		 $("#myprofil").click(function(){
 				// alert("rrrrr");
-	        $("#main-content").load('/DAR/jsp/finduser.jsp .maincontainer');
-	      });
+			 
+					  $("#main-content").load('/DAR/profil?mode=view');
+		 
+		 });
+	    
 		 $("#mymeetsup").click(function(){
 				// alert("rrrrr");
 	        $("#main-content").load('/DAR/jsp/finduser.jsp .maincontainer');

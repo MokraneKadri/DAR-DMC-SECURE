@@ -13,6 +13,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import fr.upmc.dar.dao.interfaces.IUserDao;
+import fr.upmc.dar.entities.Event;
 import fr.upmc.dar.entities.User;
 import fr.upmc.dar.enums.LoginType;
 import fr.upmc.dar.tools.PasswordEncryptor;
@@ -28,10 +29,10 @@ public class UserDao implements IUserDao{
 
 	private static final String SELECT_BY_USERNAME = "SELECT u FROM User u WHERE u.userName=:userName ";
 	private static final String PARAM_USERNAME           = "userName";
-	
+
 	private static final String SELECT_BY_NAME=  "SELECT u FROM User u WHERE u.name=:name ";
 	private static final String PARAM_NAME= "name";
-	
+
 	private static final String SELECT_BY_FIRSTNAME=  "SELECT u FROM User u WHERE u.firstName=:firstName ";
 	private static final String PARAM_FIRSTNAME= "firstName";
 
@@ -261,6 +262,15 @@ public class UserDao implements IUserDao{
 		return usersJSON;
 	}
 
-
+	@Override
+	public void updateUser(User user) {
+		em.getTransaction().begin();
+		em.merge(user);
+		em.getTransaction().commit();
+	}
 
 }
+
+
+
+

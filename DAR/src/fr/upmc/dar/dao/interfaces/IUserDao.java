@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import org.json.JSONObject;
 
+import fr.upmc.dar.entities.Event;
 import fr.upmc.dar.entities.User;
 import fr.upmc.dar.enums.LoginType;
 
@@ -22,4 +23,6 @@ public interface IUserDao {
 	
 	public JSONObject getUsersJSONProfileFromIds(ArrayList<Integer> ids);
 
+	
+	public void updateUser(User user);
 }

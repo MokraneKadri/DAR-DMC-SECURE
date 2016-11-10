@@ -108,10 +108,10 @@
 								<div class="col-sm-5">
 									<select id="theme" name="theme" class="form-control">
 										<option value="" disabled selected>choisir un thème</option>
-										<option value="0">Moulin à Parole</option>
-										<option value="1">échange linguistique/culturelle</option>
-										<option value="2">relatifs au études</option>
-										<option value="3">Autres...</option>
+										<option value="Moulin à Parole">Moulin à Parole</option>
+										<option value="échanges linguistiques/culturelles">échanges linguistiques/culturelles</option>
+										<option value="relatifs aux études">relatifs aux études</option>
+										<option value="Autres">Autres...</option>
 									</select>
 								</div>
 							</div>
