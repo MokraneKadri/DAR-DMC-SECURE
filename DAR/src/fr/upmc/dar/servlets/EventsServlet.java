@@ -63,7 +63,6 @@ public class EventsServlet extends HttpServlet {
 		case "new":request.getRequestDispatcher(UriMapping.CREATE_EVENT.getRessourceUrl()).forward(request, response);
 		break;
 		case "showall":request.getRequestDispatcher(UriMapping.EVENTSLIST.getRessourceUrl()).forward(request, response);
-
 		break;
 		case "event":
 			event(request, response);
@@ -224,24 +223,34 @@ public class EventsServlet extends HttpServlet {
 	private void list(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		JSONArray array;
 		IEventDao dao = DAOFactory.createEventDao();
-
+		String type = request.getParameter("type");
 		if (request.getParameterMap().keySet().size() == 1) {
 			array = new JSONArray();
-			for (Event evt : dao.getAllEvents()) {
-				try {
-					array.put(evt.toJSONObject());
-
-				} catch (JSONException e) {
-					e.printStackTrace();
-					response.getWriter().print(new Error("Erreur dans la construction de la réponse JSON"));
-					return;
+			List<Event> ev=dao.getAllEvents();
+			if(type!=null && type.compareTo("jsp")==0){
+				request.setAttribute("actus", ev);
+				request.getRequestDispatcher("/jsp/actus.jsp").forward(request, response);
+			}else
+				for (Event evt : ev) {
+					try {
+						array.put(evt.toJSONObject());
+					} catch (JSONException e) {
+						e.printStackTrace();
+						response.getWriter().print(new Error("Erreur dans la construction de la réponse JSON"));
+						return;
+					}
 				}
-			}
 			response.getWriter().print(array);
 		} else if (request.getParameter("id") != null) {
 			String id = request.getParameter("id");
 			try {
-				response.getWriter().print(dao.getEventById(Integer.valueOf(id)).toJSONObject());
+				List<Event> ev=new ArrayList<Event>();
+				ev.add(dao.getEventById(Integer.valueOf(id)));
+				if(type!=null && type.compareTo("jsp")==0){
+					request.setAttribute("actus", ev);
+					request.getRequestDispatcher("/jsp/actus.jsp").forward(request, response);
+				}else
+					response.getWriter().print(ev.get(0).toJSONObject());
 			} catch (Exception e) {
 				e.printStackTrace();
 				response.getWriter().print(new Error("Erreur lors du listing par id"));
@@ -250,25 +259,33 @@ public class EventsServlet extends HttpServlet {
 			String creatorId = request.getParameter("creator_id");
 
 			array = new JSONArray();
-			for (Event evt : dao.selectTuplesWhereFieldIs(Event.class, "creator.id", creatorId)) {
-				try {
-					array.put(evt.toJSONObject());
-				} catch (JSONException e) {
-					e.printStackTrace();
-					response.getWriter().print(new Error("Erreur dans la construction de la réponse JSON"));
-					return;
+			List<Event> ev =dao.selectTuplesWhereFieldIs(Event.class, "creator.id", creatorId);
+			if(type!=null && type.compareTo("jsp")==0){
+				request.setAttribute("actus", ev);
+				request.getRequestDispatcher("/jsp/actus.jsp").forward(request, response);
+			}else
+				for (Event evt : ev) {
+					try {
+						array.put(evt.toJSONObject());
+					} catch (JSONException e) {
+						e.printStackTrace();
+						response.getWriter().print(new Error("Erreur dans la construction de la réponse JSON"));
+						return;
+					}
 				}
-			}
 			response.getWriter().print(array);
 		} else if (request.getParameter("member_id") != null) {
 			String memberId = request.getParameter("member_id");
 
 			array = new JSONArray();
+			List<Event> ev=new ArrayList<Event>();
 			for (Event evt : dao.getAllEvents()) {
 				try {
 					for (User candidate : evt.getCandidates()) {
-						if (candidate.getId() == Integer.parseInt(memberId))
+						if (candidate.getId() == Integer.parseInt(memberId)){
+							ev.add(evt);
 							array.put(evt.toJSONObject());
+						}
 					}
 				} catch (JSONException e) {
 					e.printStackTrace();
@@ -276,7 +293,11 @@ public class EventsServlet extends HttpServlet {
 					return;
 				}
 			}
-			response.getWriter().print(array);
+			if(type!=null && type.compareTo("jsp")==0){
+				request.setAttribute("actus", ev);
+				request.getRequestDispatcher("/jsp/actus.jsp").forward(request, response);
+			}else
+				response.getWriter().print(array);
 		}
 	}
 
