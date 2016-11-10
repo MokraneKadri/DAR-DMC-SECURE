@@ -47,11 +47,14 @@ public class APIsearchUni extends HttpServlet {
 			directRes+=htmltab;
 			try{
 				List<University> us =UniversitySearch.searchUniversityEntity(term, 15);
-				for(University u : us){
+				//for(University u : us){
+					for(int i =0;i<us.size();i++){
+						University u = new University();
+						u =us.get(i);
 					try{
 						apiDAO.addUniversity(u);
 					}catch(Exception e){};
-					directRes+="+<tr><td>"+u.getName()+"</td><td>"+u.getStreet()+"</td><td>"+u.getZipCode()+"</td><td><a href=\"\" class=\"btn btn-primary\">Choisir</a></tr>";
+					directRes+="<tr><td id=\""+i+"nameu"+"\">"+u.getName()+"</td><td id=\""+i+"streetu"+"\">"+u.getStreet()+"</td><td id=\""+i+"zipu"+"\">"+u.getZipCode()+"</td><td><button  class=\"btn btn-primary\" onClick=\"javascript:onUniResultSelection("+i+")\">Choisir</a></tr>";
 				}
 			}catch(Exception e){System.out.println(e);};
 			directRes+="</tbody> </table> ";

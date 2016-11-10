@@ -109,7 +109,7 @@ public final class YelpBusinessSearch {
 				request.addHeader("Authorization", token_type+" "+access_token);
 				Response response = request.send();
 				JSONObject json = new JSONObject(response.getBody());
-
+				
 				JSONArray hours=json.getJSONArray("hours");
 				JSONObject coordinates=json.getJSONObject("coordinates");
 				JSONObject locationJSON=json.getJSONObject("location");

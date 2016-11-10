@@ -96,7 +96,7 @@ public class APIsearch extends HttpServlet {
 						h="";
 						h="7j/7<br/>"+b.normalizeHour(b.getOp0())+"-"+b.normalizeHour(b.getCl0());
 					}
-					directRes+="<tr><td id=\""+i+"name"+"\">"+b.getName()+"</td><td id=\""+i+"time"+"\">"+h +"</td><td id=\""+i+"street"+"\">"+b.getStreet()+"</td><td id=\""+i+"city"+"\">"+b.getCity()+"</td><td id=\""+i+"zip"+"\">"+b.getZipCode()+"</td><td><button  class=\"btn btn-primary\" onClick=\"javascript:onReseltSelection("+i+")\">Choisir</button> </td></tr>";
+					directRes+="<tr><td id=\""+i+"name"+"\">"+b.getName()+"</td><td id=\""+i+"time"+"\">"+h +"</td><td id=\""+i+"street"+"\">"+b.getStreet()+"</td><td id=\""+i+"city"+"\">"+b.getCity()+"</td><td id=\""+i+"zip"+"\">"+b.getZipCode()+"</td><td><button  class=\"btn btn-primary\" onClick=\"javascript:onYelpResultSelection("+i+")\">Choisir</button> </td></tr>";
 //					
 					System.out.println("printing to output :"+directRes);
 					directRes+="<div class=\"media-body\">";

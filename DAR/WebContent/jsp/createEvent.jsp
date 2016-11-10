@@ -24,8 +24,8 @@
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js"></script>
 <script type="text/javascript" src="/DAR/assets/js/searchevent.js"></script>
-<script type="text/javascript" src="/DAR/assets/js/searchuniversity.js"></script>
-<!-- Fin  Scripts  -->
+<!-- <script type="text/javascript" src="/DAR/assets/js/searchuniversity.js"></script>
+ --><!-- Fin  Scripts  -->
 
 <!-- Styles  -->
 <!-- bootstrap  -->
@@ -69,18 +69,9 @@
 					<div class="panel-body">
 
 						<form id="eventForm" method="post" class="form-horizontal"
-							action="/DAR/create_event">
+							action="/DAR/events?mode=create">
 
-							<div id="error">
-
-								<c:if test="${not empty eventNameError}">
-									<div class="alert alert-danger">
-										<span class="glyphicon glyphicon-info-sign"></span> ce nom
-										d'évenement est déja pris merci de choisir un autre
-									</div>
-
-								</c:if>
-							</div>
+							
 
 							<div class="form-group">
 								<label class="col-sm-4 control-label" for="eventname">
@@ -104,8 +95,8 @@
 								<label class="col-sm-4 control-label" for="eventhour">
 									Heure :</label>
 								<div class="col-sm-5">
-<<<<<<< HEAD
-									<input type="time" class="form-control" name="eventhour"
+
+									<input type="time"   class="form-control" name="eventhour"
 
 										id="eventhour" />
 								</div>
@@ -135,19 +126,38 @@
 								</div>
 							</div>
 
-							<div class="form-group">
+							<<!-- div class="form-group">
 								<label class="col-sm-4 control-label"> Université :</label>
 								<div class="col-sm-5">
 									<input type="text" class="form-control" name="university"
-										id="university" readonly />
+										id="university" disabled/>
 									<button type="button" class="btn btn-info btn-block"
 										data-toggle="modal" data-target="#myModalUn">
 										<span class="glyphicon glyphicon-search"></span>
 									</button>
 
 								</div>
-							</div>
-
+							</div> -->
+							<div class="form-group">
+							<label class="col-sm-4 control-label"> Université :</label>
+							<div class=" col-sm-5">
+                   			 <input type="text" class="form-control " placeholder="trouver votre unversité" name="university"
+										id="university" />
+										</div>
+               				 </div>
+               				
+               				 
+               				 <div class="form-group">
+               				 
+               				 <label class="col-sm-4 control-label"></label>
+							<div class=" col-sm-5">
+                      			  <button class="btn btn-info bt-lg" value="trouver" type="button" data-toggle="modal" data-target="#myModalUn">
+                         			   <i class="glyphicon glyphicon-search"> chercher !</i>
+                      				  </button>
+                   
+                				</div>
+               				 </div>
+							
 							<div class="form-group">
 								<label class="col-sm-4 control-label" for="eventpolicy">Confidentialité
 									:</label>
@@ -162,7 +172,7 @@
 								</div>
 							</div>
 
-							<div class="form-group">
+							<!-- <div class="form-group">
 								<label class="col-sm-4 control-label" for="eventinvites">invitations*
 									:</label>
 
@@ -175,7 +185,7 @@
 									je n'invite Personne!</br> </select>
 
 								</div>
-							</div>
+							</div> -->
 
 
 							<!-- Modal -->
@@ -192,15 +202,7 @@
 									de lieu :</label>
 								<div class="col-sm-5">
 
-									<select id="eventplace" name="eventplace" class="form-control"
-										autocomplete="on">
-										<option value="" disabled selected>choisir le lieu</option>
-										<option value="0">Bar</option>
-										<option value="1">Restaurant</option>
-										<option value="2">Université</option>
-										<option value="3">Autres...</option>
-									</select>
-
+									<input  type="text" id="eventplace" name="eventplace" class="form-control" placeholder="ex :Restaurant ...Bar..." value =""/>
 								</div>
 
 
@@ -228,7 +230,7 @@
 								style="width: 100%; height: 15px; border-bottom: 1px solid black; text-align: center; margin-bottom: 25px; margin-top: 10px">
 								<span
 									style="font-size: 20px; background-color: #F3F5F6; padding: 0px 10px;">
-								 Ou Trouver un endroit à l'aide de yelp !  </span>
+								 Ou Trouvez un endroit à l'aide de yelp !  </span>
 							</div>
 							<div class="form-group">
 							<div class="col-sm-5 col-sm-offset-4">
@@ -284,6 +286,14 @@
 									.validate(
 											{
 												rules : {
+													university:{
+														required :true
+													},
+													
+													eventhour:{
+														required:true
+														
+													},
 													eventname : {
 														required : true,
 														minlength : 3
@@ -296,6 +306,10 @@
 													eventplace : {
 														required : true
 
+													},
+													eventplacename : {
+														required : true,
+														minlength:5
 													},
 													eventtheme : {
 														required : true
@@ -321,6 +335,13 @@
 													eventname : {
 														required : "Veuillez indiquer l'intitulé de votre meet up"
 
+													},
+													eventplacename :{
+														required :"merci d'indiquer le nom du lieu",
+														minlenth :"merci d'indiquer un nom de lieu valide"
+													},
+													university :{
+														required : "Veuillez indiquer votre université"
 													},
 													eventplace : {
 														required : "Veuillez indiquer le cadre ou se tiendra l'évenement"
@@ -349,7 +370,11 @@
 														required : "Veuillez décrire l'évenement que vous allez créer",
 														minlength : "merci de fournir une description valide"
 
-													}
+													},
+													eventhour:{
+														required:"merci d'indiquer l'heure à laquelle se tiendra l'évenement",
+														
+													},
 
 												},
 												errorElement : "em",
@@ -432,7 +457,7 @@
 
 	<!-- Modal -->
 	<div id="myModal" class="modal fade" role="dialog"
-		data-backdrop="false">
+		data-backdrop="false" style="z-index: 100">
 		<div class="modal-dialog modal-lg" role="document">
 
 			<!-- Modal content-->
@@ -491,7 +516,8 @@
 	
 		<!-- Modal University-->
 	<div id="myModalUn" class="modal fade" role="dialog"
-		data-backdrop="false">
+		data-backdrop="false" style="z-index: 1500";
+}">
 		<div class="modal-dialog modal-lg" role="document">
 
 			<!-- Modal content-->
