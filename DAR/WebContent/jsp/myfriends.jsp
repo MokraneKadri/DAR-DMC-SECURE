@@ -31,11 +31,9 @@
 
 <title>Mes Amis</title>
 </head>
-<body onload="retrieveFriendsFunc()">
-	<jsp:include page="header.jsp" />
-	
-	
-	<div class="maincontainer">
+<body >
+
+	<div class="maincontainer" id ="maincontainer">
 	
 		<div class="panel panel-default" style="width=50%">
 			<div class="panel-heading">
@@ -51,8 +49,12 @@
 			</div>
 			</div>
 		</div>
-	
-	
-	<jsp:include page="footer.jsp" />
+
+	<script type="text/javascript">
+$(document).ready(function () {
+	retrieveFriendsFunc();
+    
+});
+</script>
 </body>
 </html>

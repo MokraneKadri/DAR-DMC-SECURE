@@ -16,6 +16,8 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
    <!-- JQuery Validate  -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js"></script>
+   <script type="text/javascript" src="/DAR/assets/js/friendsandrequest.js"></script>
+<script type="text/javascript" src="/DAR/assets/js/finduser.js"></script>
     <!-- Fin  Scripts  -->
     
     <!-- Styles  -->
@@ -55,27 +57,26 @@
                     <ul class="list">
                         <h4><strong>Tableau de bord</strong></h4>
                         <hr>
-                        <li><a href="">Editer mon profil</a></li>
-                        <li><a href="">Gérer ma liste d'amis</a></li>
-                        <li><a href=""> Ajouter des Amis</a></li>
+                        <li><a href="javascript: void(0);" id="myprofil">Editer mon profil</a></li>
+                        <li><a href="javascript: void(0);" id="friends"> ma liste d'amis</a></li>
+                        <li><a href="javascript: void(0);" id="Addfriends"> Ajouter des Amis</a></li>
                         
                         <hr/>
-                        <li><a href="">Mes meets up</a></li>
-                        <li><a href="">Meets up A venir</a></li>
+                        <li><a href="javascript: void(0);" id="mymeetsup">Mes meets up</a></li>
+                        <li><a href="javascript: void(0);" id="meetups">Meets up A venir</a></li>
                         
                     </ul>
                 </div>
             </div>
-            <div class="col-md-10 col-sm-8 main-content">
-            <!--Main content code to be written here --> 
-            <h1>FEEDBACK APPRECIATED! :)</h1>
-            
+            <div class="col-md-10 col-sm-8 main-content" id="main-content">
+         
         </div>
     </div>
 
 
 </div>
 
+ 
 
 
 
@@ -83,4 +84,38 @@
 <jsp:include page="footer.jsp">
 		<jsp:param name="active" value="signin" />
 	</jsp:include>
-	</body>
+	
+		<script type="text/javascript">
+	 $(document).ready(function(){
+	
+		 $("#friends").click(function(){
+			// alert("rrrrr");
+        $("#main-content").load('/DAR/jsp/myfriends.jsp');
+      });
+		 
+		 $("#Addfriends").click(function(){
+				// alert("rrrrr");
+	        $("#main-content").load('/DAR/jsp/finduser.jsp .maincontainer');
+	      });
+		 $("#myprofil").click(function(){
+				// alert("rrrrr");
+	        $("#main-content").load('/DAR/jsp/finduser.jsp .maincontainer');
+	      });
+		 $("#mymeetsup").click(function(){
+				// alert("rrrrr");
+	        $("#main-content").load('/DAR/jsp/finduser.jsp .maincontainer');
+	      });
+		 $("#meetups").click(function(){
+				// alert("rrrrr");
+	        $("#main-content").load('/DAR/events?mode=list .maincontainer');
+	      });
+
+		 
+	 });
+	    
+
+	 </script>
+
+
+	 </body>
+	</html>
