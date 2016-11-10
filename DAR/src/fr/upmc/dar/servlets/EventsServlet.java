@@ -61,7 +61,10 @@ public class EventsServlet extends HttpServlet {
 
 		switch (mode) {
 		case "new":request.getRequestDispatcher(UriMapping.CREATE_EVENT.getRessourceUrl()).forward(request, response);
-break;
+		break;
+		case "showall":request.getRequestDispatcher(UriMapping.EVENTSLIST.getRessourceUrl()).forward(request, response);
+
+		break;
 		case "event":
 			event(request, response);
 			break;
@@ -111,7 +114,7 @@ break;
 			break;
 		}
 	}
-	
+
 	private void GPS(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		EventDao edao=new EventDao();
 		double lat=Double.parseDouble(request.getParameter("lat"));
@@ -119,7 +122,7 @@ break;
 		List<Event> eventsNear=edao.getEventsNear(lat, lon);
 		request.setAttribute("actus", eventsNear);
 		request.getRequestDispatcher("/jsp/actus.jsp").forward(request, response);
-		
+
 	}
 
 	private void createAndSomeComments(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -227,6 +230,7 @@ break;
 			for (Event evt : dao.getAllEvents()) {
 				try {
 					array.put(evt.toJSONObject());
+
 				} catch (JSONException e) {
 					e.printStackTrace();
 					response.getWriter().print(new Error("Erreur dans la construction de la réponse JSON"));
@@ -244,7 +248,7 @@ break;
 			}
 		} else if (request.getParameter("creator_id") != null) {
 			String creatorId = request.getParameter("creator_id");
-			
+
 			array = new JSONArray();
 			for (Event evt : dao.selectTuplesWhereFieldIs(Event.class, "creator.id", creatorId)) {
 				try {
@@ -258,7 +262,7 @@ break;
 			response.getWriter().print(array);
 		} else if (request.getParameter("member_id") != null) {
 			String memberId = request.getParameter("member_id");
-			
+
 			array = new JSONArray();
 			for (Event evt : dao.getAllEvents()) {
 				try {
@@ -361,7 +365,7 @@ break;
 			User user = DAOFactory.createUserDao().findUserByUserName((String)request.getSession().getAttribute("login"));			
 			String businessId = Jsoup.clean(request.getParameter("business_id"), Whitelist.basic()); 
 			String universityId = Jsoup.clean(request.getParameter("university_id"), Whitelist.basic());
-		
+
 			University university = new ApiDAO().getUniversity(universityId);
 
 			if (businessId == null) {
@@ -485,13 +489,13 @@ break;
 			response.getWriter().print(new Error("De la mise à jour de l'event"));
 		}
 	}
-	
+
 	private void participate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			User user = DAOFactory.createUserDao().findUserByUserName((String)request.getSession().getAttribute("login"));
 			Integer id = Integer.valueOf(request.getParameter("id"));
 			Event event = DAOFactory.createEventDao().getEventById(id);
-			
+
 			boolean isCandidate = false;
 			for (User candidate : event.getCandidates()) {
 				if (candidate.getId() == user.getId()) {
@@ -499,14 +503,14 @@ break;
 					response.getWriter().print(new Warning("Vous êtes déjà un participant de cet événement"));
 				}
 			}
-			
+
 			if (!isCandidate)
 				event.addCandidate(user);
-			
+
 			response.getWriter().print(new Success("Votre participation a été engeristrée avec succès"));
-			
+
 		} catch (Exception e) {
-			
+
 		}
 	}
 }

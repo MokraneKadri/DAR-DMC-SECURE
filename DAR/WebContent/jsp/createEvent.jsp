@@ -61,6 +61,14 @@
 		<div class="row">
 			<div class="col-sm-8 col-sm-offset-2">
 
+	<div class="bs-example">
+    <ul class="breadcrumb">
+    	<li>Uni-connect</li>
+        <li><a href="#">Acceuil</a></li>
+        <li class="active"><a href="#">évenements > création</a></li>
+        
+    </ul>
+		</div>
 
 				<div class="panel panel-default">
 					<div class="panel-heading">
