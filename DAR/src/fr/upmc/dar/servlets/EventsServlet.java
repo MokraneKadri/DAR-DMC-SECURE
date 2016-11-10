@@ -61,7 +61,7 @@ public class EventsServlet extends HttpServlet {
 
 		switch (mode) {
 		case "new":request.getRequestDispatcher(UriMapping.CREATE_EVENT.getRessourceUrl()).forward(request, response);
-break;
+		break;
 		case "event":
 			event(request, response);
 			break;
@@ -111,7 +111,7 @@ break;
 			break;
 		}
 	}
-	
+
 	private void GPS(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		EventDao edao=new EventDao();
 		double lat=Double.parseDouble(request.getParameter("lat"));
@@ -119,7 +119,7 @@ break;
 		List<Event> eventsNear=edao.getEventsNear(lat, lon);
 		request.setAttribute("actus", eventsNear);
 		request.getRequestDispatcher("/jsp/actus.jsp").forward(request, response);
-		
+
 	}
 
 	private void createAndSomeComments(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -221,50 +221,69 @@ break;
 	private void list(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		JSONArray array;
 		IEventDao dao = DAOFactory.createEventDao();
-
+		String type = request.getParameter("type");
 		if (request.getParameterMap().keySet().size() == 1) {
 			array = new JSONArray();
-			for (Event evt : dao.getAllEvents()) {
-				try {
-					array.put(evt.toJSONObject());
-				} catch (JSONException e) {
-					e.printStackTrace();
-					response.getWriter().print(new Error("Erreur dans la construction de la réponse JSON"));
-					return;
+			List<Event> ev=dao.getAllEvents();
+			if(type!=null && type.compareTo("jsp")==0){
+				request.setAttribute("actus", ev);
+				request.getRequestDispatcher("/jsp/actus.jsp").forward(request, response);
+			}else
+				for (Event evt : ev) {
+					try {
+						array.put(evt.toJSONObject());
+					} catch (JSONException e) {
+						e.printStackTrace();
+						response.getWriter().print(new Error("Erreur dans la construction de la réponse JSON"));
+						return;
+					}
 				}
-			}
 			response.getWriter().print(array);
 		} else if (request.getParameter("id") != null) {
 			String id = request.getParameter("id");
 			try {
-				response.getWriter().print(dao.getEventById(Integer.valueOf(id)).toJSONObject());
+				List<Event> ev=new ArrayList<Event>();
+				ev.add(dao.getEventById(Integer.valueOf(id)));
+				if(type!=null && type.compareTo("jsp")==0){
+					request.setAttribute("actus", ev);
+					request.getRequestDispatcher("/jsp/actus.jsp").forward(request, response);
+				}else
+					response.getWriter().print(ev.get(0).toJSONObject());
 			} catch (Exception e) {
 				e.printStackTrace();
 				response.getWriter().print(new Error("Erreur lors du listing par id"));
 			}
 		} else if (request.getParameter("creator_id") != null) {
 			String creatorId = request.getParameter("creator_id");
-			
+
 			array = new JSONArray();
-			for (Event evt : dao.selectTuplesWhereFieldIs(Event.class, "creator.id", creatorId)) {
-				try {
-					array.put(evt.toJSONObject());
-				} catch (JSONException e) {
-					e.printStackTrace();
-					response.getWriter().print(new Error("Erreur dans la construction de la réponse JSON"));
-					return;
+			List<Event> ev =dao.selectTuplesWhereFieldIs(Event.class, "creator.id", creatorId);
+			if(type!=null && type.compareTo("jsp")==0){
+				request.setAttribute("actus", ev);
+				request.getRequestDispatcher("/jsp/actus.jsp").forward(request, response);
+			}else
+				for (Event evt : ev) {
+					try {
+						array.put(evt.toJSONObject());
+					} catch (JSONException e) {
+						e.printStackTrace();
+						response.getWriter().print(new Error("Erreur dans la construction de la réponse JSON"));
+						return;
+					}
 				}
-			}
 			response.getWriter().print(array);
 		} else if (request.getParameter("member_id") != null) {
 			String memberId = request.getParameter("member_id");
-			
+
 			array = new JSONArray();
+			List<Event> ev=new ArrayList<Event>();
 			for (Event evt : dao.getAllEvents()) {
 				try {
 					for (User candidate : evt.getCandidates()) {
-						if (candidate.getId() == Integer.parseInt(memberId))
+						if (candidate.getId() == Integer.parseInt(memberId)){
+							ev.add(evt);
 							array.put(evt.toJSONObject());
+						}
 					}
 				} catch (JSONException e) {
 					e.printStackTrace();
@@ -272,7 +291,11 @@ break;
 					return;
 				}
 			}
-			response.getWriter().print(array);
+			if(type!=null && type.compareTo("jsp")==0){
+				request.setAttribute("actus", ev);
+				request.getRequestDispatcher("/jsp/actus.jsp").forward(request, response);
+			}else
+				response.getWriter().print(array);
 		}
 	}
 
@@ -361,7 +384,7 @@ break;
 			User user = DAOFactory.createUserDao().findUserByUserName((String)request.getSession().getAttribute("login"));			
 			String businessId = Jsoup.clean(request.getParameter("business_id"), Whitelist.basic()); 
 			String universityId = Jsoup.clean(request.getParameter("university_id"), Whitelist.basic());
-		
+
 			University university = new ApiDAO().getUniversity(universityId);
 
 			if (businessId == null) {
@@ -485,13 +508,13 @@ break;
 			response.getWriter().print(new Error("De la mise à jour de l'event"));
 		}
 	}
-	
+
 	private void participate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			User user = DAOFactory.createUserDao().findUserByUserName((String)request.getSession().getAttribute("login"));
 			Integer id = Integer.valueOf(request.getParameter("id"));
 			Event event = DAOFactory.createEventDao().getEventById(id);
-			
+
 			boolean isCandidate = false;
 			for (User candidate : event.getCandidates()) {
 				if (candidate.getId() == user.getId()) {
@@ -499,14 +522,14 @@ break;
 					response.getWriter().print(new Warning("Vous êtes déjà un participant de cet événement"));
 				}
 			}
-			
+
 			if (!isCandidate)
 				event.addCandidate(user);
-			
+
 			response.getWriter().print(new Success("Votre participation a été engeristrée avec succès"));
-			
+
 		} catch (Exception e) {
-			
+
 		}
 	}
 }
