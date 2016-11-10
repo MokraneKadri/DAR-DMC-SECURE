@@ -129,7 +129,7 @@
 								<label class="col-sm-4 control-label" for="eventparticipants">Max. Participants:
 									</label>
 								<div class="col-sm-5">
-									<input type="number" value="1" min="1" max="100" name="eventparticipants" id="eventparticipants" placeholder="nombre maximum de participant"/>
+									<input type="number" value="1" min="1" max="100" name="places" id="eventparticipants" placeholder="nombre maximum de participant"/>
 								</div>
 							</div>
 
