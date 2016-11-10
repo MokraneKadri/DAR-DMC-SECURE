@@ -38,11 +38,19 @@ public class UpdateBusinessHourJob implements Job {
 				ids.add(b.getId());
 
 			try{
-				List<Business> toUpdate=YelpBusinessSearch.idsToBusiness(ids);
+				List<Business> toUpdate=YelpBusinessSearch.getBusinessFromAPI(ids);
 				em.getTransaction().begin();
-				for(Business b : toUpdate)
-
-					em.merge(b);
+				for(Business b : toUpdate){
+				Business toModify=em.find(Business.class, b.getId());
+					toModify.setCl0(b.getCl0());toModify.setOp0(b.getOp0());
+					toModify.setCl1(b.getCl1());toModify.setOp1(b.getOp1());
+					toModify.setCl2(b.getCl2());toModify.setOp2(b.getOp2());
+					toModify.setCl3(b.getCl3());toModify.setOp3(b.getOp3());
+					toModify.setCl4(b.getCl4());toModify.setOp4(b.getOp4());
+					toModify.setCl5(b.getCl5());toModify.setOp5(b.getOp5());
+					toModify.setCl6(b.getCl6());toModify.setOp6(b.getOp6());
+					em.merge(toModify);
+				}
 				em.getTransaction().commit();
 				offset += bs.size();
 			}catch(Exception e){em.close();};

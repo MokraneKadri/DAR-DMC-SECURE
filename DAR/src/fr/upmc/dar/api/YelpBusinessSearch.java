@@ -229,6 +229,20 @@ public final class YelpBusinessSearch {
 		}catch(Exception e){};
 	}
 
+	public static List<Business> getBusinessFromAPI(List<String> ids) {
+		List<Business> b=new ArrayList<Business>();
+
+		for(String id : ids){
+			try{
+			Business bus=getBusinessObject(id);
+			if(bus!=null)
+				b.add(bus);
+			}catch(Exception e){System.out.println(e.getMessage());};
+		}
+
+		return b;
+	}
+
 }
 
 

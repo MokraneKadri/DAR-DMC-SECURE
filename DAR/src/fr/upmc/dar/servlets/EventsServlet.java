@@ -16,12 +16,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import fr.upmc.dar.api.YelpBusinessSearch;
+import fr.upmc.dar.dao.ApiDAO;
 import fr.upmc.dar.dao.DAOFactory;
 import fr.upmc.dar.dao.interfaces.IEventDao;
 import fr.upmc.dar.entities.Business;
 import fr.upmc.dar.entities.Comment;
 import fr.upmc.dar.entities.Event;
+import fr.upmc.dar.entities.University;
 import fr.upmc.dar.entities.User;
 import fr.upmc.dar.enums.EventVisibility;
 import fr.upmc.dar.json.Warning;
@@ -103,6 +104,8 @@ public class EventsServlet extends HttpServlet {
 	private void createAndSomeComments(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		User user = null;
 		Event event = null;
+		String universityId = request.getParameter("university_id");
+		University university = new ApiDAO().getUniversity(universityId);
 
 		try {
 			user = DAOFactory.createUserDao().findUserByUserName((String)request.getSession().getAttribute("login"));
@@ -116,12 +119,14 @@ public class EventsServlet extends HttpServlet {
 					request.getParameter("name"), 
 					request.getParameter("privacy"), 
 					request.getParameter("description"), 
-					request.getParameter("date"), 
+					request.getParameter("date"),
+					request.getParameter("hour"), 
 					request.getParameter("theme"), 
 					request.getParameter("places"), 
 					request.getParameter("address"),
 					request.getParameter("place_type"),
-					request.getParameter("place_name"));
+					request.getParameter("place_name"),
+					university);
 			event.addCandidate(user);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -334,6 +339,8 @@ public class EventsServlet extends HttpServlet {
 		try {
 			User user = DAOFactory.createUserDao().findUserByUserName((String)request.getSession().getAttribute("login"));			
 			String businessId = request.getParameter("business_id"); 
+			String universityId = request.getParameter("university_id");
+			University university = new ApiDAO().getUniversity(universityId);
 
 			if (businessId == null) {
 				Event event = new Event(
@@ -341,28 +348,32 @@ public class EventsServlet extends HttpServlet {
 						request.getParameter("name"), 
 						request.getParameter("privacy"), 
 						request.getParameter("description"), 
-						request.getParameter("date"), 
-						request.getParameter("theme"), 
-						request.getParameter("places"), 
-						request.getParameter("address"),
-						request.getParameter("place_type"),
-						request.getParameter("place_name"));
-				event.addCandidate(user);
-				DAOFactory.createEventDao().createEvent(event);
-			} else {
-				Business business = YelpBusinessSearch.idToBusiness(businessId);
-				Event event = new Event(
-						user, 
-						request.getParameter("name"), 
-						request.getParameter("privacy"), 
-						request.getParameter("description"), 
-						request.getParameter("date"), 
+						request.getParameter("date"),
+						request.getParameter("hour"), 
 						request.getParameter("theme"), 
 						request.getParameter("places"), 
 						request.getParameter("address"),
 						request.getParameter("place_type"),
 						request.getParameter("place_name"),
-						business);
+						university);
+				event.addCandidate(user);
+				DAOFactory.createEventDao().createEvent(event);
+			} else {
+				Business business = new ApiDAO().getBusiness(businessId); //YelpBusinessSearch.idToBusiness(businessId);
+				Event event = new Event(
+						user, 
+						request.getParameter("name"), 
+						request.getParameter("privacy"), 
+						request.getParameter("description"), 
+						request.getParameter("date"),
+						request.getParameter("hour"),
+						request.getParameter("theme"), 
+						request.getParameter("places"), 
+						request.getParameter("address"),
+						request.getParameter("place_type"),
+						request.getParameter("place_name"),
+						business,
+						university);
 				event.addCandidate(user);
 				DAOFactory.createEventDao().createEvent(event);
 			}
