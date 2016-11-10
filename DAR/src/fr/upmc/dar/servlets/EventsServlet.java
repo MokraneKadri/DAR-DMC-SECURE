@@ -82,8 +82,6 @@ public class EventsServlet extends HttpServlet {
 			break;
 		case "GPS":
 			GPS(request,response);
-		case "participate":
-			participate(request, response);
 		default:
 			break;
 		}
@@ -110,6 +108,8 @@ public class EventsServlet extends HttpServlet {
 		case "comment":
 			comment(request, response);
 			break;
+		case "participate":
+			participate(request, response);
 		default:
 			break;
 		}
@@ -507,6 +507,10 @@ public class EventsServlet extends HttpServlet {
 			if (!isCandidate)
 				event.addCandidate(user);
 
+			DAOFactory.createEventDao().updateEvent(event);
+			
+			System.out.println("OK");
+			
 			response.getWriter().print(new Success("Votre participation a été engeristrée avec succès"));
 
 		} catch (Exception e) {

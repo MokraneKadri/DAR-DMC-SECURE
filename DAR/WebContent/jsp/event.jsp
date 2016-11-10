@@ -1,3 +1,4 @@
+<%@page import="fr.upmc.dar.entities.User"%>
 <%@page import="fr.upmc.dar.entities.Comment"%>
 <%@page import="fr.upmc.dar.enums.EventVisibility"%>
 <%@page import="fr.upmc.dar.dao.interfaces.IEventDao"%>
@@ -23,6 +24,8 @@
 <!-- JQuery Validate  -->
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js"></script>
+	
+<script type="text/javascript" src="/DAR/assets/js/notifier.js"></script>
 <!-- Fin  Scripts  -->
 
 <!-- Styles  -->
@@ -40,6 +43,8 @@
 <link rel="stylesheet" href="/DAR/assets/css/pageFooter.css">
 <!-- style du content  -->
 <link rel="stylesheet" href="/DAR/assets/css/main.css">
+
+<link rel="stylesheet" href="/DAR/assets/css/notifier.css">
 
 </head>
 <body>
@@ -71,8 +76,45 @@
 	%>
 	<div class="maincontainer">
 	
+		<div id='notifier'></div>
+		
+		<script type='text/javascript'>			
+			var submission = function (form) {
+				var json = {
+					mode : form.mode.value,
+					id : form.id.value
+				};
+				
+				$
+				.post("/DAR/events", json)
+				.done( function (data) {
+					notify($.parseJSON(data), $('#notifier'));
+					if ($.parseJSON(data).success != undefined)
+						$('#participating').remove();
+				});
+			}
+		</script>
+	
 		<div class="panel panel-default">
-		    <div class="panel-heading"><h4><%= event.getName()%></h4></div>
+		    <div class="panel-heading">
+		    	<h3><%= event.getName()%></h3>
+		    	<!-- COPY FROM HERE --> 
+		    	<%
+			    	User user = DAOFactory.createUserDao().findUserByUserName((String)request.getSession().getAttribute("login"));
+			    	boolean isParticipating = false;
+			    	for (User u : event.getCandidates())
+			    		if (user.getId() == u.getId())
+			    			isParticipating = true;
+			    	if (!isParticipating) { // IF BEGIN
+		    	%>
+		    	<form id='participating' style='text-align: right' action='javascript:return(0)' method='POST' onsubmit='submission(this)'>
+		    		<input type='hidden' name='mode' value='participate'/>
+		    		<input type='hidden' name='id' value='<%= event.getId()%>' />
+		    		<button type="submit" class='btn btn-primary'>Participer</button>
+		    	</form>
+		    	<% } // IF END %>
+		    	<!-- TO HERE --> 
+		    </div>
 		    <div class="panel-body">
 		        <ul class="list-group">
 		            <li class="list-group-item">
