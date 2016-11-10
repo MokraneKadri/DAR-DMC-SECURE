@@ -168,24 +168,7 @@
 								</div>
 							</div>
 
-							<!-- <div class="form-group">
-								<label class="col-sm-4 control-label" for="eventinvites">invitations*
-									:</label>
-
-								<div class="col-sm-5">
-									<input type="radio" name="eventinvites" value="0"> Mes
-									Amis<br> <input type="radio" name="eventinvites" value="1">
-									Les Membres de mon groupe<br> <input type="radio"
-										name="eventinvites" value="2"> Amis et groupe</br> <input
-										type="radio" name="eventinvites" value="3" checked="true">
-									je n'invite Personne!</br> </select>
-
-								</div>
-							</div> -->
-
-
-							<!-- Modal -->
-
+						
 							
 							<div class="col-sm-5 "
 								style="width: 100%; height: 15px; border-bottom: 1px solid black; text-align: center; margin-bottom: 25px; margin-top: 10px">

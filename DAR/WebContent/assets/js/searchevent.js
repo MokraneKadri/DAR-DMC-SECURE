@@ -4,7 +4,7 @@ function searchevent(form)
 	var ville = form.ville.value;
 
 	var context = document.getElementById("lieu").value;
-	document.getElementById("eventplace").value=context;
+	document.getElementById("place_type").value=context;
 	search(lieu,ville);
 }
 function search(value1,value2) 
@@ -43,9 +43,9 @@ function onYelpResultSelection(lineId){
 	
 	var fullAdress = street +" "+zip+","+city;
 	
-	document.getElementById("eventaddress").value=fullAdress;
-	document.getElementById("eventplacename").value=establsishmentName;
-	var placetype =document.getElementById("lieu").value;
+	document.getElementById("address").value=fullAdress;
+	document.getElementById("place_name").value=establsishmentName;
+	var placetype =document.getElementById("place_type").value;
 	var idb = (document.getElementById(lineId+"idb").value);
 	//alert(idb);
     document.getElementById("business_id").value=idb;
