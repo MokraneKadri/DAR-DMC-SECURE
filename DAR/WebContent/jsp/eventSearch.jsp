@@ -114,7 +114,7 @@
 			<div class="bs-example">
     <ul class="breadcrumb">
     	<li>Uni-connect</li>
-        <li><a href="#">Acceuil</a></li>
+        <li><a href="#">Accueil</a></li>
         <li class="active"><a href="#">évenements > Rechercher </a></li>
        
     </ul> </div>
