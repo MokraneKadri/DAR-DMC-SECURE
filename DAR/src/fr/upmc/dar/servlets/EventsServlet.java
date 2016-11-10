@@ -383,7 +383,7 @@ public class EventsServlet extends HttpServlet {
 			response.getWriter().print(new Error("Echec de création de l'event"));
 		}
 
-
+		response.sendRedirect("/DAR/events?mode=actus&limit=15");
 
 	}
 

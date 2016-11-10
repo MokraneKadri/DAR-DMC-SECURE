@@ -45,7 +45,11 @@
 
 	<%@include file="/jsp/header.jsp"%>
 
+	
+
 	<div class='maincontainer'>
+
+		<h1> Actus, les événements récents </h1>
 
 		<%
 			@SuppressWarnings("unchecked")
