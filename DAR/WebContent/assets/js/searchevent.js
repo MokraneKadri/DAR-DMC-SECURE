@@ -46,13 +46,11 @@ function onYelpResultSelection(lineId){
 	document.getElementById("eventaddress").value=fullAdress;
 	document.getElementById("eventplacename").value=establsishmentName;
 	var placetype =document.getElementById("lieu").value;
-
-	//document.getElementById("eventplace").value=lieu;
+	var idb = (document.getElementById(lineId+"idb").value);
+	//alert(idb);
+    document.getElementById("usiness_id").value=idb;
 	
-//	document.getElementById("eventaddress").setAttribute("disabled","disabled");
-//	document.getElementById("eventplacename").setAttribute("disabled","disabled");
-//	document.getElementById("eventplace").setAttribute("disabled","disabled");
-	$("#eventForm").valid();
+
 	$('#myModal').modal('hide');
 }
 function func_message(msg)
@@ -89,19 +87,20 @@ function onUniResultSelection(idres){
 	var univName =(document.getElementById(idres+"nameu").innerText);
 	var univstreet =(document.getElementById(idres+"streetu").innerText);
 	var univzip =(document.getElementById(idres+"zipu").innerText);
-	
+	var idu = (document.getElementById(idres+"idu").value);
+	//alert(idu);
 
 	var fullUnivQualification =univName +":"+ univstreet +" "+univzip;
-	
+	 document.getElementById("university_id").value=idu;
 	document.getElementById("university").value=fullUnivQualification;
-	$("#eventForm").valid();//revalidation du formulaire
+	//$("#eventForm").university.valid();//revalidation du formulaire
 	 $('#myModalUn').modal('hide');
 }
 function Process1(rep) 
 {
 	var div=rep.html;
 	
-	console.log(rep.html);
+	//console.log(rep.html);
 	func_message1(div);
 }
 

@@ -207,7 +207,8 @@
 
 
 							</div>
-
+							<input type="hidden" id="usiness_id">
+							<input type="hidden" id="university_id">
 							<div class="form-group">
 								<label class="col-sm-4 control-label" for="eventplacename">
 									Nom du Lieu :</label>
@@ -287,9 +288,7 @@
 									.validate(
 											{
 												rules : {
-													university:{
-														required :true
-													},
+									
 													
 													eventhour:{
 														required:true
@@ -341,9 +340,7 @@
 														required :"merci d'indiquer le nom du lieu",
 														minlenth :"merci d'indiquer un nom de lieu valide"
 													},
-													university :{
-														required : "Veuillez indiquer votre université"
-													},
+													
 													eventplace : {
 														required : "Veuillez indiquer le cadre ou se tiendra l'évenement"
 

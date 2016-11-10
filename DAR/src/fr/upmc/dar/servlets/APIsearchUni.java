@@ -50,12 +50,15 @@ public class APIsearchUni extends HttpServlet {
 				//for(University u : us){
 					for(int i =0;i<us.size();i++){
 						University u = new University();
+						
 						u =us.get(i);
 					try{
 						apiDAO.addUniversity(u);
 					}catch(Exception e){};
-					directRes+="<tr><td id=\""+i+"nameu"+"\">"+u.getName()+"</td><td id=\""+i+"streetu"+"\">"+u.getStreet()+"</td><td id=\""+i+"zipu"+"\">"+u.getZipCode()+"</td><td><button  class=\"btn btn-primary\" onClick=\"javascript:onUniResultSelection("+i+")\">Choisir</a></tr>";
-				}
+					
+					directRes+="<tr><input type=\"hidden\" id=\""+i+"idu"+"\""+ "value=\""+u.getId()+"\"><td id=\""+i+"nameu"+"\">"+u.getName()+"</td><td id=\""+i+"streetu"+"\">"+u.getStreet()+"</td><td id=\""+i+"zipu"+"\">"+u.getZipCode()+"</td><td><button  class=\"btn btn-primary\" onClick=\"javascript:onUniResultSelection("+i+")\">Choisir</a></tr>";
+				
+					}
 			}catch(Exception e){System.out.println(e);};
 			directRes+="</tbody> </table> ";
 			res.put("html", directRes);
