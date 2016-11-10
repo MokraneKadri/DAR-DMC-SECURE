@@ -74,7 +74,7 @@ public class Event implements IEntity {
 	@Column
 	protected Date timestamp;
 	
-	@Column
+	@ManyToOne
 	protected University university;
 	
 	public Event() {
