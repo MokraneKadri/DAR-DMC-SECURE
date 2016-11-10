@@ -90,24 +90,10 @@
 		              	          	'<p> <b>Description </b>: ' + event.description + '</p>'+
 		              	          	'<p><b> Thème</b> : ' + event.theme + '</p>'+
 		              	         	'<ul class="list-inline list-unstyled">'+
-		              	  				'<li><span><i class="glyphicon glyphicon-calendar"> </i> ' + event.date + '</span></li>'+
+		              	  				'<li><span><i class="glyphicon glyphicon-calendar"> </i> ' + event.date + '|'+event.hours+'</span></li>'+
 		              	            	'<li>|</li>'+
 		              	            	'<span><i class="glyphicon glyphicon-comment"></i> ' + event.comments + ' <a href="/DAR/events?mode=event&id='+ event.id + '">comments<a/></span>'+
-		              	            	'<li>|</li>'+
-		              	            	'<li>'+
-		              	             		'<span class="glyphicon glyphicon-star"></span>'+
-		              	              		'<span class="glyphicon glyphicon-star"></span>'+
-		              	               		'<span class="glyphicon glyphicon-star"></span>'+
-		              	                	'<span class="glyphicon glyphicon-star"></span>'+
-		              	                	'<span class="glyphicon glyphicon-star-empty"></span>'+
-		              	            	'</li>'+
-		              	            	'<li>|</li>'+
-		              	            	'<li>'+
-		              	            		'<!-- Use Font Awesome http://fortawesome.github.io/Font-Awesome/ -->'+
-		              	             		'<span><i class="fa fa-facebook-square"></i></span> '+
-		              	              		'<span><i class="fa fa-twitter-square"></i></span> '+
-		              	              		'<span><i class="fa fa-google-plus-square"></i></span>'+
-		              	            	'</li>'+
+		              	            	
 		              				'</ul>'+
 		              	 		'</div>'+
 		         			'</div>'+  
@@ -125,6 +111,13 @@
 	<div class="maincontainer ">
 		<div class="row">
 			<div class="col-sm-8 col-sm-offset-2">
+			<div class="bs-example">
+    <ul class="breadcrumb">
+    	<li>Uni-connect</li>
+        <li><a href="#">Acceuil</a></li>
+        <li class="active"><a href="#">évenements > Rechercher </a></li>
+       
+    </ul> </div>
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h3>
@@ -139,7 +132,7 @@
 									OnSubmit="javascript:request(this)">
 	
 									<div class="form-group row">
-										<label class="col-xs-4 col-form-label">Rechercher par mot clef dans : </label>
+										<label class="col-xs-4 col-form-label">Rechercher par mot clef dans  </label>
 										<div class="col-sm-5">
 											<SELECT name="search" size="1" class="form-control">
 												<OPTION value="name">Nom</OPTION>

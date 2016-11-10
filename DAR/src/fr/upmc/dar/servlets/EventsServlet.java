@@ -62,6 +62,8 @@ public class EventsServlet extends HttpServlet {
 		switch (mode) {
 		case "new":request.getRequestDispatcher(UriMapping.CREATE_EVENT.getRessourceUrl()).forward(request, response);
 		break;
+		case "showall":request.getRequestDispatcher(UriMapping.EVENTSLIST.getRessourceUrl()).forward(request, response);
+		break;
 		case "event":
 			event(request, response);
 			break;
