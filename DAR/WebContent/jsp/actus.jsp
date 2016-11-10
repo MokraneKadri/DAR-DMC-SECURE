@@ -74,7 +74,7 @@
 						<a href='/DAR/events?mode=event&id=<%=event.getId()%>'> <%=event.getName()%>
 						</a>
 					</h3>
-					<h4 class="pull-right"><%=event.getPrivacy()%></h4>
+					<h4 class="pull-right"><%=EventVisibility.eventVisibilityToString(event.getPrivacy())%></h4>
 					<h5>
 						créé par : <%=event.getCreator().getUserName()%>
 					</h5>
