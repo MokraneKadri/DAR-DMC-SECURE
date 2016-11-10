@@ -207,8 +207,7 @@
 
 
 							</div>
-							<input type="hidden" id="usiness_id">
-							<input type="hidden" id="university_id">
+
 							<div class="form-group">
 								<label class="col-sm-4 control-label" for="eventplacename">
 									Nom du Lieu :</label>
@@ -246,6 +245,8 @@
 								 </span>
 							</div>
 							<div class="form-group">
+							<input type="hidden" name="business_id" id="business_id" value="">
+							<input type="hidden"   name="university_id" id="university_id" value="">
 								<div class="col-sm-9 col-sm-offset-4">
 									<button type="submit" class="btn btn-primary" name="creteEvent"
 										value="creteEvent">Créer ce Meet up</button>
@@ -269,8 +270,7 @@
 						function() {
 							
 							
-							var tt =$("#eventForm").serialize();
-							console.log(tt);
+							
 							var today = new Date();
 							var day = today.getDate();
 							var mois = today.getMonth()+1; 
@@ -288,7 +288,7 @@
 									.validate(
 											{
 												rules : {
-									
+													
 													
 													eventhour:{
 														required:true

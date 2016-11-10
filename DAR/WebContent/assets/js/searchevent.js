@@ -48,9 +48,9 @@ function onYelpResultSelection(lineId){
 	var placetype =document.getElementById("lieu").value;
 	var idb = (document.getElementById(lineId+"idb").value);
 	//alert(idb);
-    document.getElementById("usiness_id").value=idb;
+    document.getElementById("business_id").value=idb;
 	
-
+    $("#eventForm").valid();
 	$('#myModal').modal('hide');
 }
 function func_message(msg)
@@ -94,6 +94,7 @@ function onUniResultSelection(idres){
 	 document.getElementById("university_id").value=idu;
 	document.getElementById("university").value=fullUnivQualification;
 	//$("#eventForm").university.valid();//revalidation du formulaire
+	
 	 $('#myModalUn').modal('hide');
 }
 function Process1(rep) 

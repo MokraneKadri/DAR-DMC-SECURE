@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.hibernate.id.BulkInsertionCapableIdentifierGenerator;
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -340,6 +341,7 @@ public class EventsServlet extends HttpServlet {
 			User user = DAOFactory.createUserDao().findUserByUserName((String)request.getSession().getAttribute("login"));			
 			String businessId = request.getParameter("business_id"); 
 			String universityId = request.getParameter("university_id");
+		
 			University university = new ApiDAO().getUniversity(universityId);
 
 			if (businessId == null) {
