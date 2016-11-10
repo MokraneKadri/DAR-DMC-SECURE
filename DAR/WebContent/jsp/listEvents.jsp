@@ -46,149 +46,53 @@
 
 
 
-	<div class="maincontainer"></div>
+	<div class="maincontainer">
+	 <div class="row">
+	</div>
+	</div>
 	<script type="text/javascript">
 		
 		$(document)
 		.ready( function() {
-			$
+			 $
 			.get("/DAR/events?mode=list")
 			.done( function (data) {
 				var json = $.parseJSON(data);
 				console.log(data);
 				$.each(json, function (i, event) {
-					console.log(event);
-					$("div.maincontainer").append('<div class="well">'+
-               			'<div class="media">'+
-                  	    '<a class="pull-left" href="/DAR/events?mode=event&id='+ event.id + '">'+	
-                  	  		'<div class="media-body">'+
-                  	    		'<h4 class="media-heading">'+ event.name+'</h4>'+
-                  	         	'<p class="text-right">créer par : '+ event.creator +'</p>'+
-                  	         	'<p class="text-right"><a href="" class="btn btn-primary">Je participe</a>'+ '</p>'+
-                  	         	'<p class="text-right"><a href="/DAR/eventDetails?evt='+event.name+'" class="btn btn-info"> Details >> </a>'+ '</p>'+
-                  	         	'<p> <b>Visibilité </b>: ' + event.privacy + '</p>'+
-                  	          	'<p> <b>Description </b>: ' + event.description + '</p>'+
-                  	          	'<p><b> Thème</b> : ' + event.theme + '</p>'+
-                  	         	'<ul class="list-inline list-unstyled">'+
-                  	  				'<li><span><i class="glyphicon glyphicon-calendar"> </i> ' + event.date + '</span></li>'+
-                  	            	'<li>|</li>'+
-                  	            	'<span><i class="glyphicon glyphicon-comment"></i> ' + event.comments + ' <a href="/DAR/events?mode=event&id='+ event.id + '">comments<a/></span>'+
-                  	            	'<li>|</li>'+
-                  	            	'<li>'+
-                  	             		'<span class="glyphicon glyphicon-star"></span>'+
-                  	              		'<span class="glyphicon glyphicon-star"></span>'+
-                  	               		'<span class="glyphicon glyphicon-star"></span>'+
-                  	                	'<span class="glyphicon glyphicon-star"></span>'+
-                  	                	'<span class="glyphicon glyphicon-star-empty"></span>'+
-                  	            	'</li>'+
-                  	            	'<li>|</li>'+
-                  	            	'<li>'+
-                  	            		'<!-- Use Font Awesome http://fortawesome.github.io/Font-Awesome/ -->'+
-                  	             		'<span><i class="fa fa-facebook-square"></i></span> '+
-                  	              		'<span><i class="fa fa-twitter-square"></i></span> '+
-                  	              		'<span><i class="fa fa-google-plus-square"></i></span>'+
-                  	            	'</li>'+
-                  				'</ul>'+
-                  	 		'</div>'+
-             			'</div>'+  
-                  '</div>');
+					console.log(event); 
+				   
+				
+					$("div.row").append('<a href=""><div class="col-sm-4 col-lg-4 col-md-4">'+
+		                    '<div class="thumbnail">'+
+		                       ' <img src="/DAR/assets/img/event.jpg" alt="">'+
+		                        '<div class="caption">'+
+		                        '<h3>'+event.name+'</h3>'+
+		                           ' <h4 class="pull-right">'+event.privacy +'</h4>'+
+		                            '<h5>Crée par : </b>'+event.creator+'</h5>'+
+		                            
+		                            '<p> <b>description :</b>'+event.description+'</p>'+
+		                            '<p>pourri ou pas description de levenement pourri ou pas description de levenement pourri ou pas .</p>'+
+		                        '</div><div>'+
+		                        
+                  	         			'</div><div class="ratings">'+
+		                         ' <p class="pull-right"><span><i class="glyphicon glyphicon-comment"></i>'+event.comments+'</span></p>'+
+		                          '<p>'+
+		                           ' <span><i class="glyphicon glyphicon-calendar"> </i> '+event.date+' à 21:00</span>'+
+		                            '</p>'+
+		                       ' </div>'+
+		                    '</div>'+
+		               ' </div>'+
+									
+								 
+		                '</div></div>');	
+             
 				});
 			})
 			.fail( function () {
 				alert("Une erreur est survenue au moment de la récupération de la liste des événements");
 			});
 		});
-			 
-		/* $( document ).ready( function () {
-		
-			
-				
-               
-                    var data = $("").serialize();
-
-                    $.ajax({
-
-                        type: 'POST',
-                        url: '/DAR/eventList',
-                        data: data,
-						dataType:'json',
-                        beforeSend: function () {
-                        	       
-                        
-                        },
-                       error: function(){
-                                 alert('erreur');
-                                             },
-                                                      
-                        
-                        success: function (data) {
-                        	
-                        	//var dataRR =JSON.stringify(data);
-                        //	console.log(data);
-                        	console.log("profondeur0"+data.listEvents[0]);
-                        	//var eventdetails = $.parseJSON(data.listEvents[0]);
-                        		// console.log("profondeur0"+eventdetails);
-                        	for(var i = 0;i< data.listEvents.length;i++ ){
-                        		
-                        	
-                        			$.each(data.listEvents[i], function(j, EV){
-                        			
-   										var eventdetails = $.parseJSON(EV);
-   										console.log("iteration n+" +i); 
-   								
-                        			
-                           
-   										 $("div.maincontainer").append('<div class="well">'+
-                                    	      '<div class="media">'+
-                                    	      '	<a class="pull-left" href="#">'+
-                                    	    		
-                                    	  		'<div class="media-body">'+
-                                    	    		'<h4 class="media-heading">'+ eventdetails.eventName+'</h4>'+
-                                    	         ' <p class="text-right">créer par :'+ eventdetails.creator.userName+'</p>'+
-                                    	         '<p></p><p class="text-right"><a class="btn btn-primary">Je participe</a>'+
-                                    	         '<p></p><p class="text-right"><a class="btn btn-info"> Details >></a>'+
-                                    	          '<p></b>Description :</p>'+
-                                    	          '<p>'+eventdetails.eventDescription+'</p>'+
-                                    	          '<p></b>Thème :</p>'+
-                                    	          '<p>'+eventdetails.eventTheme+'</p>'+
-                                    	         ' <ul class="list-inline list-unstyled">'+
-                                    	  			'<li><span><i class="glyphicon glyphicon-calendar"></i>' +eventdetails.eventDate+' </span></li>'+
-                                    	            '<li>|</li>'+
-                                    	            '<span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>'+
-                                    	            '<li>|</li>'+
-                                    	            '<li>'+
-                                    	             '  <span class="glyphicon glyphicon-star"></span>'+
-                                    	              '          <span class="glyphicon glyphicon-star"></span>'+
-                                    	               '         <span class="glyphicon glyphicon-star"></span>'+
-                                    	                '        <span class="glyphicon glyphicon-star"></span>'+
-                                    	                 '       <span class="glyphicon glyphicon-star-empty"></span>'+
-                                    	            '</li>'+
-                                    	            '<li>|</li>'+
-                                    	            '<li>'+
-                                    	            '<!-- Use Font Awesome http://fortawesome.github.io/Font-Awesome/ -->'+
-                                    	             ' <span><i class="fa fa-facebook-square"></i></span>'+
-                                    	              '<span><i class="fa fa-twitter-square"></i></span>'+
-                                    	              '<span><i class="fa fa-google-plus-square"></i></span>'+
-                                    	            '</li>'+
-                                    				'</ul>'+
-                                    	       '</div>'+
-                                    	    '</div>'+
-                                    	  
-                                    '	  </div>');
-
-                                   
-                               
-                                    console.log("i eqauls+" +i); 
-                        		
-                        	});
-                    } 
-                        }
-                        
-                    });
-                  
-		} ); */
-		
-
 	</script>
 
 
