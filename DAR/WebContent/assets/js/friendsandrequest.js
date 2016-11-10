@@ -75,7 +75,7 @@ function ProcessRetrieveRequests(rep)
 
 	var message = "<table class=\"table\">" +
 	"<tr>" +
-	"<th>Nom</th><th>Prenom</th><th>Profil</th><th>Accepter</th><th>Refuser</th>" +
+	"<th>Nom</th><th>Prenom</th><th>Profil</th><th>Participation</th><th>Accepter</th><th>Refuser</th>" +
 	"</tr>";
 	var endmessage ="</table>";
 	var bodymessage ="";
@@ -94,6 +94,7 @@ function ProcessRetrieveRequests(rep)
 			"<td>"+user.name+"</td>" +
 			"<td>"+user.firstname+"</td>"+
 			"<td><a href=\"/DAR/memberprofile.jsp?id="+user.id+"\"> Voir Profil </a></td>"+
+			"<td><a href=\"/DAR/events?mode=list&member_id="+user.id+"&type=jsp\"> Participation </a></td>"+
 			"<td><a href=\"/DAR/friendsmanagement?typeOfRequest=1&id="+user.id+"\"> Accepter Requete </a></td>"+
 			"<td><a href=\"/DAR/friendsmanagement?typeOfRequest=4&id="+user.id+"\"> Refuser Requete </a></td>"
 			"</tr>";
