@@ -30,7 +30,7 @@ public class ApiDAO {
 
 	public void updateBusiness(Business b){
 		entityManager.getTransaction().begin();
-		entityManager.refresh(b);
+		entityManager.merge(b);
 		entityManager.getTransaction().commit();
 
 	}
@@ -50,7 +50,7 @@ public class ApiDAO {
 
 	public void updateUniversity(University b){
 		entityManager.getTransaction().begin();
-		entityManager.refresh(b);
+		entityManager.merge(b);
 		entityManager.getTransaction().commit();
 	}
 
