@@ -125,19 +125,15 @@
 										style="resize: none; width: 100%;"></textarea>
 								</div>
 							</div>
-
-							<<!-- div class="form-group">
-								<label class="col-sm-4 control-label"> Université :</label>
+							<div class="form-group">
+								<label class="col-sm-4 control-label" for="eventparticipants">Max. Participants:
+									</label>
 								<div class="col-sm-5">
-									<input type="text" class="form-control" name="university"
-										id="university" disabled/>
-									<button type="button" class="btn btn-info btn-block"
-										data-toggle="modal" data-target="#myModalUn">
-										<span class="glyphicon glyphicon-search"></span>
-									</button>
-
+									<input type="number" value="1" min="1" max="100" name="eventparticipants" id="eventparticipants" placeholder="nombre maximum de participant"/>
 								</div>
-							</div> -->
+							</div>
+
+				
 							<div class="form-group">
 							<label class="col-sm-4 control-label"> Université :</label>
 							<div class=" col-sm-5">
@@ -289,7 +285,11 @@
 											{
 												rules : {
 													
-													
+													eventparticipants:{
+														required:true,
+														min:2,
+														max:100
+													},
 													eventhour:{
 														required:true
 														
@@ -362,6 +362,11 @@
 														required : "Veuillez saisir l'adresse exacte ou se tiendra lévenement",
 														minlength : "merci d'indiquer une adresse valide"
 
+													},
+													eventparticipants:{
+														required:"Veuillez renseigner le nombre de particpant",
+														min:"Veuillez renseigner un nombre de particpant valide",
+														max:"le nombre darticipants ne peut exceder 100",
 													},
 
 													eventdescription : {
