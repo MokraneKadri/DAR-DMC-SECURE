@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.jsoup.Jsoup;
+import org.jsoup.safety.Whitelist;
 
 import fr.upmc.dar.dao.ApiDAO;
 import fr.upmc.dar.dao.DAOFactory;
@@ -338,24 +340,24 @@ public class EventsServlet extends HttpServlet {
 	private void create(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			User user = DAOFactory.createUserDao().findUserByUserName((String)request.getSession().getAttribute("login"));			
-			String businessId = request.getParameter("business_id"); 
-			String universityId = request.getParameter("university_id");
+			String businessId = Jsoup.clean(request.getParameter("business_id"), Whitelist.basic()); 
+			String universityId = Jsoup.clean(request.getParameter("university_id"), Whitelist.basic());
 		
 			University university = new ApiDAO().getUniversity(universityId);
 
 			if (businessId == null) {
 				Event event = new Event(
 						user, 
-						request.getParameter("name"), 
-						request.getParameter("privacy"), 
-						request.getParameter("description"), 
-						request.getParameter("date"),
-						request.getParameter("hour"), 
-						request.getParameter("theme"), 
-						request.getParameter("places"), 
-						request.getParameter("address"),
-						request.getParameter("place_type"),
-						request.getParameter("place_name"),
+						Jsoup.clean(request.getParameter("name"), Whitelist.basic()), 
+						Jsoup.clean(request.getParameter("privacy"), Whitelist.basic()),
+						Jsoup.clean(request.getParameter("description"), Whitelist.basic()), 
+						Jsoup.clean(request.getParameter("date"), Whitelist.basic()),
+						Jsoup.clean(request.getParameter("hour"), Whitelist.basic()),
+						Jsoup.clean(request.getParameter("theme"), Whitelist.basic()),
+						Jsoup.clean(request.getParameter("places"), Whitelist.basic()),
+						Jsoup.clean(request.getParameter("address"), Whitelist.basic()),
+						Jsoup.clean(request.getParameter("place_type"), Whitelist.basic()),
+						Jsoup.clean(request.getParameter("place_name"), Whitelist.basic()),
 						university);
 				event.addCandidate(user);
 				DAOFactory.createEventDao().createEvent(event);
@@ -363,16 +365,16 @@ public class EventsServlet extends HttpServlet {
 				Business business = new ApiDAO().getBusiness(businessId); //YelpBusinessSearch.idToBusiness(businessId);
 				Event event = new Event(
 						user, 
-						request.getParameter("name"), 
-						request.getParameter("eventpolicy"), 
-						request.getParameter("description"), 
-						request.getParameter("date"),
-						request.getParameter("hour"),
-						request.getParameter("theme"), 
-						request.getParameter("places"),
-						request.getParameter("address"),
-						request.getParameter("place_type"),
-						request.getParameter("place_name"),
+						Jsoup.clean(request.getParameter("name"), Whitelist.basic()), 
+						Jsoup.clean(request.getParameter("privacy"), Whitelist.basic()),
+						Jsoup.clean(request.getParameter("description"), Whitelist.basic()), 
+						Jsoup.clean(request.getParameter("date"), Whitelist.basic()),
+						Jsoup.clean(request.getParameter("hour"), Whitelist.basic()),
+						Jsoup.clean(request.getParameter("theme"), Whitelist.basic()),
+						Jsoup.clean(request.getParameter("places"), Whitelist.basic()),
+						Jsoup.clean(request.getParameter("address"), Whitelist.basic()),
+						Jsoup.clean(request.getParameter("place_type"), Whitelist.basic()),
+						Jsoup.clean(request.getParameter("place_name"), Whitelist.basic()),
 						business,
 						university);
 				event.addCandidate(user);
@@ -420,6 +422,7 @@ public class EventsServlet extends HttpServlet {
 	 * @throws IOException
 	 */
 
+	@Deprecated
 	private void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Integer id = Integer.valueOf(request.getParameter("id"));
 		try {
@@ -454,7 +457,7 @@ public class EventsServlet extends HttpServlet {
 			User user = DAOFactory.createUserDao().findUserByUserName((String)request.getSession().getAttribute("login"));
 			Event event = DAOFactory.createEventDao().getEventById(id);
 			List<Comment> comments = event.getComments();
-			Comment comment = new Comment(user, request.getParameter("content"));
+			Comment comment = new Comment(user, Jsoup.clean(request.getParameter("content"), Whitelist.basic()));
 			comments.add(comment);
 			DAOFactory.createEventDao().updateEvent(event);
 			request.getRequestDispatcher("/jsp/event.jsp?id=" + event.getId()).forward(request, response);
