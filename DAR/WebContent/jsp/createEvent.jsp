@@ -121,7 +121,7 @@
 									:</label>
 								<div class="col-sm-5">
 									<textarea rows="5" cols="50" id="eventdescription"
-										name="eventdescription" value=""
+										name="description" value=""
 										style="resize: none; width: 100%;"></textarea>
 								</div>
 							</div>
