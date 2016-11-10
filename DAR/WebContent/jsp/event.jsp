@@ -100,7 +100,7 @@
 		                <span>
 		                    <i class="fa fa-users" aria-hidden="true"></i>
 		                    <b>Participants :</b>
-		                    <%= event.getCandidates().size()%> / <%= event.getPlaces()%>
+		                    <%= event.getCandidates().size()%> / <%= event.getPlaces().toString()%>
 		                </i>
 		                </span>
 		            </li>
