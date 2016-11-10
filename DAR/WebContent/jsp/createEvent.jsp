@@ -67,27 +67,7 @@
 						<h3 class="panel-title">Créer votre Meet up</h3>
 					</div>
 					<div class="panel-body">
-						<%-- <<<<<<< HEAD
-						<form id="eventForm" method="post" class="form-horizontal"
-							action="/DAR/create_event">
 
-							<div id="error">
-
-								<c:if test="${not empty formErrors['username']}">
-									<div class="alert alert-danger">
-										<span class="glyphicon glyphicon-info-sign"></span>
-										<c:out value="${formErrors['username']}" />
-									</div>
-
-									<c:if test="${not empty formErrors['email']}">
-										<div class="alert alert-danger">
-											<span class="glyphicon glyphicon-info-sign"></span>
-											<c:out value="${formErrors['email']}" />
-										</div>
-									</c:if>
-								</c:if>
-							</div>
-======= --%>
 						<form id="eventForm" method="post" class="form-horizontal"
 							action="/DAR/create_event">
 
@@ -124,7 +104,7 @@
 								<label class="col-sm-4 control-label" for="eventhour">
 									Heure :</label>
 								<div class="col-sm-5">
-									<input type="date" class="form-control" name="eventhour"
+									<input type="time" class="form-control" name="eventhour"
 										id="eventhour" />
 								</div>
 							</div>
@@ -198,16 +178,12 @@
 
 							<!-- Modal -->
 
-							<div class="col-sm-5 col-sm-offset-4">
-								<button type="button" class="btn btn-info btn-lg btn-block"
-									data-toggle="modal" data-target="#myModal">Rechercher
-									un endroit !</button>
-							</div>
+							
 							<div class="col-sm-5 "
 								style="width: 100%; height: 15px; border-bottom: 1px solid black; text-align: center; margin-bottom: 25px; margin-top: 10px">
 								<span
 									style="font-size: 20px; background-color: #F3F5F6; padding: 0px 10px;">
-									OU </span>
+								  Précisez le Lieu: </span>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-4 control-label" for="eventplace">Type
@@ -246,11 +222,28 @@
 										name="eventaddress" placeholder="l'adresse complète du lieu" />
 								</div>
 							</div>
-
+							<div class="col-sm-5 "
+								style="width: 100%; height: 15px; border-bottom: 1px solid black; text-align: center; margin-bottom: 25px; margin-top: 10px">
+								<span
+									style="font-size: 20px; background-color: #F3F5F6; padding: 0px 10px;">
+								 Ou Trouver un endroit à l'aide de yelp !  </span>
+							</div>
+							<div class="form-group">
+							<div class="col-sm-5 col-sm-offset-4">
+								<button type="button" class="btn btn-succes btn-lg "
+									data-toggle="modal" data-target="#myModal">Rechercher </button>
+							</div>
+							</div>
+							<div class="col-sm-5 "
+								style="width: 100%; height: 15px; border-bottom: 1px solid black; text-align: center; margin-bottom: 25px; margin-top: 10px">
+								<span
+									style="font-size: 20px; background-color: #F3F5F6; padding: 0px 10px;">
+								 </span>
+							</div>
 							<div class="form-group">
 								<div class="col-sm-9 col-sm-offset-4">
-									<button type="submit" class="btn btn-primary" name="signup"
-										value="Sign up">Céer ce Meet up</button>
+									<button type="submit" class="btn btn-primary" name="creteEvent"
+										value="creteEvent">Créer ce Meet up</button>
 								</div>
 							</div>
 
@@ -269,6 +262,22 @@
 		$(document)
 				.ready(
 						function() {
+							
+							
+							
+							var today = new Date();
+							var day = today.getDate();
+							var mois = today.getMonth()+1; 
+							var annee = today.getFullYear();
+							 if(day<10){
+							        day='0'+day
+							    } 
+							    if(mois<10){
+							        mois='0'+mois
+							    } 
+
+							today = annee+'-'+mois+'-'+day;
+							document.getElementById("eventdate").setAttribute("min", today);
 							$("#eventForm")
 									.validate(
 											{
@@ -433,7 +442,7 @@
 				<div class="modal-body">
 					<div class="well-searchbox">
 						<div class="row">
-							<form class="form-horizontal" role="form"
+							<form  id="yelp" class="form-horizontal" role="form"
 								action="javascript:(function(){return;})()" method="get"
 								OnSubmit="javascript:searchevent(this)">
 
@@ -453,7 +462,7 @@
 								</div>
 								<div class="col-sm-offset-4 col-sm-5">
 									<button type="submit" class="btn btn-primary" name="find"
-										value="find">Chercher !</button>
+										value="find" >Chercher !</button>
 								</div>
 
 
@@ -461,6 +470,9 @@
 						</div>
 					</div>
 				</div>
+				
+				
+				
 				<div id='notifier-modal'></div>
 				<div class="modal-footer">
 					<div class="form-group"></div>
@@ -472,6 +484,8 @@
 		</div>
 
 	</div>
+	
+	
 	
 		<!-- Modal University-->
 	<div id="myModalUn" class="modal fade" role="dialog"
@@ -487,7 +501,7 @@
 				<div class="modal-body">
 					<div class="well-searchbox">
 						<div class="row">
-							<form class="form-horizontal" role="form"
+							<form  id="uni" class="form-horizontal" role="form"
 								action="javascript:(function(){return;})()" method="get"
 								OnSubmit="javascript:searchuniversity(this)">
 

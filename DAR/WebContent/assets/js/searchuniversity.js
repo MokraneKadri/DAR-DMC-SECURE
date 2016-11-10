@@ -1,5 +1,6 @@
-function searchuniversity(form) 
+function searchuniversity(forme) 
 {
+	var form = document.getElementById("uni");
 	searchu(form.termuni.value);
 }
 function searchu(value1) 
@@ -9,28 +10,28 @@ function searchu(value1)
 		url : "/DAR/APIsearchUni",
 		data : {term : value1},
 		dataType : "JSON",
-		success : Process,
+		success : Process1,
 		error : function(xhr,status,errorthrown){
 			console.log(JSON.stringify(xhr + " " + status + " " + errorthrown));
 		}
 	});
 }
 
-function Process(rep) 
+function Process1(rep) 
 {
 	var div=rep.html;
-	console.log(rep);
+	
 	console.log(rep.html);
-	func_message(div);
+	func_message1(div);
 }
 
-function func_message(msg)
+function func_message1(msg)
 {
-	printHTML("#notifier-modal-university",msg);
+	printHTML1("#notifier-modal-university",msg);
 }
 
 
-function printHTML(dom,htm)
+function printHTML1(dom,htm)
 { 
 	$(dom).html(htm);
 }
