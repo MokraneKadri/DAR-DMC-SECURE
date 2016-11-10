@@ -37,7 +37,7 @@
 				<ul class="dropdown-menu">
 					<li><a href="/DAR/jsp/eventSearch.jsp">Rechercher un
 							événement</a></li>
-					<li><a href="/DAR/create_event">Créer un événement </a></li>
+					<li><a href="/DAR/events?mode=new">Créer un événement </a></li>
 				</ul></li>
 		</ul>
 
@@ -51,12 +51,12 @@
 						role="button" aria-haspopup="true" aria-expanded="false">Amis
 							<span class="caret"></span>
 					</a>
-						<ul class="dropdown-menu">
+						<!-- <ul class="dropdown-menu">
 							<li><a href="/DAR/jsp/myfriends.jsp">Mes Amis</a></li>
 							<li><a href="/DAR/jsp/pendingrequests.jsp">Requêtes
 									d'amis </a></li>
 							<li><a href="/DAR/jsp/finduser.jsp">Rechercher un ami</a></li>
-						</ul></li>
+						</ul></li> -->
 
 					<li class=" dropdown"><a href="#"
 						class="dropdown-toggle active" data-toggle="dropdown"

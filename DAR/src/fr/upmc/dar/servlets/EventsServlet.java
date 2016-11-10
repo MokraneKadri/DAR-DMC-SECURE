@@ -28,6 +28,7 @@ import fr.upmc.dar.entities.Event;
 import fr.upmc.dar.entities.University;
 import fr.upmc.dar.entities.User;
 import fr.upmc.dar.enums.EventVisibility;
+import fr.upmc.dar.enums.UriMapping;
 import fr.upmc.dar.json.Error;
 import fr.upmc.dar.json.Success;
 import fr.upmc.dar.json.Warning;
@@ -59,6 +60,8 @@ public class EventsServlet extends HttpServlet {
 			response.getWriter().print(new Warning("L'appel à la servlet n'est pas correctement formulée"));
 
 		switch (mode) {
+		case "new":request.getRequestDispatcher(UriMapping.CREATE_EVENT.getRessourceUrl()).forward(request, response);
+break;
 		case "event":
 			event(request, response);
 			break;

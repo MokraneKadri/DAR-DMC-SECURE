@@ -117,10 +117,10 @@
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-4 control-label" for="eventdescription">Description
+								<label class="col-sm-4 control-label" for="description">Description
 									:</label>
 								<div class="col-sm-5">
-									<textarea rows="5" cols="50" id="eventdescription"
+									<textarea rows="5" cols="50" id="description"
 										name="description" value=""
 										style="resize: none; width: 100%;"></textarea>
 								</div>
