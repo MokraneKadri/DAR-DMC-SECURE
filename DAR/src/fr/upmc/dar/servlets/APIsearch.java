@@ -41,7 +41,7 @@ public class APIsearch extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		response.setCharacterEncoding("UTF-8");
 		String lieu = request.getParameter("lieu");
 		System.out.println("Recherche de : "+lieu);
 		String ville = request.getParameter("ville");

@@ -37,6 +37,7 @@ public class APIsearchUni extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setCharacterEncoding("UTF-8");
 		String term = request.getParameter("term");
 		JSONObject res=new JSONObject();
 		try{
