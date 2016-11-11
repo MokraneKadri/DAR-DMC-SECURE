@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%@page import="fr.upmc.dar.entities.Comment"%>
 <%@page import="fr.upmc.dar.enums.EventVisibility"%>
 <%@page import="fr.upmc.dar.dao.interfaces.IEventDao"%>

@@ -1,3 +1,4 @@
+<%@page import="fr.upmc.dar.dao.DAOFactory"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false"%>
@@ -81,16 +82,12 @@
 								Events</a></li>
 						<li><a href="javascript: void(0);" id="meetups">Mes
 								Participations</a></li>
-
 					</ul>
 				</div>
 			</div>
 			<div class="col-md-10 col-sm-8 main-content" id="main-content">
-
 			</div>
 		</div>
-
-
 	</div>
 
 
@@ -103,49 +100,69 @@
 	</jsp:include>
 
 	<script type="text/javascript">
-	 $(document).ready(function(){
-	
-		 $("#friends").click(function(){
-		
-        $("#main-content").load('/DAR/jsp/myfriends.jsp');
-      });
-		 
-		 $("#Addfriends").click(function(){
-				// alert("rrrrr");
-	        $("#main-content").load('/DAR/jsp/finduser.jsp .maincontainer');
-	      });
-		 
-		 $("#request").click(function(){
-				// alert("rrrrr");
-	        $("#main-content").load('/DAR/jsp/pendingrequests.jsp .maincontainer');
-	      });
-		 
-		 $("#myprofil").click(function(){
-				// alert("rrrrr");
-			 
-					  $("#main-content").load('/DAR/profil?mode=view');
-		 
-		 });
-	    
-		 $("#mymeetsup").click(function(){
-				// alert("rrrrr");
-	        $("#main-content").load('/DAR/jsp/finduser.jsp .maincontainer');
-	      });
-		 $("#meetups").click(function(){
-				// alert("rrrrr");
-	        $("#main-content").load('/DAR/events?mode=list .maincontainer');
-	      });
+		$(document)
+				.ready(
+						function() {
 
-		 
-	 });
-	 </script>
+							$("#friends").click(
+									function() {
+
+										$("#main-content").load(
+												'/DAR/jsp/myfriends.jsp');
+									});
+
+							$("#Addfriends")
+									.click(
+											function() {
+												// alert("rrrrr");
+												$("#main-content")
+														.load(
+																'/DAR/jsp/finduser.jsp .maincontainer');
+											});
+
+							$("#request")
+									.click(
+											function() {
+												// alert("rrrrr");
+												$("#main-content")
+														.load(
+																'/DAR/jsp/pendingrequests.jsp');
+											});
+
+							$("#myprofil").click(
+									function() {
+										// alert("rrrrr");
+										$("#main-content").load(
+												'/DAR/profil?mode=view');
+									});
+
+							$("#mymeetsup")
+									.click(
+											function() {
+												// alert("rrrrr");
+												$("#main-content")
+														.load(
+																//'/DAR/jsp/finduser.jsp .maincontainer');
+																'/DAR/events?mode=list&type=jsp&creator_id=' + <%= DAOFactory.createUserDao().findUserByUserName((String)request.getSession().getAttribute("login")).getId() %> );
+											});
+							$("#meetups")
+									.click(
+											function() {
+												// alert("rrrrr");
+												$("#main-content")
+														.load(
+																//'/DAR/events?mode=list .maincontainer');
+																'/DAR/events?mode=list&type=jsp&member_id=' + <%= DAOFactory.createUserDao().findUserByUserName((String)request.getSession().getAttribute("login")).getId() %> );
+											});
+
+						});
+	</script>
 
 	<script>
-    window.onload = function() {
-    	$("#main-content").load('/DAR/profil?mode=view');
-    }
-
-</script>
+		window.onload = function() {
+			$("#main-content").load('/DAR/profil?mode=view');
+		}
+	</script>
 
 
 </body>

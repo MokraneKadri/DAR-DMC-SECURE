@@ -124,18 +124,9 @@ public class FriendsDao implements IFriendsDao {
 	public void  removeFriend(String user1,String user2) throws Exception
 	{
 		try{
-			//String sqlQuery = "DELETE FROM FRIENDS WHERE ((id1='"+user1+"' AND id2='"+user2+"') OR (id1='"+user2+"' AND id2='"+user1+"'));";
-			UserDao dao=new UserDao();
-			//		User userOne = dao.findUserById(Integer.parseInt(user1));
-			//		User userTwo = dao.findUserById(Integer.parseInt(user2));
-
-			User userOne = dao.findUserByUserName((user1));
-			User userTwo = dao.findUserByUserName((user2));
-			List<Friends> friends=this.getFriendsOf(userOne, userTwo);
+			String sqlQuery = "DELETE FROM Friends f WHERE ((f.user1.id=:user1 AND f.user2.id=:user2) OR (f.user1.id=:user2 AND f.user2.id=:user1))";
 			entityManager.getTransaction().begin();
-			for(Friends fr : friends)
-				entityManager.remove(fr);
-
+			entityManager.createQuery(sqlQuery).setParameter("user1", Integer.parseInt(user1)).setParameter("user2", Integer.parseInt(user2)).executeUpdate();
 			entityManager.getTransaction().commit();
 
 		}catch(Exception e){System.out.println(e.getMessage());};

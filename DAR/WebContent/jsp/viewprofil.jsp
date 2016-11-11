@@ -53,11 +53,11 @@
                    
                          <tr>
                              <tr>
-                        <td>Adresee Postale</td>
+                        <td>Adresse postale</td>
                         <td></td>
                       </tr>
                         <tr>
-                        <td>Université Actuelle</td>
+                        <td>Université actuelle</td>
                         <td><c:out value="${userinfos['university']}"/></td>
                       </tr>
                       <tr>

@@ -49,13 +49,17 @@ function ProcessRetrieveFriends(rep)
 
 	var jsonData =rep.result;//= JSON.parse(rep);
 	if(jsonData.users == undefined || jsonData.users.length == 0){
-		message="Aucun Amis :(";
-		bodymessage="";
-		endmessage="";
+		bodymessage = bodymessage+
+		"<tr>" +
+		"<td> Aucun</td>" +
+		"<td> Amis</td>"+
+		"<td></td>"+
+		"<td></td>"+
+		"<td></td>"+
+		"</tr>";
 	}else{
 		for (var i = 0; i < jsonData.users.length; i++) {
 			var user = jsonData.users[i];
-
 			bodymessage = bodymessage+
 			"<tr>" +
 			"<td>"+user.name+"</td>" +
@@ -82,13 +86,18 @@ function ProcessRetrieveRequests(rep)
 
 	var jsonData = rep.result;//JSON.parse(rep);
 	if(jsonData.users == undefined || jsonData.users.length == 0){
-		message="Aucune Requete d'amis :(";
-		bodymessage="";
-		endmessage="";
+		bodymessage = bodymessage+
+		"<tr>" +
+		"<td> Aucune</td>" +
+		"<td> Requêtes</td>"+
+		"<td></td>"+
+		"<td></td>"+
+		"<td></td>"+
+		"<td></td>"+
+		"</tr>";
 	}else{
 		for (var i = 0; i < jsonData.users.length; i++) {
 			var user = jsonData.users[i];
-
 			bodymessage = bodymessage+
 			"<tr>" +
 			"<td>"+user.name+"</td>" +

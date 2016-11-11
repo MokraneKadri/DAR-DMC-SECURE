@@ -3,10 +3,13 @@ package fr.upmc.dar.servlets;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaBuilder.In;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -62,7 +65,7 @@ public class EventsServlet extends HttpServlet {
 		switch (mode) {
 		case "new":request.getRequestDispatcher(UriMapping.CREATE_EVENT.getRessourceUrl()).forward(request, response);
 		break;
-		case "showall":request.getRequestDispatcher(UriMapping.EVENTSLIST.getRessourceUrl()).forward(request, response);
+		case "showall":response.sendRedirect("/DAR/events?mode=list&type=jsp");//request.getRequestDispatcher(UriMapping.EVENTSLIST.getRessourceUrl()).forward(request, response);
 		break;
 		case "event":
 			event(request, response);
@@ -81,8 +84,6 @@ public class EventsServlet extends HttpServlet {
 			break;
 		case "GPS":
 			GPS(request,response);
-		case "participate":
-			participate(request, response);
 		default:
 			break;
 		}
@@ -109,6 +110,8 @@ public class EventsServlet extends HttpServlet {
 		case "comment":
 			comment(request, response);
 			break;
+		case "participate":
+			participate(request, response);
 		default:
 			break;
 		}
@@ -205,7 +208,7 @@ public class EventsServlet extends HttpServlet {
 		List<Event> list = DAOFactory.createEventDao().getAllEvents();
 		while (list.size() > Integer.parseInt(request.getParameter("limit")))
 			list.remove(0);
-		Collections.reverse(list);
+		coming(list);
 		request.setAttribute("actus", list);
 		request.getRequestDispatcher("/jsp/actus.jsp").forward(request, response);
 	}
@@ -226,10 +229,11 @@ public class EventsServlet extends HttpServlet {
 		JSONArray array;
 		IEventDao dao = DAOFactory.createEventDao();
 		String type = request.getParameter("type");
-		if (request.getParameterMap().keySet().size() == 1) {
+		if (request.getParameterMap().keySet().size() == 2) {
 			array = new JSONArray();
 			List<Event> ev=dao.getAllEvents();
 			if(type!=null && type.compareTo("jsp")==0){
+				coming(ev);
 				request.setAttribute("actus", ev);
 				request.getRequestDispatcher("/jsp/actus.jsp").forward(request, response);
 			}else
@@ -249,6 +253,7 @@ public class EventsServlet extends HttpServlet {
 				List<Event> ev=new ArrayList<Event>();
 				ev.add(dao.getEventById(Integer.valueOf(id)));
 				if(type!=null && type.compareTo("jsp")==0){
+					coming(ev);
 					request.setAttribute("actus", ev);
 					request.getRequestDispatcher("/jsp/actus.jsp").forward(request, response);
 				}else
@@ -261,8 +266,9 @@ public class EventsServlet extends HttpServlet {
 			String creatorId = request.getParameter("creator_id");
 
 			array = new JSONArray();
-			List<Event> ev =dao.selectTuplesWhereFieldIs(Event.class, "creator.id", creatorId);
+			List<Event> ev =dao.selectTuplesWhereFieldIs(Event.class, "creator.id", Integer.valueOf(creatorId));
 			if(type!=null && type.compareTo("jsp")==0){
+				coming(ev);
 				request.setAttribute("actus", ev);
 				request.getRequestDispatcher("/jsp/actus.jsp").forward(request, response);
 			}else
@@ -296,6 +302,7 @@ public class EventsServlet extends HttpServlet {
 				}
 			}
 			if(type!=null && type.compareTo("jsp")==0){
+				coming(ev);
 				request.setAttribute("actus", ev);
 				request.getRequestDispatcher("/jsp/actus.jsp").forward(request, response);
 			}else
@@ -530,10 +537,30 @@ public class EventsServlet extends HttpServlet {
 			if (!isCandidate)
 				event.addCandidate(user);
 
+			DAOFactory.createEventDao().updateEvent(event);
+			
+			System.out.println("OK");
+			
 			response.getWriter().print(new Success("Votre participation a été engeristrée avec succès"));
 
 		} catch (Exception e) {
 
 		}
+	}
+	
+	private void coming(List<Event> e){
+		Collections.sort(e,new Comparator<Event>() {
+		    @Override
+		    public int compare(Event c1, Event c2) {
+		        Date c1d=c1.getDate();
+		        Date c2d=c2.getDate();
+		        
+		        if(c1d.before(c2d))
+		        	return -1;
+		        if(c1d.after(c2d))
+		        	return 1;
+		        return 0;
+		    }
+		});
 	}
 }
