@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Uni-Connect | Actus</title>
+<title>Uni-Connect| Actualités</title>
 
 
 <!--  Scripts  -->
@@ -54,7 +54,7 @@
     <ul class="breadcrumb">
     	<li>Uni-connect</li>
         <li><a href="#">Acceuil</a></li>
-        <li class="active"><a href="#">Actu et événements récents</a></li>
+        <li class="active"><a href="#">Actus et événements récents</a></li>
        
     </ul>
      </div> </div>
@@ -80,7 +80,7 @@
 					</h5>
 
 					<p>
-						<b>Description : 
+						<b>Description :</b> 
 					</p>
 					<p><%=event.getDescription()%></p>
 					</p>
@@ -89,7 +89,7 @@
 				<div class="ratings">
 					<p class='pull-right'>
 						<span><i class='glyphicon glyphicon-comment'></i> <%=event.getComments().size()%>
-							<a href='/DAR/events?mode=event&id=<%=event.getId()%>'>comments</a></span>
+							<a href='/DAR/events?mode=event&id=<%=event.getId()%>#com'>commentaires</a></span>
 					</p>
 					<p>
 						<span><i class='glyphicon glyphicon-calendar'> </i> <%=event.getDateToString()%>

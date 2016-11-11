@@ -52,7 +52,7 @@
     <ul class="breadcrumb">
     	<li>Uni-connect</li>
         <li><a href="#">Acceuil</a></li>
-        <li class="active"><a href="#">Inscripion</a></li>
+        <li class="active"><a href="#">Inscription</a></li>
         
     </ul>
 		</div>
@@ -61,7 +61,7 @@
 
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title">Créer votre Compte </h3>
+						<h3 class="panel-title">Créer votre compte </h3>
 					</div>
 					<div class="panel-body">
 						<form id="signupForm" method="post" class="form-horizontal" action="/DAR/signup">
@@ -78,35 +78,35 @@
 							<div class="form-group">
 								<label class="col-sm-4 control-label" for="firstname"> Nom :</label>
 								<div class="col-sm-5">
-									<input type="text" class="form-control" id="firstname" name="firstname" placeholder="First name" />
+									<input type="text" class="form-control" id="firstname" name="firstname" placeholder="Votre nom" />
 								</div>
 							</div>
 
 							<div class="form-group">
 								<label class="col-sm-4 control-label" for="lastname"> Prénom :</label>
 								<div class="col-sm-5">
-									<input type="text" class="form-control" id="lastname" name="lastname" placeholder="votre prenom" />
+									<input type="text" class="form-control" id="lastname" name="lastname" placeholder="Votre prénom" />
 								</div>
 							</div>
 
 							<div class="form-group">
 								<label class="col-sm-4 control-label" for="username">Nom d'utilisateur :</label>
 								<div class="col-sm-5">
-									<input type="text" class="form-control" id="username" name="username" placeholder="votre nom d'utilisateur" />
+									<input type="text" class="form-control" id="username" name="username" placeholder="Votre nom d'utilisateur" />
 								</div>
 							</div>
 
 							<div class="form-group">
 								<label class="col-sm-4 control-label" for="email">Email :</label>
 								<div class="col-sm-5">
-									<input type="email" class="form-control" id="email" name="email" placeholder="votre adresse email" />
+									<input type="email" class="form-control" id="email" name="email" placeholder="Votre adresse email" />
 								</div>
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-4 control-label" for="password">Mot de Passe :</label>
+								<label class="col-sm-4 control-label" for="password">Mot de passe :</label>
 								<div class="col-sm-5">
-									<input type="password" class="form-control" id="password" name="password" placeholder="votre mot de passe" />
+									<input type="password" class="form-control" id="password" name="password" placeholder="Votre mot de passe" />
 								</div>
 							</div>
 
@@ -123,27 +123,27 @@
 								</div>
 								</div>
 								<div class="form-group">
-								<label class="col-sm-4 control-label" for="zipcode">Code Postal :</label>
+								<label class="col-sm-4 control-label" for="zipcode">Code Postale :</label>
 								<div class="col-sm-5">
-									<input type="text" class="form-control" id="zipcode" name="zipcode" placeholder="code postal " />
+									<input type="text" class="form-control" id="zipcode" name="zipcode" placeholder="Code postale " />
 								</div>
 								</div>
 								<div class="form-group">
 								<label class="col-sm-4 control-label" for="city">Ville :</label>
 								<div class="col-sm-5">
-									<input type="text" class="form-control" id="city" name="city" placeholder="ville : ex Paris " />
+									<input type="text" class="form-control" id="city" name="city" placeholder="Ville : ex Paris " />
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-4 control-label" for="université">Université :</label>
 								<div class="col-sm-5">
-									<input type="text" class="form-control" id="university" name="university" placeholder="indiquez votre university" />
+									<input type="text" class="form-control" id="university" name="university" placeholder="Indiquez votre university" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-4 control-label" for="cursus">Cursus :</label>
 								<div class="col-sm-5">
-									<input type="text" class="form-control" id="cursus" name="cursus" placeholder="indiquez votre cursus " />
+									<input type="text" class="form-control" id="cursus" name="cursus" placeholder="Indiquez votre cursus " />
 								</div>
 							</div>
 							

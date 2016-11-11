@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Connexion | Espace membre</title>
+<title>Connexion |Espace membre</title>
 
 
 
@@ -72,8 +72,8 @@
 						<li><a href="javascript: void(0);" id="myprofil">Mon
 								profil</a></li>
 						<li><a href="javascript: void(0);" id="friends"> Mes amis</a></li>
-						<li><a href="javascript: void(0);" id="request"> Requêtes
-								reçus</a></li>
+						<li><a href="javascript: void(0);" id="request"> demandes
+								reçues</a></li>
 						<li><a href="javascript: void(0);" id="Addfriends">
 								Rechercher un utilisateur</a></li>
 

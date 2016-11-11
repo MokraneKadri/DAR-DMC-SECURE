@@ -42,7 +42,7 @@ public class APIsearchUni extends HttpServlet {
 		try{
 			String directRes="";
 			String htmltab = "<table class=\"table table-hover\">"+
-					"<thead><tr><th>Etablissement </th><th>Adresse</th><th>Code Postal</th><th>Action</th>"+
+					"<thead><tr><th>Etablissement </th><th>Adresse</th><th>Code Postale</th><th>Action</th>"+
 					"</tr></thead><tbody>";
 			directRes+=htmltab;
 			try{

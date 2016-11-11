@@ -83,10 +83,10 @@
 
 							<div class="form-group">
 								<label class="col-sm-4 control-label" for="name">
-									intitulé :</label>
+									Intitulé :</label>
 								<div class="col-sm-5">
 									<input type="text" class="form-control" id="name"
-										name="name" placeholder="intitulé de l'évenement" />
+										name="name" placeholder="Intitulé de l'évenement" />
 								</div>
 							</div>
 
@@ -115,10 +115,10 @@
 									:</label>
 								<div class="col-sm-5">
 									<select id="theme" name="theme" class="form-control">
-										<option value="" disabled selected>choisir un thème</option>
-										<option value="Moulin à Parole">Moulin à Parole</option>
+										<option value="" disabled selected>Choisir un thème</option>
+										<option value="Moulin à parole">Moulin à paroles</option>
 										<option value="échanges linguistiques/culturelles">échanges linguistiques/culturelles</option>
-										<option value="relatifs aux études">relatifs aux études</option>
+										<option value="relatif aux études">relatif aux études</option>
 										<option value="Autres">Autres...</option>
 									</select>
 								</div>
@@ -145,7 +145,7 @@
 							<div class="form-group">
 							<label class="col-sm-4 control-label"> Université :</label>
 							<div class=" col-sm-5">
-                   			 <input type="text" class="form-control " placeholder="trouver votre unversité" name="university"
+                   			 <input type="text" class="form-control " placeholder="Trouver votre unversité" name="university"
 										id="university" />
 										</div>
                				 </div>
@@ -155,8 +155,8 @@
                				 
                				 <label class="col-sm-4 control-label"></label>
 							<div class=" col-sm-5">
-                      			  <button class="btn btn-info bt-lg" value="trouver" type="button" data-toggle="modal" data-target="#myModalUn">
-                         			   <i class="glyphicon glyphicon-search"> chercher !</i>
+                      			  <button class="btn btn-info" value="trouver" type="button" data-toggle="modal" data-target="#myModalUn">
+                         			   <i class="glyphicon glyphicon-search"> </i> Aidez moi à Trouver mon université ?
                       				  </button>
                    
                 				</div>
@@ -168,7 +168,7 @@
 								<div class="col-sm-5">
 									<select id="eventpolicy" name="privacy"
 										class="form-control">
-										<option value="" disabled selected>choisir</option>
+										<option value="" disabled selected>Choisir</option>
 										<option value="public">Public</option>
 										<option value="private">Amis</option>
 										<option value="university">Université</option>
@@ -200,7 +200,7 @@
 									Nom du Lieu :</label>
 								<div class="col-sm-5">
 									<input type="text" class="form-control" id="place_name"
-										name="place_name" placeholder="Ex: Pizza FIVE" />
+										name="place_name" placeholder="ex: Bar le village" />
 								</div>
 							</div>
 
@@ -217,26 +217,26 @@
 								style="width: 100%; height: 15px; border-bottom: 1px solid black; text-align: center; margin-bottom: 25px; margin-top: 10px">
 								<span
 									style="font-size: 20px; background-color: #F3F5F6; padding: 0px 10px;">
-								 Ou Trouvez un endroit à l'aide de yelp !  </span>
+									
+									<button type="button" class="btn btn-danger "
+									data-toggle="modal" data-target="#myModal">   <i class="glyphicon glyphicon-search"> </i>  Rechercher  un établissement sur Yelp! </button>
+								  </span>
 							</div>
-							<div class="form-group">
+							<!-- <div class="form-group">
 							<div class="col-sm-5 col-sm-offset-4">
-								<button type="button" class="btn btn-succes btn-lg "
-									data-toggle="modal" data-target="#myModal">Rechercher </button>
+								<button type="button" class="btn btn-danger btn-lg "
+									data-toggle="modal" data-target="#myModal">   <i class="glyphicon glyphicon-search"> </i>  Retrouver sur Yelp! </button>
 							</div>
-							</div>
-							<div class="col-sm-5 "
-								style="width: 100%; height: 15px; border-bottom: 1px solid black; text-align: center; margin-bottom: 25px; margin-top: 10px">
-								<span
-									style="font-size: 20px; background-color: #F3F5F6; padding: 0px 10px;">
-								 </span>
+							</div> -->
+							<div class="col-sm-5 ">
+							<br><br>
 							</div>
 							<div class="form-group">
 							<input type="hidden" name="business_id" id="business_id" value="">
 							<input type="hidden"   name="university_id" id="university_id" value="">
-								<div class="col-sm-9 col-sm-offset-4">
-									<button type="submit" class="btn btn-primary" name="creteEvent"
-										value="creteEvent">Créer ce Meet up</button>
+								<div class="col-sm-8 col-sm-offset-4">
+									<button type="submit" class="btn btn-primary btn-lg" name="creteEvent"
+										value="creteEvent">Créer ce meet-up !</button>
 								</div>
 							</div>
 

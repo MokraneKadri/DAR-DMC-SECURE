@@ -56,7 +56,7 @@ public class APIsearch extends HttpServlet {
 			String directRes="";
 			
 			String htmltab = "<table  id=\"resTable\" class=\"table table-hover\">"+
-           "<thead><tr><th>Etablissement </th><th>Horaire D'ouverture</th><th>Adresse</th><th>ville</th><th>Code Postal</th><th>Action</th>"+
+           "<thead><tr><th>Etablissement </th><th>Horaire d'ouverture</th><th>Adresse</th><th>Ville</th><th>Code Postale</th><th>Action</th>"+
             "</tr></thead><tbody>";
        
 			directRes+=htmltab;

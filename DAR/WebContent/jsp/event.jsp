@@ -256,8 +256,7 @@
 							</div>
 
 							<div>
-								<small><a href="https://fbaddlikebutton.com/nl/">klik
-										hier</a></small>
+								
 							</div>
 							<style>
 #gmap_canvas img {
@@ -285,7 +284,7 @@ google.maps.event.addDomListener(window, 'load', init_map);</script>
 					
 						<% try { %>
 					
-						<b>infos complémentaire:</b>
+						<b>infos complémentaires:</b>
 						<p>
 							Distance à pied depuis votre université :
 							<%=api.walkingDistance(univAddresse, event.getAddress())%></p>

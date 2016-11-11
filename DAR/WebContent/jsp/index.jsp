@@ -48,11 +48,11 @@
                 <div class="col-lg-12">
                     <div class="intro-message">
                         <h1>University Connect</h1>
-                        <h3> Rejoingnez La communauté dès aujourd'hui</h3>
+                        <h3> Rejoingnez la communauté dès aujourd'hui</h3>
                         <hr class="intro-divider">
                         <ul class="list-inline intro-social-buttons">
                             <li>
-                                <a href="/DAR/signup" class="btn btn-primary btn-lg">Découvrir La plateforme</span></a>
+                                <a href="/DAR/signup" class="btn btn-primary btn-lg">Découvrir la plateforme</span></a>
                             </li>
                             
                             

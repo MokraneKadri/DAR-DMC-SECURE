@@ -68,14 +68,14 @@
 							<div class="form-group">
 								<label class="col-sm-4 control-label" for="login"> Login  :</label>
 								<div class="col-sm-5">
-									<input type="text" class="form-control" id="login" name="login" placeholder="nom d'utilisateur ou Email" />
+									<input type="text" class="form-control" id="login" name="login" placeholder="Nom d'utilisateur ou email" />
 								</div>
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-4 control-label" for="password"> Mot de Passe :</label>
+								<label class="col-sm-4 control-label" for="password"> Mot de passe :</label>
 								<div class="col-sm-5">
-									<input type="password" class="form-control" id="password" name="password" placeholder="saisissez votre mot de passe" />
+									<input type="password" class="form-control" id="password" name="password" placeholder="Saisissez votre mot de passe" />
 								</div>
 			 				</div>
 
@@ -90,7 +90,7 @@
 							<div class="form-group">
 								<div class="col-sm-9 col-sm-offset-4">
 								
-						Mot de Passe oublié ? <a href="/DAR/passwordreset"> Réinitialiser le ici !</a>
+						Mot de passe oublié ? <a href="/DAR/passwordreset"> Réinitialiser le ici !</a>
 								</div>
 							</div>
 				</form>
