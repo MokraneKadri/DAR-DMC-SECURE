@@ -17,15 +17,17 @@ import javax.mail.internet.MimeMultipart;
 public class MailHelper {
 
 	
-	private String from;
+	final static  String from ="noreplay.univ.connect@gmail.com";
 	private String to;
 	private String subject;
 	private String content;
 	private String host;
+	final static  String username = "noreplay.univ.connect@gmail.com";
+	final static String password = "kokakola";
 	
-	public MailHelper(String from, String to,String subject,String content) {
+	public MailHelper(String to,String subject,String content) {
 		super();
-		this.from = from;
+		
 		this.to = to;
 		this.subject=subject;
 		this.content=content;
@@ -34,9 +36,7 @@ public class MailHelper {
 	}
 	
 	public void sendEmail(){
-		final String username = "noreplay.univ.connect@gmail.com";
-		final String password = "kokakola";
-		
+	
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.starttls.enable", "true");

@@ -58,7 +58,7 @@ public class PasswordResetServlet extends HttpServlet {
 				if(validator.doesUserExist(login)==true){
 					
 					
-					MailHelper mailer = new MailHelper("noreplay.univ.connect@gmail.com", "mokrane.kadri@hotmail.fr", "Password reset", "blablabla");	
+					MailHelper mailer = new MailHelper("mokrane.kadri@hotmail.fr", "Password reset", "blablabla");	
 					mailer.sendEmail();
 				}
 				Map<String ,String > infos = new HashMap<String ,String>();

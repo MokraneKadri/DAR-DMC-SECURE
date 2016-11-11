@@ -10,7 +10,7 @@ public class SchedulerJob implements Job {
 	public void execute(JobExecutionContext context)
 		throws JobExecutionException {
 
-		System.out.println("Exemple Scheduler / Backend");
+	//	System.out.println("Exemple Scheduler / Backend");
 
 	}
 
