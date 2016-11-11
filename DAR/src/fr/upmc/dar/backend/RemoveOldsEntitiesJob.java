@@ -20,8 +20,8 @@ public class RemoveOldsEntitiesJob implements Job {
 		EntityManager em = EMF.getInstance().getEntityManagerFactory().createEntityManager();
 		
 		
-		/*Removing Events which are 1 month old and ended*/
-		removeOldEvent(em,4);
+		/*Removing Events which are X days old and ended*/
+		removeOldEvent(em,2);
 		
 		/*Removing Business Data wich are 1 month old and not used */
 		removeOldBusiness(em,4);
@@ -30,9 +30,9 @@ public class RemoveOldsEntitiesJob implements Job {
 		em.close();
 	}
 	
-	public void removeOldEvent(EntityManager em,int Weeks){
+	public void removeOldEvent(EntityManager em,int days){
 		long now = System.currentTimeMillis();
-		long minus = now - (Weeks * 7L * 24L * 60L * 60L * 1000L);
+		long minus = now - (days * 24L * 60L * 60L * 1000L);
 		Timestamp date = new Timestamp(minus);
 		try{
 			em.getTransaction().begin();

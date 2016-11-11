@@ -1,6 +1,5 @@
 
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -9,7 +8,7 @@
 <head>
 <title>Créationde meet-up :</title>
 	
-<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -24,7 +23,7 @@
 <!-- JQuery Validate  -->
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js"></script>
-<script type="text/javascript" src="/DAR/assets/js/searchevent.js"></script>
+<script type="text/javascript" src="/DAR/assets/js/searchevent.js" charset="UTF-8"></script>
 <!-- <script type="text/javascript" src="/DAR/assets/js/searchuniversity.js"></script>
  --><!-- Fin  Scripts  -->
 
@@ -502,8 +501,7 @@
 	
 		<!-- Modal University-->
 	<div id="myModalUn" class="modal fade" role="dialog"
-		data-backdrop="false" style="z-index: 1500";
-}">
+		data-backdrop="false" style="z-index: 1500">
 		<div class="modal-dialog modal-lg" role="document">
 
 			<!-- Modal content-->

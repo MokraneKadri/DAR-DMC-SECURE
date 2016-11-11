@@ -105,7 +105,7 @@
 									function() {
 
 										$("#main-content").load(
-												'/DAR/jsp/myfriends.jsp #maincontainer');
+												'/DAR/jsp/myfriends.jsp ');
 									});
 
 							$("#Addfriends")
@@ -123,7 +123,7 @@
 												// alert("rrrrr");
 												$("#main-content")
 														.load(
-																'/DAR/jsp/pendingrequests.jsp #maincontainer' );
+																'/DAR/jsp/pendingrequests.jsp ' );
 											});
 
 							$("#myprofil").click(
