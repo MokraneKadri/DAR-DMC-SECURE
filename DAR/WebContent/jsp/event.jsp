@@ -134,13 +134,24 @@
       </tr>
 	  <tr>
         <th>Date  </th>
-        <td><%=event.getDate() %></td>
+        <td><%=event.getDateToString() %></td>
       </tr>
 	  <tr>
         <th>Heure de début </th>
         <td><%=event.getHour() %></td>
       </tr>
-	  
+	  <tr>
+        <th>Places prises</th>
+        <td><%= event.getCandidates().size() %> / <%= event.getPlaces() %></td>
+      </tr>
+      <tr>
+        <th>Participants</th>
+        <td>
+        	<% for (User candidate : event.getCandidates()) { %>
+        		[<%= candidate.getUserName() %>]
+        	<% } %>
+        </td>
+      </tr>
 	  <tr>
         <th>Lieu  </th>
         <td><%=event.getPlaceType() %></td>
