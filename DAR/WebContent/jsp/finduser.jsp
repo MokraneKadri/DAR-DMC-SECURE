@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<li>Amis|rechercher</li>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
 
@@ -43,7 +44,7 @@
 <body>
 	<jsp:include page="header.jsp" />
 
-	<div class="maincontainer ">
+	<div class="maincontainer" id="maincontainer">
 		<div class="row">
 			<div class="col-sm-8 col-sm-offset-2">
 

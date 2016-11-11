@@ -64,7 +64,7 @@ function ProcessRetrieveFriends(rep)
 			"<tr>" +
 			"<td>"+user.name+"</td>" +
 			"<td>"+user.firstname+"</td>"+
-			"<td><a href=\"/DAR/memberprofile.jsp?id="+user.id+"\"> Voir Profil </a></td>"+
+			"<td><a href=\"/DAR/profil?user="+user.username+"\"> Voir Profil </a></td>"+
 			"<td><a href=\"/DAR/events?mode=list&member_id="+user.id+"&type=jsp\"> Participation </a></td>"+
 			"<td><a href=\"/DAR/friendsmanagement?typeOfRequest=2&id="+user.id+"\"> Supprimer Amis </a></td>"
 			"</tr>";

@@ -80,7 +80,7 @@ public class ConnectedModeFilter implements Filter {
 		 ArrayList<String> nonConnectedUserRestrictedURLs = new ArrayList<String>();
 		nonConnectedUserRestrictedURLs.add(RestrictedAccesUris.CREATEEVENT.getRessourceUrl());
 		nonConnectedUserRestrictedURLs.add(RestrictedAccesUris.CREATEGROUP.getRessourceUrl());
-		
+		nonConnectedUserRestrictedURLs.add(RestrictedAccesUris.PROFIL.getRessourceUrl());
 
 		//pour les user connectés (logique de navigation)
 		ArrayList<String> ConnectedUserRestrictedURLs = new ArrayList<String>();

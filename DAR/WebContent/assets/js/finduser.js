@@ -58,6 +58,7 @@ function ProcessFindUser(rep)
 	}else{
 		for (var i = 0; i < jsonData.users.length; i++) {
 			var user = jsonData.users[i];
+			console.log(user);
 			if(user.id==rep.idv && jsonData.users.length==1){
 				message="Aucun Résultat";
 				bodymessage="";
@@ -67,7 +68,7 @@ function ProcessFindUser(rep)
 				"<tr>" +
 				"<td>"+user.name+"</td>" +
 				"<td>"+user.firstname+"</td>"+
-				"<td><a href=\"/DAR/memberprofile.jsp?id="+user.id+"\"> Voir Profil </a></td>"+
+				"<td><a href=\"/DAR/profil?user="+user.username+"\"> Voir Profil </a></td>"+
 				"<td><a href=\"/DAR/friendsmanagement?typeOfRequest=3&id="+user.id+"\"> Envoyer Demande </a></td>"
 				"</tr>";
 			}

@@ -30,19 +30,35 @@ public class UserServlet extends HttpServlet {
 			ServletException, 
 			IOException 
 	{
-		String mode = request.getParameter("mode");
+		User user=null;
+		String username = request.getParameter("user");
 		HttpSession session = request.getSession();
 		String loggedinuser = (String) session.getAttribute("login");
-		
-		switch(mode){
-		
-		case"view":{
-			
-			Gson gson = new Gson();
-			Map<String,String> userInfos = new HashMap<String,String>();
-			User user=null;
+		System.out.println("request for:"+username);
+		//String param;
+		if(loggedinuser!=username){
+			try {
+				user = DAOFactory.createUserDao().findUserByUserName(username);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		else{
 			try {
 				user = DAOFactory.createUserDao().findUserByUserName(loggedinuser);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		
+		
+			Gson gson = new Gson();
+			Map<String,String> userInfos = new HashMap<String,String>();
+			
+			try {
+				
 				userInfos.put("name", user.getUserName());
 				userInfos.put("fname", user.getFirstName());
 				userInfos.put("lname", user.getLastName());
@@ -56,17 +72,9 @@ public class UserServlet extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			String profil =gson.toJson(user, User.class);
-			response.getWriter().print(new Error(profil));
-		}
+			
 		
 		
-		case"update":{
-			
-			
-			
-		}
-		}
 }
 	
 }

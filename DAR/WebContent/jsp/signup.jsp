@@ -51,8 +51,8 @@
 	<div class="bs-example">
     <ul class="breadcrumb">
     	<li>Uni-connect</li>
-        <li><a href="#">Acceuil</a></li>
-        <li class="active"><a href="#">Inscription</a></li>
+        <li><a href="/DAR/home">Acceuil</a></li>
+        <li class="active"><a href="/DAR/signup">Inscription</a></li>
         
     </ul>
 		</div>

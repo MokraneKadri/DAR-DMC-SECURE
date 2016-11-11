@@ -7,7 +7,8 @@
 <html>
 
 <head>
-
+<title>Créationde meet-up :</title>
+	
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -64,8 +65,8 @@
 	<div class="bs-example">
     <ul class="breadcrumb">
     	<li>Uni-connect</li>
-        <li><a href="#">Acceuil</a></li>
-        <li class="active"><a href="#">évenements > création</a></li>
+        <li><a href="/DAR/home">Acceuil</a></li>
+        <li class="active"><a href="/DAR/events?mode=create">évenements > création</a></li>
         
     </ul>
 		</div>

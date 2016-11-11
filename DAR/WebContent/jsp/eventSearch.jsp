@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Uni-Connect | Recherche </title>
+<title>Meet-up| Recherche </title>
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"
 	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
@@ -69,40 +69,52 @@
 				$("#resultset").html("");
 				
 				if (result.length == 0) {
-					$("#resultset").append("Pas d'événements trouvés avec ces critères de recherche");
+					$("#resultset").html('<div class="col-sm-8 col-sm-offset-2">'+
+							'<div class="bs-example">'+
+						    '<ul class="breadcrumb"><li>Aucun résultat na été trouvé :-(</li></ul></div></div>');
 					setTimeout(() => {
 						$("#resultset").html("");
 					}, 3000);
 				}
-				
+				$("#resultset").append('<div class="col-sm-8 col-sm-offset-2">'+
+						'<div class="bs-example">'+
+					    '<ul class="breadcrumb"><li>Résultats de votre recherche</li></ul></div></div>');
+			        
 				$.each(result, function (i, event) {
 					console.log(event);
 					
-					$("#resultset").append('<div class="well">'+
+					$("#resultset").append('<div class="col-sm-8 col-sm-offset-2"><div class="panel panel-default">'+
+							'<div class="panel-heading"></div>'+
+					'<div class="panel-body">'+
 		           			'<div class="media">'+
 		              	    '<a class="pull-left" href="/DAR/events?mode=event&id='+ event.id + '">'+	
-		              	  		'<div class="media-body">'+
+		              	  		
 		              	    		'<h4 class="media-heading">'+ event.name+'</h4>'+
-		              	         	'<p class="text-right">créer par : '+ event.creator +'</p>'+
+		              	         	'<p>créer par : '+ event.creator +'</p>'+
 		              	         	
 		              	         	'<p class="text-right"><a href="/DAR/events?mode=event&id='+event.id+'" class="btn btn-info"> Details >> </a>'+ '</p>'+
 		              	         	'<p> <b>Visibilité </b>: ' + event.privacy + '</p>'+
 		              	          	'<p> <b>Description </b>: ' + event.description + '</p>'+
 		              	          	'<p><b> Thème</b> : ' + event.theme + '</p>'+
 		              	         	'<ul class="list-inline list-unstyled">'+
-		              	  				'<li><span><i class="glyphicon glyphicon-calendar"> </i> ' + event.date + '|'+event.hours+'</span></li>'+
+		              	  				'<li><span><i class="glyphicon glyphicon-calendar"> </i> ' + event.date + '|'+event.hour+'</span></li>'+
 		              	            	'<li>|</li>'+
 		              	            	'<span><i class="glyphicon glyphicon-comment"></i> ' + event.comments + ' <a href="/DAR/events?mode=event&id='+ event.id +'#com">comments<a/></span>'+
 		              	            	
 		              				'</ul>'+
 		              	 		'</div>'+
 		         			'</div>'+  
-		              '</div>');
+		              '</div></div>');
 					
 				});
 			})
 			.fail( function () {
-				alert("Une erreur est survenue au moment de la récupération de la liste des événements");
+				$("#resultset").append('<div class="col-sm-8 col-sm-offset-2">'+
+						'<div class="bs-example">'+
+					    '<ul class="breadcrumb"><li>Aucun résultat na été trouvé :-(</li></ul></div></div>');
+				setTimeout(() => {
+					$("#resultset").html("");
+				}, 3000);
 			});
 		}
 	
@@ -114,8 +126,8 @@
 			<div class="bs-example">
     <ul class="breadcrumb">
     	<li>Uni-connect</li>
-        <li><a href="#">Accueil</a></li>
-        <li class="active"><a href="#">évenements > Rechercher </a></li>
+        <li><a href="/DAR/home">Accueil</a></li>
+        <li class="active"><a href="/DAR/jsp/eventSearch.jsp">évenements > Rechercher </a></li>
        
     </ul> </div>
 				<div class="panel panel-default">
@@ -175,13 +187,17 @@
 					</div>
 				</div>
 			</div>
-		</div>
+	
 		
 		<div id='resultset'></div>
+			</div>
 		
-	</div>
-	
+		</div>
 	<%@include file="/jsp/footer.jsp"%>
+	
+	
+	
 
 </body>
+
 </html>

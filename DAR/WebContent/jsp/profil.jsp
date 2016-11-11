@@ -66,7 +66,7 @@
 				<div class="left-navigation">
 					<ul class="list">
 						<h4>
-							<strong>Tableau de bord</strong>
+							<strong>Tableau de bord </strong>
 						</h4>
 						<hr>
 						<li><a href="javascript: void(0);" id="myprofil">Mon
@@ -95,9 +95,6 @@
 
 
 
-	<jsp:include page="footer.jsp">
-		<jsp:param name="active" value="signin" />
-	</jsp:include>
 
 	<script type="text/javascript">
 		$(document)
@@ -108,7 +105,7 @@
 									function() {
 
 										$("#main-content").load(
-												'/DAR/jsp/myfriends.jsp');
+												'/DAR/jsp/myfriends.jsp #maincontainer');
 									});
 
 							$("#Addfriends")
@@ -117,7 +114,7 @@
 												// alert("rrrrr");
 												$("#main-content")
 														.load(
-																'/DAR/jsp/finduser.jsp .maincontainer');
+																'/DAR/jsp/finduser.jsp #maincontainer');
 											});
 
 							$("#request")
@@ -126,14 +123,14 @@
 												// alert("rrrrr");
 												$("#main-content")
 														.load(
-																'/DAR/jsp/pendingrequests.jsp');
+																'/DAR/jsp/pendingrequests.jsp #maincontainer' );
 											});
 
 							$("#myprofil").click(
 									function() {
 										// alert("rrrrr");
 										$("#main-content").load(
-												'/DAR/profil?mode=view');
+												'/DAR/profil?user=<c:out value="${login}"/> ');
 									});
 
 							$("#mymeetsup")
@@ -143,7 +140,7 @@
 												$("#main-content")
 														.load(
 																//'/DAR/jsp/finduser.jsp .maincontainer');
-																'/DAR/events?mode=list&type=jsp&creator_id=' + <%= DAOFactory.createUserDao().findUserByUserName((String)request.getSession().getAttribute("login")).getId() %> );
+																'/DAR/events?mode=list&type=jsp&creator_id=<%= DAOFactory.createUserDao().findUserByUserName((String)request.getSession().getAttribute("login")).getId() %> .maincontainer' );
 											});
 							$("#meetups")
 									.click(
@@ -152,7 +149,7 @@
 												$("#main-content")
 														.load(
 																//'/DAR/events?mode=list .maincontainer');
-																'/DAR/events?mode=list&type=jsp&member_id=' + <%= DAOFactory.createUserDao().findUserByUserName((String)request.getSession().getAttribute("login")).getId() %> );
+																'/DAR/events?mode=list&type=jsp&member_id=<%= DAOFactory.createUserDao().findUserByUserName((String)request.getSession().getAttribute("login")).getId() %> .maincontainer' );
 											});
 
 						});
@@ -160,10 +157,15 @@
 
 	<script>
 		window.onload = function() {
-			$("#main-content").load('/DAR/profil?mode=view');
+			$("#main-content").load("/DAR/profil?user=<c:out value="${login}"/>");
 		}
 	</script>
+	
+	
 
+	<jsp:include page="footer.jsp">
+		<jsp:param name="active" value="profilfooter" />
+	</jsp:include>
 
 </body>
 </html>

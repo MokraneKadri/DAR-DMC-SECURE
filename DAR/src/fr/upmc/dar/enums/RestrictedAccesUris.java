@@ -6,7 +6,8 @@ public enum RestrictedAccesUris {
 	 CREATEGROUP ("/DAR/create_group"),
 	 CREATEEVENT ("/DAR/create_event"),
 	 USERLOGIN ("/DAR/signin"),
-	 USERSIGNUP("/DAR/signup");
+	 USERSIGNUP("/DAR/signup"),
+	PROFIL("/DAR/jsp/profil.jsp");
 	
 	  private String name = "";
 	  //Constructeur

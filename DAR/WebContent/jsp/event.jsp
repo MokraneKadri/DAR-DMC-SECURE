@@ -13,7 +13,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Event</title>
+<title>Meet-ups !</title>
 
 <!--  Scripts  -->
 <!-- JQuery  -->
@@ -99,10 +99,7 @@
 		String univAddresse = event.getUniversity().getStreet() + "" + event.getUniversity().getZipCode()
 				+ event.getUniversity().getCity();
 	%>
-	<div class="maincontainer">
-
-
-		<div class="bs-example">
+	<div class="bs-example">
 			<ul class="breadcrumb">
 				<li>Uni-connect</li>
 				<li><a href="#">Acceuil</a></li>
@@ -110,6 +107,10 @@
 
 			</ul>
 		</div>
+	<div class="maincontainer" id="maincontainer">
+
+
+		
 
 		<div class="row">
 
@@ -352,6 +353,7 @@ google.maps.event.addDomListener(window, 'load', init_map);</script>
 
 
 	</div>
+
 
 	<%@include file="/jsp/footer.jsp"%>
 

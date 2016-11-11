@@ -45,13 +45,7 @@
 		<jsp:param name="active" value="signin" />
 	</jsp:include>
 
-
-
-
-	<div class="maincontainer">
-	
-			<div class="col-sm-8 col-sm-offset-2">
-	<div class="bs-example">
+<div class="bs-example">
     <ul class="breadcrumb">
     	<li>Uni-connect</li>
         <li><a href="#">Acceuil</a></li>
@@ -59,6 +53,12 @@
         
     </ul>
 		</div>
+
+
+	<div class="maincontainer" id="maincontainer">
+	
+			<div class="col-sm-8 col-sm-offset-2">
+	
 		</div>
 	 <div class="row">
 	</div>

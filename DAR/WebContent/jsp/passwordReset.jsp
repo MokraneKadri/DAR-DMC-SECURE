@@ -42,14 +42,14 @@
 	</jsp:include>
 
 
-	<div class="maincontainer ">
+	<div class="maincontainer"  id="maincontainer">
 		<div class="row">
 			<div class="col-sm-8 col-sm-offset-2">
 	<div class="bs-example">
     <ul class="breadcrumb">
     	<li>Uni-connect</li>
         <li><a href="/DAR/home">Acceuil</a></li>
-        <li class="active"><a href="#">Réeinitialisation du mot de passe </a></li>
+        <li class="active"><a href="/DAR/passwordreset">Réeinitialisation du mot de passe </a></li>
         
     </ul>
 		</div>

@@ -49,8 +49,8 @@
 		<div class="bs-example">
     <ul class="breadcrumb">
     	<li>Uni-connect</li>
-        <li><a href="#">Acceuil</a></li>
-        <li class="active"><a href="#">Connexion </a></li>
+        <li><a href="/DAR/home">Acceuil</a></li>
+        <li class="active"><a href="/DAR/signin">Connexion </a></li>
         
     </ul>
 		</div>

@@ -40,7 +40,7 @@
 <title>Mes Amis</title>
 </head>
 <body>
-
+<jsp:include page="header.jsp" />
 	<div class="maincontainer" id="maincontainer">
 
 		<div class="panel panel-default" style="">
@@ -65,5 +65,10 @@
 
 		});
 	</script>
+	
+	<jsp:include page="footer.jsp">
+		<jsp:param name="active" value="profilfooter" />
+	</jsp:include>
+	
 </body>
 </html>

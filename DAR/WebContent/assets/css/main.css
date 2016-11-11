@@ -1,9 +1,3 @@
-html {
-    position: relative;
-    min-height: 100%;
-}
-
-
 
 body{
 
@@ -16,6 +10,6 @@ body{
 	margin-left:10%;
 	margin-rigth:10%;
 	margin-top: 60px;
-	margin-bottom: 50px;
+	margin-bottom: 3%;
 	
 }
