@@ -472,7 +472,7 @@
 									</tr>
 									<tr>
 										<th>Date</th>
-										<td><%=event.getDate()%></td>
+										<td><%=event.getDateToString()%></td>
 									</tr>
 									<tr>
 										<th>Heure de début</th>
@@ -588,9 +588,11 @@ google.maps.event.addListener(marker, 'click', function(){infowindow.open(map,ma
 infowindow.open(map,marker);}
 google.maps.event.addDomListener(window, 'load', init_map);</script>
 
-
 					</div>
 					<div class="panel-footer">
+					
+						<% try { %>
+					
 						<b>infos complémentaire:</b>
 						<p>
 							Distance à pied depuis votre université :
@@ -599,6 +601,8 @@ google.maps.event.addDomListener(window, 'load', init_map);</script>
 							Temps de marche estimé :
 							<%=api.walkingTime(univAddresse, event.getAddress())%></p>
 
+						<% } catch (Exception e) {e.printStackTrace();} %>
+						
 					</div>
 
 				</div>
