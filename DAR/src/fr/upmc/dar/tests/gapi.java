@@ -12,6 +12,7 @@ import com.google.maps.GeocodingApiRequest;
 import com.google.maps.model.DirectionsRoute;
 import com.google.maps.model.DistanceMatrix;
 import com.google.maps.model.GeocodingResult;
+import com.google.maps.model.LatLng;
 import com.google.maps.model.TravelMode;
 
 public class gapi {
@@ -25,6 +26,18 @@ public class gapi {
 		
 		
 		try {
+			LatLng src = new LatLng(48.855968, 2.294664300000022);
+			 GeocodingApiRequest request = new GeocodingApiRequest(context);
+			    request.latlng(src);
+			    GeocodingResult[] result1 = request.await();
+			    System.out.println(result1[0].formattedAddress);
+			    
+			    
+			    
+			    
+			    
+			    
+			    
 			results = GeocodingApi.geocode(context,
 			    "3 rue du général lambert 75007 paris").await();
 		

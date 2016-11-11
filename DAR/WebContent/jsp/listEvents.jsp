@@ -39,6 +39,7 @@
 
 </head>
 <body>
+<script type="text/javascript" src="/DAR/assets/js/localisation.js"></script>
 
 	<jsp:include page="header.jsp">
 		<jsp:param name="active" value="signin" />
@@ -61,6 +62,8 @@
 		</div>
 	 <div class="row">
 	</div>
+	<input type="hidden" name="" value="" id="">
+	<input type="hidden" name="" value="" id="">
 	</div>
 	<script type="text/javascript">
 		

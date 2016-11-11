@@ -186,8 +186,10 @@ public class EventsServlet extends HttpServlet {
 	 */
 
 	private void event(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if (request.getParameter("id") != null)
+		if (request.getParameter("id") != null){
+			
 			request.getRequestDispatcher("jsp/event.jsp?id=" + request.getParameter("id")).forward(request, response);
+	}
 	}
 
 	/**
