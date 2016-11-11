@@ -330,6 +330,7 @@
 
 </body>
 ======= --%>
+<%@page import="fr.upmc.dar.entities.User"%>
 <%@page import="fr.upmc.dar.entities.Comment"%>
 <%@page import="fr.upmc.dar.enums.EventVisibility"%>
 <%@page import="fr.upmc.dar.dao.interfaces.IEventDao"%>
@@ -357,6 +358,26 @@
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js"></script>
 <!-- Fin  Scripts  -->
+
+<script type='text/javascript'>			
+	var submission = function (form) {
+		var json = {
+			mode : form.mode.value,
+			id : form.id.value
+		};
+		
+		$
+		.post("/DAR/events", json)
+		.done( function (data) {
+			notify($.parseJSON(data), $('#notifier'));
+			if ($.parseJSON(data).success != undefined)
+				$('#participating').remove();
+		});
+	}
+</script>
+
+<script type="text/javascript" src="/DAR/assets/js/notifier.js"></script>
+<link rel="stylesheet" href="/DAR/assets/css/notifier.css">
 
 <!-- Styles  -->
 <!-- bootstrap  -->
@@ -437,7 +458,7 @@
 								</thead>
 								<tbody>
 									<tr>
-										<th>Politique D'accès</th>
+										<th>Politique d'accès</th>
 										<td><%=event.getPrivacy()%></td>
 									</tr>
 									<tr>
@@ -445,9 +466,9 @@
 										<td><%=event.getTheme()%></td>
 									</tr>
 									<tr>
-										<th>Description :</th>
-										<td><p><%=event.getDescription()%></p>
-											<p></p></td>
+										<th>Description</th>
+										<td><%=event.getDescription()%>
+											</td>
 									</tr>
 									<tr>
 										<th>Date</th>
@@ -459,24 +480,60 @@
 									</tr>
 
 									<tr>
+										<th>Places prises</th>
+										<td><%=event.getCandidates().size()%> / <%=event.getPlaces()%></td>
+									</tr>
+									<tr>
+										<th>Participants</th>
+										<td>
+											<%
+												for (User candidate : event.getCandidates()) {
+											%> [<%=candidate.getUserName()%>] <%
+												}
+											%>
+										</td>
+									</tr>
+
+									<tr>
 										<th>Lieu</th>
 										<td><%=event.getPlaceType()%></td>
 									</tr>
 									<tr>
-										<th>Nom du Lieu</th>
+										<th>Lieu de rendez-vous</th>
 										<td><%=event.getPlace()%></td>
 									</tr>
 									<tr>
-										<th>Adresse Complete</th>
+										<th>Adresse complète</th>
 										<td><%=event.getAddress()%></td>
 									</tr>
 									<tr>
-										<th>Commentaire</th>
+										<th>Commentaires</th>
 										<td><%=event.getComments().size()%> au total</td>
 									</tr>
-									<th></th>
-									<td></td>
-									<td><a href="" class="btn btn-primary">Je participe</a></td>
+									<tr>
+										<td>
+											<div id="notifier"></div>
+										</td>
+										<td>
+											<!-- COPY FROM HERE --> 
+											<%
+											 	User user = DAOFactory.createUserDao()
+											 			.findUserByUserName((String) request.getSession().getAttribute("login"));
+											 	boolean isParticipating = false;
+											 	for (User u : event.getCandidates())
+											 		if (user.getId() == u.getId())
+											 			isParticipating = true;
+											 	if (!isParticipating) { // IF BEGIN
+											 %>
+											<form id='participating' style='text-align: right'
+												action='javascript:return(0)' method='POST'
+												onsubmit='submission(this)'>
+												<input type='hidden' name='mode' value='participate' /> <input
+													type='hidden' name='id' value='<%=event.getId()%>' />
+												<button type="submit" class='btn btn-primary'>Participer</button>
+											</form> 
+											<% } // IF END %> <!-- TO HERE -->
+										</td>
 									</tr>
 								</tbody>
 							</table>
@@ -496,19 +553,29 @@
 						<div class="panel-heading">Accès</div>
 					</div>
 					<div class="panel-body">
-					<div id="map"></div>
-						<script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAAWHzdrBHX4rFlhit9v57wDrSjVYfSUbA'>
+						<div id="map"></div>
+						<script
+							src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAAWHzdrBHX4rFlhit9v57wDrSjVYfSUbA'>
 </script>
-<div style='overflow:hidden;height:400px;width:550px;'>
-<div id='gmap_canvas' style='height:400px;width:500px;'>
-</div>
-<div>
-<small><a href="http://embedgooglemaps.com">google maps carte</a></small>
-</div>
-<div><small><a href="https://fbaddlikebutton.com/nl/">klik hier</a></small></div>
-<style>#gmap_canvas img{max-width:none!important;background:none!important}</style>
-</div>
-<script type='text/javascript'>
+						<div style='overflow: hidden; height: 400px; width: 550px;'>
+							<div id='gmap_canvas' style='height: 400px; width: 500px;'>
+							</div>
+							<div>
+								<small><a href="http://embedgooglemaps.com">google
+										maps carte</a></small>
+							</div>
+							<div>
+								<small><a href="https://fbaddlikebutton.com/nl/">klik
+										hier</a></small>
+							</div>
+							<style>
+#gmap_canvas img {
+	max-width: none !important;
+	background: none !important
+}
+</style>
+						</div>
+						<script type='text/javascript'>
 function init_map(){
 var myOptions = {
 zoom:25,
@@ -522,26 +589,26 @@ infowindow.open(map,marker);}
 google.maps.event.addDomListener(window, 'load', init_map);</script>
 
 
-</div>
-<div class="panel-footer">
-	<b>infos complémentaire:</b>
-	<p>
-		Distance à pied depuis votre université :
-		<%=api.walkingDistance(univAddresse, event.getAddress())%></p>
-	<p>
-		Temps de marche estimé :
-		<%=api.walkingTime(univAddresse, event.getAddress())%></p>
+					</div>
+					<div class="panel-footer">
+						<b>infos complémentaire:</b>
+						<p>
+							Distance à pied depuis votre université :
+							<%=api.walkingDistance(univAddresse, event.getAddress())%></p>
+						<p>
+							Temps de marche estimé :
+							<%=api.walkingTime(univAddresse, event.getAddress())%></p>
 
-</div>
+					</div>
 
-</div>
-</div>
-</div>
-
-
+				</div>
+			</div>
+		</div>
 
 
-<%-- 		<div class="panel panel-default">
+
+
+		<%-- 		<div class="panel panel-default">
 		    <div class="panel-heading"><h4><%= event.getName()%></h4></div>
 		    <div class="panel-body">
 		        <ul class="list-group">
@@ -608,54 +675,56 @@ google.maps.event.addDomListener(window, 'load', init_map);</script>
 		    </div>
 		</div> --%>
 
-<div class='well' id="com">
-	<div class='pull-left'
-		style='padding-right: 27.5px; border-right: solid #aaaaaa 1px; height: 50px;'
-		href='#'>
-		<h4 class='media-heading'>Nouveau commentaire</h4>
-		<p class='text-left'></p>
+		<div class='well' id="com">
+			<div class='pull-left'
+				style='padding-right: 27.5px; border-right: solid #aaaaaa 1px; height: 50px;'
+				href='#'>
+				<h4 class='media-heading'>Nouveau commentaire</h4>
+				<p class='text-left'></p>
+			</div>
+			<form action='/DAR/events' method='POST'>
+				<input name='mode' type='hidden' value='comment' /> <input
+					name='id' type='hidden' value='<%=event.getId()%>' />
+				<div style='height: 100%; width: 100%; padding-left: 240px;'>
+					<input name='content' type='textarea'
+						style='border: 1px solid lightgrey; border-right: none; border-radius: 5px 0px 0px 5px; width: 85%; height: 50px; padding-left: 10px;'
+						placeholder='Nouveau commentaire, pas plus de 255 caractères ... (pour le moment)'
+						pattern='{255}' required /> <input
+						style='height: 50px; width: 15%; border: 1px solid #b3bfd1; border-radius: 0px 5px 5px 0px; background: #cedbef; color: white;'
+						type='submit' value='Commenter' />
+				</div>
+			</form>
+		</div>
+
+		<%
+			for (Comment comment : event.getComments()) {
+		%>
+
+		<div class="well">
+			<div class="media">
+				<div class="pull-left"
+					style="padding-right: 20px; border-right: solid #aaaaaa 1px">
+					<h4 class="media-heading">
+						<%=comment.getCreator().getUserName()%>
+					</h4>
+					<p class="text-left">
+						le :
+						<%=comment.getCommentDate()%></p>
+				</div>
+				<div style="vertical-align: middle; text-align: justify;">
+					<div style="height: 100%; width: 100%; padding-left: 240px;">
+						<%=comment.getCommentContent()%></div>
+				</div>
+			</div>
+		</div>
+
+		<%
+			}
+		%>
+
 	</div>
-	<form action='/DAR/events' method='POST'>
-		<input name='mode' type='hidden' value='comment' /> <input name='id'
-			type='hidden' value='<%=event.getId()%>' />
-		<div style='height: 100%; width: 100%; padding-left: 240px;'>
-			<input name='content' type='textarea'
-				style='border: 1px solid lightgrey; border-right: none; border-radius: 5px 0px 0px 5px; width: 85%; height: 50px; padding-left: 10px;'
-				placeholder='Nouveau commentaire, pas plus de 255 caractères ... (pour le moment)'
-				pattern='{255}' required /> <input
-				style='height: 50px; width: 15%; border: 1px solid #b3bfd1; border-radius: 0px 5px 5px 0px; background: #cedbef; color: white;'
-				type='submit' value='Commenter' />
-		</div>
-	</form>
-</div>
 
-<%
-	for (Comment comment : event.getComments()) {
-%>
-
-<div class="well">
-	<div class="media">
-		<div class="pull-left"
-			style="padding-right: 20px; border-right: solid #aaaaaa 1px">
-			<h4 class="media-heading">
-				<%=comment.getCreator().getUserName()%>
-			</h4>
-			<p class="text-left">
-				le :
-				<%=comment.getCommentDate()%></p>
-		</div>
-		<div style="vertical-align: middle; text-align: justify;">
-			<div style="height: 100%; width: 100%; padding-left: 240px;">
-				<%=comment.getCommentContent()%></div>
-		</div>
-	</div>
-</div>
-
-<% } %>
-
-</div>
-
-<%@include file="/jsp/footer.jsp"%>
+	<%@include file="/jsp/footer.jsp"%>
 
 </body>
 
