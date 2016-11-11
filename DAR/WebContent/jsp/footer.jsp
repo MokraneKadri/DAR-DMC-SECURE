@@ -9,23 +9,21 @@
             	<div class="footer_dv">
                 	<h4>Les MeetUps</h4>
                 	<ul>
-                    	<li class="line_rv"><a href="">A propos des évenements</a></li>
-               			<li><a href="">Consulter la liste</a></li>
-                        <li><a href="">Créer un évenement </a></li>
-                        <li><a href="">Rejoindre un évenement</a></li>
+                    	<li class="line_rv"><a href="/DAR/events?mode=new">Créer des évenements</a></li>
+               			<li><a href="/DAR/jsp/eventSearch.jsp">Rechercher un évenement</a></li>
+                        <li><a href="/DAR/events?mode=showall">Consulter la liste </a></li>
+                        <li><a id="myLink" title="Evénements Proches" href="#" onclick="nearEvents();">Evénements Proches</a></li>
                         
                     </ul>
                 </div>
             </div>
             <div class="col-lg-4  col-md-4 col-sm-4">
             	<div class="footer_dv">
-                	<h4>Les Groupes</h4>
+                	<h4>Social</h4>
                 	<ul>
-                    	<li><a href="">A propose des Groupes</a></li>
-                    	<li><a href="">Consulter la liste</a></li>
-                        <li><a href="">Rejoindre un groupe</a></li>
-                        <li><a href="">Créer un groupe</a></li>
-                       
+ 		<li class="line_rv"><a href="">Liste D'amis</a></li>
+               			<li><a href="">Rechercher </a></li>
+                        <li><a href="">Partager !</a></li>
                         
                     </ul>
                 </div>
