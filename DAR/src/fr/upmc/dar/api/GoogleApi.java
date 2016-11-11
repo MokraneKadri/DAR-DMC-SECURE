@@ -13,7 +13,7 @@ public class GoogleApi {
 
 	
 
-	GeoApiContext context = new GeoApiContext().setApiKey("AIzaSyBaecIdNb-rbp-gzGV9q9f_v1gAeEjgF4c");
+	GeoApiContext context = new GeoApiContext().setApiKey("AIzaSyAAWHzdrBHX4rFlhit9v57wDrSjVYfSUbA");
 	GeocodingResult[] results;
 	
 	

@@ -165,19 +165,25 @@
 						<div class="panel-heading">Accès</div>
 					</div>
 					<div class="panel-body">
-					<div id="map"></div>
-						<script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAAWHzdrBHX4rFlhit9v57wDrSjVYfSUbA'>
+						<div id="map"></div>
+						<script
+							src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAAWHzdrBHX4rFlhit9v57wDrSjVYfSUbA'>
 </script>
-<div style='overflow:hidden;height:400px;width:550px;'>
-<div id='gmap_canvas' style='height:400px;width:500px;'>
-</div>
-<div>
-<small><a href="http://embedgooglemaps.com">google maps carte</a></small>
-</div>
-<div><small><a href="https://fbaddlikebutton.com/nl/">klik hier</a></small></div>
-<style>#gmap_canvas img{max-width:none!important;background:none!important}</style>
-</div>
-<script type='text/javascript'>
+						<div style='overflow: hidden; height: 400px; width: 550px;'>
+							<div id='gmap_canvas' style='height: 400px; width: 500px;'>
+							</div>
+							<div>
+								<small><a href="http://embedgooglemaps.com">google
+										maps carte</a></small>
+							</div>
+							<style>
+#gmap_canvas img {
+	max-width: none !important;
+	background: none !important
+}
+</style>
+						</div>
+						<script type='text/javascript'>
 function init_map(){
 var myOptions = {
 zoom:25,
@@ -191,26 +197,26 @@ infowindow.open(map,marker);}
 google.maps.event.addDomListener(window, 'load', init_map);</script>
 
 
-</div>
-<div class="panel-footer">
-	<b>infos complémentaire:</b>
-	<p>
-		Distance à pied depuis votre université :
-		<%=api.walkingDistance(univAddresse, event.getAddress())%></p>
-	<p>
-		Temps de marche estimé :
-		<%=api.walkingTime(univAddresse, event.getAddress())%></p>
+					</div>
+					<div class="panel-footer">
+						<b>infos complémentaire:</b>
+						<p>
+							Distance à pied depuis votre université :
+							<%=api.walkingDistance(univAddresse, event.getAddress())%></p>
+						<p>
+							Temps de marche estimé :
+							<%=api.walkingTime(univAddresse, event.getAddress())%></p>
 
-</div>
+					</div>
 
-</div>
-</div>
-</div>
-
-
+				</div>
+			</div>
+		</div>
 
 
-<%-- 		<div class="panel panel-default">
+
+
+		<%-- 		<div class="panel panel-default">
 		    <div class="panel-heading"><h4><%= event.getName()%></h4></div>
 		    <div class="panel-body">
 		        <ul class="list-group">
@@ -277,55 +283,56 @@ google.maps.event.addDomListener(window, 'load', init_map);</script>
 		    </div>
 		</div> --%>
 
-<div class='well' id="com">
-	<div class='pull-left'
-		style='padding-right: 27.5px; border-right: solid #aaaaaa 1px; height: 50px;'
-		href='#'>
-		<h4 class='media-heading'>Nouveau commentaire</h4>
-		<p class='text-left'></p>
-	</div>
-	<form action='/DAR/events' method='POST'>
-		<input name='mode' type='hidden' value='comment' /> <input name='id'
-			type='hidden' value='<%=event.getId()%>' />
-		<div style='height: 100%; width: 100%; padding-left: 240px;'>
-			<input name='content' type='textarea'
-				style='border: 1px solid lightgrey; border-right: none; border-radius: 5px 0px 0px 5px; width: 85%; height: 50px; padding-left: 10px;'
-				placeholder='Nouveau commentaire, pas plus de 255 caractères ... (pour le moment)'
-				pattern='{255}' required /> <input
-				style='height: 50px; width: 15%; border: 1px solid #b3bfd1; border-radius: 0px 5px 5px 0px; background: #cedbef; color: white;'
-				type='submit' value='Commenter' />
+		<div class='well' id="com">
+			<div class='pull-left'
+				style='padding-right: 27.5px; border-right: solid #aaaaaa 1px; height: 50px;'
+				href='#'>
+				<h4 class='media-heading'>Nouveau commentaire</h4>
+				<p class='text-left'></p>
+			</div>
+			<form action='/DAR/events' method='POST'>
+				<input name='mode' type='hidden' value='comment' /> <input
+					name='id' type='hidden' value='<%=event.getId()%>' />
+				<div style='height: 100%; width: 100%; padding-left: 240px;'>
+					<input name='content' type='textarea'
+						style='border: 1px solid lightgrey; border-right: none; border-radius: 5px 0px 0px 5px; width: 85%; height: 50px; padding-left: 10px;'
+						placeholder='Nouveau commentaire, pas plus de 255 caractères ... (pour le moment)'
+						pattern='{255}' required /> <input
+						style='height: 50px; width: 15%; border: 1px solid #b3bfd1; border-radius: 0px 5px 5px 0px; background: #cedbef; color: white;'
+						type='submit' value='Commenter' />
+				</div>
+			</form>
 		</div>
-	</form>
+
+		<%
+			for (Comment comment : event.getComments()) {
+		%>
+
+		<div class="well">
+			<div class="media">
+				<div class="pull-left"
+					style="padding-right: 20px; border-right: solid #aaaaaa 1px">
+					<h4 class="media-heading">
+						<%=comment.getCreator().getUserName()%>
+					</h4>
+					<p class="text-left">
+						le :
+						<%=comment.getCommentDate()%></p>
+				</div>
+				<div style="vertical-align: middle; text-align: justify;">
+					<div style="height: 100%; width: 100%; padding-left: 240px;">
+						<%=comment.getCommentContent()%></div>
+				</div>
+			</div>
+		</div>
+
+		<%
+			}
+		%>
+
 </div>
 
-<%
-	for (Comment comment : event.getComments()) {
-%>
-
-<div class="well">
-	<div class="media">
-		<div class="pull-left"
-			style="padding-right: 20px; border-right: solid #aaaaaa 1px">
-			<h4 class="media-heading">
-				<%=comment.getCreator().getUserName()%>
-			</h4>
-			<p class="text-left">
-				le :
-				<%=comment.getCommentDate()%></p>
-		</div>
-		<div style="vertical-align: middle; text-align: justify;">
-			<div style="height: 100%; width: 100%; padding-left: 240px;">
-				<%=comment.getCommentContent()%></div>
-		</div>
-	</div>
-</div>
-
-<% } %>
-
-</div>
-
-<%@include file="/jsp/footer.jsp"%>
-
+		<%@include file="/jsp/footer.jsp"%>
 </body>
 
 </html>
