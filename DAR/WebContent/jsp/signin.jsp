@@ -117,18 +117,18 @@
 					}
 					
 				},
-				messages: {
-					login:{
+				messages: {//Message d'erreurs associés
+					login:{ // pour le champ du login
 						required: "Veuillez indiquer votre login",
 						 minlength:"Veuillez indiquer un login  valide"
 						},
-					password: {
-						required: "Veuillez indiquer votre mot de passe",
+					password: {//pour le champ du mot de passe
+						 required: "Veuillez indiquer votre mot de passe",
 						 minlength:"Veuillez indiquer un mot de passe valide"
 						},
 				},
 
-                errorElement: "em",
+                    errorElement: "em",
 
          				errorPlacement: function ( error, element ) {
 					// ajout d'une classe `help-block` à lelement en erreur
@@ -137,18 +137,14 @@
 					// ajout de la classe  `has-feedback`  au parent div.form-group
 					// afin d'jouter les icons au inputs
 					element.parents( ".col-sm-5" ).addClass( "has-feedback" );
-
-					
 					error.insertAfter( element );
-					
-
 					
 					//ajout de l'element span si il existe pas et application de la classe créer pour lui
 					if ( !element.next( "span" )[ 0 ] ) {
 						$( "<span class='glyphicon glyphicon-remove form-control-feedback'></span>" ).insertAfter( element );
 					}
-				},
-				success: function ( label, element ) {
+				   },
+				   success: function ( label, element ) {
 					//ajout de l'element span si il existe pas et application de la classe créer pour lui.
 					if ( !$( element ).next( "span" )[ 0 ] ) {
 						$( "<span class='glyphicon glyphicon-ok form-control-feedback'></span>" ).insertAfter( $( element ) );

@@ -74,16 +74,16 @@
 						<a href='/DAR/events?mode=event&id=<%=event.getId()%>'> <%=event.getName()%>
 						</a>
 					</h3>
-					<h4 class="pull-right"><%=EventVisibility.eventVisibilityToString(event.getPrivacy())%></h4>
-					<h5>
-						créé par : <%=event.getCreator().getUserName()%>
-					</h5>
-
+					<%-- <h4 class="pull-right"><%=EventVisibility.eventVisibilityToString(event.getPrivacy())%></h4> --%>
 					<p>
-						<b>Description :</b> 
+						<span class="glyphicon glyphicon-user"></span> <b>Créé par :</b> <%=event.getCreator().getUserName()%>
 					</p>
-					<p><%=event.getDescription()%></p>
+					<p><span class="glyphicon glyphicon-home"></span> <b>Adresse :</b><%=event.getAddress() %>
+					<p>
+						<span class="glyphicon glyphicon-tasks"></span> <b>Description :</b> 
 					</p>
+					<p><%=event.getDescription().substring(0, 40)%>.....</p>
+					<p><a href='/DAR/events?mode=event&id=<%=event.getId()%>'> >>>>>lire la suite </a></p>
 				</div>
 				<div></div>
 				<div class="ratings">
@@ -93,7 +93,7 @@
 					</p>
 					<p>
 						<span><i class='glyphicon glyphicon-calendar'> </i> <%=event.getDateToString()%>
-						<%event.getHour();%>
+						
 						</span>
 					</p>
 				</div>
