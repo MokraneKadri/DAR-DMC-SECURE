@@ -45,12 +45,12 @@
 			<c:choose>
 				<c:when test="${ not empty login}">
 
-
+<!-- 
 					<li class=" dropdown"><a href="#"
 						class="dropdown-toggle active" data-toggle="dropdown"
 						role="button" aria-haspopup="true" aria-expanded="false">Amis
 							<span class="caret"></span>
-					</a>
+					</a> -->
 						<!-- <ul class="dropdown-menu">
 							<li><a href="/DAR/jsp/myfriends.jsp">Mes Amis</a></li>
 							<li><a href="/DAR/jsp/pendingrequests.jsp">Requêtes

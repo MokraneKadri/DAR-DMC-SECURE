@@ -47,7 +47,7 @@
 
 
 
-	<div class='maincontainer' style="margin-left: 40px;margin-right: 40px;">
+	<div class='maincontainer' style="margin-left: 150px;margin-right: 150px;">
 
 			<div class="col-sm-8 col-sm-offset-2">
 	<div class="bs-example">
@@ -68,7 +68,7 @@
 		%>
 		<div class='col-sm-4 col-lg-4 col-md-4'>
 			<div class='thumbnail'>
-				<img src='/DAR/assets/img/event.jpg' alt=''>
+				<img src='/DAR/assets/img/event1.jpg' alt=''>
 				<div class='caption'>
 					<h3>
 						<a href='/DAR/events?mode=event&id=<%=event.getId()%>'> <%=event.getName()%>
@@ -82,7 +82,7 @@
 					<p>
 						<span class="glyphicon glyphicon-tasks"></span> <b>Description :</b> 
 					</p>
-					<p><%=event.getDescription().substring(0, 40)%>.....</p>
+					<p><%=event.getDescription().substring(0, 10)%>.....</p>
 					<p><a href='/DAR/events?mode=event&id=<%=event.getId()%>'> >>>>>lire la suite </a></p>
 				</div>
 				<div></div>
@@ -115,55 +115,6 @@
 
 
 
-
-
-
-
-
-	<%-- 
-		<div class='well'>
-			<div class='media'>
-				<div class='pull-left'>
-					<h4 class='media-heading'>
-						<a href='/DAR/events?mode=event&id=<%=event.getId()%>'> <%=event.getName()%> </a>
-					</h4>
-					<p class='text-right'>
-						créé par : <%=event.getCreator().getUserName()%></p>
-				</div>
-				
-				<p class='text-right'>
-					<a class='btn btn-primary'>Je participe</a>
-				</p>
-				<p class='text-right'>
-					<a class='btn btn-info'> Détails >> </a>
-				</p>
-				
-				<p>
-					Visibilité : <%=EventVisibility.eventVisibilityToString(event.getPrivacy())%>
-				</p>
-				<p>
-					Description : <%=event.getDescription()%>
-				</p>
-				<p>
-					Thème : <%=event.getTheme()%>
-				</p>
-				
-				<ul class='list-inline list-unstyled'>
-					<li><span><i class='glyphicon glyphicon-calendar'>
-						</i> <%=event.getDateToString()%> </span></li>
-					<li>|</li>
-					<li><span><i class='glyphicon glyphicon-comment'></i> <%=event.getComments().size()%>
-							<a href='/DAR/events?mode=event&id=<%=event.getId()%>'>comments</a></span></li>
-					<li>|</li>
-					<li><span class='glyphicon glyphicon-star'></span><span
-						class='glyphicon glyphicon-star'></span><span
-						class='glyphicon glyphicon-star'></span><span
-						class='glyphicon glyphicon-star'></span><span
-						class='glyphicon glyphicon-star-empty'></span></li>
-				</ul>
-				
-			</div>
-		</div> --%>
 
 
 	</div>

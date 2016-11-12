@@ -503,6 +503,7 @@ public class EventsServlet extends HttpServlet {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
+	
 
 	private void comment(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		try {

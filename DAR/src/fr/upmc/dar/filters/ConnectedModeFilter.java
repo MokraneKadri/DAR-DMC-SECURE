@@ -31,13 +31,13 @@ import fr.upmc.dar.enums.UriMapping;
 @WebFilter(urlPatterns = {"/*"} )
 public class ConnectedModeFilter implements Filter {
 
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
 	/**
 	 * les listes de lien accessible ou pas par 
 	 * les utilisateurs est a mettre a jours au fure et a mesure 
@@ -45,90 +45,116 @@ public class ConnectedModeFilter implements Filter {
 	 * 
 	 * 
 	 */
-	
+
 	String redirectURI = null ;
-	
+
 	//pour les user non connectés 
-			
+
 
 	@Override
 	public void destroy() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {
 		redirectURI="";
-		
+
 	}
-	
+
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		
-		
+
+
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpresponse = (HttpServletResponse) response;
 		HttpSession httpSession = httpRequest.getSession();
 
-		String requestedURI = httpRequest.getRequestURI();
+		//String requestedURI = httpRequest.getRequestURI();
 
 		String login = (String) httpSession.getAttribute("login");
 
 		//pour les user non connectés 
-		 ArrayList<String> nonConnectedUserRestrictedURLs = new ArrayList<String>();
+		ArrayList<String> nonConnectedUserRestrictedURLs = new ArrayList<String>();
 		nonConnectedUserRestrictedURLs.add(RestrictedAccesUris.CREATEEVENT.getRessourceUrl());
 		nonConnectedUserRestrictedURLs.add(RestrictedAccesUris.CREATEGROUP.getRessourceUrl());
 		nonConnectedUserRestrictedURLs.add(RestrictedAccesUris.PROFIL.getRessourceUrl());
+		//nonConnectedUserRestrictedURLs.add(RestrictedAccesUris.EVENT.getRessourceUrl());
 
 		//pour les user connectés (logique de navigation)
 		ArrayList<String> ConnectedUserRestrictedURLs = new ArrayList<String>();
 		ConnectedUserRestrictedURLs.add(RestrictedAccesUris.USERLOGIN.getRessourceUrl());
 		ConnectedUserRestrictedURLs.add(RestrictedAccesUris.USERSIGNUP.getRessourceUrl());
+		String urltoaccesp ;
 
-		
-		if(login !=null && isAccesGranted4ConnectedUsers( requestedURI, ConnectedUserRestrictedURLs)!=true){
+		urltoaccesp=httpRequest.getRequestURI();
+		System.out.println(urltoaccesp);
+		if(httpRequest.getQueryString()!=null && httpRequest.getQueryString()!="")
+		{ urltoaccesp = httpRequest.getRequestURI()+"?"+httpRequest.getQueryString();
+		System.out.println(urltoaccesp);
+
+		if(urltoaccesp.contains("/DAR/events")  &&  !(httpRequest.getQueryString().contains("actus")||httpRequest.getQueryString().contains("search")))
+
+
+
+			nonConnectedUserRestrictedURLs.add(urltoaccesp);			
+
+		}
+		if(login !=null && isAccesGranted4ConnectedUsers( urltoaccesp, ConnectedUserRestrictedURLs)!=true){
+
+			//	String para = httpRequest.getParameter("mode");
+
+
 			redirectURI = "/DAR/events?mode=actus&limit=15";
 			//request.getRequestDispatcher(redirectURI).forward(request, response);
 			httpresponse.sendRedirect(redirectURI);// redirection 
-		
-			System.out.println("redirecting to "+redirectURI);
+
+			//System.out.println("redirecting to "+redirectURI);
+
+
 		}
-		else 
-			if ((login ==null ||login =="")&& isAccesGranted4NonConnectedUsers( requestedURI, nonConnectedUserRestrictedURLs)!=true)
+		else {
+
+
+			if ((login ==null ||login =="")&& isAccesGranted4NonConnectedUsers( urltoaccesp, nonConnectedUserRestrictedURLs)!=true)
 			{
+
 				redirectURI = "/DAR/signin";
+
 				//request.getRequestDispatcher(redirectURI).forward(request, response);
 				httpresponse.sendRedirect(redirectURI);// redirection 
 			}
-		
+
 			else 
-			chain.doFilter(request, response);
-	}
-	
-	
-	public boolean isAccesGranted4ConnectedUsers(String urlToAcces,List<String> Restriction4connected){
-		if (Restriction4connected.contains(urlToAcces)==true ){
-			//user non connecté mais veut acceder au page restreinte -->non
-		
-			System.out.println("use already coo");
-			return false;
-			
+				chain.doFilter(request, response);
 		}
-		return true;
-	}
-	
-	public boolean isAccesGranted4NonConnectedUsers( String urlToAcces,List<String> Restriction4Nonconnected){
-		if ( Restriction4Nonconnected.contains(urlToAcces)==true ){//
-			//user connecté mais veut se reco ou se reinscrire -->non
-			
-			System.out.println("acces denied , user is not connected");
-			return false;
-			
 		}
-		//on est dans aucun des cas , dofilter
-		return true ;
-		
+
+		public boolean isAccesGranted4ConnectedUsers(String urlToAcces,List<String> Restriction4connected){
+
+			if (Restriction4connected.contains(urlToAcces)==true ){
+				//user non connecté mais veut acceder au page restreinte -->non
+
+				System.out.println("use already coo");
+				return false;
+
+			}
+			return true;
+		}
+
+		public boolean isAccesGranted4NonConnectedUsers( String urlToAcces,List<String> Restriction4Nonconnected){
+			//if(urlToAcces=="/DAR/events?mode=actus&limit=15") return true;
+			if ( Restriction4Nonconnected.contains(urlToAcces)==true ){//
+				//user connecté mais veut se reco ou se reinscrire -->non
+
+				System.out.println("acces denied , user is not connected");
+				return false;
+
+			}
+			//on est dans aucun des cas , dofilter
+			return true ;
+
+		}
 	}
-}

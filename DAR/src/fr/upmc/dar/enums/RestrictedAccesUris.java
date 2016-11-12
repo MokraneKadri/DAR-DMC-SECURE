@@ -7,8 +7,8 @@ public enum RestrictedAccesUris {
 	 CREATEEVENT ("/DAR/create_event"),
 	 USERLOGIN ("/DAR/signin"),
 	 USERSIGNUP("/DAR/signup"),
-	PROFIL("/DAR/jsp/profil.jsp");
-	
+	PROFIL("/DAR/jsp/profil.jsp"),
+	EVENT("/DAR/events?mode=event&id=");
 	  private String name = "";
 	  //Constructeur
 	RestrictedAccesUris(String name){

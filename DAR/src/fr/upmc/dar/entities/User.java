@@ -31,6 +31,26 @@ public class User {
 	private String password;
 
 	@Column
+	private String street;
+	@Column
+	private int zip;
+	@Column
+	
+
+	public void setZip(int zip) {
+		this.zip = zip;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+
+	@Column
 	private String etablissement;
 
 	@Column
@@ -41,7 +61,7 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 
-	public User( String fname,String lname, String userName, String eMail, String password, String etablissement,
+	public User( String fname,String lname, String userName, String eMail, String password,String street,int zip,String city ,String etablissement,
 			String cursus) {
 		super();
 
@@ -50,6 +70,9 @@ public class User {
 		this.userName=userName;
 		this.eMail = eMail;
 		this.password = PasswordEncryptor.encryptPassword(password);
+		this.city=city;
+		this.zip=zip;
+		this.street=street;
 		this.etablissement = etablissement;
 		this.cursus = cursus;
 	}
@@ -123,6 +146,19 @@ public class User {
 
 	public boolean equals (User other){
 		return this.getId()==other.getId();
+	}
+	
+	private String city;
+	public String getStreet() {
+		return street;
+	}
+
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
+	public int getZip() {
+		return zip;
 	}
 
 

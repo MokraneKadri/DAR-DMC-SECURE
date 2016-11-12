@@ -61,6 +61,9 @@ public class SignUpServlet extends HttpServlet {
 		 String password = request.getParameter("password");
 		 String confirmationPassword = request.getParameter("confirm_password");
 		 String etablissement = request.getParameter("university");
+		 String street = request.getParameter("street");
+		 int zip =Integer.parseInt( request.getParameter("zip"));
+		 String city = request.getParameter("city");
 		 String cursus = request.getParameter("cursus");
 //		 System.out.println("received from form : \n name :"+fname
 //				 										+"username: "+userName
@@ -77,7 +80,7 @@ public class SignUpServlet extends HttpServlet {
 			 validator.canRegisterUser(fname,lname, userName, eMail, password, confirmationPassword, etablissement, cursus);
 			 formErrors=validator.getCommittedErrors();
 			 if(formErrors.isEmpty()){
-				 User utilisateur = new User(fname,lname,userName,eMail,password,etablissement,cursus);
+				 User utilisateur = new User(fname,lname,userName,eMail,password,street,zip,city,etablissement,cursus);
 			
 				 validator.getUser().createUser(utilisateur);
 				 pageInfos.put("user", userName);

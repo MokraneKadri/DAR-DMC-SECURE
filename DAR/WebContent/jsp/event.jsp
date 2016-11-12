@@ -98,6 +98,14 @@
 		Event event = dao.getEventById(Integer.valueOf(id));
 		String univAddresse = event.getUniversity().getStreet() + "" + event.getUniversity().getZipCode()
 				+ event.getUniversity().getCity();
+		
+		
+		String connectedUser = (String)session.getAttribute("login");
+		User cu = DAOFactory.createUserDao().findUserByUserName(connectedUser);
+				
+				
+		String userAddress = cu.getStreet()+" "+cu.getZip()+" "+cu.getCity();
+		
 	%>
 	<div class="bs-example">
 			<ul class="breadcrumb">
@@ -142,7 +150,7 @@
 									<tr>
 										<th>Politique d'accès</th>
 
-										<td><%=event.getPrivacy()%></td>
+										<td><%=EventVisibility.eventVisibilityToString(event.getPrivacy())%></td>
 									</tr>
 									<tr>
 										<th>Thème</th>
@@ -293,6 +301,14 @@ google.maps.event.addDomListener(window, 'load', init_map);</script>
 							Temps de marche estimé :
 							<%=api.walkingTime(univAddresse, event.getAddress())%></p>
 
+
+						<p>
+							Distance à pied depuis votre domicile :
+							<%=api.walkingDistance(userAddress, event.getAddress())%></p>
+						<p>
+							Temps de marche estimé :
+							<%=api.walkingTime(userAddress, event.getAddress())%></p>
+						
 						<% } catch (Exception e) {e.printStackTrace();} %>
 						
 					</div>

@@ -311,7 +311,7 @@
 														required : true
 
 													},
-													eventdescription : {
+													description : {
 														required : true,
 														minlength : 20
 
@@ -351,9 +351,9 @@
 
 													},
 
-													eventdescription : {
+													description : {
 														required : "Veuillez décrire l'évenement que vous allez créer",
-														minlength : "merci de fournir une description valide"
+														minlength : "merci de fournir une description valide(20caractères min)"
 
 													},
 													hour:{

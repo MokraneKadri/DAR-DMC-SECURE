@@ -21,9 +21,16 @@
             	<div class="footer_dv">
                 	<h4>Social</h4>
                 	<ul>
- 		<li class="line_rv"><a href="">Liste d'amis</a></li>
-               			<li><a href="">Rechercher </a></li>
-                        <li><a href="">Partager !</a></li>
+ 		<li class="line_rv"><a  id ="friends" href=" javascript: void(0);">Liste d'amis</a></li>
+               			<li><a href="/DAR/jsp/finduser.jsp">Rechercher </a></li>
+                        <li><a>Partager ! </a></li>
+                       
+           		<li>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=http://elysane.net:8080/DAR/home"><i class="fa fa-facebook-square fa-3x social"></i></a>
+	            <a href="https://twitter.com/share?url=http://elysane.net:8080/DAR/home"><i class="fa fa-twitter-square fa-3x social"></i></a>
+	           
+				</li>
+                       
                         
                     </ul>
                 </div>
@@ -32,10 +39,24 @@
             	<div class="footer_dv">
                 	<h4>Uni-Connect</h4>
                 	<p>Projet DAR 2016</p>
-      			<p>UPMC M2 STL PROMO 2016/2016<br>
+      			<p>UPMC M2 STL PROMO 2016/2017<br>
 				
                 </p></div>
             </div>
         </div>
     </div>
 </section>
+<script type="text/javascript">
+		$(document)
+				.ready(
+						function() {
+
+							$("#friends").click(
+									function() {
+
+										$(".maincontainer").load(
+												'/DAR/jsp/myfriends.jsp ');
+									});
+						});
+									
+									</script>
