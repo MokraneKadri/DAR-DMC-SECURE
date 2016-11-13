@@ -43,9 +43,9 @@ function findUserJS(searchv, valuev)
 
 function ProcessFindUser(rep) 
 {
-	var message = "<table class=\"table\" style=\"width:100%\" cellpadding = 50 cellspacing=50 border-collapse: collapse><thead>" +
+	var message = "<table class=\"table\"><thead>" +
 	"<tr>" +
-	"<th style=\"marging-left:10px\">Nom</th><th style=\"marging-left:10px\">Prenom</th><th style=\"marging-left:10px\">Profil</th><th colspan=\"1\">Action</th>" +
+	"<th>Nom</th><th>Prenom</th><th>Profil</th><th>Action</th>" +
 	"</tr></thead><tbody>";
 	var endmessage ="</table>";
 	var bodymessage ="";
@@ -65,8 +65,9 @@ function ProcessFindUser(rep)
 				endmessage="";
 			}else{
 				bodymessage = bodymessage+
-				
-				"<tr>" +
+
+				"<tr style='text-align: left'>" +
+
 				"<td>"+user.name+"</td>" +
 				"<td>"+user.firstname+"</td>"+
 				"<td><a href=\"/DAR/profil?user="+user.username+"\"> Voir Profil </a></td>"+

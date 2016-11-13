@@ -40,16 +40,7 @@
 <link rel="stylesheet" href="/DAR/assets/css/header.css">
 <link rel="stylesheet" href="/DAR/assets/css/main.css">
 
-<!-- Fin Styles  -->
-<script type="text/css" >
 
-.table > tr > td{
-	
-	padding:0px;
-	margin:0px;
-}
-
-</script>
 <title>Rechercher Utilisateur</title>
 </head>
 <body>
@@ -82,8 +73,8 @@
 											Par : </label>
 										<div class="col-sm-5">
 											<SELECT name="search" size="1" class="form-control">
-												<OPTION value="nom">Nom</OPTION>
-												<OPTION value="prenom">Prénom</OPTION>
+												<!-- <OPTION value="nom">Nom</OPTION>
+												<OPTION value="prenom">Prénom</OPTION> -->
 												<OPTION value="email">Email</OPTION>
 												<OPTION value="username">Nom d'utilisateur</OPTION>
 											</SELECT>
