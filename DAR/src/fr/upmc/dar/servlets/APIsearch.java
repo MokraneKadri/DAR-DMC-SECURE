@@ -44,12 +44,17 @@ public class APIsearch extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		String lieu = request.getParameter("lieu");
+		if(lieu.compareTo("")==0 || lieu.compareTo(" ")==0)
+			lieu="jussieu";
+		
 		System.out.println("Recherche de : "+lieu);
 		String ville = request.getParameter("ville");
+		if(ville.compareTo("")==0 || ville.compareTo(" ")==0)
+			ville="Paris";
 		System.out.println("Recherche dans la ville de  : "+ville);
 		JSONObject res=new JSONObject();
 		try {
-			List<String> businessIds=YelpBusinessSearch.searchBuisnessIds(lieu,ville, 5);
+			List<String> businessIds=YelpBusinessSearch.searchBuisnessIds(lieu,ville, 10);
 			List<Business> bs=YelpBusinessSearch.idsToBusiness(businessIds);
 
 			Gson gson = new Gson();
