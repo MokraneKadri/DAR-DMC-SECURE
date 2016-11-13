@@ -27,17 +27,24 @@
 								 <li><a href="/DAR/create_group">créer un groupe</a></li>
                             </ul>
                         </li> -->
-			<li class="dropdown "><a id="myLink"
+                        
+                        <li class="dropdown "><a id="myLink"
 				title="Evénements Proches" href="#"
 				onclick="nearEvents();">Evénements Proches</a></li>
-			<li class="dropdown"><a href="/DAR/events?mode=showall" class="dropdown-toggle active"
+             <li><a href="/DAR/events?mode=new">Créer  </a></li>
+			
+				<li><a href="/DAR/jsp/eventSearch.jsp">Rechercher 
+							</a></li>
+							
+							
+			<!-- <li class="dropdown"><a href="/DAR/events?mode=showall" class="dropdown-toggle active"
 				data-toggle="dropdown" role="button" aria-haspopup="true"
 				aria-expanded="false">Evénements <span class="caret"></span></a>
 				<ul class="dropdown-menu">
 					<li><a href="/DAR/jsp/eventSearch.jsp">Rechercher un
 							événement</a></li>
 					<li><a href="/DAR/events?mode=new">Créer un événement </a></li>
-				</ul></li>
+				</ul></li> -->
 		</ul>
 
 		<ul class="nav navbar-nav pull-right">
