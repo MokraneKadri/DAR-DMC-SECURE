@@ -27,11 +27,11 @@
  	<!-- fontAwsome  -->
  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
    <!-- style du footer  -->
-   <link rel="stylesheet" href="/DAR/assets/css/pageFooter.css">
+   <link rel="stylesheet" href="<c:url value='/assets/css/pageFooter.css'/>">
    <!-- style du header  -->
-   <link rel="stylesheet" href="/DAR/assets/css/header.css">
+   <link rel="stylesheet" href="<c:url value='/assets/css/header.css' />">
    <!--  content style -->
-   <link rel="stylesheet" href="/DAR/assets/css/main.css">
+   <link rel="stylesheet" href="<c:url value='/assets/css/main.css'/> ">
    	<!-- Fin Styles  -->	
 	
 	
