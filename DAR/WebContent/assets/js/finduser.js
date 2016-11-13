@@ -65,7 +65,7 @@ function ProcessFindUser(rep)
 				endmessage="";
 			}else{
 				bodymessage = bodymessage+
-				"<tr>" +
+				"<tr style='text-align: left'>" +
 				"<td>"+user.name+"</td>" +
 				"<td>"+user.firstname+"</td>"+
 				"<td><a href=\"/DAR/profil?user="+user.username+"\"> Voir Profil </a></td>"+

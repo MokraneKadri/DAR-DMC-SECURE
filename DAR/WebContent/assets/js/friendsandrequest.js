@@ -50,7 +50,7 @@ function ProcessRetrieveFriends(rep)
 	var jsonData =rep.result;//= JSON.parse(rep);
 	if(jsonData.users == undefined || jsonData.users.length == 0){
 		bodymessage = bodymessage+
-		"<tr>" +
+		"<tr style='text-align: left'>" +
 		"<td> Aucun</td>" +
 		"<td> Amis</td>"+
 		"<td></td>"+
@@ -61,7 +61,7 @@ function ProcessRetrieveFriends(rep)
 		for (var i = 0; i < jsonData.users.length; i++) {
 			var user = jsonData.users[i];
 			bodymessage = bodymessage+
-			"<tr>" +
+			"<tr style='text-align: left'>" +
 			"<td>"+user.name+"</td>" +
 			"<td>"+user.firstname+"</td>"+
 			"<td><a href=\"/DAR/profil?user="+user.username+"\"> Voir Profil </a></td>"+
@@ -87,7 +87,7 @@ function ProcessRetrieveRequests(rep)
 	var jsonData = rep.result;//JSON.parse(rep);
 	if(jsonData.users == undefined || jsonData.users.length == 0){
 		bodymessage = bodymessage+
-		"<tr>" +
+		"<tr style='text-align: left'>" +
 		"<td> Aucune</td>" +
 		"<td> Requêtes</td>"+
 		"<td></td>"+
@@ -99,7 +99,7 @@ function ProcessRetrieveRequests(rep)
 		for (var i = 0; i < jsonData.users.length; i++) {
 			var user = jsonData.users[i];
 			bodymessage = bodymessage+
-			"<tr>" +
+			"<tr style='text-align: left'>" +
 			"<td>"+user.name+"</td>" +
 			"<td>"+user.firstname+"</td>"+
 			"<td><a href=\"/DAR/memberprofile.jsp?id="+user.id+"\"> Voir Profil </a></td>"+
