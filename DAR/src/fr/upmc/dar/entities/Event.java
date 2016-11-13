@@ -25,62 +25,62 @@ import fr.upmc.dar.enums.EventVisibility;
 @Entity
 public class Event implements IEntity {
 
-	
+
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@ManyToOne
 	protected User creator;
-	
+
 	@ManyToMany//(cascade = CascadeType.ALL)
 	protected List<User> candidates;
-	
+
 	@OneToMany(cascade = CascadeType.ALL)
 	protected List<Comment> comments;
-	
+
 	@Column
 	protected String name;
 
 	@Column
 	protected EventVisibility privacy;
-	
+
 	@Column
 	protected String description;
-	
+
 	@Column
 	protected Date date;
-	
+
 	@Column 
 	protected String hour;
-	
+
 	@Column
 	protected String theme;
-	
+
 	@Column
 	protected Integer places;
-	
+
 	@Column
 	protected String address;
-	
+
 	@Column
 	String place;
-	
+
 	@Column
 	String placeType;
-	
+
 	@ManyToOne
 	protected Business business;
-	
+
 	@Column
 	protected Date timestamp;
-	
+
 	@ManyToOne
 	protected University university;
-	
+
 	public Event() {
 		super();
 	}
-	
+
 	public Event(	
 			User owner,
 			String name, 
@@ -100,7 +100,7 @@ public class Event implements IEntity {
 		this.name = name;
 		this.privacy = EventVisibility.stringToEventVisibility(privacy);
 		this.description = description;
-		this.date = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+		this.date = parseDate(date);
 		this.hour = hour;
 		this.theme = theme;
 		this.places = Integer.valueOf(places);
@@ -113,7 +113,40 @@ public class Event implements IEntity {
 		this.timestamp = new Date();
 		this.university = university;
 	}
-	
+
+	public Event(	
+			User owner,
+			String name, 
+			String privacy,
+			String description,
+			Date date,
+			String hour,
+			String theme, 
+			String places,
+			String address,
+			String placeType,
+			String place,
+			Business business,
+			University university) throws ParseException
+	{
+		this.creator = owner;
+		this.name = name;
+		this.privacy = EventVisibility.stringToEventVisibility(privacy);
+		this.description = description;
+		this.date = date;
+		this.hour = hour;
+		this.theme = theme;
+		this.places = Integer.valueOf(places);
+		this.address = address;
+		this.candidates = new ArrayList<>();
+		this.comments = new ArrayList<>();
+		this.placeType = placeType;
+		this.place = place;
+		this.business = business;
+		this.timestamp = new Date();
+		this.university = university;
+	}
+
 	public Event(	
 			User owner,
 			String name, 
@@ -132,7 +165,7 @@ public class Event implements IEntity {
 		this.name = name;
 		this.privacy = EventVisibility.stringToEventVisibility(privacy);
 		this.description = description;
-		this.date = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+		this.date = parseDate(date);
 		this.hour = hour;
 		this.theme = theme;
 		this.places = Integer.valueOf(places);
@@ -145,7 +178,39 @@ public class Event implements IEntity {
 		this.timestamp = new Date();
 		this.university = university;
 	}
-		
+
+	public Event(	
+			User owner,
+			String name, 
+			String privacy,
+			String description,
+			Date date,
+			String hour,
+			String theme, 
+			String places,
+			String address,
+			String placeType,
+			String place,
+			University university) throws ParseException 
+	{
+		this.creator = owner;
+		this.name = name;
+		this.privacy = EventVisibility.stringToEventVisibility(privacy);
+		this.description = description;
+		this.date = date;
+		this.hour = hour;
+		this.theme = theme;
+		this.places = Integer.valueOf(places);
+		this.address = address;
+		this.candidates = new ArrayList<>();
+		this.comments = new ArrayList<>();
+		this.placeType = placeType;
+		this.place = place;
+		this.business = null;
+		this.timestamp = new Date();
+		this.university = university;
+	}
+
 	public List<Comment> getComments() {
 		return comments;
 	}
@@ -177,7 +242,7 @@ public class Event implements IEntity {
 	public void setCandidates(List<User> candidates) {
 		this.candidates = candidates;
 	}
-	
+
 	public void addCandidate(User candidate) {
 		this.candidates.add(candidate);
 	}
@@ -209,7 +274,7 @@ public class Event implements IEntity {
 	public Date getDate() {
 		return date;
 	}
-	
+
 	public String getDateToString() {
 		return new SimpleDateFormat("dd-MM-yyyy").format(date);
 	}
@@ -217,11 +282,11 @@ public class Event implements IEntity {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	
+
 	public void setDate(String date) throws ParseException {
 		this.date = new SimpleDateFormat("dd-MM-yyyy").parse(date);
 	}
-	
+
 	public String getHour() {
 		return hour;
 	}
@@ -241,7 +306,7 @@ public class Event implements IEntity {
 	public void setTheme(String theme) {
 		this.theme = theme;
 	}
-	
+
 	public String getPlaceType() {
 		return placeType;
 	}
@@ -257,7 +322,7 @@ public class Event implements IEntity {
 	public void setPlaces(String places) {
 		this.places = Integer.valueOf(places);
 	}
-	
+
 	public void setPlaces(Integer places) {
 		this.places = places;
 	}
@@ -269,7 +334,7 @@ public class Event implements IEntity {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
+
 	public String getPlace() {
 		return place;
 	}
@@ -277,7 +342,7 @@ public class Event implements IEntity {
 	public void setPlace(String place) {
 		this.place = place;
 	}
-	
+
 	public Business getBusiness() {
 		return business;
 	}
@@ -285,15 +350,15 @@ public class Event implements IEntity {
 	public void setBusiness(Business business) {
 		this.business = business;
 	}
-	
+
 	public boolean isYelpEvent() {
 		return business != null;
 	}
-	
+
 	public Date getTimestamp() {
 		return timestamp;
 	}
-	
+
 	public University getUniversity() {
 		return university;
 	}
@@ -305,7 +370,7 @@ public class Event implements IEntity {
 	@Override
 	public JSONObject toJSONObject() throws JSONException {
 		JSONObject json = new JSONObject();
-		
+
 		json.put("name", name);
 		json.put("privacy", EventVisibility.eventVisibilityToString(privacy));
 		json.put("description", description);
@@ -321,8 +386,35 @@ public class Event implements IEntity {
 		json.put("timestamp", new SimpleDateFormat("dd-MM-yyyy").format(timestamp));
 		json.put("is_yelp", isYelpEvent());
 		json.put("hour", hour);
-		
+
 		return json;
 	}
-	
+
+
+	private Date parseDate(String date){
+		Date d;
+		try{
+			d=new SimpleDateFormat("yyyy-MM-dd").parse(date);
+			return d;
+		}catch(Exception e){
+			try{
+				d=new SimpleDateFormat("dd-MM-yyyy").parse(date);
+				return d;
+			}catch(Exception x){
+				try{
+					d=new SimpleDateFormat("yyyy/MM/dd").parse(date);
+					return d;
+				}catch(Exception y){
+					try{
+						d=new SimpleDateFormat("dd/MM/yyyy").parse(date);
+						return d;
+					}catch(Exception p){
+						d=new Date();
+						return d;
+					}
+				}
+			}
+		}
+	}
+
 }
