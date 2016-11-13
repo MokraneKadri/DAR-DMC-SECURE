@@ -16,7 +16,7 @@ public enum EventVisibility {
 	
 	public static EventVisibility stringToEventVisibility(String visibility) {
 		switch (visibility) {
-		case "publique":
+		case "public":
 			return EventVisibility.PUBLIC;
 		case "privé":
 			return EventVisibility.PRIVATE;

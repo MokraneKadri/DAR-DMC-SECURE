@@ -8,7 +8,10 @@ public enum RestrictedAccesUris {
 	 USERLOGIN ("/DAR/signin"),
 	 USERSIGNUP("/DAR/signup"),
 	PROFIL("/DAR/jsp/profil.jsp"),
-	EVENT("/DAR/events?mode=event&id=");
+	EVENT("/DAR/events?mode=event&id="),
+	FRIENDSLOOKUP("/DAR/jsp/finduser.jsp"),
+	MYFRIENDS("/DAR/jsp/myfriends.jsp");
+	
 	  private String name = "";
 	  //Constructeur
 	RestrictedAccesUris(String name){
