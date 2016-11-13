@@ -40,7 +40,6 @@
 <link rel="stylesheet" href="/DAR/assets/css/header.css">
 <link rel="stylesheet" href="/DAR/assets/css/main.css">
 
-<!-- Fin Styles  -->
 
 <title>Rechercher Utilisateur</title>
 </head>
@@ -111,7 +110,7 @@
 
 
 
-							<div id='notifier'></div>
+							<div id='notifier' ></div>
 						</div>
 					</div>
 				</div>
