@@ -161,14 +161,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <% if (event.getUniversity() != null) { %>
                                         <tr>
                                             <th>Université</th>
                                             <td>
-                                                <% if (event.getUniversity() != null) { %>
-                                                    <%= event.getUniversity().getName() %>
-                                                <% } %>
+                                                <%= event.getUniversity().getName() %>
                                             </td>
                                         </tr>
+                                        <% } %>
                                         <tr>
                                             <th>Politique d'accès</th>
                                             <td><%=EventVisibility.eventVisibilityToString(event.getPrivacy())%></td>
