@@ -459,10 +459,10 @@
 								OnSubmit="javascript:searchevent(this)">
 
 								<div class="form-group">
-									<label class="col-sm-4 control-label"> Type de Lieu :</label>
+									<label class="col-sm-4 control-label">Lieu :</label>
 									<div class="col-sm-5">
 										<input type="text" class="form-control" name="lieu" id="lieu"
-											placeholder="Bar... Restaurant..." />
+											placeholder="Bar... Restaurant... Adresse..." />
 									</div>
 								</div>
 								<div class="form-group">

@@ -17,6 +17,8 @@ public class RemoveOldsEntitiesJob implements Job {
 	public void execute(JobExecutionContext context)
 		throws JobExecutionException {
 		/*Init Entity Manager*/
+		System.out.println("----------");
+		System.out.println("Old entities updating");
 		EntityManager em = EMF.getInstance().getEntityManagerFactory().createEntityManager();
 		
 		

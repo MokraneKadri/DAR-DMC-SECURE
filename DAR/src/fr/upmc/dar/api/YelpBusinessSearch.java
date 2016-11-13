@@ -62,6 +62,7 @@ public final class YelpBusinessSearch {
 		request.addQuerystringParameter("term", term);
 		request.addQuerystringParameter("location", location);
 		request.addQuerystringParameter("limit", String.valueOf(limit));
+		request.addQuerystringParameter("locale", "fr_FR");
 		Response response = request.send();
 		JSONObject json = new JSONObject(response.getBody());
 		JSONArray businesses = (JSONArray) json.get("businesses");
