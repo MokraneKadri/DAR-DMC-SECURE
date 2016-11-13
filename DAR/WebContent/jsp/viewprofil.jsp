@@ -54,7 +54,7 @@
                          <tr>
                              <tr>
                         <td>Adresse postale</td>
-                        <td></td>
+                        <td><td><c:out value="${userinfos['adresse']}"/></td>
                       </tr>
                         <tr>
                         <td>Université actuelle</td>

@@ -67,6 +67,7 @@ public class UserServlet extends HttpServlet {
 				userInfos.put("mail", user.geteMail());
 				userInfos.put("university", user.getEtablissement());
 				userInfos.put("cursus", user.getCursus());
+				userInfos.put("adresse", user.getStreet()+" "+user.getZip()+" "+user.getCity());
 				request.setAttribute("userinfos", userInfos);
 				request.getRequestDispatcher("/jsp/viewprofil.jsp").forward(request, response);
 				

@@ -283,7 +283,7 @@
 													},
 													name : {
 														required : true,
-														minlength : 3
+														minlength : 5
 													},
 													date : {
 														required : true,
@@ -313,7 +313,7 @@
 													},
 													description : {
 														required : true,
-														minlength : 20
+														minlength : 22
 
 													},
 
