@@ -9,7 +9,7 @@
 	<div class="panel panel-default" style="">
 		<div class="panel-heading">
 			<h3>
-				<p class='capital'>Requêtes Reçus</p>
+				<p class='capital'>Requêtes Reçues</p>
 			</h3>
 		</div>
 		<div class="panel-body">

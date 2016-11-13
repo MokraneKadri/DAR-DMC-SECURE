@@ -56,7 +56,7 @@
 	<div class="bs-example">
     <ul class="breadcrumb">
     	<li>Uni-connect</li>
-        <li><a href="/DAR/home">Acceuil</a></li>
+        <li><a href="/DAR/home">Accueil</a></li>
         <li class="active"><a href="/DAR/events?mode=actus&limit=15">Actus et événements récents</a></li>
        
     </ul>

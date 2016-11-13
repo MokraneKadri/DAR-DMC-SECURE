@@ -104,7 +104,7 @@
 		              	         	'<ul class="list-inline list-unstyled">'+
 		              	  				'<li><span><i class="glyphicon glyphicon-calendar"> </i> ' + event.date + '|'+event.hour+'</span></li>'+
 		              	            	'<li>|</li>'+
-		              	            	'<span><i class="glyphicon glyphicon-comment"></i> ' + event.comments + ' <a href="/DAR/events?mode=event&id='+ event.id +'#com">comments<a/></span>'+
+		              	            	'<span><i class="glyphicon glyphicon-comment"></i> ' + event.comments + ' <a href="/DAR/events?mode=event&id='+ event.id +'#com">commentaires<a/></span>'+
 		              	            	
 		              				'</ul>'+
 		              	 		'</div>'+
@@ -138,7 +138,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h3>
-							<p class='capital'>Rechercher un event</p>
+							<p class='capital'>Rechercher un meetup</p>
 						</h3>
 					</div>
 					<div class="panel-body">
