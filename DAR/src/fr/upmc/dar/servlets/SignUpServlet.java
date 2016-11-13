@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONObject;
+import org.jsoup.Jsoup;
+import org.jsoup.safety.Whitelist;
 
 import fr.upmc.dar.dao.DAOFactory;
 import fr.upmc.dar.dao.interfaces.IUserDao;
@@ -58,17 +60,17 @@ public class SignUpServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		String fname = request.getParameter("firstname");
-		 String lname = request.getParameter("lastname");
-		 String userName = request.getParameter("username");
-		 String eMail = request.getParameter("email");
-		 String password = request.getParameter("password");
-		 String confirmationPassword = request.getParameter("confirm_password");
-		 String etablissement = request.getParameter("university");
-		 String street = request.getParameter("street");
-		 int zip =Integer.parseInt( request.getParameter("zip"));
-		 String city = request.getParameter("city");
-		 String cursus = request.getParameter("cursus");
+		String fname = Jsoup.clean(request.getParameter("firstname"), Whitelist.none());
+		 String lname = Jsoup.clean(request.getParameter("lastname"), Whitelist.none());
+		 String userName = Jsoup.clean(request.getParameter("username"), Whitelist.none());
+		 String eMail = Jsoup.clean(request.getParameter("email"), Whitelist.none());
+		 String password = Jsoup.clean(request.getParameter("password"), Whitelist.none());
+		 String confirmationPassword = Jsoup.clean(request.getParameter("confirm_password"), Whitelist.none());
+		 String etablissement = Jsoup.clean(request.getParameter("university"), Whitelist.none());
+		 String street = Jsoup.clean(request.getParameter("street"), Whitelist.none());
+		 int zip =Integer.parseInt(Jsoup.clean(request.getParameter("zip"), Whitelist.none()));
+		 String city = Jsoup.clean(request.getParameter("city"), Whitelist.none());
+		 String cursus = Jsoup.clean(request.getParameter("cursus"), Whitelist.none());
 //		 System.out.println("received from form : \n name :"+fname
 //				 										+"username: "+userName
 //				 										
