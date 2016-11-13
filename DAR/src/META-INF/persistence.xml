@@ -15,6 +15,9 @@
 			<property name="hibernate.connection.password" value="kasukasukasu" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="connection.autoReconnect" value="true"/>
+			<property name="connection.autoReconnectForPools" value="true"/>
+			<property name="connection.is-connection-validation-required" value="true"/>
 		</properties>
 	</persistence-unit>
 	

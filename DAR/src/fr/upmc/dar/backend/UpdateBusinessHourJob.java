@@ -26,7 +26,8 @@ public class UpdateBusinessHourJob implements Job {
 
 
 		/*Updating Business hours in database*/
-
+		System.out.println("----------");
+		System.out.println("Business Hour Updating");
 		int offset = 0;
 
 		List<Business> bs;
