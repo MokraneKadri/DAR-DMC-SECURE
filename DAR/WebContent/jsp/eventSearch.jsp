@@ -154,10 +154,10 @@
 											<SELECT name="search" size="1" class="form-control">
 												<OPTION value="name">Nom</OPTION>
 												<OPTION value="description">Description</OPTION>
-												<OPTION value="privacy">Visibilité</OPTION>
-												<OPTION value="date">Date</OPTION>
+												<!-- <OPTION value="privacy">Visibilité</OPTION> -->
+												<!-- <OPTION value="date">Date</OPTION> -->
 												<OPTION value="theme">Theme</OPTION>
-												<OPTION value="places">Places</OPTION>
+												<!-- <OPTION value="places">Places</OPTION> -->
 												<OPTION value="address">Adresse</OPTION>
 											</SELECT>
 										</div>
