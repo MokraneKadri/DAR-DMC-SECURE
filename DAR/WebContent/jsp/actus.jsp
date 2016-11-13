@@ -74,18 +74,18 @@
 				<img src='/DAR/assets/img/event1.jpg' alt=''>
 				<div class='caption'>
 					<h3>
-						<a href='/DAR/events?mode=event&id=<%=event.getId()%>'> <%=event.getName().substring(0, 5)%>...
+						<a href='/DAR/events?mode=event&id=<%=event.getId()%>'> <%=event.getName().substring(0, Math.min(5, event.getName().length()))%>...
 						</a>
 					</h3>
 					<%-- <h4 class="pull-right"><%=EventVisibility.eventVisibilityToString(event.getPrivacy())%></h4> --%>
 					<p>
 						<span class="glyphicon glyphicon-user"></span> <b>Créé par :</b> <%=event.getCreator().getUserName()%>
 					</p>
-					<p><span class="glyphicon glyphicon-home"></span> <b>Adresse :</b><%=event.getAddress() %>
+					<p><span class="glyphicon glyphicon-home"></span> <b>Adresse :</b><%=event.getAddress().substring(0, Math.min(5, event.getAddress().length())) %>
 					<p>
 						<span class="glyphicon glyphicon-tasks"></span> <b>Description :</b> 
 					</p>
-					<p><%=event.getDescription().substring(0, 10)%>.....</p>
+					<p><%=event.getDescription().substring(0, Math.min(10,event.getDescription().length()))%>.....</p>
 					<p><a href='/DAR/events?mode=event&id=<%=event.getId()%>'> >>>>>lire la suite </a></p>
 				</div>
 				<div></div>
