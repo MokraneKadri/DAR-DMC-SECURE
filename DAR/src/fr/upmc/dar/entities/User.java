@@ -7,9 +7,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.Proxy;
+
 import fr.upmc.dar.tools.PasswordEncryptor;
 
 @Entity
+@Proxy(lazy = false)
 public class User {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)

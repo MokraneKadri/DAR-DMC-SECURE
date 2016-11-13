@@ -54,16 +54,25 @@ public class UserDao implements IUserDao{
 		em = EMF.getInstance().getEntityManagerFactory().createEntityManager();
 	}
 
+	public EntityManager getEm(){
+		if(em==null || !em.isOpen())
+			return EMF.getInstance().getEntityManagerFactory().createEntityManager();
+		return em;
+	}
+
 	// Enregistrement d'un nouvel utilisateur
 	public void createUser( User utilisateur ) throws Exception {
+		EntityManager en=getEm();
 		try {
-			em.getTransaction().begin();
-			em.persist( utilisateur );
-			em.getTransaction().commit();
+			en.getTransaction().begin();
+			en.persist( utilisateur );
+			en.getTransaction().commit();
 
 		} catch ( Exception e ) {
 			System.out.println(e.getMessage());
 			throw new Exception( e );
+		} finally{
+			en.close();
 		}
 	}
 
@@ -72,7 +81,8 @@ public class UserDao implements IUserDao{
 	// Recherche d'un utilisateur à partir de son adresse email
 	public User findUserByEmail( String email ) throws Exception {
 		User utilisateur = null;
-		Query requete = em.createQuery( SELECT_BY_EMAIL );
+		EntityManager en=getEm();
+		Query requete = en.createQuery( SELECT_BY_EMAIL );
 		requete.setParameter( PARAM_EMAIL, email );
 		try {
 			utilisateur = (User) requete.getSingleResult();
@@ -80,13 +90,14 @@ public class UserDao implements IUserDao{
 			return null;
 		} catch ( Exception e ) {
 			throw new Exception( e );
-		}
+		}finally{en.close();}
 		return utilisateur;
 	}
 
 	public User findUserById( int id ) throws Exception {
 		User utilisateur = null;
-		Query requete = em.createQuery( SELECT_BY_ID );
+		EntityManager en=getEm();
+		Query requete = en.createQuery( SELECT_BY_ID );
 		requete.setParameter( PARAM_ID, id);
 		try {
 			utilisateur = (User) requete.getSingleResult();
@@ -94,14 +105,15 @@ public class UserDao implements IUserDao{
 			return null;
 		} catch ( Exception e ) {
 			throw new Exception( e );
-		}
+		}finally{en.close();}
 		return utilisateur;
 	}
 
 	// Recherche d'un utilisateur à partir de son adresse email
 	public User findUserByUserName( String username ) throws Exception {
 		User utilisateur = null;
-		Query requete = em.createQuery( SELECT_BY_USERNAME );
+		EntityManager en=getEm();
+		Query requete = en.createQuery( SELECT_BY_USERNAME );
 		requete.setParameter( PARAM_USERNAME, username );
 		try {
 			utilisateur = (User) requete.getSingleResult();
@@ -109,21 +121,21 @@ public class UserDao implements IUserDao{
 			return null;
 		} catch ( Exception e ) {
 			throw new Exception( e );
-		}
+		}finally{en.close();}
 		return utilisateur;
 	}
 
 	@Override
 	public User findUserByCredantials( String login,String passwd,LoginType mailOrUserName) throws Exception {
 		User utilisateur = null;
-
+		EntityManager en=getEm();
 		Query requete;
 		if(mailOrUserName==LoginType.EMAIL){
-			requete = em.createQuery( SELECT_BY_EMAIL );
+			requete = en.createQuery( SELECT_BY_EMAIL );
 			requete.setParameter( PARAM_EMAIL, login );//.setParameter(PARAM_PASS,passwd);
 		}
 		else {
-			requete = em.createQuery( SELECT_BY_USERNAME);
+			requete = en.createQuery( SELECT_BY_USERNAME);
 			requete.setParameter( PARAM_USERNAME, login );//.setParameter(PARAM_PASS,passwd);
 
 		}
@@ -138,7 +150,7 @@ public class UserDao implements IUserDao{
 			return null;
 		} catch ( Exception e ) {
 			throw new Exception( e );
-		}
+		}finally{en.close();}
 
 	}
 
@@ -200,7 +212,8 @@ public class UserDao implements IUserDao{
 
 	private Collection<? extends User> findUserByFirstname(String value) throws Exception {
 		List<User> utilisateur = null;
-		Query requete = em.createQuery( SELECT_BY_FIRSTNAME );
+		EntityManager en=getEm();
+		Query requete = en.createQuery( SELECT_BY_FIRSTNAME );
 		requete.setParameter( PARAM_FIRSTNAME, value );
 		try {
 			utilisateur = (List<User>) requete.getResultList();
@@ -208,13 +221,14 @@ public class UserDao implements IUserDao{
 			return null;
 		} catch ( Exception e ) {
 			throw new Exception( e );
-		}
+		}finally{en.close();}
 		return utilisateur;
 	}
 
 
 	private Collection<? extends User> findUserByName(String value) throws Exception {
 		List<User> utilisateur = null;
+		EntityManager en=getEm();
 		Query requete = em.createQuery( SELECT_BY_NAME );
 		requete.setParameter( PARAM_NAME, value );
 		try {
@@ -223,7 +237,7 @@ public class UserDao implements IUserDao{
 			return null;
 		} catch ( Exception e ) {
 			throw new Exception( e );
-		}
+		}finally{en.close();}
 		return utilisateur;
 	}
 
@@ -264,9 +278,13 @@ public class UserDao implements IUserDao{
 
 	@Override
 	public void updateUser(User user) {
-		em.getTransaction().begin();
-		em.merge(user);
-		em.getTransaction().commit();
+		EntityManager en=getEm();
+		try{
+			en.getTransaction().begin();
+			en.merge(user);
+			en.getTransaction().commit();
+		}catch(Exception e){
+		}finally{en.close();}
 	}
 
 }

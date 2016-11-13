@@ -8,7 +8,10 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.Proxy;
+
 @Entity
+@Proxy(lazy = false)
 public class University {
 	@Id
 	@Column(unique=true)

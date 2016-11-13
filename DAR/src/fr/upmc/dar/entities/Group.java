@@ -12,7 +12,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.Proxy;
+
 @Entity(name="groups")
+@Proxy(lazy = false)
 public class Group {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)

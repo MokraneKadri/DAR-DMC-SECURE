@@ -19,7 +19,7 @@ import fr.upmc.dar.tools.Localisation;
 
 public class EventDao implements IEventDao {
 
-	protected EntityManager entityManager;
+	protected EntityManager em;
 
 	protected final static String ALL_EVENTS = "SELECT events FROM Event events";
 	protected final static String EVENTS_NAMED_BY = "SELECT events FROM Event events WHERE events.name=:name";
@@ -34,49 +34,88 @@ public class EventDao implements IEventDao {
 
 
 	public EventDao() {
-		entityManager = EMF.getInstance().getEntityManagerFactory().createEntityManager();
+		em = EMF.getInstance().getEntityManagerFactory().createEntityManager();
+	}
+
+	public EntityManager getEm(){
+		if(em==null || !em.isOpen())
+			return EMF.getInstance().getEntityManagerFactory().createEntityManager();
+		return em;
 	}
 
 	@Override
 	protected void finalize() throws Throwable {
-		entityManager.close();
+		em.close();
 		super.finalize();
 	}
 
 	@Override
 	public void createEvent(Event event) {
-		entityManager.getTransaction().begin();
-		entityManager.persist(event);
-		entityManager.getTransaction().commit();
+		EntityManager en = getEm();
+		try{
+			en.getTransaction().begin();
+			en.persist(event);
+			en.getTransaction().commit();
+		}catch(Exception e){}finally{en.close();}
 	}
 
 	@Override
 	public List<Event> getAllEvents() {
-		return getGroupsFromQuery(entityManager.createQuery(ALL_EVENTS));
+		EntityManager en=getEm();
+		List<Event> x =null;
+		try{
+			x= getGroupsFromQuery(en.createQuery(ALL_EVENTS));
+		}catch(Exception e){}finally{en.close();}
+		return x;
 	}
 
 	@Override
 	public List<Event> getEventsByName(String name) {
-		return getGroupsFromQuery(entityManager.createQuery(EVENTS_NAMED_BY).setParameter("name", name));
+		EntityManager en=getEm();
+		List<Event> x =null;
+		try{
+			x= getGroupsFromQuery(en.createQuery(EVENTS_NAMED_BY).setParameter("name", name));
+		}catch(Exception e){}finally{en.close();}
+		return x;
 	}
 
 	@Override
 	public Event getEventsByName1(String name) {
-		return (Event) entityManager.createQuery(EVENTS_NAMED1_BY).setParameter("name", name).getSingleResult();
+		EntityManager en=getEm();
+		Event x =null;
+		try{
+			x= (Event) en.createQuery(EVENTS_NAMED1_BY).setParameter("name", name).getSingleResult();
+		}catch(Exception e){}finally{en.close();}
+		return x;
 	}
 	@Override
 	public List<Event> getEventsByDate(String date) {
-		return getGroupsFromQuery(entityManager.createQuery(EVENTS_DATED_BY).setParameter("date", date));
+		EntityManager en=getEm();
+		List<Event> x =null;
+		try{
+			x= getGroupsFromQuery(en.createQuery(EVENTS_DATED_BY).setParameter("date", date));
+		}catch(Exception e){}finally{en.close();}
+		return x;
 	}
 
 	@Override
 	public List<Event> getEventsByTheme(String theme) {
-		return getGroupsFromQuery(entityManager.createQuery(EVENTS_THEMED_BY).setParameter("theme", theme));
+		EntityManager en=getEm();
+		List<Event> x =null;
+		try{
+			return getGroupsFromQuery(en.createQuery(EVENTS_THEMED_BY).setParameter("theme", theme));
+		}catch(Exception e){}finally{en.close();}
+		return x;
 	}
 
 	@Override
 	public List<Event> getEventsByOwner(User owner) {
-		return getGroupsFromQuery(entityManager.createQuery(EVENTS_OWNED_BY).setParameter("owner", owner));
+		EntityManager en=getEm();
+		List<Event> x =null;
+		try{
+			return getGroupsFromQuery(en.createQuery(EVENTS_OWNED_BY).setParameter("owner", owner));
+		}catch(Exception e){}finally{en.close();}
+		return x;
 	}
 
 	@Override
@@ -104,29 +143,43 @@ public class EventDao implements IEventDao {
 
 	@Override
 	public List<Comment> getCommentsList(int eventId) {
-		ArrayList<Comment> comments = (ArrayList<Comment>) entityManager.createQuery(EVENTS_COMMENTS_BY_EVENTID).setParameter("id", eventId);
-		return comments;
+		EntityManager en=getEm();
+		List<Comment> x =null;
+		try{
+		x = (ArrayList<Comment>) en.createQuery(EVENTS_COMMENTS_BY_EVENTID).setParameter("id", eventId);
+		}catch(Exception e){}finally{en.close();}
+		return x;
 	}
 
 	@Override
 	public void removeEvent(Event event) {
-		entityManager.getTransaction().begin();
-		entityManager.remove(event);
-		entityManager.getTransaction().commit();
+		EntityManager en=getEm();
+		try{
+		en.getTransaction().begin();
+		en.remove(event);
+		en.getTransaction().commit();
+	}catch(Exception e){}finally{en.close();}
 	}
 
 	@Override
 	public void updateEvent(Event event) {
-		entityManager.getTransaction().begin();
-		entityManager.merge(event);
-		entityManager.getTransaction().commit();
+		EntityManager en=getEm();
+		try{
+		en.getTransaction().begin();
+		en.merge(event);
+		en.getTransaction().commit();
+	}catch(Exception e){}finally{en.close();}
 	}
 
 	@Override
 	public Event getEventById(Integer id) {
-		entityManager.getTransaction().begin();
-		Event event = entityManager.find(Event.class, id);
-		entityManager.getTransaction().commit();
+		EntityManager en=getEm();
+		Event event=null;
+		try{
+		en.getTransaction().begin();
+		event = en.find(Event.class, id);
+		en.getTransaction().commit();
+	}catch(Exception e){}finally{en.close();}
 		return event;
 	}
 
@@ -139,8 +192,8 @@ public class EventDao implements IEventDao {
 			try{
 				for (Event e : es){
 					if(e.getBusiness()!=null)
-					if(Localisation.distance(lat,lon,Double.parseDouble(e.getBusiness().getLatitude()),Double.parseDouble(e.getBusiness().getLongitude()),"K")<5)
-						res.add(e);
+						if(Localisation.distance(lat,lon,Double.parseDouble(e.getBusiness().getLatitude()),Double.parseDouble(e.getBusiness().getLongitude()),"K")<5)
+							res.add(e);
 				}
 			}catch(Exception e){};
 			offset += es.size();
@@ -152,7 +205,12 @@ public class EventDao implements IEventDao {
 	@SuppressWarnings("unchecked")
 	private List<Event> getEventsNearIteration(int offset, int max)
 	{
-		return entityManager.createQuery(ALL_EVENTS_NOT_ENDED).setParameter("date", new Date()).setFirstResult(offset).setMaxResults(max).getResultList();
+		EntityManager en=getEm();
+		List<Event> x=null;
+		try{
+		x= en.createQuery(ALL_EVENTS_NOT_ENDED).setParameter("date", new Date()).setFirstResult(offset).setMaxResults(max).getResultList();
+		}catch(Exception e){}finally{en.close();}
+		return x;
 	}
 
 }

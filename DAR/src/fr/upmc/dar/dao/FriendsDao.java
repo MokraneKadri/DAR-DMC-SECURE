@@ -31,7 +31,7 @@ public class FriendsDao implements IFriendsDao {
 	}
 
 	@Override
-	public void createFriends(Friends friends) {
+	public void createFriends(Friends friends) {	
 		entityManager.getTransaction().begin();
 		entityManager.persist(friends);
 		entityManager.getTransaction().commit();

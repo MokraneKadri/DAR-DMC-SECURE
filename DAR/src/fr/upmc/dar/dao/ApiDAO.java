@@ -9,49 +9,76 @@ import fr.upmc.dar.entities.University;
 
 public class ApiDAO {
 
-	protected EntityManager entityManager;
+	protected EntityManager em;
 
 	public ApiDAO() {
-		entityManager = EMF.getInstance().getEntityManagerFactory().createEntityManager();
+		em = EMF.getInstance().getEntityManagerFactory().createEntityManager();
+	}
+
+	public EntityManager getEm(){
+		if(em==null || !em.isOpen())
+			return EMF.getInstance().getEntityManagerFactory().createEntityManager();
+		return em;
 	}
 
 	public Business getBusiness(String id) {
-		entityManager.getTransaction().begin();
-		Business b=entityManager.find(Business.class, id);
-		entityManager.getTransaction().commit();
+		EntityManager en =getEm();
+		Business b=null;
+		try{
+			en.getTransaction().begin();
+			b=en.find(Business.class, id);
+			en.getTransaction().commit();
+		}catch(Exception e){}finally{en.close();}
 		return b;
 	}
 
 	public void addBusiness(Business b){
-		entityManager.getTransaction().begin();
-		entityManager.persist(b);
-		entityManager.getTransaction().commit();
+		EntityManager en =getEm();
+		try{
+			en.getTransaction().begin();
+			en.persist(b);
+			en.getTransaction().commit();
+		}catch(Exception e){}finally{en.close();}
 	}
 
 	public void updateBusiness(Business b){
-		entityManager.getTransaction().begin();
-		entityManager.merge(b);
-		entityManager.getTransaction().commit();
+		EntityManager en =getEm();
+		try{
+			en.getTransaction().begin();
+			en.merge(b);
+			en.getTransaction().commit();
+		}catch(Exception e){}finally{en.close();}
 
 	}
 
 	public University getUniversity(String id) {
-		entityManager.getTransaction().begin();
-		University b=entityManager.find(University.class, id);
-		entityManager.getTransaction().commit();
+		EntityManager en =getEm();
+		University b=null;
+		try{
+			en.getTransaction().begin();
+			 b=en.find(University.class, id);
+			en.getTransaction().commit();
+		}catch(Exception e){}finally{en.close();}
 		return b;
 	}
 
 	public void addUniversity(University b){
-		entityManager.getTransaction().begin();
-		entityManager.persist(b);
-		entityManager.getTransaction().commit();
+		EntityManager en =getEm();
+		try{
+
+			en.getTransaction().begin();
+			en.persist(b);
+			en.getTransaction().commit();
+		}catch(Exception e){}finally{en.close();}
 	}
 
 	public void updateUniversity(University b){
-		entityManager.getTransaction().begin();
-		entityManager.merge(b);
-		entityManager.getTransaction().commit();
+		EntityManager en =getEm();
+		try{
+			en.getTransaction().begin();
+			en.merge(b);
+			en.getTransaction().commit();
+		}catch(Exception e){}finally{en.close();}
 	}
 
 

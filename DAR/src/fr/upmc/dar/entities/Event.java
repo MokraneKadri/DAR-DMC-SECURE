@@ -16,6 +16,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.Proxy;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -23,6 +24,7 @@ import fr.upmc.dar.entities.interfaces.IEntity;
 import fr.upmc.dar.enums.EventVisibility;
 
 @Entity
+@Proxy(lazy = false)
 public class Event implements IEntity {
 
 
