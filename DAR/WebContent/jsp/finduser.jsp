@@ -74,8 +74,8 @@
 											Par : </label>
 										<div class="col-sm-5">
 											<SELECT name="search" size="1" class="form-control">
-												<OPTION value="nom">Nom</OPTION>
-												<OPTION value="prenom">Prénom</OPTION>
+												<!-- <OPTION value="nom">Nom</OPTION>
+												<OPTION value="prenom">Prénom</OPTION> -->
 												<OPTION value="email">Email</OPTION>
 												<OPTION value="username">Nom d'utilisateur</OPTION>
 											</SELECT>
