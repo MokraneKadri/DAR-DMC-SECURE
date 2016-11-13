@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.upmc.dar.enums.UriMapping;
 
-@WebServlet(urlPatterns="/home")
+@WebServlet(urlPatterns= {"/", "/home"})
 public class PortalServlet extends HttpServlet {
 
 	/**
