@@ -30,6 +30,8 @@ public class UserServlet extends HttpServlet {
 			ServletException, 
 			IOException 
 	{
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		User user=null;
 		String username = request.getParameter("user");
 		HttpSession session = request.getSession();

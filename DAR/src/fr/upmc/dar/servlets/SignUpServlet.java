@@ -46,6 +46,8 @@ public class SignUpServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		
 		
 		request.getRequestDispatcher(UriMapping.REGISTER.getRessourceUrl()).forward(request, response);
@@ -54,7 +56,9 @@ public class SignUpServlet extends HttpServlet {
 	@SuppressWarnings("unchecked")
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 String fname = request.getParameter("firstname");
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		String fname = request.getParameter("firstname");
 		 String lname = request.getParameter("lastname");
 		 String userName = request.getParameter("username");
 		 String eMail = request.getParameter("email");

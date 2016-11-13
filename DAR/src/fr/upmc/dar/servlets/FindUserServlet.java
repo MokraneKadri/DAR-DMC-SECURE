@@ -16,11 +16,15 @@ public class FindUserServlet extends HttpServlet {
 	UserDao UserDao=new UserDao();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		doPost(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		try{
 			response.setContentType("text/html");
 			String search=request.getParameter("search");

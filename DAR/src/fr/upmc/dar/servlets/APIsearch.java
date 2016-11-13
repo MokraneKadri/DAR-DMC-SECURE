@@ -41,6 +41,7 @@ public class APIsearch extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		String lieu = request.getParameter("lieu");
 		System.out.println("Recherche de : "+lieu);
@@ -135,6 +136,8 @@ public class APIsearch extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		doGet(request, response);
 	}
 

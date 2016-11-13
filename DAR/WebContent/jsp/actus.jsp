@@ -74,7 +74,7 @@
 				<img src='/DAR/assets/img/event1.jpg' alt=''>
 				<div class='caption'>
 					<h3>
-						<a href='/DAR/events?mode=event&id=<%=event.getId()%>'> <%=event.getName()%>
+						<a href='/DAR/events?mode=event&id=<%=event.getId()%>'> <%=event.getName().substring(0, 5)%>...
 						</a>
 					</h3>
 					<%-- <h4 class="pull-right"><%=EventVisibility.eventVisibilityToString(event.getPrivacy())%></h4> --%>

@@ -21,7 +21,8 @@ private static final long serialVersionUID = 1L;
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 			    HttpSession currentSession = request.getSession();
 			    Object o = currentSession.getAttribute("login");
 		        if(o != null) {

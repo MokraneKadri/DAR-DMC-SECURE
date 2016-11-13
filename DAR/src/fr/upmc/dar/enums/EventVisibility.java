@@ -16,11 +16,11 @@ public enum EventVisibility {
 	
 	public static EventVisibility stringToEventVisibility(String visibility) {
 		switch (visibility) {
-		case "public":
+		case "publique":
 			return EventVisibility.PUBLIC;
-		case "private":
+		case "privé":
 			return EventVisibility.PRIVATE;
-		case "university":
+		case "université":
 			return EventVisibility.INTRA_UNI;
 		}
 		return null;
@@ -31,9 +31,9 @@ public enum EventVisibility {
 		case PUBLIC:
 			return "public";
 		case PRIVATE:
-			return "private";
+			return "privé";
 		case INTRA_UNI:
-			return "university";
+			return "université";
 		}
 		return null;
 	}

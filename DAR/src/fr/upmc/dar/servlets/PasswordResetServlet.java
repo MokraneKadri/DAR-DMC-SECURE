@@ -45,7 +45,8 @@ public class PasswordResetServlet extends HttpServlet {
 		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
 			
-			
+			request.setCharacterEncoding("UTF-8");
+			response.setCharacterEncoding("UTF-8");
 			request.getRequestDispatcher(UriMapping.RESET_PASSWORD.getRessourceUrl()).forward(request, response);
 			
 		}
@@ -53,7 +54,8 @@ public class PasswordResetServlet extends HttpServlet {
 		
 		@Override
 		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		  String login = request.getParameter("login");
+			request.setCharacterEncoding("UTF-8");
+			String login = request.getParameter("login");
 			try {
 				if(validator.doesUserExist(login)==true){
 					

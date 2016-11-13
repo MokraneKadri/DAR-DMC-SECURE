@@ -47,7 +47,8 @@ public class SignInServlet extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		request.getRequestDispatcher(UriMapping.LOGIN.getRessourceUrl()).forward(request, response);
 		
 	}
@@ -56,6 +57,8 @@ public class SignInServlet extends HttpServlet {
 	@SuppressWarnings("unchecked")
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		String userlogin = request.getParameter("login");
 		String passwd = request.getParameter("password");
 		String login;

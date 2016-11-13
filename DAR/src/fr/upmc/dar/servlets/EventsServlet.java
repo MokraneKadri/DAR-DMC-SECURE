@@ -57,6 +57,8 @@ public class EventsServlet extends HttpServlet {
 			ServletException, 
 			IOException 
 	{
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		String mode = request.getParameter("mode");
 
 		if (mode == null || mode.equals(""))
@@ -95,6 +97,8 @@ public class EventsServlet extends HttpServlet {
 			ServletException, 
 			IOException 
 	{
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		String mode = request.getParameter("mode");
 
 		switch (mode) {
@@ -396,7 +400,7 @@ public class EventsServlet extends HttpServlet {
 	private void create(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		try {
-			response.setCharacterEncoding("UTF-8");
+		
 			User user = DAOFactory.createUserDao().findUserByUserName((String)request.getSession().getAttribute("login"));			
 			String businessId = Jsoup.clean(request.getParameter("business_id"), Whitelist.basic()); 
 			String universityId = Jsoup.clean(request.getParameter("university_id"), Whitelist.basic());

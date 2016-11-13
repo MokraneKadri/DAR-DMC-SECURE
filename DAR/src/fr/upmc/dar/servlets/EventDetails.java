@@ -39,7 +39,8 @@ public class EventDetails extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		String eventname=(String) request.getParameter("evt");
 		System.out.println("event name is:"+eventname);
 		event = DAOFactory.createEventDao();

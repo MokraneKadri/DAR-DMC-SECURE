@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page isELIgnored="false"%>
+
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -25,19 +24,19 @@
                             <ul class="dropdown-menu">
                                 <li><a href="#">Voir les Groupes</a></li>
                                 <li><a href="#">Rejoindre un groupe</a></li>
-								 <li><a href="/DAR/create_group">crÃ©er un groupe</a></li>
+								 <li><a href="/DAR/create_group">créer un groupe</a></li>
                             </ul>
                         </li> -->
 			<li class="dropdown "><a id="myLink"
-				title="EvÃ©nements Proches" href="#"
-				onclick="nearEvents();">EvÃ©nements Proches</a></li>
+				title="Evénements Proches" href="#"
+				onclick="nearEvents();">Evénements Proches</a></li>
 			<li class="dropdown"><a href="/DAR/events?mode=showall" class="dropdown-toggle active"
 				data-toggle="dropdown" role="button" aria-haspopup="true"
-				aria-expanded="false">EvÃ©nements <span class="caret"></span></a>
+				aria-expanded="false">Evénements <span class="caret"></span></a>
 				<ul class="dropdown-menu">
 					<li><a href="/DAR/jsp/eventSearch.jsp">Rechercher un
-							Ã©vÃ©nement</a></li>
-					<li><a href="/DAR/events?mode=new">CrÃ©er un Ã©vÃ©nement </a></li>
+							événement</a></li>
+					<li><a href="/DAR/events?mode=new">Créer un événement </a></li>
 				</ul></li>
 		</ul>
 
@@ -53,7 +52,7 @@
 					</a> -->
 						<!-- <ul class="dropdown-menu">
 							<li><a href="/DAR/jsp/myfriends.jsp">Mes Amis</a></li>
-							<li><a href="/DAR/jsp/pendingrequests.jsp">RequÃªtes
+							<li><a href="/DAR/jsp/pendingrequests.jsp">Requêtes
 									d'amis </a></li>
 							<li><a href="/DAR/jsp/finduser.jsp">Rechercher un ami</a></li>
 						</ul></li> -->
@@ -64,8 +63,8 @@
 								value="${login}" /> <span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="/DAR/jsp/profil.jsp">Tableau de bord</a></li>
-							<!-- <li><a href="#">Mes ParamÃ¨tres</a></li> -->
-							<li><a href="/DAR/logout">DÃ©connexion</a></li>
+							<!-- <li><a href="#">Mes Paramètres</a></li> -->
+							<li><a href="/DAR/logout">Déconnexion</a></li>
 						</ul></li>
 
 				</c:when>
