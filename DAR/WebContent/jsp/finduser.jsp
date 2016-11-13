@@ -41,7 +41,15 @@
 <link rel="stylesheet" href="/DAR/assets/css/main.css">
 
 <!-- Fin Styles  -->
+<script type="text/css" >
 
+.table > tr > td{
+	
+	padding:0px;
+	margin:0px;
+}
+
+</script>
 <title>Rechercher Utilisateur</title>
 </head>
 <body>
@@ -111,7 +119,7 @@
 
 
 
-							<div id='notifier'></div>
+							<div id='notifier' ></div>
 						</div>
 					</div>
 				</div>

@@ -43,10 +43,10 @@ function findUserJS(searchv, valuev)
 
 function ProcessFindUser(rep) 
 {
-	var message = "<table class=\"table\">" +
+	var message = "<table class=\"table\" style=\"width:100%\" cellpadding = 50 cellspacing=50 border-collapse: collapse><thead>" +
 	"<tr>" +
-	"<th>Nom</th><th>Prenom</th><th>Profil</th><th>Action</th>" +
-	"</tr>";
+	"<th style=\"marging-left:10px\">Nom</th><th style=\"marging-left:10px\">Prenom</th><th style=\"marging-left:10px\">Profil</th><th colspan=\"1\">Action</th>" +
+	"</tr></thead><tbody>";
 	var endmessage ="</table>";
 	var bodymessage ="";
 
@@ -65,6 +65,7 @@ function ProcessFindUser(rep)
 				endmessage="";
 			}else{
 				bodymessage = bodymessage+
+				
 				"<tr>" +
 				"<td>"+user.name+"</td>" +
 				"<td>"+user.firstname+"</td>"+
