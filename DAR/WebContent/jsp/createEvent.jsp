@@ -334,7 +334,7 @@
 													},
 													date : {
 														required : "Veuillez indiquer la date de l'évenement",
-														date : "Veuillez indiquer une date valide"
+														date : "Veuillez indiquer une date  au format aaaa-mm-jj"
 													},
 													eventpolicy : {
 														required : "veuillez précisez la confidentialité de l'évent"

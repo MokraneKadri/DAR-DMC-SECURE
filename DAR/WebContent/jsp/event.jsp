@@ -309,10 +309,10 @@
                                 placeholder = 'Nouveau commentaire, pas plus de 255 caractères ... (pour le moment)'
                                 pattern = '{255}' 
                                 required /> 
-                        <input  style='height: 50px; width: 15%; border: 1px solid #b3bfd1; border-radius: 0px 5px 5px 0px; background: #cedbef; color: white;' 
+                         <input  class="btn btn-info btn-lg"  
                                 type='submit'    
                                 value='Commenter' />
-                    </div>
+                                                 </div>
                 </form>
             </div>
 
