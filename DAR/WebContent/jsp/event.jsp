@@ -232,7 +232,7 @@
                                                     for (User u : event.getCandidates())
                                                         if (user.getId() == u.getId())
                                                             isParticipating = true;
-                                                    if (!isParticipating) { // IF BEGIN
+                                                    if (!isParticipating && event.getCandidates().size() < event.getPlaces()) { // IF BEGIN
                                                  %>
                                                 <form id='participating' style='text-align: right'
                                                     action='javascript:return(0)' method='POST'
