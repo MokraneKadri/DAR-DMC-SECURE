@@ -93,20 +93,28 @@
 		</script>
 	<%
 		}
-
-		IEventDao dao = DAOFactory.createEventDao();
-		Event event = dao.getEventById(Integer.valueOf(id));
-		String univAddresse = event.getUniversity().getStreet() + "" + event.getUniversity().getZipCode()
-				+ event.getUniversity().getCity();
-		
-		
 		String connectedUser = (String)session.getAttribute("login");
 		User cu = DAOFactory.createUserDao().findUserByUserName(connectedUser);
 				
 				
 		String userAddress = cu.getStreet()+" "+cu.getZip()+" "+cu.getCity();
+		IEventDao dao = DAOFactory.createEventDao();
+		Event event = dao.getEventById(Integer.valueOf(id));
+		String univAddresseunivAddresse;
+		String univAddresse;
+		try{
+			univAddresse = event.getUniversity().getStreet() + "" + event.getUniversity().getZipCode()
+				+ event.getUniversity().getCity();
+		
+		}catch(Exception e){
+			univAddresse = userAddress;
+		}
+		
 		
 	%>
+
+	<div class="maincontainer" id="maincontainer">
+
 	<div class="bs-example">
 			<ul class="breadcrumb">
 				<li>Uni-connect</li>
@@ -115,9 +123,6 @@
 
 			</ul>
 		</div>
-	<div class="maincontainer" id="maincontainer">
-
-
 		
 
 		<div class="row">

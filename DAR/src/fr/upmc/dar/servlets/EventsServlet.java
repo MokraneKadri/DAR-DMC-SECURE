@@ -205,6 +205,7 @@ public class EventsServlet extends HttpServlet {
 	 */
 
 	private void actus(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setCharacterEncoding("UTF-8");
 		List<Event> list = DAOFactory.createEventDao().getAllEvents();
 		while (list.size() > Integer.parseInt(request.getParameter("limit")))
 			list.remove(0);
@@ -226,6 +227,7 @@ public class EventsServlet extends HttpServlet {
 	 */
 
 	private void list(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setCharacterEncoding("UTF-8");
 		JSONArray array;
 		IEventDao dao = DAOFactory.createEventDao();
 		String type = request.getParameter("type");
@@ -325,6 +327,7 @@ public class EventsServlet extends HttpServlet {
 	 */
 
 	private void search(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setCharacterEncoding("UTF-8");
 		HashMap<String, List<Event>> recherche = new HashMap<>();
 		IEventDao dao = DAOFactory.createEventDao();
 		List<Event> list = new ArrayList<>();
@@ -391,7 +394,9 @@ public class EventsServlet extends HttpServlet {
 	 */
 
 	private void create(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		try {
+			response.setCharacterEncoding("UTF-8");
 			User user = DAOFactory.createUserDao().findUserByUserName((String)request.getSession().getAttribute("login"));			
 			String businessId = Jsoup.clean(request.getParameter("business_id"), Whitelist.basic()); 
 			String universityId = Jsoup.clean(request.getParameter("university_id"), Whitelist.basic());
@@ -435,9 +440,10 @@ public class EventsServlet extends HttpServlet {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		
 			response.getWriter().print(new Error("Echec de création de l'event"));
 		}
-
+	
 		response.sendRedirect("/DAR/events?mode=actus&limit=15");
 
 	}
@@ -463,6 +469,7 @@ public class EventsServlet extends HttpServlet {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			response.setCharacterEncoding("UTF-8");
 			response.getWriter().print(new Error("Echec de la suppression de l'event"));
 		}
 	}
@@ -477,6 +484,7 @@ public class EventsServlet extends HttpServlet {
 
 	@Deprecated
 	private void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setCharacterEncoding("UTF-8");
 		Integer id = Integer.valueOf(request.getParameter("id"));
 		try {
 			Event event = DAOFactory.createEventDao().getEventById(id);
@@ -491,6 +499,7 @@ public class EventsServlet extends HttpServlet {
 			DAOFactory.createEventDao().updateEvent(event);
 		} catch (Exception e) {
 			e.printStackTrace();
+			
 			response.getWriter().print(new Error("De la mise à jour de l'event"));
 		}
 	}
@@ -506,6 +515,7 @@ public class EventsServlet extends HttpServlet {
 	
 
 	private void comment(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+		response.setCharacterEncoding("UTF-8");
 		try {
 			Integer id = Integer.valueOf(request.getParameter("id"));
 			User user = DAOFactory.createUserDao().findUserByUserName((String)request.getSession().getAttribute("login"));
@@ -514,14 +524,17 @@ public class EventsServlet extends HttpServlet {
 			Comment comment = new Comment(user, Jsoup.clean(request.getParameter("content"), Whitelist.basic()));
 			comments.add(comment);
 			DAOFactory.createEventDao().updateEvent(event);
+			
 			request.getRequestDispatcher("/jsp/event.jsp?id=" + event.getId()).forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
+			
 			response.getWriter().print(new Error("De la mise à jour de l'event"));
 		}
 	}
 
 	private void participate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setCharacterEncoding("UTF-8");
 		try {
 			User user = DAOFactory.createUserDao().findUserByUserName((String)request.getSession().getAttribute("login"));
 			Integer id = Integer.valueOf(request.getParameter("id"));

@@ -117,15 +117,15 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-4 control-label" for="address">Adresse :</label>
+								<label class="col-sm-4 control-label" for="street">Adresse :</label>
 								<div class="col-sm-5">
-									<input type="text" class="form-control" id=""address"" name=""address"" placeholder="ex: 10 rue montmartre  " />
+									<input type="text" class="form-control" id="street" name="street" placeholder="ex: 10 rue montmartre  " />
 								</div>
 								</div>
 								<div class="form-group">
-								<label class="col-sm-4 control-label" for="zipcode">Code Postale :</label>
+								<label class="col-sm-4 control-label" for="zip">Code Postale :</label>
 								<div class="col-sm-5">
-									<input type="text" class="form-control" id="zipcode" name="zipcode" placeholder="Code postale " />
+									<input type="text" class="form-control" id="zip" name="zip" placeholder="Code postale " />
 								</div>
 								</div>
 								<div class="form-group">
@@ -197,6 +197,18 @@
 						required: true,
 						email: true
 					},
+					street: {
+						required: true,
+						minlength: 4
+					},
+					zip: {
+						required: true,
+						number: true
+					},
+					city: {
+						required: true,
+						minlength: 3
+					}
 					
 				},
 				messages: {
@@ -223,7 +235,20 @@
 					},
 					email: "veuillez saisir une adresse mail valide",
 					
+				
+				street: {
+					required: "veuillez entrer le nom de votre rue",
+					minlength:"veuillez saisir un nom de rue valide"
 				},
+				zip: {
+					required: "veuillez indiquer votre code postale",
+					number: "veuillez indiquer un code postale valide"
+				},
+				city: {
+					required: "veuillez entrer le nom de votre ville ",
+					minlength:"veuillez saisir un nom de ville valide"
+				},
+			},
 				errorElement: "em",
 				errorPlacement: function ( error, element ) {
 					// ajout d'une classe `help-block` à lelement en erreur
