@@ -1,8 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <li>Amis|rechercher</li>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
@@ -72,7 +75,7 @@
 										<div class="col-sm-5">
 											<SELECT name="search" size="1" class="form-control">
 												<OPTION value="nom">Nom</OPTION>
-												<OPTION value="prenom">Prénom</OPTION>
+												<OPTION value="prenom">PrÃ©nom</OPTION>
 												<OPTION value="email">Email</OPTION>
 												<OPTION value="username">Nom d'utilisateur</OPTION>
 											</SELECT>

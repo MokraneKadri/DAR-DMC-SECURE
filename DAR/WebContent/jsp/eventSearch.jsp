@@ -1,9 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page isELIgnored="false"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Meet-up| Recherche </title>
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"
@@ -74,14 +76,14 @@
 				if (result.length == 0) {
 					$("#resultset").html('<div class="col-sm-8 col-sm-offset-2">'+
 							'<div class="bs-example">'+
-						    '<ul class="breadcrumb"><li>Aucun résultat na été trouvé :-(</li></ul></div></div>');
+						    '<ul class="breadcrumb"><li>Aucun rÃ©sultat na Ã©tÃ© trouvÃ© :-(</li></ul></div></div>');
 					setTimeout(() => {
 						$("#resultset").html("");
 					}, 3000);
 				}
 				$("#resultset").append('<div class="col-sm-8 col-sm-offset-2">'+
 						'<div class="bs-example">'+
-					    '<ul class="breadcrumb"><li>Résultats de votre recherche</li></ul></div></div>');
+					    '<ul class="breadcrumb"><li>RÃ©sultats de votre recherche</li></ul></div></div>');
 			        
 				$.each(result, function (i, event) {
 					console.log(event);
@@ -93,12 +95,12 @@
 		              	    '<a class="pull-left" href="/DAR/events?mode=event&id='+ event.id + '">'+	
 		              	  		
 		              	    		'<h4 class="media-heading">'+ event.name+'</h4>'+
-		              	         	'<p>créer par : '+ event.creator +'</p>'+
+		              	         	'<p>crÃ©er par : '+ event.creator +'</p>'+
 		              	         	
 		              	         	'<p class="text-right"><a href="/DAR/events?mode=event&id='+event.id+'" class="btn btn-info"> Details >> </a>'+ '</p>'+
-		              	         	'<p> <b>Visibilité </b>: ' + event.privacy + '</p>'+
+		              	         	'<p> <b>VisibilitÃ© </b>: ' + event.privacy + '</p>'+
 		              	          	'<p> <b>Description </b>: ' + event.description + '</p>'+
-		              	          	'<p><b> Thème</b> : ' + event.theme + '</p>'+
+		              	          	'<p><b> ThÃ¨me</b> : ' + event.theme + '</p>'+
 		              	         	'<ul class="list-inline list-unstyled">'+
 		              	  				'<li><span><i class="glyphicon glyphicon-calendar"> </i> ' + event.date + '|'+event.hour+'</span></li>'+
 		              	            	'<li>|</li>'+
@@ -114,7 +116,7 @@
 			.fail( function () {
 				$("#resultset").append('<div class="col-sm-8 col-sm-offset-2">'+
 						'<div class="bs-example">'+
-					    '<ul class="breadcrumb"><li>Aucun résultat na été trouvé :-(</li></ul></div></div>');
+					    '<ul class="breadcrumb"><li>Aucun rÃ©sultat na Ã©tÃ© trouvÃ© :-(</li></ul></div></div>');
 				setTimeout(() => {
 					$("#resultset").html("");
 				}, 3000);
@@ -130,7 +132,7 @@
     <ul class="breadcrumb">
     	<li>Uni-connect</li>
         <li><a href="/DAR/home">Accueil</a></li>
-        <li class="active"><a href="/DAR/jsp/eventSearch.jsp">évenements > Rechercher </a></li>
+        <li class="active"><a href="/DAR/jsp/eventSearch.jsp">Ã©venements > Rechercher </a></li>
        
     </ul> </div>
 				<div class="panel panel-default">
@@ -152,7 +154,7 @@
 											<SELECT name="search" size="1" class="form-control">
 												<OPTION value="name">Nom</OPTION>
 												<OPTION value="description">Description</OPTION>
-												<OPTION value="privacy">Visibilité</OPTION>
+												<OPTION value="privacy">VisibilitÃ©</OPTION>
 												<OPTION value="date">Date</OPTION>
 												<OPTION value="theme">Theme</OPTION>
 												<OPTION value="places">Places</OPTION>

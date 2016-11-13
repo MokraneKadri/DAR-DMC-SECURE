@@ -115,7 +115,7 @@
 									:</label>
 								<div class="col-sm-5">
 									<select id="theme" name="theme" class="form-control">
-										<option value="" disabled selected>Choisir un thème</option>
+										
 										<option value="Moulin à parole">Moulin à paroles</option>
 										<option value="échanges linguistiques/culturelles">échanges linguistiques/culturelles</option>
 										<option value="relatif aux études">relatif aux études</option>
@@ -163,15 +163,15 @@
                				 </div>
 							
 							<div class="form-group">
-								<label class="col-sm-4 control-label" for="eventpolicy">Confidentialité
+								<label class="col-sm-4 control-label" for="privacy">Confidentialité
 									:</label>
 								<div class="col-sm-5">
-									<select id="eventpolicy" name="privacy"
+									<select id="privacy" name="privacy"
 										class="form-control">
-										<option value="" disabled selected>Choisir</option>
-										<option value="public">Public</option>
-										<option value="private">Amis</option>
-										<option value="university">Université</option>
+									
+										<option value="public">Publique</option>
+										<option value="privé">Amis</option>
+										<option value="université">Université</option>
 									</select>
 								</div>
 							</div>

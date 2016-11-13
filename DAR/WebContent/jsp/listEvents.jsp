@@ -1,8 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Liste des Evenements</title>
 
 <!--  Scripts  -->
@@ -49,7 +52,7 @@
     <ul class="breadcrumb">
     	<li>Uni-connect</li>
         <li><a href="#">Acceuil</a></li>
-        <li class="active"><a href="#">évenements > Tous</a></li>
+        <li class="active"><a href="#">Ã©venements > Tous</a></li>
         
     </ul>
 		</div>
@@ -84,7 +87,7 @@
 		                        '<div class="caption">'+
 		                        '<h3>'+event.name+'</h3>'+
 		                           ' <h4 class="pull-right">'+event.privacy +'</h4>'+
-		                            '<h5>Crée par : </b>'+event.creator+'</h5>'+
+		                            '<h5>CrÃ©e par : </b>'+event.creator+'</h5>'+
 		                            
 		                            '<p> <b>description :</b>'+event.description+'</p>'+
 		                            '<p>pourri ou pas description de levenement pourri ou pas description de levenement pourri ou pas .</p>'+
@@ -93,7 +96,7 @@
                   	         			'</div><div class="ratings">'+
 		                         ' <p class="pull-right"><span><i class="glyphicon glyphicon-comment"></i>'+event.comments+'</span></p>'+
 		                          '<p>'+
-		                           ' <span><i class="glyphicon glyphicon-calendar"> </i> '+event.date+' à 21:00</span>'+
+		                           ' <span><i class="glyphicon glyphicon-calendar"> </i> '+event.date+' Ã  21:00</span>'+
 		                            '</p>'+
 		                       ' </div>'+
 		                    '</div>'+
@@ -105,7 +108,7 @@
 				});
 			})
 			.fail( function () {
-				alert("Une erreur est survenue au moment de la récupération de la liste des événements");
+				alert("Une erreur est survenue au moment de la rÃ©cupÃ©ration de la liste des Ã©vÃ©nements");
 			});
 		});
 	</script>

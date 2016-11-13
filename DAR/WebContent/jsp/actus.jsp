@@ -1,13 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page isELIgnored="false"%>
 <%@page import="fr.upmc.dar.enums.EventVisibility"%>
 <%@page import="fr.upmc.dar.entities.Event"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Uni-Connect| Actualités</title>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Uni-Connect| ActualitÃ©s</title>
 
 
 <!--  Scripts  -->
@@ -54,7 +57,7 @@
     <ul class="breadcrumb">
     	<li>Uni-connect</li>
         <li><a href="/DAR/home">Acceuil</a></li>
-        <li class="active"><a href="/DAR/events?mode=actus&limit=15">Actus et événements récents</a></li>
+        <li class="active"><a href="/DAR/events?mode=actus&limit=15">Actus et Ã©vÃ©nements rÃ©cents</a></li>
        
     </ul>
      </div> </div>
@@ -76,7 +79,7 @@
 					</h3>
 					<%-- <h4 class="pull-right"><%=EventVisibility.eventVisibilityToString(event.getPrivacy())%></h4> --%>
 					<p>
-						<span class="glyphicon glyphicon-user"></span> <b>Créé par :</b> <%=event.getCreator().getUserName()%>
+						<span class="glyphicon glyphicon-user"></span> <b>CrÃ©Ã© par :</b> <%=event.getCreator().getUserName()%>
 					</p>
 					<p><span class="glyphicon glyphicon-home"></span> <b>Adresse :</b><%=event.getAddress() %>
 					<p>

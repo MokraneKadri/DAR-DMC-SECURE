@@ -7,12 +7,14 @@
 <%@page import="fr.upmc.dar.dao.DAOFactory"%>
 <%@page import="fr.upmc.dar.dao.EventDao"%>
 <%@page import="fr.upmc.dar.api.GoogleApi"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page isELIgnored="false"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Meet-ups !</title>
 
 <!--  Scripts  -->
@@ -80,7 +82,7 @@
 		GoogleApi api = new GoogleApi();
 
 		if (id == null) {
-			response.getWriter().print("Erreur, l'id de l'event en question n'a pas été trouvé.");
+			response.getWriter().print("Erreur, l'id de l'event en question n'a pas Ã©tÃ© trouvÃ©.");
 	%>
 
 	<script>
@@ -119,7 +121,7 @@
 			<ul class="breadcrumb">
 				<li>Uni-connect</li>
 				<li><a href="#">Acceuil</a></li>
-				<li class="active"><a href="#">événement > détails </a></li>
+				<li class="active"><a href="#">Ã©vÃ©nement > dÃ©tails </a></li>
 
 			</ul>
 		</div>
@@ -139,13 +141,13 @@
 							<table class="table table-hover">
 								<thead>
 									<tr>
-										<th>Créateur</th>
+										<th>CrÃ©ateur</th>
 										<td><%=event.getCreator().getUserName()%></td>
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
-							<th>Université</th>
+							<th>UniversitÃ©</th>
 										<td>
 											<% if (event.getUniversity() != null) { %>
 												<%= event.getUniversity().getName() %>
@@ -153,12 +155,12 @@
 										</td>
 									</tr>
 									<tr>
-										<th>Politique d'accès</th>
+										<th>Politique d'accÃ¨s</th>
 
 										<td><%=EventVisibility.eventVisibilityToString(event.getPrivacy())%></td>
 									</tr>
 									<tr>
-										<th>Thème</th>
+										<th>ThÃ¨me</th>
 										<td><%=event.getTheme()%></td>
 									</tr>
 									<tr>
@@ -173,7 +175,7 @@
 										<td><%=event.getDateToString()%></td>
 									</tr>
 									<tr>
-										<th>Heure de début</th>
+										<th>Heure de dÃ©but</th>
 										<td><%=event.getHour()%></td>
 									</tr>
 
@@ -204,7 +206,7 @@
 										<td><%=event.getPlace()%></td>
 									</tr>
 									<tr>
-										<th>Adresse complète</th>
+										<th>Adresse complÃ¨te</th>
 										<td><%=event.getAddress()%></td>
 									</tr>
 									<tr>
@@ -252,7 +254,7 @@
 				</div>
 				<div class="col-md-6">
 					<div class="panel panel-default">
-						<div class="panel-heading">Accès</div>
+						<div class="panel-heading">AccÃ¨s</div>
 					</div>
 					<div class="panel-body">
 						<div id="map"></div>
@@ -298,20 +300,20 @@ google.maps.event.addDomListener(window, 'load', init_map);</script>
 					
 						<% try { %>
 					
-						<b>infos complémentaires:</b>
+						<b>infos complÃ©mentaires:</b>
 						<p>
-							Distance à pied depuis votre université :
+							Distance Ã  pied depuis votre universitÃ© :
 							<%=api.walkingDistance(univAddresse, event.getAddress())%></p>
 						<p>
-							Temps de marche estimé :
+							Temps de marche estimÃ© :
 							<%=api.walkingTime(univAddresse, event.getAddress())%></p>
 
 
 						<p>
-							Distance à pied depuis votre domicile :
+							Distance Ã  pied depuis votre domicile :
 							<%=api.walkingDistance(userAddress, event.getAddress())%></p>
 						<p>
-							Temps de marche estimé :
+							Temps de marche estimÃ© :
 							<%=api.walkingTime(userAddress, event.getAddress())%></p>
 						
 						<% } catch (Exception e) {e.printStackTrace();} %>
@@ -338,7 +340,7 @@ google.maps.event.addDomListener(window, 'load', init_map);</script>
 				<div style='height: 100%; width: 100%; padding-left: 240px;'>
 					<input name='content' type='textarea'
 						style='border: 1px solid lightgrey; border-right: none; border-radius: 5px 0px 0px 5px; width: 85%; height: 50px; padding-left: 10px;'
-						placeholder='Nouveau commentaire, pas plus de 255 caractères ... (pour le moment)'
+						placeholder='Nouveau commentaire, pas plus de 255 caractÃ¨res ... (pour le moment)'
 						pattern='{255}' required /> <input
 						style='height: 50px; width: 15%; border: 1px solid #b3bfd1; border-radius: 0px 5px 5px 0px; background: #cedbef; color: white;'
 						type='submit' value='Commenter' />
