@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<job-scheduling-data
+	xmlns="http://www.quartz-scheduler.org/xml/JobSchedulingData"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.quartz-scheduler.org/xml/JobSchedulingData
+	http://www.quartz-scheduler.org/xml/job_scheduling_data_1_8.xsd"
+	version="1.8">
+
+	<!--
+	<schedule>
+		<job>
+			<name>BJob</name>
+			<group>BGroup</group>
+			<description>Print a welcome message</description>
+			<job-class>fr.upmc.dar.backend.UpdateBusinessHourJob</job-class>
+		</job>
+
+			<trigger>
+			<cron>
+				<name>updateBusinessHour</name>
+				<job-name>BJob</job-name>
+				<job-group>BGroup</job-group>
+				<cron-expression>0 30 2 ? * *</cron-expression>
+			</cron>
+		</trigger>	
+	</schedule>
+		
+	<schedule>
+		<job>
+			<name>CJob</name>
+			<group>CGroup</group>
+			<description>Print a welcome message</description>
+			<job-class>fr.upmc.dar.backend.RemoveOldsEntitiesJob</job-class>
+		</job>
+
+		<trigger>
+			<cron>
+				<name>dummyTriggerName</name>
+				<job-name>CJob</job-name>
+				<job-group>CGroup</job-group>
+				<cron-expression>0 0 3 ? * *</cron-expression>
+			</cron>
+		</trigger>	
+	</schedule>
+	-->
+	
+</job-scheduling-data>
