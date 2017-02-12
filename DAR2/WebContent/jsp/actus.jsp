@@ -3,6 +3,7 @@
 <%@page import="fr.upmc.dar2.enums.EventVisibility"%>
 <%@page import="fr.upmc.dar2.entities.Event"%>
 <%@page import="java.util.List"%>
+<%@ taglib uri="http://www.owasp.org/index.php/Category:OWASP_CSRFGuard_Project/Owasp.CsrfGuard.tld" prefix="csrf" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -56,8 +57,8 @@
 	<div class="bs-example">
     <ul class="breadcrumb">
     	<li>Uni-connect</li>
-        <li><a href="/DAR2/home">Accueil</a></li>
-        <li class="active"><a href="/DAR2/events?mode=actus&limit=15">Actus et événements récents</a></li>
+        <li><csrf:a href="/DAR2/home">Accueil</csrf:a></li>
+        <li class="active"><csrf:a href="/DAR2/events?mode=actus&limit=15">Actus et événements récents</csrf:a></li>
        
     </ul>
      </div> </div>
@@ -74,8 +75,8 @@
 				<img src='/DAR2/assets/img/event1.jpg' alt=''>
 				<div class='caption'>
 					<h3>
-						<a href='/DAR2/events?mode=event&id=<%=event.getId()%>'> <%=event.getName()%>...
-						</a>
+						<csrf:a href='/DAR2/events?mode=event&id=<%=event.getId()%>'> <%=event.getName()%>...
+						</csrf:a>
 					</h3>
 					<%-- <h4 class="pull-right"><%=EventVisibility.eventVisibilityToString(event.getPrivacy())%></h4> --%>
 					<p>
@@ -86,13 +87,13 @@
 						<span class="glyphicon glyphicon-tasks"></span> <b>Description :</b> 
 					</p>
 					<p><%=event.getDescription().substring(0, Math.min(20,event.getDescription().length()))%>.....</p>
-					<p><a href='/DAR2/events?mode=event&id=<%=event.getId()%>'> >>>>>lire la suite </a></p>
+					<p><csrf:a href='/DAR2/events?mode=event&id=<%=event.getId()%>'> >>>>>lire la suite </csrf:a></p>
 				</div>
 				<div></div>
 				<div class="ratings">
 					<p class='pull-right'>
 						<span><i class='glyphicon glyphicon-comment'></i> <%=event.getComments().size()%>
-							<a href='/DAR2/events?mode=event&id=<%=event.getId()%>#com'>commentaires</a></span>
+							<csrf:a href='/DAR2/events?mode=event&id=<%=event.getId()%>#com'>commentaires</csrf:a></span>
 					</p>
 					<p>
 						<span><i class='glyphicon glyphicon-calendar'> </i> <%=event.getDateToString()%>
@@ -120,9 +121,7 @@
 
 
 
-	</div>
-	<script src="/DAR2/cookies/src/js/dar_DMC.js"
-	></script>
+	
 </div>
 
 	 </div>

@@ -93,7 +93,8 @@ public class SignUpServlet extends HttpServlet {
 				 pageInfos.put("infos", "votre compte a été créer avec succes ");
 				 pageInfos.put("content", "vous allez maintenant rediriger automatiquement vers la page de connection");
 				 request.setAttribute("pageInfos", pageInfos);
-				 response.setHeader("Refresh", "3;url="+"/DAR2/signin");// redirection a la page de login apres 3 seconde
+				 System.out.println("should redirect to"+"/DAR2/signin&OWASP_CSRFTOKEN="+org.owasp.csrfguard.CsrfGuard.getInstance().getNewTokenLandingPage());
+				 response.setHeader("Refresh", "3;url="+"/DAR2/signin&OWASP_CSRFTOKEN="+org.owasp.csrfguard.CsrfGuard.getInstance().getTokenValue(request));// redirection a la page de login apres 3 seconde
 				 request.getRequestDispatcher(UriMapping.POSTSIGNUPRESET.getRessourceUrl()).forward(request, response);
 				
 			}

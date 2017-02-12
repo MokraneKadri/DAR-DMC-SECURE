@@ -8,6 +8,7 @@
 <%@page import="fr.upmc.dar2.dao.EventDao"%>
 <%@page import="fr.upmc.dar2.api.GoogleApi"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.owasp.org/index.php/Category:OWASP_CSRFGuard_Project/Owasp.CsrfGuard.tld" prefix="csrf" %>
 <%@ page isELIgnored="false"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -22,6 +23,7 @@
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js"></script>
         <script type="text/javascript" src="/DAR2/assets/js/localisation.js"></script>
         <script type="text/javascript" src="/DAR2/assets/js/notifier.js"></script>
+       
         
         <%
             StringBuilder content = new StringBuilder();
@@ -342,7 +344,7 @@
                 }
             %>
         </div>
-
+ <script src="/DAR2/JavaScriptServlet"></script>
         <%@include file="/jsp/footer.jsp"%>
 
     </body>

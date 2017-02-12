@@ -22,7 +22,7 @@ public class PortalServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
+		System.out.println("current key is "+org.owasp.csrfguard.CsrfGuard.getInstance().getTokenValue(request));
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		request.getRequestDispatcher(UriMapping.HOME.getRessourceUrl()).forward(request, response);

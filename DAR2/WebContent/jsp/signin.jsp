@@ -2,6 +2,7 @@
   pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.owasp.org/index.php/Category:OWASP_CSRFGuard_Project/Owasp.CsrfGuard.tld" prefix="csrf" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,8 +53,8 @@
 		<div class="bs-example">
     <ul class="breadcrumb">
     	<li>Uni-connect</li>
-        <li><a href="/DAR2/home">Accueil</a></li>
-        <li class="active"><a href="/DAR2/signin">Connexion </a></li>
+        <li><csrf:a href="/DAR2/home">Accueil</csrf:a></li>
+        <li class="active"><csrf:a href="/DAR2/signin">Connexion </csrf:a></li>
         
     </ul>
     <div id="advertisement">
@@ -64,7 +65,7 @@
 						<h3 class="panel-title">Connexion  </h3>
 					</div>
 					<div class="panel-body">
-						<form id="signinform" method="post" class="form-horizontal" action="/DAR2/signin">
+						<csrf:form id="signinform" method="post" class="form-horizontal" action="/DAR2/signin">
 				
 				<div id="error">		<c:if test="${not empty formErrors['login']}">
              					<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span><c:out value="${formErrors['login']}"/></div>
@@ -84,7 +85,7 @@
 								</div>
 			 				</div>
 
-
+                          
 							<div class="form-group">
 								<div class="col-sm-9 col-sm-offset-4">
                                     <button type="submit" class="btn btn-success" name="btn-save" id="btn-submit">
@@ -95,18 +96,19 @@
 							<div class="form-group">
 								<div class="col-sm-9 col-sm-offset-4">
 								
-						Mot de passe oublié ? <a href="/DAR2/passwordreset"> Réinitialiser le ici !</a>
+								
+						Mot de passe oublié ? <csrf:a href="/DAR2/passwordreset"> Réinitialiser le ici !</csrf:a>
 								</div>
 							</div>
-				</form>
+				</csrf:form>
 							</div>
-						</form>
+						
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	 <a href ="http://localhost:63342/nfriedly-Javascript-Flash-Cookies-2621f02/example/index.html?_ijt=tf09ti6ja7e0g61a0ogjofp0ne"/>
+	
 	 </div>
 	<script type="text/javascript">
 	
