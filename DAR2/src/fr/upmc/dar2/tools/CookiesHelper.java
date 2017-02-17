@@ -11,7 +11,7 @@ public class CookiesHelper {
 		result.setMaxAge(expiry);
 		result.setDomain(domaine);
 		result.setPath(uriPath);
-		result.setHttpOnly(false);
+		result.setHttpOnly(true);
 		return result;
 		
 	}
