@@ -2,7 +2,7 @@
 <%@ page isELIgnored="false"%>
   <%@ page isELIgnored="false" %>
   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-  <%@ taglib uri="http://www.owasp.org/index.php/Category:OWASP_CSRFGuard_Project/Owasp.CsrfGuard.tld" prefix="csrf" %>
+  
 <!DOCTYPE html>
 <html>
 
@@ -65,7 +65,7 @@
 						<h3 class="panel-title">Créer votre compte </h3>
 					</div>
 					<div class="panel-body">
-						<csrf:form id="signupForm" method="post" class="form-horizontal" action="/DAR2/signup">
+						<form id="signupForm" method="post" class="form-horizontal" action="/DAR2/signup">
 						
 						<div id="error">	
 						
@@ -157,10 +157,11 @@
 							<div class="form-group">
 								<div class="col-sm-9 col-sm-offset-4">
 								
-						Vous avez déja un compte? <csrf:a href="/DAR2/signin"> Connectez-vous ici !</csrf:a>
+						Vous avez déja un compte? <a href="/DAR2/signin?<csrf:token uri="/DAR2/signin"/>"> Connectez-vous ici !</a> 
 								</div>
+								<input type="hidden" name="<csrf:tokenname/>/>" value="<csrf:tokenvalue uri="/DAR2/signup"/>"/>
 							</div>
-				</csrf:form>
+				<form>
 							</div>
 						
 					</div>
@@ -295,6 +296,7 @@
 
 	
 	</body>
+
 
 </html>
     

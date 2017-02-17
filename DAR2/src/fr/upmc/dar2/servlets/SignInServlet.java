@@ -16,6 +16,8 @@ import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.jsoup.Jsoup;
+import org.jsoup.safety.Whitelist;
 
 import fr.upmc.dar2.dao.DAOFactory;
 import fr.upmc.dar2.dao.interfaces.IUserDao;
@@ -82,10 +84,10 @@ public class SignInServlet extends HttpServlet {
 
 				
 			}
-		else 
-		
+		else {
+		System.out.println("for login get received "+org.owasp.csrfguard.CsrfGuard.getInstance().getTokenValue(request));
 		request.getRequestDispatcher(UriMapping.LOGIN.getRessourceUrl()).forward(request, response);
-		
+		}
 	}
 	
 	
@@ -94,11 +96,16 @@ public class SignInServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		String userlogin = request.getParameter("login");
-		String passwd = request.getParameter("password");
+		// cleaning the received html/text  data
+		/**
+		 * cleanin the received data using the none white list so that 
+		 * we only accept text data no tags or html nodes
+		 */
+		String userlogin = Jsoup.clean(request.getParameter("login"), Whitelist.none());
+		String passwd = Jsoup.clean(request.getParameter("password"), Whitelist.none());
 		String login;
 		User user = null;
-
+		System.out.println("for post method on signin  received "+org.owasp.csrfguard.CsrfGuard.getInstance().getTokenValue(request));
 		validator = new SignInValidator();
 		try {
 			validator.validateCredantials(userlogin, passwd);

@@ -51,12 +51,12 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="intro-message">
-                        <h1>University Connect</h1>
-                        <h3> Rejoignez la communauté dès aujourd'hui</h3>
+                        <h1>Oooops </h1>
+                        <h3>You do not have acces to this ressource page ! </h3>
                         <hr class="intro-divider">
                         <ul class="list-inline intro-social-buttons">
                             <li>
-                               <a href="/DAR2/signup" class="btn btn-primary btn-lg">Découvrir la plateforme</span></a>
+                               <a href="/DAR2/signup" class="btn btn-primary btn-lg">Fall Back !</span></a>
                             </li>
                             
                             

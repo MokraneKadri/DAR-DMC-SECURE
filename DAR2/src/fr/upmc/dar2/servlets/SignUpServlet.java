@@ -60,6 +60,10 @@ public class SignUpServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
+		/**
+		 * cleanin the received data using the none white list so that 
+		 * we only accept text data no tags or html nodes
+		 */
 		String fname = Jsoup.clean(request.getParameter("firstname"), Whitelist.none());
 		 String lname = Jsoup.clean(request.getParameter("lastname"), Whitelist.none());
 		 String userName = Jsoup.clean(request.getParameter("username"), Whitelist.none());
@@ -93,8 +97,8 @@ public class SignUpServlet extends HttpServlet {
 				 pageInfos.put("infos", "votre compte a été créer avec succes ");
 				 pageInfos.put("content", "vous allez maintenant rediriger automatiquement vers la page de connection");
 				 request.setAttribute("pageInfos", pageInfos);
-				 System.out.println("should redirect to"+"/DAR2/signin&OWASP_CSRFTOKEN="+org.owasp.csrfguard.CsrfGuard.getInstance().getNewTokenLandingPage());
-				 response.setHeader("Refresh", "3;url="+"/DAR2/signin&OWASP_CSRFTOKEN="+org.owasp.csrfguard.CsrfGuard.getInstance().getTokenValue(request));// redirection a la page de login apres 3 seconde
+				// System.out.println("should redirect to"+"/DAR2/signin&OWASP_CSRFTOKEN="+org.owasp.csrfguard.CsrfGuard.getInstance().getNewTokenLandingPage());
+				 response.setHeader("Refresh", "3;url="+"/DAR2/signin");//&OWASP_CSRFTOKEN="+org.owasp.csrfguard.CsrfGuard.getInstance().getTokenValue(request));// redirection a la page de login apres 3 seconde
 				 request.getRequestDispatcher(UriMapping.POSTSIGNUPRESET.getRessourceUrl()).forward(request, response);
 				
 			}

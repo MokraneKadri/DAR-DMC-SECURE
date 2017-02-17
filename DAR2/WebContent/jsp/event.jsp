@@ -344,9 +344,8 @@
                 }
             %>
         </div>
- <script src="/DAR2/JavaScriptServlet"></script>
+ 
         <%@include file="/jsp/footer.jsp"%>
 
     </body>
-
 </html>

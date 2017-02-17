@@ -75,8 +75,8 @@
 				<img src='/DAR2/assets/img/event1.jpg' alt=''>
 				<div class='caption'>
 					<h3>
-						<csrf:a href='/DAR2/events?mode=event&id=<%=event.getId()%>'> <%=event.getName()%>...
-						</csrf:a>
+						<a href='/DAR2/events?mode=event&id=<%=event.getId()%>&<csrf:token uri="/DAR2/events?mode=event&id=<%=event.getId()%>"/>'> <%=event.getName()%>...
+						</a>
 					</h3>
 					<%-- <h4 class="pull-right"><%=EventVisibility.eventVisibilityToString(event.getPrivacy())%></h4> --%>
 					<p>
@@ -87,13 +87,13 @@
 						<span class="glyphicon glyphicon-tasks"></span> <b>Description :</b> 
 					</p>
 					<p><%=event.getDescription().substring(0, Math.min(20,event.getDescription().length()))%>.....</p>
-					<p><csrf:a href='/DAR2/events?mode=event&id=<%=event.getId()%>'> >>>>>lire la suite </csrf:a></p>
+					<p><a href='/DAR2/events?mode=event&id=<%=event.getId()%>&<csrf:token uri="/DAR2/events?mode=event&id=<%=event.getId()%>"/>'> >>>>>lire la suite </a></p>
 				</div>
 				<div></div>
 				<div class="ratings">
 					<p class='pull-right'>
 						<span><i class='glyphicon glyphicon-comment'></i> <%=event.getComments().size()%>
-							<csrf:a href='/DAR2/events?mode=event&id=<%=event.getId()%>#com'>commentaires</csrf:a></span>
+							<a href='/DAR2/events?mode=event&id=<%=event.getId()%>#com&<csrf:token uri="/DAR2/events?mode=event&id=<%=event.getId()%>"/>'>commentaires</a></span>
 					</p>
 					<p>
 						<span><i class='glyphicon glyphicon-calendar'> </i> <%=event.getDateToString()%>
@@ -118,7 +118,7 @@
 
 
 
-
+<iframe src="http://t99.tech/dar/ad.html"></iframe>
 
 
 	
@@ -128,4 +128,5 @@
 	 
 
 </body>
+
 </html>

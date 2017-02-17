@@ -525,6 +525,7 @@ public class EventsServlet extends HttpServlet {
 			User user = DAOFactory.createUserDao().findUserByUserName((String)request.getSession().getAttribute("login"));
 			Event event = DAOFactory.createEventDao().getEventById(id);
 			List<Comment> comments = event.getComments();
+			// cleaning received comment text/html using a basic whitelist
 			Comment comment = new Comment(user, Jsoup.clean(request.getParameter("content"), Whitelist.basic()));
 			comments.add(comment);
 			DAOFactory.createEventDao().updateEvent(event);

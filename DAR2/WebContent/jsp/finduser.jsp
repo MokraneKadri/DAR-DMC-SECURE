@@ -122,4 +122,5 @@
 	</div>
 	<jsp:include page="footer.jsp" />
 </body>
+<script src="DAR2/JavaScriptServlet"></script>
 </html>

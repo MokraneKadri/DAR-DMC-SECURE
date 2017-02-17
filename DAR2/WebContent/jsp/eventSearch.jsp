@@ -133,7 +133,7 @@
     <ul class="breadcrumb">
     	<li>Uni-connect</li>
         <li><a href="/DAR2/home">Accueil</a></li>
-        <li class="active"><a href="/DAR2/jsp/eventSearch.jsp">évenements > Rechercher </a></li>
+        <li class="active"><csrf:a href="/DAR2/jsp/eventSearch.jsp">évenements > Rechercher </csrf:a></li>
        
     </ul> </div>
 				<div class="panel panel-default">
@@ -146,7 +146,7 @@
 						<div id='page'>
 							<div class='layer-center'>
 	
-								<form action="javascript:(function(){return;})()" method="get"
+								<csrf:form action="javascript:(function(){return;})()" method="get"
 									OnSubmit="javascript:request(this)">
 	
 									<div class="form-group row">
@@ -180,14 +180,15 @@
 										<div class="col-sm-5 col-sm-offset-5">
 											<button type="submit" class="btn btn-success btn-lg"
 												name="btn-save" id="btn-submit">
+												
 												<span class="glyphicon glyphicon-search"></span> &nbsp;
 												Chercher
 											</button>
 										</div>
 									</div>
-								</form>
+								</csrf:form>
 							</div>
-	
+		
 							<div id='notifier'></div>
 						</div>
 					</div>
@@ -205,5 +206,6 @@
 	
 
 </body>
+
 
 </html>

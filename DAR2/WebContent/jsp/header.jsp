@@ -20,7 +20,7 @@
 	<div id="navbar" class="navbar-collapse collapse">
 		<ul class="nav navbar-nav">
 
-			<li class="dropdown "><csrf:a href="/DAR2/events?mode=actus&limit=15">Actus</span></csrf:a>
+			<li class="dropdown "><csrf:a href="/DAR2/events?mode=actus&limit=15">Actus</csrf:a>
 				<!--          <li class=" dropdown"><a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Groupes <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#">Voir les Groupes</a></li>
@@ -32,55 +32,36 @@
                         <li class="dropdown "><a id="myLink"
 				title="Evénements Proches" href="#"
 				onclick="nearEvents();">Evénements Proches</a></li>
-             <li><csrf:a href="/DAR2/events?mode=new">Créer  </csrf:a></li>
+               <li><a href="/DAR2/events?mode=new&<csrf:token uri="/DAR2/events?mode=new"/>">Créer  </a></li>
+				 
+				<li><a href="/DAR2/jsp/eventSearch.jsp?<csrf:token uri="/DAR2/jsp/eventSearch.jsp"/>">Rechercher 
+							</a></li>
 			
-				<li><csrf:a href="/DAR2/jsp/eventSearch.jsp">Rechercher 
-							</csrf:a></li>
-							
-							
-			<!-- <li class="dropdown"><a href="/DAR2/events?mode=showall" class="dropdown-toggle active"
-				data-toggle="dropdown" role="button" aria-haspopup="true"
-				aria-expanded="false">Evénements <span class="caret"></span></a>
-				<ul class="dropdown-menu">
-					<li><a href="/DAR2/jsp/eventSearch.jsp">Rechercher un
-							événement</a></li>
-					<li><a href="/DAR2/events?mode=new">Créer un événement </a></li>
-				</ul></li> -->
 		</ul>
 
 		<ul class="nav navbar-nav pull-right">
 			<c:choose>
 				<c:when test="${ not empty login}">
 
-<!-- 
-					<li class=" dropdown"><a href="#"
-						class="dropdown-toggle active" data-toggle="dropdown"
-						role="button" aria-haspopup="true" aria-expanded="false">Amis
-							<span class="caret"></span>
-					</a> -->
-						<!-- <ul class="dropdown-menu">
-							<li><a href="/DAR2/jsp/myfriends.jsp">Mes Amis</a></li>
-							<li><a href="/DAR2/jsp/pendingrequests.jsp">Requêtes
-									d'amis </a></li>
-							<li><a href="/DAR2/jsp/finduser.jsp">Rechercher un ami</a></li>
-						</ul></li> -->
+
 
 					<li class=" dropdown"><a href="#"
 						class="dropdown-toggle active" data-toggle="dropdown"
 						role="button" aria-haspopup="true" aria-expanded="false"><c:out
 								value="${login}" /> <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><csrf:a href="/DAR2/jsp/profil.jsp">Tableau de bord</csrf:a></li>
+							<!--	<li><a href="/DAR2/jsp/profil.jsp?<csrf:token uri="/DAR2/jsp/profil.jsp"/>">Tableau de bord</a></li>-->
+							<li><a href="/DAR2/jsp/profil.jsp">profil</a> </li>
 							<!-- <li><a href="#">Mes Paramètres</a></li> -->
-							<li><csrf:a href="/DAR2/logout">Déconnexion</csrf:a></li>
+						<li><a href="/DAR2/logout?"<csrf:token uri="/DAR2/logout"/>">Déconnexion</a></li>
 						</ul></li>
 
 				</c:when>
 
 				<c:otherwise>
 
-					<li class=" "><csrf:a href="/DAR2/signin">Connexion </span></csrf:a>
-					<li class=""><csrf:a href="/DAR2/signup">Inscription</csrf:a></li>
+					<li class=" "><a href="/DAR2/signin?<csrf:token uri="/DAR2/signin"/>">Connexion </span></a> 
+					<li class=""><a href="/DAR2/signup?<csrf:token uri="/DAR2/signup"/>">Inscription</a></li>
 				</c:otherwise>
 			</c:choose>
 

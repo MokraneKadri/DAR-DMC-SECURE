@@ -2,7 +2,7 @@
   pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.owasp.org/index.php/Category:OWASP_CSRFGuard_Project/Owasp.CsrfGuard.tld" prefix="csrf" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,7 +65,7 @@
 						<h3 class="panel-title">Connexion  </h3>
 					</div>
 					<div class="panel-body">
-						<csrf:form id="signinform" method="post" class="form-horizontal" action="/DAR2/signin">
+						<form id="signinform" method="post" class="form-horizontal" action="/DAR2/signin">
 				
 				<div id="error">		<c:if test="${not empty formErrors['login']}">
              					<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span><c:out value="${formErrors['login']}"/></div>
@@ -99,8 +99,9 @@
 								
 						Mot de passe oublié ? <csrf:a href="/DAR2/passwordreset"> Réinitialiser le ici !</csrf:a>
 								</div>
+								<input type="hidden" name="<csrf:tokenname/>" value="<csrf:tokenvalue uri="/DAR2/signin"/>"/>
 							</div>
-				</csrf:form>
+				<form>
 							</div>
 						
 					</div>
@@ -177,4 +178,5 @@
 		<jsp:param name="active" value="signin" />
 	</jsp:include>
 	</body>
+	
 </html>
